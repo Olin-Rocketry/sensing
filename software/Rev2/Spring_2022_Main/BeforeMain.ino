@@ -8,9 +8,16 @@
        fetchRadio(buffer1);
        free(buffer1);
           if (altitude < minimumMainAltitude) {
+
+
+            
+
+            
             digitalWrite(A20, HIGH);
             delay(1000);
             digitalWrite(A20, LOW);
+
+            
             phase = 5;
             SD_write();
           }

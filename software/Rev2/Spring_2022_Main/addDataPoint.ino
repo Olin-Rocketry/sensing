@@ -46,9 +46,13 @@ void addDataPoint()
             dataPoints[currentDataPoint].kalmanState[1] = state[1];
             dataPoints[currentDataPoint].kalmanState[2] = state[2];
       }
+
+
+      //Serial.print(dataPoints[currentDataPoint].altitude);
+      //Serial.print("\t");
      
-      Serial.print(dataPoints[currentDataPoint].kalmanState[0]);
-      Serial.print("\t");
+      //Serial.print(dataPoints[currentDataPoint].kalmanState[0]);
+      //Serial.print("\t");
       Serial.print(dataPoints[currentDataPoint].kalmanState[1]);
       Serial.print("\t");
       Serial.println(dataPoints[currentDataPoint].kalmanState[2]);

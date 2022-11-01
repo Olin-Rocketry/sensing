@@ -8,8 +8,19 @@ void BeforeApogee(){
        fetchRadio(buffer1);
        free(buffer1);
           //if the Kalman esitmated velocity goes negative, trigger apogee procedures
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
           if (state[1] < -0.3){//CHANGE BEFORE LUANCH
+=======
+=======
+>>>>>>> Stashed changes
+          if (state[1] < -2){
+//          if (altitude > minimumDrogAltitude) {
+>>>>>>> Stashed changes
             //trigger the droge e-match fet
+            digitalWrite(6, HIGH);
+            digitalWrite(7, HIGH);
+            digitalWrite(8, HIGH);
             digitalWrite(A19, HIGH);
             delay(1000);
             digitalWrite(A19, LOW);

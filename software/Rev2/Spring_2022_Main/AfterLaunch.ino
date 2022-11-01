@@ -19,8 +19,12 @@
        Serial.println(minimumAltitude);
        Serial.println(IMU[6]);       
             if (altitude > minimumAltitude) {
-                phase = 3;
+                
                 noTone(buzzer);
+                digitalWrite(6, LOW);
+                digitalWrite(7, LOW);
+                digitalWrite(8, LOW);
+                phase = 3;
               }
            if (analogRead(A18)<=20){
               phase = 1;

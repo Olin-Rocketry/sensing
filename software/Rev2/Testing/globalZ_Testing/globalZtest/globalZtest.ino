@@ -62,11 +62,12 @@ void loop() {
   fetchAccelerometerData();
 
   
-  Serial.print(IMU[0]);
-  Serial.print(" ");
-  Serial.print(IMU[1]);
-  Serial.print(" ");
+//  Serial.print(IMU[0]);
+//  Serial.print(" ");
+//  Serial.print(IMU[1]);
+//  Serial.print(" ");
   Serial.println(IMU[2]);
+//Serial.println(IMU[6]);
   delay(100);
 
 
