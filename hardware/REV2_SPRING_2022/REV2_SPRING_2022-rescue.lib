@@ -9,8 +9,8 @@ F1 "BNO055_Breakout-Sensors_2021_2022" 0 800 50 H V C CNN
 F2 "" 0 700 50 H I C CNN
 F3 "" 0 700 50 H I C CNN
 DRAW
-S -250 500 250 -600 1 1 0 f
 T 0 0 600 50 0 0 0 https://learn.adafruit.com/adafruit-bno055-absolute-orientation-sensor/overview Normal 0 C C
+S -250 500 250 -600 1 1 0 f
 X VIN 1 -350 350 100 R 50 50 1 1 W
 X PS0 10 350 200 100 L 50 50 1 1 N
 X 3VO 2 -350 200 100 R 50 50 1 1 w
@@ -32,8 +32,8 @@ F1 "MPL3115A2_Breakout-Sensors_2021_2022" 0 900 50 H V C CNN
 F2 "" 0 450 50 H I C CNN
 F3 "" 0 450 50 H I C CNN
 DRAW
-S -150 600 150 -600 0 1 0 f
 T 0 0 700 50 0 0 0 https://www.adafruit.com/product/1893 Normal 0 C C
+S -150 600 150 -600 0 1 0 f
 X VIN 1 -250 450 100 R 50 50 1 1 W
 X GND 2 -250 300 100 R 50 50 1 1 W
 X 3VO 3 -250 150 100 R 50 50 1 1 W
@@ -52,8 +52,8 @@ F1 "PA16165_Breakout-Sensors_2021_2022" 0 1050 50 H V C CNN
 F2 "" -50 650 50 H I C CNN
 F3 "" -50 650 50 H I C CNN
 DRAW
-S -150 750 150 -750 1 1 0 f
 T 0 0 850 50 0 0 0 https://learn.adafruit.com/adafruit-ultimate-gps Normal 0 C C
+S -150 750 150 -750 1 1 0 f
 X 3.3V 1 -250 600 100 R 50 50 1 1 w
 X EN 2 -250 450 100 R 50 50 1 1 I
 X VBAT 3 -250 300 100 R 50 50 1 1 W
@@ -74,8 +74,8 @@ F1 "RFM69HCW_Breakout-Sensors_2021_2022" 0 1050 50 H V C CNN
 F2 "" -150 800 50 H I C CNN
 F3 "" -150 800 50 H I C CNN
 DRAW
-S -250 750 250 -750 0 1 0 f
 T 0 0 850 50 0 0 0 https://learn.adafruit.com/adafruit-rfm69hcw-and-rfm96-rfm95-rfm98-lora-packet-padio-breakouts Normal 0 C C
+S -250 750 250 -750 0 1 0 f
 X VIN 1 -350 600 100 R 50 50 1 1 W
 X G5 10 350 0 100 L 50 50 1 1 B
 X G4 11 350 150 100 L 50 50 1 1 B
@@ -103,7 +103,7 @@ F3 "" 0 0 50 H I L BNN
 DRAW
 S -500 -500 500 500 0 0 16 f
 X STAT 1 700 300 200 L 40 40 0 0 O
-X ~{EN} 2 -700 400 200 R 40 40 0 0 I
+X ~EN 2 -700 400 200 R 40 40 0 0 I
 X VSNS 3 -700 0 200 R 40 40 0 0 I
 X ILIM 4 -700 300 200 R 40 40 0 0 I
 X GND 5 700 -300 200 L 40 40 0 0 W
@@ -122,9 +122,9 @@ F1 "Teensy3.6_All_Pins-teensy" 0 -2350 60 H V C CNN
 F2 "" 0 50 60 H V C CNN
 F3 "" 0 50 60 H V C CNN
 DRAW
-S -950 2450 950 -2225 0 0 0 N
 T 0 500 -1350 50 0 0 0 "3.6V to 6.0V" Normal 0 C C
 T 0 450 -1550 50 0 0 0 "max 250mA" Normal 0 C C
+S -950 2450 950 -2225 0 0 0 N
 X GND 1 -1150 2150 200 R 50 50 1 1 W
 X 8_TX3_MISO0_SDA0 10 -1150 1250 200 R 50 50 1 1 B
 X 9_PWM_RX2_CS0 11 -1150 1150 200 R 50 50 1 1 B
