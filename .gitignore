@@ -49,3 +49,23 @@
 *.net
 *-cache.lib
 *-rescue.lib
+
+# Temporary files
+*.000
+*.kicad_sch-bak
+*-backups
+*.kicad_prl
+*.sch-bak
+*~
+_autosave-*
+*.tmp
+*-save.pro
+*-save.kicad_pcb
+fp-info-cache
+*-bak
+*-backups
+*-cache*
+*-bak*
+# Autorouter files (exported from Pcbnew)
+*.dsn
+*.ses
