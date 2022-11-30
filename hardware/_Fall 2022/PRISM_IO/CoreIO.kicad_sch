@@ -1272,6 +1272,11 @@
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid 3de6f01d-ec83-4d57-9314-9e07a7034fd3)
   )
+  (polyline (pts (xy 24.13 97.79) (xy 170.18 97.79))
+    (stroke (width 0) (type default) (color 0 0 0 0))
+    (uuid 4e778003-4aa7-4f76-92dc-779f0b295efd)
+  )
+
   (wire (pts (xy 24.13 173.99) (xy 24.13 180.34))
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid 5afb668e-ed18-43d7-a935-0221cb114a01)
@@ -1279,6 +1284,10 @@
   (polyline (pts (xy 68.58 25.4) (xy 68.58 25.4))
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid 5e2d933d-5dda-4751-bd2a-9b0814ef6f5d)
+  )
+  (polyline (pts (xy 170.18 190.5) (xy 16.51 190.5))
+    (stroke (width 0) (type default) (color 0 0 0 0))
+    (uuid 5f831bb3-f6ab-4d86-ac5c-7f816b10fc36)
   )
 
   (wire (pts (xy 204.47 58.42) (xy 204.47 83.82))
@@ -1301,6 +1310,10 @@
   (polyline (pts (xy 269.24 21.59) (xy 269.24 92.71))
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid 6b86d310-5cca-4916-bdbd-8c29de1289fa)
+  )
+  (polyline (pts (xy 16.51 190.5) (xy 16.51 97.79))
+    (stroke (width 0) (type default) (color 0 0 0 0))
+    (uuid 6f264fb9-0779-4446-a7d5-e8dd09f8f7d0)
   )
 
   (wire (pts (xy 35.56 153.67) (xy 38.1 153.67))
@@ -1480,6 +1493,11 @@
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid cbfbb285-1910-4826-a39b-519b3143eca9)
   )
+  (polyline (pts (xy 16.51 97.79) (xy 76.2 97.79))
+    (stroke (width 0) (type default) (color 0 0 0 0))
+    (uuid d0853d42-3aa9-4f42-9aec-1bd95c3aa322)
+  )
+
   (wire (pts (xy 133.35 69.85) (xy 139.7 69.85))
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid d5df3983-2f34-4057-b1f6-6b17bb5243e8)
@@ -1541,6 +1559,11 @@
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid f47aa905-0b8a-430d-a32b-e979a47a3854)
   )
+  (polyline (pts (xy 170.18 97.79) (xy 170.18 190.5))
+    (stroke (width 0) (type default) (color 0 0 0 0))
+    (uuid f4b62c86-c46f-444f-81be-2ec4d451bead)
+  )
+
   (wire (pts (xy 139.7 60.96) (xy 139.7 58.42))
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid f5fbdf60-ef36-4a10-8e22-ccf5136f2ee9)
@@ -1834,7 +1857,7 @@
     (property "Reference" "R1" (id 0) (at 97.79 66.0399 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Value" "R" (id 1) (at 97.79 68.5799 0)
+    (property "Value" "10k" (id 1) (at 97.79 68.5799 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Footprint" "" (id 2) (at 97.028 67.31 90)
@@ -2327,7 +2350,7 @@
     (property "Reference" "R?" (id 0) (at 102.87 66.0399 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Value" "R" (id 1) (at 102.87 68.5799 0)
+    (property "Value" "10k" (id 1) (at 102.87 68.5799 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Footprint" "" (id 2) (at 102.108 67.31 90)
@@ -2504,7 +2527,7 @@
       (reference "Q?") (unit 1) (value "Q_NJFET_DGS") (footprint "")
     )
     (path "/2431e708-6d96-4879-b804-744396cc6ea4"
-      (reference "R1") (unit 1) (value "R") (footprint "")
+      (reference "R1") (unit 1) (value "10k") (footprint "")
     )
     (path "/90e70778-87cc-48a2-850f-e02db16d561d"
       (reference "R2") (unit 1) (value "100k") (footprint "")
@@ -2528,7 +2551,7 @@
       (reference "R?") (unit 1) (value "100k") (footprint "")
     )
     (path "/cc6575c1-19aa-4a63-82fe-a2ddcc2f6143"
-      (reference "R?") (unit 1) (value "R") (footprint "")
+      (reference "R?") (unit 1) (value "10k") (footprint "")
     )
     (path "/da01c7bf-6619-4764-9ff9-27e28e08c3c6"
       (reference "R?") (unit 1) (value "200k") (footprint "")
