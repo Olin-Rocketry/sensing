@@ -167,3 +167,7 @@ Optional: To review the production status of the board, click on the "Order Hist
 ![jlcpcb production](https://github.com/Olin-Rocketry/power/blob/master/img/jlcpcb-order-history.PNG)
 
 ![jlcpcb production progress](https://github.com/Olin-Rocketry/power/blob/master/img/jlcpcb-production-progress.PNG)
+
+**Design Reviews**
+
+-November 11, 2022 6:00 PM (done)
