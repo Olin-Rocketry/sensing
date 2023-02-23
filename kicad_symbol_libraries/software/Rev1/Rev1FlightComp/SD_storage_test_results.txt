@@ -1,0 +1,64 @@
+The values are given as the range of durations in milliseconds over 5 cycles.
+The notation 62-65 + 1051 means that four cycles had range 62-65 ms with one outlier at 1051 ms.
+
+Conclusions: the Rev 1 code is significantly faster for writing to the SD card, but contains more frequent outliers
+where the time is much longer.
+These tests were also run while saving to the same file, which grew larger each time.
+The time to open the SD card increases by a few milliseconds over about an hour of data logging.
+
+Rev 0 at 1000 data points:
+time difference is a very consistent 30
+
+time to open SD card: 40-41
+time to write to SD card: 105-113
+time to close SD card: 2-2
+total time: 147-156
+
+----------------------------------
+
+Rev 0 at 2000 data points:
+time difference is a very consistent 30
+
+time to open SD card: 40-41
+time to write to SD card: 214-228
+time to close SD card: 2-2
+total time: 260-271
+
+----------------------------------
+
+Rev 0 at 3000 data points:
+time difference is a very consistent 30
+
+time to open SD card: 41-41
+time to write to SD card: 311-327
+time to close SD card: 2-3
+total time: 354-370
+
+----------------------------------
+
+Rev 1 at 1000 data points:
+time difference is a very consistent 30
+
+time to open SD card: 40-42
+time to write to SD card: 62-65 + 1051
+time to close SD card: 2-8
+total time: 105-115 + 1094
+
+----------------------------------
+
+Rev 1 at 2000 data points:
+time difference is a very consistent 30
+
+time to open SD card: 40-42 + 185
+time to write to SD card: 124-132 + 470
+time to close SD card: 2-2
+total time: 169-514
+
+----------------------------------
+Rev 1 at 3000 data points:
+time difference is a very consistent 30
+
+time to open SD card: 41-42
+time to write to SD card: 189-199
+time to close SD card: 2
+total time: 233-243
