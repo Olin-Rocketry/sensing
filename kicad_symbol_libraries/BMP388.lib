@@ -1,0 +1,38 @@
+EESchema-LIBRARY Version 2.4
+#encoding utf-8
+#
+# Adafruit Industries 3966
+#
+DEF 3966 MD 0 40 Y Y 1 L N
+F0 "MD" 0 200 50 H V L CNN 
+F1 "3966" 0 300 50 H V L CNN 
+F2 "Adafruit_Industries-3966-*" 0 400 50 H I L CNN 
+F3 "https://cdn-learn.adafruit.com/downloads/pdf/adafruit-bmp388-bmp390-bmp3xx.pdf?timestamp=1628517945" 0 500 50 H I L CNN 
+F4 "No" 0 600 50 H I L CNN "automotive"
+F5 "UNK" 0 700 50 H I L CNN "category"
+F6 "Sensors" 0 800 50 H I L CNN "device class L1"
+F7 "Pressure Sensors" 0 900 50 H I L CNN "device class L2"
+F8 "unset" 0 1000 50 H I L CNN "device class L3"
+F9 "BMP388 - PRECISION BAROMETRIC PR" 0 1100 50 H I L CNN "digikey description"
+F10 "1528-2733-ND" 0 1200 50 H I L CNN "digikey part number"
+F11 "Yes" 0 1300 50 H I L CNN "lead free"
+F12 "4429725cd9347a7a" 0 1400 50 H I L CNN "library id"
+F13 "Adafruit Industries" 0 1500 50 H I L CNN "manufacturer"
+F14 "485-3966" 0 1600 50 H I L CNN "mouser part number"
+F15 "MODULE_25MM40_17MM78" 0 1700 50 H I L CNN "package"
+F16 "Yes" 0 1800 50 H I L CNN "rohs"
+F17 "I2C,SPI" 0 1900 50 H I L CNN "sensor output"
+DRAW
+X VIN 1 100 0 100 R 40 40 1 1 W 
+X 3VO 2 1400 0 100 L 40 40 1 1 W 
+X ~CS~ 7 100 -500 100 R 40 40 1 1 I 
+X INT 8 1400 -200 100 L 40 40 1 1 O 
+X SCK/SCL 4 100 -200 100 R 40 40 1 1 I C
+X SDI/SDA 6 100 -300 100 R 40 40 1 1 B 
+X SDO/ADR 5 100 -400 100 R 40 40 1 1 B 
+X GND 3 1400 -500 100 L 40 40 1 1 W 
+S 200 100 1300 -600 1 1 0 f
+ENDDRAW
+ENDDEF
+#
+# End Library
