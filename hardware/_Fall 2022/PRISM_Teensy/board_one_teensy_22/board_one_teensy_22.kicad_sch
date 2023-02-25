@@ -1126,7 +1126,6 @@
     )
   )
 
-
   (junction (at 243.586 47.117) (diameter 0) (color 0 0 0 0)
     (uuid 4083220d-e91c-4c91-8c60-ffe2bafc956d)
   )
@@ -1160,7 +1159,7 @@
 
   (no_connect (at 163.068 44.958) (uuid 28512f3b-5c1f-4991-a629-39ad643dbe57))
   (no_connect (at 27.94 104.14) (uuid 335c60fc-7227-4f62-841c-c09bc99e6f46))
-  (no_connect (at 27.94 109.22) (uuid 335c60fc-7227-4f62-841c-c09bc99e6f46))
+  (no_connect (at 27.94 109.22) (uuid 335c60fc-7227-4f62-841c-c09bc99e6f47))
   (no_connect (at 93.345 42.545) (uuid 38935fbd-0d67-4880-b235-2481521aa9c4))
   (no_connect (at 93.345 40.005) (uuid 38935fbd-0d67-4880-b235-2481521aa9c5))
   (no_connect (at 93.345 37.465) (uuid 38935fbd-0d67-4880-b235-2481521aa9c6))
@@ -1247,7 +1246,7 @@
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid 21de6776-1013-4e4c-80d8-5513e4eb6839)
   )
-  (wire (pts (xy 24.257 87.249) (xy 32.893 87.249))
+  (wire (pts (xy 23.114 87.63) (xy 32.893 87.249))
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid 26ddc503-a332-4e67-8152-9ccc47f5392d)
   )
@@ -1735,7 +1734,7 @@
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid c5bb9964-2846-42eb-a1a4-0557eb90b8a6)
   )
-  (label "NEOPIXEL" (at 24.257 87.249 0)
+  (label "NEOPIXEL" (at 23.114 87.63 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid cbeaacd0-ad8f-4d09-a94b-4e11671e7ad2)
   )
