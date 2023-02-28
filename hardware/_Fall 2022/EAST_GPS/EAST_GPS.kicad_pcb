@@ -213,7 +213,7 @@
 
   (footprint "Connector_PinHeader_2.54mm:PinHeader_2x08_P2.54mm_Vertical" (layer "F.Cu")
     (tedit 59FED5CC) (tstamp fda1b3f5-a4e7-41c9-9eda-23a27ab2d9f5)
-    (at 132.08 119.38 90)
+    (at 131.4346 115.0924 90)
     (descr "Through hole straight pin header, 2x08, 2.54mm pitch, double rows")
     (tags "Through hole pin header THT 2x08 2.54mm double row")
     (property "Sheetfile" "File: EAST_GPS.kicad_sch")
