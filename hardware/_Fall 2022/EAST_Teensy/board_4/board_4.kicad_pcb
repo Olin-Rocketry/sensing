@@ -583,7 +583,7 @@
 
   (footprint "Capacitor_SMD:C_0201_0603Metric" (layer "F.Cu")
     (tedit 5F68FEEE) (tstamp 8c3ced34-d476-4eb7-b0a1-b6b31ba0280a)
-    (at 156.68 144.78 180)
+    (at 120.225 112.975)
     (descr "Capacitor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator")
     (tags "capacitor")
     (property "Sheetfile" "File: board_4.kicad_sch")
@@ -610,11 +610,11 @@
     (fp_line (start 0.3 -0.15) (end 0.3 0.15) (layer "F.Fab") (width 0.1) (tstamp 352a11f7-373e-4a5e-a7e1-4cf325319623))
     (fp_line (start -0.3 -0.15) (end 0.3 -0.15) (layer "F.Fab") (width 0.1) (tstamp 418cee72-af98-457d-907e-c3b1465c979b))
     (fp_line (start -0.3 0.15) (end -0.3 -0.15) (layer "F.Fab") (width 0.1) (tstamp b34b888c-c7bb-42ff-b5c7-fa3417c405ae))
-    (pad "" smd roundrect (at -0.345 0 180) (size 0.318 0.36) (layers "F.Paste") (roundrect_rratio 0.25) (tstamp 847ba5e8-3be4-4444-872d-0596f2f4120a))
-    (pad "" smd roundrect (at 0.345 0 180) (size 0.318 0.36) (layers "F.Paste") (roundrect_rratio 0.25) (tstamp f15f062c-eec9-435c-948d-f16555188132))
-    (pad "1" smd roundrect (at -0.32 0 180) (size 0.46 0.4) (layers "F.Cu" "F.Mask") (roundrect_rratio 0.25)
+    (pad "" smd roundrect (at -0.345 0) (size 0.318 0.36) (layers "F.Paste") (roundrect_rratio 0.25) (tstamp 847ba5e8-3be4-4444-872d-0596f2f4120a))
+    (pad "" smd roundrect (at 0.345 0) (size 0.318 0.36) (layers "F.Paste") (roundrect_rratio 0.25) (tstamp f15f062c-eec9-435c-948d-f16555188132))
+    (pad "1" smd roundrect (at -0.32 0) (size 0.46 0.4) (layers "F.Cu" "F.Mask") (roundrect_rratio 0.25)
       (net 1 "/V_BATT") (pintype "passive") (tstamp f7fa10b1-7c98-4e4f-95ad-cc35c2413af3))
-    (pad "2" smd roundrect (at 0.32 0 180) (size 0.46 0.4) (layers "F.Cu" "F.Mask") (roundrect_rratio 0.25)
+    (pad "2" smd roundrect (at 0.32 0) (size 0.46 0.4) (layers "F.Cu" "F.Mask") (roundrect_rratio 0.25)
       (net 2 "GND") (pintype "passive") (tstamp 95d13e07-f2bb-449b-9a53-006cb90f258f))
     (model "${KICAD6_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0201_0603Metric.wrl"
       (offset (xyz 0 0 0))
@@ -744,6 +744,8 @@
   (gr_line (start 122.698438 153) (end 173.1 153) (layer "Dwgs.User") (width 0.2) (tstamp 64ca3091-c437-4ff6-bef7-0317d751a66f))
   (gr_circle (center 175.394719 140.299534) (end 173.565919 140.299534) (layer "Dwgs.User") (width 0.2) (fill none) (tstamp caa92d14-f735-4d3b-9e85-97f508351d1f))
 
+  (segment (start 119.41 113.426) (end 119.861 112.975) (width 0.508) (layer "F.Cu") (net 1) (tstamp 8a1ebb29-fc98-4539-9e70-15ed83026b4d))
+  (segment (start 119.41 114.99) (end 119.41 113.426) (width 0.508) (layer "F.Cu") (net 1) (tstamp a987297c-64c0-4d6c-9cee-7c367332c6c0))
   (segment (start 130.45 105.03) (end 134.12 105.03) (width 0.25) (layer "F.Cu") (net 3) (tstamp 4a05d1a8-4a7f-49fe-aa7e-a188b80ba337))
   (segment (start 134.12 105.03) (end 138.8675 109.7775) (width 0.25) (layer "F.Cu") (net 3) (tstamp a70262e9-8a9c-471f-88f0-cf49f9f805eb))
   (segment (start 138.8675 109.7775) (end 139.32 109.7775) (width 0.25) (layer "F.Cu") (net 3) (tstamp fb8a2b94-a04e-4a84-9b39-e306974f7678))
