@@ -38,6 +38,19 @@
   )
 
   (setup
+    (stackup
+      (layer "F.SilkS" (type "Top Silk Screen"))
+      (layer "F.Paste" (type "Top Solder Paste"))
+      (layer "F.Mask" (type "Top Solder Mask") (thickness 0.01))
+      (layer "F.Cu" (type "copper") (thickness 0.035))
+      (layer "dielectric 1" (type "core") (thickness 1.51) (material "FR4") (epsilon_r 4.5) (loss_tangent 0.02))
+      (layer "B.Cu" (type "copper") (thickness 0.035))
+      (layer "B.Mask" (type "Bottom Solder Mask") (thickness 0.01))
+      (layer "B.Paste" (type "Bottom Solder Paste"))
+      (layer "B.SilkS" (type "Bottom Silk Screen"))
+      (copper_finish "None")
+      (dielectric_constraints no)
+    )
     (pad_to_mask_clearance 0)
     (pcbplotparams
       (layerselection 0x00010fc_ffffffff)
@@ -100,14 +113,15 @@
 
   (footprint "Resistor_SMD:R_0201_0603Metric" (layer "F.Cu")
     (tedit 5F68FEEE) (tstamp 020f7940-4192-4468-b730-95f3996a0841)
-    (at 164.595579 96.964325 180)
+    (at 164.465 91.44 180)
     (descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator")
     (tags "resistor")
     (property "Sheetfile" "CoreIO.kicad_sch")
     (property "Sheetname" "")
+    (property "Vendor" "C25804")
     (path "/ee9fdc92-5558-4243-8b3b-44df2d1be5ff")
     (attr smd)
-    (fp_text reference "R8" (at 2.910974 1.063008) (layer "F.SilkS")
+    (fp_text reference "R8" (at 1.905 0) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 1de53762-51fe-457d-98cd-95bcbdfdc335)
     )
@@ -142,7 +156,7 @@
 
   (footprint "AO3400A:SOT95P280X125-3N" (layer "F.Cu")
     (tedit 63FFDDDB) (tstamp 0900385d-0cf5-4ec1-8b7e-99dbf0a060e9)
-    (at 121.500605 83.201317)
+    (at 170.18 71.12 90)
     (property "MANUFACTURER" "Alpha & Omega Semiconductor")
     (property "MAXIMUM_PACKAGE_HEIGHT" "1.25 mm")
     (property "PARTREV" "L")
@@ -152,42 +166,37 @@
     (property "Vendor" "C20917")
     (path "/2abb36cb-2815-40ea-891e-b0d077e41256")
     (attr smd)
-    (fp_text reference "Q2" (at 1.175 -2.635) (layer "F.SilkS")
+    (fp_text reference "Q2" (at 1.175 -2.635 90) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
-      (tstamp 8818e65d-62cb-40ac-994f-4d09d973eea1)
+      (tstamp 065a7492-6bee-4d24-bb85-d3ec37edf717)
     )
-    (fp_text value "AO3400A" (at 8.16 2.615) (layer "F.Fab")
+    (fp_text value "AO3400A" (at 8.16 2.615 90) (layer "F.Fab")
       (effects (font (size 1 1) (thickness 0.15)))
-      (tstamp 578416e1-b3a2-415a-9d69-424936086111)
+      (tstamp 8e60dc21-c176-4e2c-89b8-926a7c7944ca)
     )
-    (fp_line (start -0.9 1.55) (end 0.9 1.55) (layer "F.SilkS") (width 0.127) (tstamp 5caee114-d78a-4020-8a7e-1426ca72775a))
-    (fp_line (start 0.9 -1.55) (end -0.9 -1.55) (layer "F.SilkS") (width 0.127) (tstamp e8edf4ca-d468-4cfe-b079-b8c9ecb9d169))
-    (fp_circle (center -2.31 -0.95) (end -2.21 -0.95) (layer "F.SilkS") (width 0.2) (fill none) (tstamp 1f7b94b6-bd21-417d-95c6-45af7f056978))
-    (fp_line (start 2.11 -1.8) (end 2.11 1.8) (layer "F.CrtYd") (width 0.05) (tstamp 0886e091-7033-487c-9f79-c9bdd4ee7e55))
-    (fp_line (start -2.11 -1.8) (end 2.11 -1.8) (layer "F.CrtYd") (width 0.05) (tstamp bdf3fd22-8712-4978-a151-0c9e6bc7b1a3))
-    (fp_line (start -2.11 1.8) (end -2.11 -1.8) (layer "F.CrtYd") (width 0.05) (tstamp be2cb9ee-2bb8-400a-bb31-a498f7b021fd))
-    (fp_line (start 2.11 1.8) (end -2.11 1.8) (layer "F.CrtYd") (width 0.05) (tstamp d315ab3d-b1e1-4657-acf5-bca92ff0f3c1))
-    (fp_line (start -0.9 -1.55) (end -0.9 1.55) (layer "F.Fab") (width 0.127) (tstamp 59eea95a-a35c-4b15-a81a-44fb191f0a66))
-    (fp_line (start 0.9 -1.55) (end -0.9 -1.55) (layer "F.Fab") (width 0.127) (tstamp 6bc26b8a-8d47-48ee-aaf1-a42570613b60))
-    (fp_line (start 0.9 1.55) (end 0.9 -1.55) (layer "F.Fab") (width 0.127) (tstamp b34295c3-3b14-4cd5-b7eb-024d9a476f5b))
-    (fp_line (start -0.9 1.55) (end 0.9 1.55) (layer "F.Fab") (width 0.127) (tstamp b8972dc3-1976-4628-8afd-cb84023ddc52))
-    (fp_circle (center -2.31 -0.95) (end -2.21 -0.95) (layer "F.Fab") (width 0.2) (fill none) (tstamp eeae4ce4-0900-4521-989d-a3531102ff22))
-    (pad "1" smd roundrect locked (at -1.255 -0.95) (size 1.21 0.59) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.15)
-      (net 5 "/PYRO 1") (pintype "passive") (tstamp 36350d90-5157-48b2-a748-6d210204e079))
-    (pad "2" smd roundrect locked (at -1.255 0.95) (size 1.21 0.59) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.15)
-      (net 7 "GND") (pintype "passive") (tstamp f139f4c6-e1a8-43e6-9e46-6502d8fb8842))
-    (pad "3" smd roundrect locked (at 1.255 0) (size 1.21 0.59) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.15)
-      (net 8 "Net-(J3-Pad2)") (pintype "passive") (tstamp 61addd56-aa32-4d7e-a53f-7d60eb6ceeb7))
-    (model "${KICAD6_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23.step"
-      (offset (xyz 0 0 0))
-      (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
-    )
+    (fp_line (start 0.9 -1.55) (end -0.9 -1.55) (layer "F.SilkS") (width 0.127) (tstamp 41b93391-2455-4536-b283-9c1698667026))
+    (fp_line (start -0.9 1.55) (end 0.9 1.55) (layer "F.SilkS") (width 0.127) (tstamp b9544ca8-b2d8-44ed-9a7d-0cf79ad3478b))
+    (fp_circle (center -2.31 -0.95) (end -2.21 -0.95) (layer "F.SilkS") (width 0.2) (fill none) (tstamp 312c6249-ecf9-4c72-978a-c745dd9c5b61))
+    (fp_line (start -2.11 1.8) (end -2.11 -1.8) (layer "F.CrtYd") (width 0.05) (tstamp 42b6670a-5c86-4050-8d5a-cac51fa54c71))
+    (fp_line (start 2.11 -1.8) (end 2.11 1.8) (layer "F.CrtYd") (width 0.05) (tstamp 92a26933-7463-4fed-a1e3-dc11991b6fe6))
+    (fp_line (start -2.11 -1.8) (end 2.11 -1.8) (layer "F.CrtYd") (width 0.05) (tstamp c93e4c17-c7e7-40c8-99df-a405b17eacf6))
+    (fp_line (start 2.11 1.8) (end -2.11 1.8) (layer "F.CrtYd") (width 0.05) (tstamp f3d3cbd9-e4b8-48ec-94b2-fa126f70cbc3))
+    (fp_line (start -0.9 -1.55) (end -0.9 1.55) (layer "F.Fab") (width 0.127) (tstamp 00707c2d-00a9-4cf9-82c3-9e5b82ef06bc))
+    (fp_line (start 0.9 -1.55) (end -0.9 -1.55) (layer "F.Fab") (width 0.127) (tstamp 28d039c0-7348-408b-bab1-7d80677ac577))
+    (fp_line (start 0.9 1.55) (end 0.9 -1.55) (layer "F.Fab") (width 0.127) (tstamp 8e4c5e33-8ce9-4368-b749-2619fb150e68))
+    (fp_line (start -0.9 1.55) (end 0.9 1.55) (layer "F.Fab") (width 0.127) (tstamp c58f6805-04a8-4d53-a833-f6e6c060bd93))
+    (fp_circle (center -2.31 -0.95) (end -2.21 -0.95) (layer "F.Fab") (width 0.2) (fill none) (tstamp 4a4b3655-4577-47ef-9289-616cb06a0191))
+    (pad "1" smd roundrect locked (at -1.255 -0.95 90) (size 1.21 0.59) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.15)
+      (net 5 "/PYRO 1") (pintype "passive") (tstamp 8813a061-cab8-4c3b-95d6-d9859ee10a81))
+    (pad "2" smd roundrect locked (at -1.255 0.95 90) (size 1.21 0.59) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.15)
+      (net 7 "GND") (pintype "passive") (tstamp e6291057-9295-48c4-bad8-1965d1699aa4))
+    (pad "3" smd roundrect locked (at 1.255 0 90) (size 1.21 0.59) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.15)
+      (net 8 "Net-(J3-Pad2)") (pintype "passive") (tstamp 5aab2d0d-aedc-4024-9d10-358981482f6d))
   )
 
   (footprint "Connector_JST:JST_PH_S2B-PH-K_1x02_P2.00mm_Horizontal" (layer "F.Cu")
     (tedit 5B7745C6) (tstamp 18f76233-c09e-4084-b610-95597ec090a6)
-    (at 165.200546 64.621787 180)
+    (at 124.19 67.22 180)
     (descr "JST PH series connector, S2B-PH-K (http://www.jst-mfg.com/product/pdf/eng/ePH.pdf), generated with kicad-footprint-generator")
     (tags "connector JST PH top entry")
     (property "Sheetfile" "CoreIO.kicad_sch")
@@ -264,6 +273,7 @@
     (tags "LED")
     (property "Sheetfile" "CoreIO.kicad_sch")
     (property "Sheetname" "")
+    (property "Vendor" "C2290")
     (path "/0b341755-06db-453d-817e-17956bf5f691")
     (attr smd)
     (fp_text reference "D1" (at 0 3.048) (layer "F.SilkS")
@@ -303,7 +313,7 @@
 
   (footprint "Sensors:SW_D2F-01F" (layer "F.Cu")
     (tedit 63E0855D) (tstamp 2ab7155e-2db3-4640-9db7-f9ee2eb05e32)
-    (at 146.049428 83.620611)
+    (at 145.943176 81.059176 180)
     (property "MANUFACTURER" "Omron")
     (property "MAXIMUM_PACKAGE_HEIGHT" "7.8 mm")
     (property "PARTREV" "B036-E1-12")
@@ -335,11 +345,11 @@
     (fp_line (start -6.4 2.9) (end -6.4 -2.9) (layer "F.Fab") (width 0.127) (tstamp e82ba764-b87d-4b22-86b2-6215800b140e))
     (fp_line (start 6.4 2.9) (end -6.4 2.9) (layer "F.Fab") (width 0.127) (tstamp ffa9b600-1942-4770-a7ab-f1cfb0827d10))
     (fp_circle (center -7.4 0.1) (end -7.3 0.1) (layer "F.Fab") (width 0.2) (fill none) (tstamp d69db02d-53e8-4ce0-abb6-652d6ad270bf))
-    (pad "1" thru_hole rect locked (at -5.08 0) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
+    (pad "1" thru_hole rect locked (at -5.08 0 180) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
       (net 9 "/SWITCH1") (pintype "passive") (tstamp 243c5319-4d86-4141-bc98-69654fb774b7))
-    (pad "2" thru_hole circle locked (at 0 0) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
+    (pad "2" thru_hole circle locked (at 0 0 180) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
       (net 17 "Net-(JP1-Pad1)") (pintype "passive") (tstamp 731f19dd-83a4-47d0-9f5e-7697bd80276b))
-    (pad "3" thru_hole circle locked (at 5.08 0) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
+    (pad "3" thru_hole circle locked (at 5.08 0 180) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
       (net 18 "Net-(JP1-Pad3)") (pintype "passive") (tstamp 5475eed3-7658-4bd1-833b-51ee74172808))
     (model "${ROCKETRY}/kicad_symbol_libraries/omron_D2F.pretty-master/D2F-01F.step"
       (offset (xyz 0 0 0))
@@ -350,18 +360,19 @@
 
   (footprint "Resistor_SMD:R_0201_0603Metric" (layer "F.Cu")
     (tedit 5F68FEEE) (tstamp 34c4ebb2-70a6-4687-ba2e-46fecdb8a9c9)
-    (at 164.720602 92.985317 180)
+    (at 164.465 97.155 180)
     (descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator")
     (tags "resistor")
     (property "Sheetfile" "CoreIO.kicad_sch")
     (property "Sheetname" "")
+    (property "Vendor" "C22935")
     (path "/5f3ec4cf-b049-4809-bef9-bff908ee6709")
     (attr smd)
-    (fp_text reference "R6" (at 3.035997 0.132) (layer "F.SilkS")
+    (fp_text reference "R6" (at 1.905 0) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp a0b0ebee-63ee-4f31-bff9-c779ca656c07)
     )
-    (fp_text value "1M" (at 5.575997 0.132) (layer "F.Fab")
+    (fp_text value "1M" (at 5.575997 5.212) (layer "F.Fab")
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 3b8d6db6-2e2f-4139-a9e5-3c9269b2be89)
     )
@@ -392,14 +403,15 @@
 
   (footprint "Resistor_SMD:R_0201_0603Metric" (layer "F.Cu")
     (tedit 5F68FEEE) (tstamp 3fa35a82-eac5-449d-859c-464c1fd9abd0)
-    (at 164.532579 98.998334)
+    (at 164.465 89.535)
     (descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator")
     (tags "resistor")
     (property "Sheetfile" "CoreIO.kicad_sch")
     (property "Sheetname" "")
+    (property "Vendor" "C25804")
     (path "/209976c5-ce6d-4cb7-becd-ee216d196452")
     (attr smd)
-    (fp_text reference "R10" (at -2.22 0) (layer "F.SilkS")
+    (fp_text reference "R10" (at -2.54 -0.635) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 5679dca8-0e4c-470c-ae43-e2db7ef0fc39)
     )
@@ -434,14 +446,14 @@
 
   (footprint "JST:JST_SFH_SM02B-SFHRS-TF_02x1.80mm_Angled" (layer "F.Cu")
     (tedit 56CAFF49) (tstamp 63459b91-5341-4cbc-94f4-737326f01afb)
-    (at 125.405693 71.348375 180)
+    (at 172.72 64.77 180)
     (descr "JST SFH series crimp connector, SMT, 1.80mm pitch")
     (tags "JST SFT SMT crimp connector")
     (property "Sheetfile" "CoreIO.kicad_sch")
     (property "Sheetname" "")
     (path "/bb4cb2f2-6568-47a9-83a0-29db5cfe61cd")
     (attr smd)
-    (fp_text reference "J3" (at 4.572 0.508) (layer "F.SilkS")
+    (fp_text reference "J3" (at -5.08 0) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp b14e794b-67db-47d7-8df9-72995a4f7960)
     )
@@ -580,7 +592,7 @@
 
   (footprint "Sensors:SW_D2F-01F" (layer "F.Cu")
     (tedit 63E0855D) (tstamp 676b6334-eb49-4d6a-8167-30ead6ab8b1c)
-    (at 145.944604 73.400316)
+    (at 145.943058 70.888941 180)
     (property "MANUFACTURER" "Omron")
     (property "MAXIMUM_PACKAGE_HEIGHT" "7.8 mm")
     (property "PARTREV" "B036-E1-12")
@@ -612,11 +624,11 @@
     (fp_line (start 6.4 -2.9) (end 6.4 2.9) (layer "F.Fab") (width 0.127) (tstamp d77743c7-e64e-4148-a09e-2be011383a10))
     (fp_line (start -6.4 -2.9) (end 6.4 -2.9) (layer "F.Fab") (width 0.127) (tstamp f8b410c5-05c6-46eb-930a-47288f1d390b))
     (fp_circle (center -7.4 0.1) (end -7.3 0.1) (layer "F.Fab") (width 0.2) (fill none) (tstamp 2d2a9899-7888-4a9b-946a-bc25b67c3296))
-    (pad "1" thru_hole rect locked (at -5.08 0) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
+    (pad "1" thru_hole rect locked (at -5.08 0 180) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
       (net 6 "/V_BATT") (pintype "passive") (tstamp f1f29341-7ad3-4750-b2df-5897191030f2))
-    (pad "2" thru_hole circle locked (at 0 0) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
+    (pad "2" thru_hole circle locked (at 0 0 180) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
       (net 19 "Net-(JP2-Pad1)") (pintype "passive") (tstamp c11c9613-5336-4012-b5b7-02bb50c3644e))
-    (pad "3" thru_hole circle locked (at 5.08 0) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
+    (pad "3" thru_hole circle locked (at 5.08 0 180) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
       (net 20 "Net-(JP2-Pad3)") (pintype "passive") (tstamp 30af4ae6-3e61-42fc-a221-4bcd16fd2b82))
     (model "${ROCKETRY}/kicad_symbol_libraries/omron_D2F.pretty-master/D2F-01F.step"
       (offset (xyz 0 0 0))
@@ -1517,14 +1529,14 @@
 
   (footprint "JST:JST_SFH_SM02B-SFHRS-TF_02x1.80mm_Angled" (layer "F.Cu")
     (tedit 56CAFF49) (tstamp 837823f8-a5db-43f2-b756-f75e13d1b879)
-    (at 124.855369 118.676199)
+    (at 172.72 125.095)
     (descr "JST SFH series crimp connector, SMT, 1.80mm pitch")
     (tags "JST SFT SMT crimp connector")
     (property "Sheetfile" "CoreIO.kicad_sch")
     (property "Sheetname" "")
     (path "/375b75fe-bffc-4fb5-be61-bc10a8d7dbec")
     (attr smd)
-    (fp_text reference "J4" (at -4.572 0) (layer "F.SilkS")
+    (fp_text reference "J4" (at 5.08 0) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 2fbe4bb1-eff7-47d4-9301-2106f888d9c3)
     )
@@ -1581,18 +1593,19 @@
 
   (footprint "Resistor_SMD:R_0201_0603Metric" (layer "F.Cu")
     (tedit 5F68FEEE) (tstamp 8613ac86-e746-4e3e-b6df-44082e724ad6)
-    (at 165.240605 89.297317)
+    (at 164.465 88.9 180)
     (descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator")
     (tags "resistor")
     (property "Sheetfile" "CoreIO.kicad_sch")
     (property "Sheetname" "")
+    (property "Vendor" "C25804")
     (path "/9f931a3f-9ac5-44c7-bff4-4db871895cbe")
     (attr smd)
-    (fp_text reference "R11" (at 0 -1.05) (layer "F.SilkS")
+    (fp_text reference "R11" (at 2.54 1.27) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 751e9d80-0652-4397-ba9b-d9d38e602ff7)
     )
-    (fp_text value "10k" (at 0 1.05) (layer "F.Fab")
+    (fp_text value "10k" (at 0 3.81) (layer "F.Fab")
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 85bbbb79-e181-4f9f-a925-0ac98e351393)
     )
@@ -1608,11 +1621,11 @@
     (fp_line (start 0.3 0.15) (end -0.3 0.15) (layer "F.Fab") (width 0.1) (tstamp 595985c0-acf4-4d37-a0d1-1997e6b0c394))
     (fp_line (start -0.3 -0.15) (end 0.3 -0.15) (layer "F.Fab") (width 0.1) (tstamp ce9da22a-e9c5-41c1-9fe2-89caef5cd0ae))
     (fp_line (start -0.3 0.15) (end -0.3 -0.15) (layer "F.Fab") (width 0.1) (tstamp e1285fa2-6280-490a-9555-27f9d1a9cb5f))
-    (pad "" smd roundrect (at 0.345 0) (size 0.318 0.36) (layers "F.Paste") (roundrect_rratio 0.25) (tstamp bca6b921-9e60-49c5-bb17-4bb511d146b9))
-    (pad "" smd roundrect (at -0.345 0) (size 0.318 0.36) (layers "F.Paste") (roundrect_rratio 0.25) (tstamp ef05b0e2-bec1-4f33-a549-5fa08786267a))
-    (pad "1" smd roundrect (at -0.32 0) (size 0.46 0.4) (layers "F.Cu" "F.Mask") (roundrect_rratio 0.25)
+    (pad "" smd roundrect (at 0.345 0 180) (size 0.318 0.36) (layers "F.Paste") (roundrect_rratio 0.25) (tstamp bca6b921-9e60-49c5-bb17-4bb511d146b9))
+    (pad "" smd roundrect (at -0.345 0 180) (size 0.318 0.36) (layers "F.Paste") (roundrect_rratio 0.25) (tstamp ef05b0e2-bec1-4f33-a549-5fa08786267a))
+    (pad "1" smd roundrect (at -0.32 0 180) (size 0.46 0.4) (layers "F.Cu" "F.Mask") (roundrect_rratio 0.25)
       (net 2 "/CONT 2") (pintype "passive") (tstamp 285bd495-b5d5-4acf-8a38-42e69ecdbbee))
-    (pad "2" smd roundrect (at 0.32 0) (size 0.46 0.4) (layers "F.Cu" "F.Mask") (roundrect_rratio 0.25)
+    (pad "2" smd roundrect (at 0.32 0 180) (size 0.46 0.4) (layers "F.Cu" "F.Mask") (roundrect_rratio 0.25)
       (net 7 "GND") (pintype "passive") (tstamp 258bfbef-9ca3-4cdd-b719-14b637edade4))
     (model "${KICAD6_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0201_0603Metric.wrl"
       (offset (xyz 0 0 0))
@@ -1623,9 +1636,9 @@
 
   (footprint "LOGO" (layer "F.Cu")
     (tedit 0) (tstamp 870444ea-8875-4d6f-933f-53edc9f0f581)
-    (at 147.32 111.76)
+    (at 214.63 113.03)
     (attr board_only exclude_from_pos_files exclude_from_bom)
-    (fp_text reference "G***" (at 0 0) (layer "F.SilkS")
+    (fp_text reference "G***" (at 10.16 5.08) (layer "F.SilkS")
       (effects (font (size 1.524 1.524) (thickness 0.3)))
       (tstamp e4506cb9-f2ff-465b-adf8-2147dbac6eab)
     )
@@ -2138,6 +2151,7 @@
     (tags "resistor")
     (property "Sheetfile" "CoreIO.kicad_sch")
     (property "Sheetname" "")
+    (property "Vendor" "C22808")
     (path "/2431e708-6d96-4879-b804-744396cc6ea4")
     (attr smd)
     (fp_text reference "R1" (at -0.188 2.54) (layer "F.SilkS")
@@ -2175,14 +2189,15 @@
 
   (footprint "Resistor_SMD:R_0201_0603Metric" (layer "F.Cu")
     (tedit 5F68FEEE) (tstamp a566e0c7-6ee2-49be-af6b-92a62a6c0314)
-    (at 164.544605 101.997317 180)
+    (at 164.465 93.345 180)
     (descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator")
     (tags "resistor")
     (property "Sheetfile" "CoreIO.kicad_sch")
     (property "Sheetname" "")
+    (property "Vendor" "C25804")
     (path "/90e70778-87cc-48a2-850f-e02db16d561d")
     (attr smd)
-    (fp_text reference "R2" (at 2.86 -0.508) (layer "F.SilkS")
+    (fp_text reference "R2" (at 1.905 0.635) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp b35302ff-adbf-43ab-b293-877a4026f1e4)
     )
@@ -2217,7 +2232,7 @@
 
   (footprint "AO3400A:SOT95P280X125-3N" (layer "F.Cu")
     (tedit 63FFDDDB) (tstamp a9a5daed-8ec6-44dc-b289-aa8593010266)
-    (at 127.140605 111.141317 180)
+    (at 171.45 116.205 -90)
     (property "MANUFACTURER" "Alpha & Omega Semiconductor")
     (property "MAXIMUM_PACKAGE_HEIGHT" "1.25 mm")
     (property "PARTREV" "L")
@@ -2227,11 +2242,11 @@
     (property "Vendor" "C20917")
     (path "/b5a71cfa-f75d-4518-aa9f-ad067f3610b5")
     (attr smd)
-    (fp_text reference "Q1" (at 1.175 -2.635) (layer "F.SilkS")
+    (fp_text reference "Q1" (at 0 2.54 90) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp e22b7512-289c-4527-84dd-1eaa212206c5)
     )
-    (fp_text value "AO3400A" (at 8.16 2.615) (layer "F.Fab")
+    (fp_text value "AO3400A" (at 5.08 3.81 90) (layer "F.Fab")
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 567f6592-1f8d-4266-b07b-5120980d3a15)
     )
@@ -2247,11 +2262,11 @@
     (fp_line (start -0.9 1.55) (end 0.9 1.55) (layer "F.Fab") (width 0.127) (tstamp 803e4782-584a-453c-91a2-8a2b960ede0d))
     (fp_line (start 0.9 -1.55) (end -0.9 -1.55) (layer "F.Fab") (width 0.127) (tstamp 97aef9a0-edd4-4a3c-959b-8d5da8bb9b28))
     (fp_circle (center -2.31 -0.95) (end -2.21 -0.95) (layer "F.Fab") (width 0.2) (fill none) (tstamp 0b4aaa83-46bc-4b0b-9a2d-eb6a20c910e8))
-    (pad "1" smd roundrect locked (at -1.255 -0.95 180) (size 1.21 0.59) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.15)
+    (pad "1" smd roundrect locked (at -1.255 -0.95 270) (size 1.21 0.59) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.15)
       (net 4 "/PYRO 2") (pintype "passive") (tstamp 24d4a21f-081f-4be2-bb09-039bd52b91ac))
-    (pad "2" smd roundrect locked (at -1.255 0.95 180) (size 1.21 0.59) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.15)
+    (pad "2" smd roundrect locked (at -1.255 0.95 270) (size 1.21 0.59) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.15)
       (net 7 "GND") (pintype "passive") (tstamp 7ae0a26d-b5b8-4e82-8951-a6f73132c2ef))
-    (pad "3" smd roundrect locked (at 1.255 0 180) (size 1.21 0.59) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.15)
+    (pad "3" smd roundrect locked (at 1.255 0 270) (size 1.21 0.59) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.15)
       (net 16 "Net-(J4-Pad2)") (pintype "passive") (tstamp e706924f-46ab-4fff-a01a-2ef94c7e2d93))
     (model "${KICAD6_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23.step"
       (offset (xyz 0 0 0))
@@ -2262,14 +2277,15 @@
 
   (footprint "Resistor_SMD:R_0201_0603Metric" (layer "F.Cu")
     (tedit 5F68FEEE) (tstamp b8cd2818-2d92-443a-960a-5dbee97220c7)
-    (at 164.544605 100.981317)
+    (at 164.465 93.98)
     (descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator")
     (tags "resistor")
     (property "Sheetfile" "CoreIO.kicad_sch")
     (property "Sheetname" "")
+    (property "Vendor" "C25804")
     (path "/da01c7bf-6619-4764-9ff9-27e28e08c3c6")
     (attr smd)
-    (fp_text reference "R5" (at -2.86 0) (layer "F.SilkS")
+    (fp_text reference "R5" (at -1.905 0) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp a7d8b7a7-2ca4-4178-8934-1765d1405569)
     )
@@ -2642,14 +2658,15 @@
 
   (footprint "Resistor_SMD:R_0201_0603Metric" (layer "F.Cu")
     (tedit 5F68FEEE) (tstamp c0696b40-f5ae-4dfa-87ce-0dea383f11f6)
-    (at 164.732605 94.885317 180)
+    (at 164.465 94.615 180)
     (descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator")
     (tags "resistor")
     (property "Sheetfile" "CoreIO.kicad_sch")
     (property "Sheetname" "")
+    (property "Vendor" "C22935")
     (path "/4fc4fd16-888e-425e-b046-d54c212e02e3")
     (attr smd)
-    (fp_text reference "R9" (at 3.048 0.508) (layer "F.SilkS")
+    (fp_text reference "R9" (at 1.905 -0.635) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp ce7ce238-4ba8-43d8-84de-e6d479c03d37)
     )
@@ -2684,7 +2701,7 @@
 
   (footprint "Sensors:SW_D2F-01F" (layer "F.Cu")
     (tedit 63E0855D) (tstamp d206a2b6-87db-4581-a44d-83401684af41)
-    (at 145.997016 62.917964)
+    (at 145.979176 60.76247 180)
     (property "MANUFACTURER" "Omron")
     (property "MAXIMUM_PACKAGE_HEIGHT" "7.8 mm")
     (property "PARTREV" "B036-E1-12")
@@ -2716,11 +2733,11 @@
     (fp_line (start 6.4 2.9) (end -6.4 2.9) (layer "F.Fab") (width 0.127) (tstamp b3b75139-8840-46d7-9c4a-7ef10dedb7be))
     (fp_line (start -6.4 2.9) (end -6.4 -2.9) (layer "F.Fab") (width 0.127) (tstamp e84b0f0f-db51-4cfc-a04d-4a09ed4839ee))
     (fp_circle (center -7.4 0.1) (end -7.3 0.1) (layer "F.Fab") (width 0.2) (fill none) (tstamp 32d8aef7-1bd9-47b8-a05d-ce3ed2b0b1ae))
-    (pad "1" thru_hole rect locked (at -5.08 0) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
+    (pad "1" thru_hole rect locked (at -5.08 0 180) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
       (net 10 "Net-(J2-Pad2)") (pintype "passive") (tstamp 5ba21df4-0e38-4d0c-8460-e8c02924639d))
-    (pad "2" thru_hole circle locked (at 0 0) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
+    (pad "2" thru_hole circle locked (at 0 0 180) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
       (net 21 "Net-(JP3-Pad1)") (pintype "passive") (tstamp af9cad93-0383-4fc2-893f-0ee26fbedcea))
-    (pad "3" thru_hole circle locked (at 5.08 0) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
+    (pad "3" thru_hole circle locked (at 5.08 0 180) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
       (net 22 "Net-(JP3-Pad3)") (pintype "passive") (tstamp ad075fb2-03ce-4111-ba38-5649eb32eeb5))
     (model "${ROCKETRY}/kicad_symbol_libraries/omron_D2F.pretty-master/D2F-01F.step"
       (offset (xyz 0 0 0))
@@ -2731,12 +2748,13 @@
 
   (footprint "JLC_footprints:DO-214AC" (layer "F.Cu")
     (tedit 63FD2604) (tstamp d43f9360-9696-4d73-aa57-86cdb4dd1cd6)
-    (at 137.808605 92.853317)
+    (at 148.59 92.075 180)
     (property "Sheetfile" "CoreIO.kicad_sch")
     (property "Sheetname" "")
+    (property "Vendor" "C22452")
     (path "/4aafe76e-1c27-4e7e-8cfe-19c9a7d24e15")
     (attr smd)
-    (fp_text reference "De" (at 0.535 -1.921) (layer "F.SilkS")
+    (fp_text reference "D2" (at 0.535 -1.921) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 186d298a-87c2-4b99-ae73-6539b8bb7450)
     )
@@ -2769,9 +2787,9 @@
         (xy 2.65 0.7)
         (xy 2.4 0.7)
       ) (layer "F.Fab") (width 0.01) (fill solid) (tstamp dd2a9814-4d6b-4648-8cac-e3cbd670ce7a))
-    (pad "A" smd rect locked (at 2.05 0) (size 1.8 1.7) (layers "F.Cu" "F.Paste" "F.Mask")
+    (pad "A" smd rect locked (at 2.05 0 180) (size 1.8 1.7) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 12 "Net-(BT1-Pad1)") (pintype "passive") (tstamp 6eaaf2d8-91a1-4260-b910-48fa16346eab))
-    (pad "C" smd rect locked (at -2.05 0) (size 1.8 1.7) (layers "F.Cu" "F.Paste" "F.Mask")
+    (pad "C" smd rect locked (at -2.05 0 180) (size 1.8 1.7) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 9 "/SWITCH1") (pintype "passive") (tstamp 09bc4179-1a52-4cc0-b40d-6e379859cb89))
     (model "${KICAD6_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SC-80.step"
       (offset (xyz 0 0 0))
@@ -2787,14 +2805,15 @@
 
   (footprint "Resistor_SMD:R_0201_0603Metric" (layer "F.Cu")
     (tedit 5F68FEEE) (tstamp f27d85a8-a043-4099-9f7e-5375098f6d37)
-    (at 164.576597 97.99333)
+    (at 164.465 90.805)
     (descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator")
     (tags "resistor")
     (property "Sheetfile" "CoreIO.kicad_sch")
     (property "Sheetname" "")
+    (property "Vendor" "C25804")
     (path "/588c8fbd-e434-428d-bd65-04214f439712")
     (attr smd)
-    (fp_text reference "R7" (at -2.891992 -0.568013) (layer "F.SilkS")
+    (fp_text reference "R7" (at -1.905 -0.568013) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 34016a2b-5f6a-4d7e-9250-3ef66d81ba66)
     )
@@ -2829,16 +2848,17 @@
 
   (footprint "JLC_footprints:DO-214AC" (layer "F.Cu")
     (tedit 63FD2604) (tstamp f8a2fcd8-6a31-42ea-bdd6-22b1e6a1f256)
-    (at 146.444605 92.853317)
+    (at 157.48 92.075)
     (property "Sheetfile" "CoreIO.kicad_sch")
     (property "Sheetname" "")
+    (property "Vendor" "C22452")
     (path "/808ecb66-9d8d-4e48-8d06-7878cabcdcfa")
     (attr smd)
     (fp_text reference "D3" (at 0.535 -1.921) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 96a4fc32-db04-4ced-bf73-90f0c2eaf773)
     )
-    (fp_text value "SS54" (at 2.44 1.921) (layer "F.Fab")
+    (fp_text value "SS54" (at -3.175 -1.905) (layer "F.Fab")
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 9afa6305-c6bf-4212-889c-92bd2fb25a1a)
     )
@@ -2875,7 +2895,7 @@
 
   (footprint "JST:JST_SFH_SM02B-SFHRS-TF_02x1.80mm_Angled" (layer "B.Cu")
     (tedit 56CAFF49) (tstamp 0d909290-4c94-408c-909f-7acd8d980fa0)
-    (at 137.740605 98.836317 180)
+    (at 148.59 99.06 180)
     (descr "JST SFH series crimp connector, SMT, 1.80mm pitch")
     (tags "JST SFT SMT crimp connector")
     (property "Sheetfile" "CoreIO.kicad_sch")
@@ -2939,7 +2959,7 @@
 
   (footprint "JST:JST_SFH_SM02B-SFHRS-TF_02x1.80mm_Angled" (layer "B.Cu")
     (tedit 56CAFF49) (tstamp 1a235203-af1b-4df1-a78e-a110c42879a6)
-    (at 146.290605 98.836317 180)
+    (at 157.48 99.06 180)
     (descr "JST SFH series crimp connector, SMT, 1.80mm pitch")
     (tags "JST SFT SMT crimp connector")
     (property "Sheetfile" "CoreIO.kicad_sch")
@@ -3003,7 +3023,7 @@
 
   (footprint "Jumper:SolderJumper-3_P1.3mm_Open_Pad1.0x1.5mm_NumberLabels" (layer "B.Cu")
     (tedit 5A3F6CCC) (tstamp 69052666-f7d2-4a1a-8a9f-93f51ae89bc9)
-    (at 146.000134 68.39414)
+    (at 143.51 63.5 180)
     (descr "SMD Solder Jumper, 1x1.5mm Pads, 0.3mm gap, open, labeled with numbers")
     (tags "solder jumper open")
     (property "Sheetfile" "CoreIO.kicad_sch")
@@ -3042,17 +3062,17 @@
     (fp_line (start 2.3 -1.25) (end -2.3 -1.25) (layer "B.CrtYd") (width 0.05) (tstamp a7d3834d-7574-453d-a6d9-5e57bbf3803a))
     (fp_line (start 2.3 -1.25) (end 2.3 1.25) (layer "B.CrtYd") (width 0.05) (tstamp dfe44cd7-62ba-4624-9e53-db13480f6f43))
     (fp_line (start -2.3 1.25) (end -2.3 -1.25) (layer "B.CrtYd") (width 0.05) (tstamp f6f91d3e-cb27-48e1-8c15-1ee55cb1534c))
-    (pad "1" smd rect (at -1.3 0) (size 1 1.5) (layers "B.Cu" "B.Mask")
+    (pad "1" smd rect (at -1.3 0 180) (size 1 1.5) (layers "B.Cu" "B.Mask")
       (net 21 "Net-(JP3-Pad1)") (pinfunction "A") (pintype "passive") (tstamp 9a0484ca-d491-4d83-8760-42baac21c26c))
-    (pad "2" smd rect (at 0 0) (size 1 1.5) (layers "B.Cu" "B.Mask")
+    (pad "2" smd rect (at 0 0 180) (size 1 1.5) (layers "B.Cu" "B.Mask")
       (net 11 "Net-(J2-Pad1)") (pinfunction "C") (pintype "passive") (tstamp 7f5e1841-b417-4fa8-b3f8-1179cb10cff0))
-    (pad "3" smd rect (at 1.3 0) (size 1 1.5) (layers "B.Cu" "B.Mask")
+    (pad "3" smd rect (at 1.3 0 180) (size 1 1.5) (layers "B.Cu" "B.Mask")
       (net 22 "Net-(JP3-Pad3)") (pinfunction "B") (pintype "passive") (tstamp ea6e19ce-60ff-4c9a-a010-25f6440f83db))
   )
 
   (footprint "Jumper:SolderJumper-3_P1.3mm_Open_Pad1.0x1.5mm_NumberLabels" (layer "B.Cu")
     (tedit 5A3F6CCC) (tstamp 76be9dbc-faf2-467a-81ae-e82a0731d66c)
-    (at 146.070016 78.876493)
+    (at 143.54 73.66 180)
     (descr "SMD Solder Jumper, 1x1.5mm Pads, 0.3mm gap, open, labeled with numbers")
     (tags "solder jumper open")
     (property "Sheetfile" "CoreIO.kicad_sch")
@@ -3091,17 +3111,17 @@
     (fp_line (start -2.3 1.25) (end -2.3 -1.25) (layer "B.CrtYd") (width 0.05) (tstamp 8d8fda7e-8a29-427f-9a9e-1d8a38c9734a))
     (fp_line (start -2.3 1.25) (end 2.3 1.25) (layer "B.CrtYd") (width 0.05) (tstamp a7d4ac51-bf31-43b3-95dc-100c586df21e))
     (fp_line (start 2.3 -1.25) (end -2.3 -1.25) (layer "B.CrtYd") (width 0.05) (tstamp f64f88c6-ef9b-4f23-8d3a-cbb7b73c440c))
-    (pad "1" smd rect (at -1.3 0) (size 1 1.5) (layers "B.Cu" "B.Mask")
+    (pad "1" smd rect (at -1.3 0 180) (size 1 1.5) (layers "B.Cu" "B.Mask")
       (net 19 "Net-(JP2-Pad1)") (pinfunction "A") (pintype "passive") (tstamp 4611e50d-9437-4df0-b7fa-857d2d2fbcee))
-    (pad "2" smd rect (at 0 0) (size 1 1.5) (layers "B.Cu" "B.Mask")
+    (pad "2" smd rect (at 0 0 180) (size 1 1.5) (layers "B.Cu" "B.Mask")
       (net 15 "/V_IGNITOR") (pinfunction "C") (pintype "passive") (tstamp a9c1db7a-99d4-43b9-846d-2c2d8f158ed9))
-    (pad "3" smd rect (at 1.3 0) (size 1 1.5) (layers "B.Cu" "B.Mask")
+    (pad "3" smd rect (at 1.3 0 180) (size 1 1.5) (layers "B.Cu" "B.Mask")
       (net 20 "Net-(JP2-Pad3)") (pinfunction "B") (pintype "passive") (tstamp 94942ae3-f9a6-426d-af2f-4494699b9120))
   )
 
   (footprint "Jumper:SolderJumper-3_P1.3mm_Open_Pad1.0x1.5mm_NumberLabels" (layer "B.Cu")
     (tedit 5A3F6CCC) (tstamp bf2ff67e-30fd-445e-8354-114fdbf77716)
-    (at 146.496487 88.59014)
+    (at 143.54 83.82 180)
     (descr "SMD Solder Jumper, 1x1.5mm Pads, 0.3mm gap, open, labeled with numbers")
     (tags "solder jumper open")
     (property "Sheetfile" "CoreIO.kicad_sch")
@@ -3140,101 +3160,114 @@
     (fp_line (start 2.3 -1.25) (end -2.3 -1.25) (layer "B.CrtYd") (width 0.05) (tstamp 2b48acec-5ca3-497b-8ab7-0334cecc30ed))
     (fp_line (start -2.3 1.25) (end 2.3 1.25) (layer "B.CrtYd") (width 0.05) (tstamp 6ce64cef-9148-4b40-a5e7-411254a1aa60))
     (fp_line (start 2.3 -1.25) (end 2.3 1.25) (layer "B.CrtYd") (width 0.05) (tstamp fa8e4f2e-9fbf-4039-b714-095e32f5a389))
-    (pad "1" smd rect (at -1.3 0) (size 1 1.5) (layers "B.Cu" "B.Mask")
+    (pad "1" smd rect (at -1.3 0 180) (size 1 1.5) (layers "B.Cu" "B.Mask")
       (net 17 "Net-(JP1-Pad1)") (pinfunction "A") (pintype "passive") (tstamp 1750be14-ad18-4e29-9ed9-85922bb2c292))
-    (pad "2" smd rect (at 0 0) (size 1 1.5) (layers "B.Cu" "B.Mask")
+    (pad "2" smd rect (at 0 0 180) (size 1 1.5) (layers "B.Cu" "B.Mask")
       (net 6 "/V_BATT") (pinfunction "C") (pintype "passive") (tstamp c7545fa7-4602-4d2d-8f04-220da1786341))
-    (pad "3" smd rect (at 1.3 0) (size 1 1.5) (layers "B.Cu" "B.Mask")
+    (pad "3" smd rect (at 1.3 0 180) (size 1 1.5) (layers "B.Cu" "B.Mask")
       (net 18 "Net-(JP1-Pad3)") (pinfunction "B") (pintype "passive") (tstamp 86688d84-5c02-4532-b835-1a299078f0fa))
   )
 
-  (gr_line (start 175.7934 50.4952) (end 119.9134 50.4952) (layer "Edge.Cuts") (width 0.2) (tstamp 1d658e30-63c4-4d63-9a73-2f5a6a93afb3))
-  (gr_arc (start 117.3734 53.0352) (mid 118.117354 51.239158) (end 119.9134 50.4952) (layer "Edge.Cuts") (width 0.2) (tstamp 21310332-6bbb-4b3b-85cb-f2439e55eebd))
-  (gr_arc (start 178.3334 136.8552) (mid 177.589457 138.65126) (end 175.7934 139.3952) (layer "Edge.Cuts") (width 0.2) (tstamp 36e3f781-57b7-425f-85aa-d132fbf10fd4))
-  (gr_circle (center 135.1534 63.1952) (end 136.1534 63.1952) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp 38db5d4b-544e-42f1-bbb7-ac80755c6a39))
-  (gr_line (start 178.3334 136.8552) (end 178.3334 53.0352) (layer "Edge.Cuts") (width 0.2) (tstamp 496fe5d1-9441-4b26-9c91-cd96a90485e1))
-  (gr_circle (center 128.8034 53.6702) (end 130.4544 53.6702) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp 4f8acbc9-b9d6-42ad-bad4-b8dd3bfd88e0))
-  (gr_circle (center 166.9034 53.6702) (end 168.5544 53.6702) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp 5ee7fc19-e60a-4652-9a99-753f6f20373a))
-  (gr_circle (center 135.1534 83.5152) (end 136.1534 83.5152) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp 8508fa03-bf50-4151-a178-d31314e1e10b))
-  (gr_circle (center 156.7434 73.3552) (end 157.7434 73.3552) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp a150fe72-c498-4f28-9030-5942896c22c4))
-  (gr_circle (center 156.7434 83.5152) (end 157.7434 83.5152) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp a72d0141-9be1-45a9-939a-af76aaec60b3))
-  (gr_arc (start 175.7934 50.4952) (mid 177.58946 51.239146) (end 178.3334 53.0352) (layer "Edge.Cuts") (width 0.2) (tstamp b43ae457-69f5-4e71-8ece-445248e3e5e2))
-  (gr_circle (center 156.7434 63.1952) (end 157.7434 63.1952) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp b811334c-f9a3-4003-ae1b-acc4b89b384b))
-  (gr_line (start 119.9134 139.3952) (end 175.7934 139.3952) (layer "Edge.Cuts") (width 0.2) (tstamp bda60d1f-1df4-45e5-abf6-0bce0900a43b))
-  (gr_circle (center 128.8034 136.2202) (end 130.4544 136.2202) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp c0eab825-9395-4bda-84a3-6c65a89afded))
-  (gr_line (start 117.3734 53.0352) (end 117.3734 136.8552) (layer "Edge.Cuts") (width 0.2) (tstamp d41e0f32-fca9-43d1-beaa-a8c4ef622471))
-  (gr_arc (start 119.9134 139.3952) (mid 118.117358 138.651248) (end 117.3734 136.8552) (layer "Edge.Cuts") (width 0.2) (tstamp ea69083e-3213-414e-b4f1-d6b737d60fec))
-  (gr_circle (center 166.9034 136.2202) (end 168.5544 136.2202) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp fd8ba60c-2abf-4a23-8a9e-723716225084))
-  (gr_circle (center 135.1534 73.3552) (end 136.1534 73.3552) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp fe5c0e85-e756-4ece-b32a-b293acefeca2))
-  (gr_line (start 131.9784 88.4682) (end 131.9784 58.2422) (layer "User.1") (width 0.2) (tstamp 0acb97d0-0ffd-425d-8f9a-e35cf36e115d))
-  (gr_line (start 159.9184 58.2422) (end 159.9184 88.4682) (layer "User.1") (width 0.2) (tstamp 0bef846d-4008-4396-a893-ecd34b063697))
-  (gr_line (start 139.4968 76.2) (end 139.4968 70.5104) (layer "User.1") (width 0.2) (tstamp 30e9a028-a160-49fd-a127-231cd3cecab4))
-  (gr_line (start 139.4968 86.36) (end 139.4968 80.6704) (layer "User.1") (width 0.2) (tstamp 416a7cf2-c961-4af3-918d-be58415a8f99))
-  (gr_line (start 147.8534 94.9452) (end 170.0964 94.9452) (layer "User.1") (width 0.2) (tstamp 430c200a-19a6-4960-8ec7-79c2d7bbe924))
-  (gr_line (start 174.3964 103.3952) (end 165.7964 103.3952) (layer "User.1") (width 0.2) (tstamp 45114df1-cc4d-4410-8439-2467ad762636))
-  (gr_line (start 165.7964 86.4952) (end 174.3964 86.4952) (layer "User.1") (width 0.2) (tstamp 60bd1f8f-369b-46bb-86ee-7bdbef319021))
-  (gr_line (start 139.4968 70.5104) (end 152.4 70.5104) (layer "User.1") (width 0.2) (tstamp 71b37548-bcf9-41dd-85ba-f9937d187d09))
-  (gr_line (start 139.4968 60.3504) (end 152.4 60.3504) (layer "User.1") (width 0.2) (tstamp 76f396ea-826f-468e-8864-3c144e36be4b))
-  (gr_line (start 178.3334 136.8552) (end 178.3334 53.0352) (layer "User.1") (width 0.2) (tstamp 8f38f6df-057b-4406-9ff3-5f2b196f4497))
-  (gr_line (start 152.4 70.5104) (end 152.4 76.2) (layer "User.1") (width 0.2) (tstamp 9158f164-cdc9-4a0e-a916-f11e5d4d0ff5))
-  (gr_line (start 165.7964 103.3952) (end 174.3964 86.4952) (layer "User.1") (width 0.2) (tstamp 94b6cd0c-214f-4d05-8e3e-6809b154c45d))
-  (gr_line (start 139.4968 66.04) (end 139.4968 60.3504) (layer "User.1") (width 0.2) (tstamp 9517c9d6-0a66-48e4-9d3b-556679d23a70))
-  (gr_line (start 152.4 86.36) (end 139.4968 86.36) (layer "User.1") (width 0.2) (tstamp 9f79346f-9098-451d-98e3-ea7c18d68bbc))
-  (gr_line (start 152.4 66.04) (end 139.4968 66.04) (layer "User.1") (width 0.2) (tstamp a1f963dc-07c6-41d3-bbb3-7cc8b68ff743))
-  (gr_line (start 159.9184 88.4682) (end 131.9784 88.4682) (layer "User.1") (width 0.2) (tstamp abec24de-6ae6-44a1-b6db-4d8ea1a1fb0d))
-  (gr_line (start 152.4 60.3504) (end 152.4 66.04) (layer "User.1") (width 0.2) (tstamp b4cb5370-d26a-4262-a47c-7ed77d643c70))
-  (gr_line (start 131.9784 58.2422) (end 159.9184 58.2422) (layer "User.1") (width 0.2) (tstamp c7b9cdf2-0f23-4760-a2f4-16b07e1ad447))
-  (gr_line (start 152.4 76.2) (end 139.4968 76.2) (layer "User.1") (width 0.2) (tstamp c8cb2fa5-1167-41bb-8029-47328043915d))
-  (gr_line (start 174.3964 86.4952) (end 174.3964 103.3952) (layer "User.1") (width 0.2) (tstamp cb34016f-90f8-4e63-bc02-f14bd929f078))
-  (gr_line (start 174.3964 103.3952) (end 165.7964 86.4952) (layer "User.1") (width 0.2) (tstamp d7c64f56-2423-41dd-9aa6-5401583b7b17))
-  (gr_line (start 139.4968 80.6704) (end 152.4 80.6704) (layer "User.1") (width 0.2) (tstamp da706169-cdb2-46f3-acb4-7f636cd8e2f8))
-  (gr_line (start 165.7964 103.3952) (end 165.7964 86.4952) (layer "User.1") (width 0.2) (tstamp e689756c-1d7a-4e77-86ef-ff57f4b246e7))
-  (gr_line (start 152.4 80.6704) (end 152.4 86.36) (layer "User.1") (width 0.2) (tstamp f2189ae3-2557-40d0-b849-fe0e0a7bc4f8))
+  (gr_circle (center 156.75394 70.876705) (end 157.75394 70.876705) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp 06f43bc0-4de5-45b4-b501-5a5364192987))
+  (gr_circle (center 128.81394 53.731705) (end 130.46494 53.731705) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp 14ec3f1a-a378-41cf-967e-0f6efca291a4))
+  (gr_circle (center 166.91394 53.731705) (end 168.56494 53.731705) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp 27610b7a-803a-419f-a59d-05599bdcdb01))
+  (gr_circle (center 135.16394 70.876705) (end 136.16394 70.876705) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp 35e3d916-b47e-4a3b-b929-f49b1c63175d))
+  (gr_line (start 119.92394 139.456705) (end 175.80394 139.456705) (layer "Edge.Cuts") (width 0.2) (tstamp 4321a719-5658-49c7-a911-b81cd8dd3ee6))
+  (gr_line (start 117.38394 53.096705) (end 117.38394 136.916705) (layer "Edge.Cuts") (width 0.2) (tstamp 4e48c301-3183-4d5b-8b25-fcbed86c1c10))
+  (gr_circle (center 135.16394 81.036705) (end 136.16394 81.036705) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp 703f1ed5-cbbc-4234-a655-2f90ea7a85d0))
+  (gr_line (start 175.80394 50.556705) (end 119.92394 50.556705) (layer "Edge.Cuts") (width 0.2) (tstamp 75b6ce92-f6bb-4350-bdfe-2dcb68f70348))
+  (gr_line (start 178.34394 136.916705) (end 178.34394 53.096705) (layer "Edge.Cuts") (width 0.2) (tstamp 84b0cda5-4bf4-4f73-acac-cb84b73bdd45))
+  (gr_circle (center 135.16394 60.716705) (end 136.16394 60.716705) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp 894d8280-154b-476e-a8bf-1eddf0b89b7b))
+  (gr_circle (center 128.81394 136.281705) (end 130.46494 136.281705) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp 94531127-6862-46a3-97c3-a8af953330e5))
+  (gr_circle (center 166.91394 136.281705) (end 168.56494 136.281705) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp 952a79cd-7539-4b49-a05f-4175e4705e0f))
+  (gr_arc (start 175.80394 50.556705) (mid 177.599991 51.300654) (end 178.34394 53.096705) (layer "Edge.Cuts") (width 0.2) (tstamp 9b1b6a87-6a2c-48e1-a307-b95a7a16d561))
+  (gr_circle (center 156.75394 60.716705) (end 157.75394 60.716705) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp b47ba10a-5b5a-465b-addf-5261ef3c0eb8))
+  (gr_arc (start 178.34394 136.916705) (mid 177.599991 138.712756) (end 175.80394 139.456705) (layer "Edge.Cuts") (width 0.2) (tstamp b985c2cd-1d24-4cec-93d9-a6ab5dd1ea0d))
+  (gr_arc (start 117.38394 53.096705) (mid 118.127889 51.300654) (end 119.92394 50.556705) (layer "Edge.Cuts") (width 0.2) (tstamp eaf7a408-9c72-4de6-912b-6f4ca6952e77))
+  (gr_circle (center 156.75394 81.036705) (end 157.75394 81.036705) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp f0c0e7eb-86ef-4c1e-adf8-7c4a4051f80b))
+  (gr_arc (start 119.92394 139.456705) (mid 118.127889 138.712756) (end 117.38394 136.916705) (layer "Edge.Cuts") (width 0.2) (tstamp fb5a8fb8-4fb8-4237-8ceb-56852a8144ae))
+  (gr_line (start 131.98894 88.529705) (end 131.98894 58.303705) (layer "User.1") (width 0.2) (tstamp 0000ac85-4ae2-4e11-be48-dcc4267f3804))
+  (gr_line (start 152.41054 83.881505) (end 139.50734 83.881505) (layer "User.1") (width 0.2) (tstamp 1fade283-db5b-4b50-aa3d-b416b31342bb))
+  (gr_line (start 159.92894 88.529705) (end 131.98894 88.529705) (layer "User.1") (width 0.2) (tstamp 4d40bcc8-9121-4bf5-bc06-60d94a7915d6))
+  (gr_line (start 139.50734 57.871905) (end 152.41054 57.871905) (layer "User.1") (width 0.2) (tstamp 592c0c28-0f7c-4e4d-8615-38bf6a16ac42))
+  (gr_line (start 165.80694 86.556705) (end 174.40694 86.556705) (layer "User.1") (width 0.2) (tstamp 6a2d78dd-eaf7-4ecc-aeb6-193786a452e7))
+  (gr_line (start 165.80694 103.456705) (end 174.40694 86.556705) (layer "User.1") (width 0.2) (tstamp 75bb1cfc-0047-4fe3-8b5d-681812ffc20f))
+  (gr_line (start 152.41054 68.031905) (end 152.41054 73.721505) (layer "User.1") (width 0.2) (tstamp 76382acb-93ba-4c2d-9fdb-626ec4e821b2))
+  (gr_line (start 174.40694 103.456705) (end 165.80694 86.556705) (layer "User.1") (width 0.2) (tstamp 7bf07545-0316-407e-924b-545f527781f7))
+  (gr_line (start 152.41054 78.191905) (end 152.41054 83.881505) (layer "User.1") (width 0.2) (tstamp 7f9d45ac-598d-4d13-8607-ef301b671c94))
+  (gr_line (start 178.34394 136.916705) (end 178.34394 53.096705) (layer "User.1") (width 0.2) (tstamp 867bc92d-b8e7-4dba-b2d2-b7b5f9ef249b))
+  (gr_line (start 159.92894 58.303705) (end 159.92894 88.529705) (layer "User.1") (width 0.2) (tstamp 88d5bf6e-83bf-4324-92ff-7050b083258b))
+  (gr_line (start 139.50734 83.881505) (end 139.50734 78.191905) (layer "User.1") (width 0.2) (tstamp 8da5a730-8ce9-481c-b28f-daeda594798d))
+  (gr_line (start 147.86394 95.006705) (end 170.10694 95.006705) (layer "User.1") (width 0.2) (tstamp 8e119030-ffc4-44a4-971f-cf4061ae0d02))
+  (gr_line (start 152.41054 63.561505) (end 139.50734 63.561505) (layer "User.1") (width 0.2) (tstamp 97e0faa4-1ff9-4df2-b79b-ee1f396c275d))
+  (gr_line (start 131.98894 58.303705) (end 159.92894 58.303705) (layer "User.1") (width 0.2) (tstamp 99311d06-8855-473f-8a8f-85e46eef02ed))
+  (gr_line (start 165.80694 103.456705) (end 165.80694 86.556705) (layer "User.1") (width 0.2) (tstamp 9e49eeb5-7a24-47c7-9576-ede12ac70fc0))
+  (gr_line (start 139.50734 73.721505) (end 139.50734 68.031905) (layer "User.1") (width 0.2) (tstamp aaabb63a-0b70-4460-8bfc-c49ba40f4e5e))
+  (gr_line (start 139.50734 78.191905) (end 152.41054 78.191905) (layer "User.1") (width 0.2) (tstamp ad7175ef-7b51-44d4-ac0a-23741727e50f))
+  (gr_line (start 152.41054 73.721505) (end 139.50734 73.721505) (layer "User.1") (width 0.2) (tstamp b2880042-c185-4b21-a6a3-9b00c0dff54c))
+  (gr_line (start 152.41054 57.871905) (end 152.41054 63.561505) (layer "User.1") (width 0.2) (tstamp bb71f49f-6279-4095-8bfe-63576a87a81d))
+  (gr_line (start 174.40694 103.456705) (end 165.80694 103.456705) (layer "User.1") (width 0.2) (tstamp bdcec706-9574-4d9b-9d18-08801e6712c8))
+  (gr_line (start 139.50734 63.561505) (end 139.50734 57.871905) (layer "User.1") (width 0.2) (tstamp c32b0308-625c-4c1e-9c13-f0a4999c2d70))
+  (gr_line (start 139.50734 68.031905) (end 152.41054 68.031905) (layer "User.1") (width 0.2) (tstamp f78ea8d9-81cf-485f-8f49-fa087772cf1b))
+  (gr_line (start 174.40694 86.556705) (end 174.40694 103.456705) (layer "User.1") (width 0.2) (tstamp f8fa8380-33b4-4628-a659-1a23cf6089b5))
 
-  (group "e" (id b2fe431c-f977-4544-baec-30905114a3e8)
+  (zone (net 7) (net_name "GND") (layer "B.Cu") (tstamp 449d41b3-114c-4865-ba4e-c711971b5ccc) (hatch edge 0.508)
+    (connect_pads (clearance 0.508))
+    (min_thickness 0.254)
+    (fill (thermal_gap 0.508) (thermal_bridge_width 0.508))
+    (polygon
+      (pts
+        (xy 176.53 137.16)
+        (xy 119.38 137.16)
+        (xy 119.38 53.34)
+        (xy 176.53 53.34)
+      )
+    )
+  )
+  (group "" (id 3efd131a-04b1-457d-8151-50c33664e2d2)
     (members
-      0acb97d0-0ffd-425d-8f9a-e35cf36e115d
-      0bef846d-4008-4396-a893-ecd34b063697
-      1d658e30-63c4-4d63-9a73-2f5a6a93afb3
-      21310332-6bbb-4b3b-85cb-f2439e55eebd
-      30e9a028-a160-49fd-a127-231cd3cecab4
-      36e3f781-57b7-425f-85aa-d132fbf10fd4
-      38db5d4b-544e-42f1-bbb7-ac80755c6a39
-      416a7cf2-c961-4af3-918d-be58415a8f99
-      430c200a-19a6-4960-8ec7-79c2d7bbe924
-      45114df1-cc4d-4410-8439-2467ad762636
-      496fe5d1-9441-4b26-9c91-cd96a90485e1
-      4f8acbc9-b9d6-42ad-bad4-b8dd3bfd88e0
-      5ee7fc19-e60a-4652-9a99-753f6f20373a
-      60bd1f8f-369b-46bb-86ee-7bdbef319021
-      71b37548-bcf9-41dd-85ba-f9937d187d09
-      76f396ea-826f-468e-8864-3c144e36be4b
-      8508fa03-bf50-4151-a178-d31314e1e10b
-      8f38f6df-057b-4406-9ff3-5f2b196f4497
-      9158f164-cdc9-4a0e-a916-f11e5d4d0ff5
-      94b6cd0c-214f-4d05-8e3e-6809b154c45d
-      9517c9d6-0a66-48e4-9d3b-556679d23a70
-      9f79346f-9098-451d-98e3-ea7c18d68bbc
-      a150fe72-c498-4f28-9030-5942896c22c4
-      a1f963dc-07c6-41d3-bbb3-7cc8b68ff743
-      a72d0141-9be1-45a9-939a-af76aaec60b3
-      abec24de-6ae6-44a1-b6db-4d8ea1a1fb0d
-      b43ae457-69f5-4e71-8ece-445248e3e5e2
-      b4cb5370-d26a-4262-a47c-7ed77d643c70
-      b811334c-f9a3-4003-ae1b-acc4b89b384b
-      bda60d1f-1df4-45e5-abf6-0bce0900a43b
-      c0eab825-9395-4bda-84a3-6c65a89afded
-      c7b9cdf2-0f23-4760-a2f4-16b07e1ad447
-      c8cb2fa5-1167-41bb-8029-47328043915d
-      cb34016f-90f8-4e63-bc02-f14bd929f078
-      d41e0f32-fca9-43d1-beaa-a8c4ef622471
-      d7c64f56-2423-41dd-9aa6-5401583b7b17
-      da706169-cdb2-46f3-acb4-7f636cd8e2f8
-      e689756c-1d7a-4e77-86ef-ff57f4b246e7
-      ea69083e-3213-414e-b4f1-d6b737d60fec
-      f2189ae3-2557-40d0-b849-fe0e0a7bc4f8
-      fd8ba60c-2abf-4a23-8a9e-723716225084
-      fe5c0e85-e756-4ece-b32a-b293acefeca2
+      0000ac85-4ae2-4e11-be48-dcc4267f3804
+      06f43bc0-4de5-45b4-b501-5a5364192987
+      14ec3f1a-a378-41cf-967e-0f6efca291a4
+      1fade283-db5b-4b50-aa3d-b416b31342bb
+      27610b7a-803a-419f-a59d-05599bdcdb01
+      35e3d916-b47e-4a3b-b929-f49b1c63175d
+      4321a719-5658-49c7-a911-b81cd8dd3ee6
+      4d40bcc8-9121-4bf5-bc06-60d94a7915d6
+      4e48c301-3183-4d5b-8b25-fcbed86c1c10
+      592c0c28-0f7c-4e4d-8615-38bf6a16ac42
+      6a2d78dd-eaf7-4ecc-aeb6-193786a452e7
+      703f1ed5-cbbc-4234-a655-2f90ea7a85d0
+      75b6ce92-f6bb-4350-bdfe-2dcb68f70348
+      75bb1cfc-0047-4fe3-8b5d-681812ffc20f
+      76382acb-93ba-4c2d-9fdb-626ec4e821b2
+      7bf07545-0316-407e-924b-545f527781f7
+      7f9d45ac-598d-4d13-8607-ef301b671c94
+      84b0cda5-4bf4-4f73-acac-cb84b73bdd45
+      867bc92d-b8e7-4dba-b2d2-b7b5f9ef249b
+      88d5bf6e-83bf-4324-92ff-7050b083258b
+      894d8280-154b-476e-a8bf-1eddf0b89b7b
+      8da5a730-8ce9-481c-b28f-daeda594798d
+      8e119030-ffc4-44a4-971f-cf4061ae0d02
+      94531127-6862-46a3-97c3-a8af953330e5
+      952a79cd-7539-4b49-a05f-4175e4705e0f
+      97e0faa4-1ff9-4df2-b79b-ee1f396c275d
+      99311d06-8855-473f-8a8f-85e46eef02ed
+      9b1b6a87-6a2c-48e1-a307-b95a7a16d561
+      9e49eeb5-7a24-47c7-9576-ede12ac70fc0
+      aaabb63a-0b70-4460-8bfc-c49ba40f4e5e
+      ad7175ef-7b51-44d4-ac0a-23741727e50f
+      b2880042-c185-4b21-a6a3-9b00c0dff54c
+      b47ba10a-5b5a-465b-addf-5261ef3c0eb8
+      b985c2cd-1d24-4cec-93d9-a6ab5dd1ea0d
+      bb71f49f-6279-4095-8bfe-63576a87a81d
+      bdcec706-9574-4d9b-9d18-08801e6712c8
+      c32b0308-625c-4c1e-9c13-f0a4999c2d70
+      eaf7a408-9c72-4de6-912b-6f4ca6952e77
+      f0c0e7eb-86ef-4c1e-adf8-7c4a4051f80b
+      f78ea8d9-81cf-485f-8f49-fa087772cf1b
+      f8fa8380-33b4-4628-a659-1a23cf6089b5
+      fb5a8fb8-4fb8-4237-8ceb-56852a8144ae
     )
   )
 )
