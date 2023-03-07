@@ -45,7 +45,7 @@
         "silk_text_upright": false,
         "zones": {
           "45_degree_only": false,
-          "min_clearance": 0.508
+          "min_clearance": 1.0
         }
       },
       "diff_pair_dimensions": [
@@ -383,7 +383,7 @@
       "netlist": "",
       "specctra_dsn": "",
       "step": "",
-      "vrml": ""
+      "vrml": "board_one_teensy_22.wrl"
     },
     "page_layout_descr_file": ""
   },

@@ -383,12 +383,12 @@
   },
   "pcbnew": {
     "last_paths": {
-      "gencad": "",
+      "gencad": "CoreIO.cad",
       "idf": "",
       "netlist": "",
       "specctra_dsn": "",
       "step": "CoreIO.step",
-      "vrml": ""
+      "vrml": "CoreIO.wrl"
     },
     "page_layout_descr_file": ""
   },
