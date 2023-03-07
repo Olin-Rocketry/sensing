@@ -1505,7 +1505,7 @@
     (property "Value" "0.1uF" (id 1) (at 113.03 71.1199 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "Capacitor_SMD:C_0201_0603Metric" (id 2) (at 110.1852 73.66 0)
+    (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (id 2) (at 110.1852 73.66 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 109.22 69.85 0)
@@ -1699,7 +1699,7 @@
       (reference "#PWR0104") (unit 1) (value "GND") (footprint "")
     )
     (path "/82e280a4-56a4-4b9c-912d-48b78e5c2f29"
-      (reference "C1") (unit 1) (value "0.1uF") (footprint "Capacitor_SMD:C_0201_0603Metric")
+      (reference "C1") (unit 1) (value "0.1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
     (path "/509c503b-65f7-47ea-a38c-398e1359983b"
       (reference "C2") (unit 1) (value "0.1uf") (footprint "Capacitor_SMD:C_0201_0603Metric")

@@ -127,11 +127,11 @@
     (descr "Mounting Hole 3.7mm")
     (tags "mounting hole 3.7mm")
     (attr exclude_from_pos_files exclude_from_bom)
-    (fp_text reference "REF**" (at 11.176 1.778) (layer "F.SilkS")
+    (fp_text reference "REF**" (at 11.176 1.778) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp faac8930-3b81-46e1-992e-4fb9e82424a3)
     )
-    (fp_text value "MountingHole_3.7mm_Pad_TopBottom" (at 0 4.7) (layer "F.Fab")
+    (fp_text value "MountingHole_3.7mm_Pad_TopBottom" (at 0 4.7) (layer "F.Fab") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp cfffde40-c863-401f-9740-e80c6bbb59a7)
     )
@@ -455,7 +455,7 @@
     (property "Sheetname" "")
     (path "/fcad31c6-e2d3-4de3-b774-cb1dbfe5a865")
     (attr through_hole)
-    (fp_text reference "U2" (at 0 -14.105 90) (layer "F.SilkS")
+    (fp_text reference "U2" (at 3.304 -9.378 -90) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 687dde62-e716-48b5-ade3-34615cfcffd5)
     )
@@ -568,7 +568,7 @@
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp f3c565e6-beb3-4c79-8dd6-9982ae11ed7d)
     )
-    (fp_text value "Conn_02x09_Odd_Even" (at 1.27 22.65 90) (layer "F.Fab")
+    (fp_text value "Conn_02x09_Odd_Even" (at 1.27 22.65 90) (layer "F.Fab") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 03f7bc10-5a09-4117-bb40-f2b556373815)
     )
@@ -647,11 +647,11 @@
     (descr "Mounting Hole 3.7mm")
     (tags "mounting hole 3.7mm")
     (attr exclude_from_pos_files exclude_from_bom)
-    (fp_text reference "REF**" (at -8.202369 3.048) (layer "F.SilkS")
+    (fp_text reference "REF**" (at -8.202369 3.048) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 77fa2919-52c1-4336-9a0c-6bbd17c5b070)
     )
-    (fp_text value "MountingHole_3.7mm_Pad_TopBottom" (at 0 4.7) (layer "F.Fab")
+    (fp_text value "MountingHole_3.7mm_Pad_TopBottom" (at 0 4.7) (layer "F.Fab") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 0360e9c8-1599-4b51-b8c4-f37ecf7f07b0)
     )
@@ -672,11 +672,11 @@
     (descr "Mounting Hole 3.7mm")
     (tags "mounting hole 3.7mm")
     (attr exclude_from_pos_files exclude_from_bom)
-    (fp_text reference "REF**" (at 0.108222 -7.754624) (layer "F.SilkS")
+    (fp_text reference "REF**" (at 0.108222 -7.754624) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp cea6e1bf-f052-459b-9030-0f40c8d46be2)
     )
-    (fp_text value "MountingHole_3.7mm_Pad_TopBottom" (at 0 4.7) (layer "F.Fab")
+    (fp_text value "MountingHole_3.7mm_Pad_TopBottom" (at 0 4.7) (layer "F.Fab") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 89fda62f-7c98-4cf3-82f2-24e66e48338e)
     )
@@ -746,13 +746,13 @@
     (fill yes (thermal_gap 0.508) (thermal_bridge_width 0.508))
     (polygon
       (pts
-        (xy 179.578 69.088)
-        (xy 187.706 136.144)
-        (xy 114.3 133.096)
-        (xy 89.422414 101.001584)
-        (xy 104.941814 72.578984)
-        (xy 124.46 59.436)
-        (xy 144.272 56.388)
+        (xy 188.183859 70.447323)
+        (xy 179.537518 133.656545)
+        (xy 114.289659 133.821222)
+        (xy 101.589659 101.055222)
+        (xy 109.463659 65.241222)
+        (xy 124.195659 63.717222)
+        (xy 146.039659 61.431222)
       )
     )
     (filled_polygon
@@ -4575,13 +4575,10 @@
       04ca52d0-d853-4e47-b9e1-b83fdcc67765
       1285237e-3b77-40e5-80f7-0f0e5d174dc9
       12d6c219-1b6c-4472-9cfd-8704c5a4d38e
-      1bad86d5-b5fa-427a-9390-144a8bae3194
       3ca255fb-cb87-41ac-82dd-7204822815a6
       5757b1d2-8f9f-41f1-9085-d77ea9422919
       62e84dc7-3e37-439d-80c2-cb356d97d02e
-      85980339-9dba-4007-abd9-6ce50e26be95
       9f998e7b-41bd-4c90-88a7-a4af32856d60
-      cda0e2c0-0b07-46a9-b8b1-380b8da2df3c
       e3435ebd-4131-4f47-a389-2980d55a0016
       e8a13ea9-6b8c-43aa-a840-b2450a445a94
     )
