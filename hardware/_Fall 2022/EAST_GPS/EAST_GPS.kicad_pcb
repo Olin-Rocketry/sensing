@@ -691,6 +691,7 @@
     (pad "1" thru_hole circle (at 0 0) (size 4.1 4.1) (drill 3.7) (layers *.Cu *.Mask) (tstamp d1f0d738-1773-45c2-86fa-15dad611b69a))
   )
 
+  (gr_rect (start 143.002 84.836) (end 173.482 111.506) (layer "F.SilkS") (width 0.15) (fill none) (tstamp 2a7f7615-b88f-47c1-9669-bf443a73338c))
   (gr_circle (center 143.150419 69.216397) (end 144.979219 69.216397) (layer "Dwgs.User") (width 0.2) (fill none) (tstamp 1285237e-3b77-40e5-80f7-0f0e5d174dc9))
   (gr_circle (center 170.645919 116.84) (end 172.474719 116.84) (layer "Dwgs.User") (width 0.2) (fill none) (tstamp 12d6c219-1b6c-4472-9cfd-8704c5a4d38e))
   (gr_line (start 131.720419 114.300466) (end 154.580419 114.300466) (layer "Dwgs.User") (width 0.2) (tstamp 3ca255fb-cb87-41ac-82dd-7204822815a6))
