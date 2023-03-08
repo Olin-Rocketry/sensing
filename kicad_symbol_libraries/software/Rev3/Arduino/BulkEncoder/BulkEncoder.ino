@@ -3,15 +3,16 @@ union floatunion_t {
     char a[sizeof (float) ];
 } float_u;
 
-char * bulkencode(input) {
-  for (int i=0; i<sizeof(input)/sizeof(input[0]); i++)
+void bulkencode(char* in, char* out) {
+  //in and out should be char arrays of the same size
+  for (int i=0; i<sizeof(in)/sizeof(in[0]); i++)
   {
     char encoded[sizeof (float) ];
-//    encoder(encoded, input[i]);
-//    encoder(encoded, input[i]);
+    encoder(encoded, in[i]);
+    encoder(encoded, in[i]);
     for(int j=0; j<sizeof(float); j++)
     {
-      packet[i*sizeof(float)+j]=encoded[j];
+      out[i*sizeof(float)+j]=encoded[j];
     }
   }
 //  Serial.println("Encoded");
