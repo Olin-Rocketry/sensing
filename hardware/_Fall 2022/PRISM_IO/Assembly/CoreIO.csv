@@ -1,15 +1,15 @@
-Item,Quantity,Designator,Value,LibPart,Footprint,STANDARD,LCSC Part #
-,,D1,LED,Device:LED,LED_SMD:LED_0603_1608Metric,,C2290
-,,D2,SS54,SS54:SS54,JLC_footprints:DO-214AC,,C22452
-,,D3,SS54,SS54:SS54,JLC_footprints:DO-214AC,,C22452
-,,Q1,AO3400A,AO3400A:AO3400A,AO3400A:SOT95P280X125-3N,IPC 7351B,C20917
-,,Q2,AO3400A,AO3400A:AO3400A,SOT95P280X125-3N,IPC 7351B,C20917
-,,R1,150,Device:R,Resistor_SMD:R_0201_0603Metric,,C22808
-,,R2,10k,Device:R,Resistor_SMD:R_0201_0603Metric,,C25804
-,,R5,10k,Device:R,Resistor_SMD:R_0201_0603Metric,,C25804
-,,R6,1M,Device:R,Resistor_SMD:R_0201_0603Metric,,C22935
-,,R7,10k,Device:R,Resistor_SMD:R_0201_0603Metric,,C25804
-,,R8,10k,Device:R,Resistor_SMD:R_0201_0603Metric,,C25804
-,,R9,1M,Device:R,Resistor_SMD:R_0201_0603Metric,,C22935
-,,R10,10k,Device:R,Resistor_SMD:R_0201_0603Metric,,C25804
-,,R11,10k,Device:R,Resistor_SMD:R_0201_0603Metric,,C25804
+Item,Qty,Designator,Value,LibPart,Footprint,Datasheet,MANUFACTURER,MAXIMUM_PACKAGE_HEIGHT,PARTREV,SNAPEDA_PN,STANDARD,Vendor
+,,D1,LED,Device:LED,LED_SMD:LED_0603_1608Metric,~,,,,,,C2290
+,,D2,SS54,SS54:SS54,JLC_footprints:DO-214AC,,,,,,,C22452
+,,D3,SS54,SS54:SS54,JLC_footprints:DO-214AC,,,,,,,C22452
+,,Q1,AO3400A,AO3400A:AO3400A,AO3400A:SOT95P280X125-3N,,Alpha & Omega Semiconductor,1.25 mm,L,,IPC 7351B,C20917
+,,Q2,AO3400A,AO3400A:AO3400A,SOT95P280X125-3N,,Alpha & Omega Semiconductor,1.25 mm,L,,IPC 7351B,C20917
+,,R1,150,Device:R,Resistor_SMD:R_0603_1608Metric,~,,,,,,C22808
+,,R2,10k,Device:R,Resistor_SMD:R_0603_1608Metric,~,,,,,,C25804
+,,R5,10k,Device:R,Resistor_SMD:R_0603_1608Metric,~,,,,,,C25804
+,,R6,1M,Device:R,Resistor_SMD:R_0603_1608Metric,~,,,,,,C22935
+,,R7,10k,Device:R,Resistor_SMD:R_0603_1608Metric,~,,,,,,C25804
+,,R8,10k,Device:R,Resistor_SMD:R_0603_1608Metric,~,,,,,,C25804
+,,R9,1M,Device:R,Resistor_SMD:R_0603_1608Metric,~,,,,,,C22935
+,,R10,10k,Device:R,Resistor_SMD:R_0603_1608Metric,~,,,,,,C25804
+,,R11,10k,Device:R,Resistor_SMD:R_0603_1608Metric,~,,,,,,C25804

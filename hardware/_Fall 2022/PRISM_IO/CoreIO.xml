@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>C:\Users\rjansens\OneDrive - Olin College of Engineering\Documents\GitHub\sensing\hardware\_Fall 2022\PRISM_IO\CoreIO.kicad_sch</source>
-    <date>3/6/2023 1:36:11 AM</date>
+    <date>3/8/2023 10:44:15 AM</date>
     <tool>Eeschema (6.0.7)</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -80,6 +80,42 @@
       <property name="Sheetfile" value="CoreIO.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>808ecb66-9d8d-4e48-8d06-7878cabcdcfa</tstamps>
+    </comp>
+    <comp ref="H1">
+      <value>MountingHole_Pad</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopBottom</footprint>
+      <libsource lib="Mechanical" part="MountingHole_Pad" description="Mounting Hole with connection"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="CoreIO.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>697aaac6-60e4-48ba-bf0c-639e22cc58e0</tstamps>
+    </comp>
+    <comp ref="H2">
+      <value>MountingHole</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopBottom</footprint>
+      <libsource lib="Mechanical" part="MountingHole" description="Mounting Hole without connection"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="CoreIO.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>bbd6bdc1-ad58-434a-84ed-7950b040e692</tstamps>
+    </comp>
+    <comp ref="H3">
+      <value>MountingHole</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopBottom</footprint>
+      <libsource lib="Mechanical" part="MountingHole" description="Mounting Hole without connection"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="CoreIO.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>dcc7b79c-3f97-4075-b240-59ebc2ec152b</tstamps>
+    </comp>
+    <comp ref="H4">
+      <value>MountingHole</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopBottom</footprint>
+      <libsource lib="Mechanical" part="MountingHole" description="Mounting Hole without connection"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="CoreIO.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>ab4caa51-b2ae-4811-83b5-1c688e4a5503</tstamps>
     </comp>
     <comp ref="J1">
       <value>CORE_FC</value>
@@ -188,7 +224,7 @@
     </comp>
     <comp ref="R1">
       <value>150</value>
-      <footprint>Resistor_SMD:R_0201_0603Metric</footprint>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="Vendor">C22808</field>
       </fields>
@@ -201,7 +237,7 @@
     </comp>
     <comp ref="R2">
       <value>10k</value>
-      <footprint>Resistor_SMD:R_0201_0603Metric</footprint>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="Vendor">C25804</field>
       </fields>
@@ -214,7 +250,7 @@
     </comp>
     <comp ref="R5">
       <value>10k</value>
-      <footprint>Resistor_SMD:R_0201_0603Metric</footprint>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="Vendor">C25804</field>
       </fields>
@@ -227,7 +263,7 @@
     </comp>
     <comp ref="R6">
       <value>1M</value>
-      <footprint>Resistor_SMD:R_0201_0603Metric</footprint>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="Vendor">C22935</field>
       </fields>
@@ -240,7 +276,7 @@
     </comp>
     <comp ref="R7">
       <value>10k</value>
-      <footprint>Resistor_SMD:R_0201_0603Metric</footprint>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="Vendor">C25804</field>
       </fields>
@@ -253,7 +289,7 @@
     </comp>
     <comp ref="R8">
       <value>10k</value>
-      <footprint>Resistor_SMD:R_0201_0603Metric</footprint>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="Vendor">C25804</field>
       </fields>
@@ -266,7 +302,7 @@
     </comp>
     <comp ref="R9">
       <value>1M</value>
-      <footprint>Resistor_SMD:R_0201_0603Metric</footprint>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="Vendor">C22935</field>
       </fields>
@@ -279,7 +315,7 @@
     </comp>
     <comp ref="R10">
       <value>10k</value>
-      <footprint>Resistor_SMD:R_0201_0603Metric</footprint>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="Vendor">C25804</field>
       </fields>
@@ -292,7 +328,7 @@
     </comp>
     <comp ref="R11">
       <value>10k</value>
-      <footprint>Resistor_SMD:R_0201_0603Metric</footprint>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="Vendor">C25804</field>
       </fields>
@@ -485,6 +521,33 @@
         <pin num="3" name="B" type="passive"/>
       </pins>
     </libpart>
+    <libpart lib="Mechanical" part="MountingHole">
+      <description>Mounting Hole without connection</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>MountingHole*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">H</field>
+        <field name="Value">MountingHole</field>
+        <field name="Datasheet">~</field>
+      </fields>
+    </libpart>
+    <libpart lib="Mechanical" part="MountingHole_Pad">
+      <description>Mounting Hole with connection</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>MountingHole*Pad*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">H</field>
+        <field name="Value">MountingHole_Pad</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="input"/>
+      </pins>
+    </libpart>
     <libpart lib="SS54" part="SS54">
       <fields>
         <field name="Reference">D</field>
@@ -526,6 +589,9 @@
     </library>
     <library logical="Jumper">
       <uri>C:\Program Files\KiCad\6.0\share\kicad\symbols\/Jumper.kicad_sym</uri>
+    </library>
+    <library logical="Mechanical">
+      <uri>C:\Program Files\KiCad\6.0\share\kicad\symbols\/Mechanical.kicad_sym</uri>
     </library>
     <library logical="SS54">
       <uri>C:\Users\rjansens\OneDrive - Olin College of Engineering\Documents\GitHub\sensing/kicad_symbol_libraries/SS54.kicad_sym</uri>
@@ -580,6 +646,7 @@
     <net code="9" name="GND">
       <node ref="BT1" pin="2" pinfunction="-" pintype="passive"/>
       <node ref="BT2" pin="2" pinfunction="-" pintype="passive"/>
+      <node ref="H1" pin="1" pinfunction="1" pintype="input"/>
       <node ref="J1" pin="7" pinfunction="Pin_7" pintype="passive"/>
       <node ref="Q1" pin="2" pintype="passive"/>
       <node ref="Q2" pin="2" pintype="passive"/>
