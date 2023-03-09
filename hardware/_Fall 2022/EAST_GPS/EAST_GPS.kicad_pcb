@@ -81,9 +81,9 @@
       (subtractmaskfromsilk false)
       (outputformat 1)
       (mirror false)
-      (drillshape 1)
+      (drillshape 0)
       (scaleselection 1)
-      (outputdirectory "")
+      (outputdirectory "JLC/")
     )
   )
 
@@ -701,6 +701,9 @@
   (gr_line (start 154.580419 114.300466) (end 154.580419 119.380466) (layer "Dwgs.User") (width 0.2) (tstamp e8a13ea9-6b8c-43aa-a840-b2450a445a94))
   (gr_line (start 117.949638 129.540466) (end 168.3512 129.540466) (layer "Edge.Cuts") (width 0.2) (tstamp 04ca52d0-d853-4e47-b9e1-b83fdcc67765))
   (gr_arc (start 117.949638 129.540466) (mid 143.150419 62.848534) (end 168.3512 129.540466) (layer "Edge.Cuts") (width 0.2) (tstamp 9f998e7b-41bd-4c90-88a7-a4af32856d60))
+  (gr_text "Ari Bobesh\nCharlie Babe\nJiayuan Liu\nLili Baker\nRowan Jansens" (at 143.002 96.0628) (layer "B.SilkS") (tstamp e08336cb-953a-451f-801d-667278937727)
+    (effects (font (size 2 2) (thickness 0.15)) (justify mirror))
+  )
 
   (segment (start 130.4848 115.6512) (end 129.6416 114.808) (width 0.508) (layer "F.Cu") (net 1) (tstamp 06543387-1ef6-40b4-b2b9-ae0f52df5487))
   (segment (start 119.4 110.6878) (end 121.6914 112.9792) (width 0.508) (layer "F.Cu") (net 1) (tstamp 19d15a04-5e46-4e05-9bb0-cd7e085c3b0f))

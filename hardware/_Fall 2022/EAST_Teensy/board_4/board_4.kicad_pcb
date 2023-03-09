@@ -81,9 +81,9 @@
       (subtractmaskfromsilk false)
       (outputformat 1)
       (mirror false)
-      (drillshape 1)
+      (drillshape 0)
       (scaleselection 1)
-      (outputdirectory "")
+      (outputdirectory "JLC/")
     )
   )
 
@@ -164,7 +164,7 @@
     (descr "Mounting Hole 3.7mm")
     (tags "mounting hole 3.7mm")
     (attr exclude_from_pos_files exclude_from_bom)
-    (fp_text reference "REF**" (at 10.414 1.27) (layer "F.SilkS")
+    (fp_text reference "REF**" (at 10.414 1.27) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 77fa2919-52c1-4336-9a0c-6bbd17c5b070)
     )
@@ -505,7 +505,7 @@
     (descr "Mounting Hole 3.7mm")
     (tags "mounting hole 3.7mm")
     (attr exclude_from_pos_files exclude_from_bom)
-    (fp_text reference "REF**" (at -0.656228 -9.486125) (layer "F.SilkS")
+    (fp_text reference "REF**" (at -0.656228 -9.486125) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp f9fc4964-1876-4e40-a867-374a9d3bf043)
     )
@@ -853,7 +853,7 @@
     (descr "Mounting Hole 3.7mm")
     (tags "mounting hole 3.7mm")
     (attr exclude_from_pos_files exclude_from_bom)
-    (fp_text reference "REF**" (at -9.228277 3.101257) (layer "F.SilkS")
+    (fp_text reference "REF**" (at -9.228277 3.101257) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 8a1e4d86-f981-4ffe-bf04-35c45c13c9c6)
     )
@@ -1106,7 +1106,7 @@
     (fp_line (start -0.5 1.375) (end 0.5 1.375) (layer "F.Fab") (width 0.1) (tstamp b6914428-09c0-45cf-9422-66277fde672f))
     (fp_line (start 0.5 1.375) (end 0 0.875) (layer "F.Fab") (width 0.1) (tstamp e5c242c8-097d-4adb-abb6-6789b13db154))
     (fp_line (start 7.25 0.25) (end -1.25 0.25) (layer "F.Fab") (width 0.1) (tstamp faa8f7b6-23a2-4bbf-a773-8f3b59e5e3e8))
-    (pad "1" thru_hole roundrect (at 0 0) (size 1.2 1.75) (drill 0.75) (layers *.Cu *.Mask) (roundrect_rratio 0.208333)
+    (pad "1" thru_hole roundrect (at 0 0) (size 1.2 1.75) (drill 0.75) (layers *.Cu *.Mask) (roundrect_rratio 0.2083333333)
       (net 5 "/TX 0") (pinfunction "Pin_1") (pintype "passive") (tstamp 9da0471c-ab24-4a6e-8c52-5f121f39113e))
     (pad "2" thru_hole oval (at 2 0) (size 1.2 1.75) (drill 0.75) (layers *.Cu *.Mask)
       (net 4 "/RX 0") (pinfunction "Pin_2") (pintype "passive") (tstamp d18b3ec5-0a79-4704-b12e-c835dc623462))
@@ -1139,6 +1139,9 @@
   (gr_line (start 161.2704 143.4952) (end 161.2704 152.0952) (layer "Dwgs.User") (width 0.2) (tstamp ee310072-d62f-4d3a-83d3-4d3e19968b8e))
   (gr_line (start 122.779619 152.0952) (end 173.181181 152.0952) (layer "Edge.Cuts") (width 0.2) (tstamp b53b6d32-955c-46f6-ab94-c3b2061d99a4))
   (gr_arc (start 122.779619 152.0952) (mid 147.9804 85.403268) (end 173.181181 152.0952) (layer "Edge.Cuts") (width 0.2) (tstamp c47333ca-3f87-4bf7-b4ee-c3a860feb68a))
+  (gr_text "Ari Bobesh\nCharlie Babe\nJiayuan Liu\nLili Baker\nRowan Jansens" (at 147.8788 104.4956) (layer "B.SilkS") (tstamp 3ae189ec-bb4b-4ef3-afed-45c84fd11ac0)
+    (effects (font (size 2 2) (thickness 0.15)) (justify mirror))
+  )
 
   (segment (start 137.84 140.68) (end 130.626576 140.68) (width 0.508) (layer "F.Cu") (net 1) (tstamp 16c99b95-9c84-48df-9203-12c1cb67059a))
   (segment (start 120.671646 125.972938) (end 118.85 124.151292) (width 0.508) (layer "F.Cu") (net 1) (tstamp 37af9cb4-7ec5-4946-b26c-f6cee853eb8e))
