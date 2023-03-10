@@ -1,5 +1,5 @@
 void SD_write(){
-File dataFile = SD.open("flightData.txt", FILE_WRITE); // Not sure about this data type
+  File dataFile = SD.open("flightData.txt", FILE_WRITE); // Not sure about this data type
   if (dataFile) {
       for (int batch=0; batch<batchSize; batch++) //batchSize is the number of lines in a batch write
       {
