@@ -1,13 +1,19 @@
 #include <SD.h>
 class Data {
   private:
-    float flightData[27];
+    const static int dataPointCount = 27;
+    const static int batchSize = 50;
+    int batchCounter = 0;
+    float flightData[dataPointCount];
+    char encodedFlightData[dataPointCount*4];
+    String encodedBatch[batchSize];
+    
     union floatunion_t {
         float f;
         char a[sizeof (float) ];
     } float_u;
     
-    void bulkencode(float& in, char* out) {
+    void bulkencode(float* in, char* out) {
       //in and out should be char arrays of the same size
       for (int i=0; i<sizeof(in)/sizeof(in[0]); i++)
       {
@@ -85,19 +91,42 @@ class Data {
     void kfdrag(float i) {flightData[25]=i;}
     void curtime(float i) {flightData[26]=i;}
 
-    void SD_write(int batchSize, int dataPointCount){
+    void encodeAndAdd(){
+      encodeFlightData();
+      addToBatch();
+    }
+    
+    void encodeFlightData(){
+      bulkencode(flightData,encodedFlightData);
+    }
+
+    void addToBatch(){
+      if (batchCounter>=batchSize){
+        writeSDData();
+        batchCounter=0;
+      }
+      encodedBatch[batchCounter]="";
+      for (int index=0; index<4*dataPointCount; index++)
+      {
+        encodedBatch[batchCounter]+=encodedFlightData[index];
+      }
+      batchCounter++;
+    }
+    
+    void writeSDData(){
       File dataFile = SD.open("flightData.txt", FILE_WRITE); // Not sure about this data type
       if (dataFile) {
-          for (int batch=0; batch<batchSize; batch++) //batchSize is the number of lines in a batch write
+          for (int batch=0; batch<batchCounter; batch++) //batchSize is the number of lines in a batch write
           {
-            char encoded[4*dataPointCount];
-            //dataPointCount is the number of unique numbers to send (27 at the time of writing this)
-            //since each is a float, you need four bytes/chars for each value in a batch
-            bulkencode(flightData[batch],encoded); //flightData is a two-dimensional array that is of size batchSize*dataPointCount
-            for (int index=0; index<4*dataPointCount; index++)
-            {
-              dataFile.print(encoded[index]);
-            }
+//            char encoded[4*dataPointCount];
+//            //dataPointCount is the number of unique numbers to send (27 at the time of writing this)
+//            //since each is a float, you need four bytes/chars for each value in a batch
+//            bulkencode(flightData[batch],encoded); //flightData is a two-dimensional array that is of size batchSize*dataPointCount
+//            for (int index=0; index<4*dataPointCount; index++)
+//            {
+//              dataFile.print(encoded[index]);
+//            }
+            dataFile.print(encodedBatch[batch]);
             dataFile.println();
           }
       }
