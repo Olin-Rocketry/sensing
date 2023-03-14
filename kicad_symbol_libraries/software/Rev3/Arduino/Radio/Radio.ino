@@ -1,3 +1,4 @@
+#include <algorithm>
 class Radio {
   private:
     const static int dataPointCount = 27;
@@ -21,6 +22,11 @@ class Radio {
     }
   public:
 
+    Radio(){
+      std::fill_n(flightData, dataPointCount, 0.0);
+      std::fill_n(packet, dataPointCount*4, '0');
+    }
+    
     void receivedPacket()
     {
       readRadio();

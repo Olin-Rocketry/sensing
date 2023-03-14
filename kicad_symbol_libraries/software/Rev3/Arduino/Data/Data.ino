@@ -1,4 +1,5 @@
 #include <SD.h>
+#include <algorithm>
 class Data {
   private:
     const static int dataPointCount = 27;
@@ -36,6 +37,12 @@ class Data {
       }
     }
   public:
+    Data(){
+      std::fill_n(flightData, dataPointCount, 0.0);
+      std::fill_n(encodedFlightData, dataPointCount*4, '0');
+      std::fill_n(encodedBatch, batchSize, '0');
+    }
+  
     float accelx() {return flightData[0];}
     float accely() {return flightData[1];}
     float accelz() {return flightData[2];}
