@@ -34,10 +34,12 @@ void loop() {
   for(int i=0; i < 100; i++){
     t1 = millis();
     bmp.performReading();
+    
     t2 = millis();
     t_int = t2 - t1;
-    Serial.println(t_int);
-    delay(200);
+    Serial.println(bmp.pressure);
+    //Serial.println(t_int);
+    //delay(200);
   }
 
 }

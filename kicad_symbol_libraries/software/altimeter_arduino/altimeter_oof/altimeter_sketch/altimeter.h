@@ -1,5 +1,4 @@
-#ifndef CLASSES
-#define CLASSES
+#pragma once
 #include <Wire.h>
 #include <SPI.h>
 #include <arduino.h>
@@ -9,16 +8,14 @@
 
 
 class Altimeter {
-
-  public:
-  Altimeter();
-  void init();
-  void readAltitude();
-  
-
   private:
+    Adafruit_BMP3XX bmp;
+    
+  public:
+//  Altimeter();
+    void init();
+    void readAltitude();
   
-  Adafruit_BMP3XX bmp;
-};
 
-#endif
+
+};
