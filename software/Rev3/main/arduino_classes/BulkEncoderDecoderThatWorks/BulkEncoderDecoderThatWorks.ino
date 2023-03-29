@@ -11,7 +11,7 @@ union floatunion_t {
 void loop() {
   // put your main code here, to run repeatedly:
   //float pi=rand();
-  int quantity=500;
+  int quantity=27;
   float pi[quantity];
   char packet[sizeof(float)*quantity];
   for (int i=0; i<quantity; i++)
