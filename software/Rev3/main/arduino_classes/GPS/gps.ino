@@ -1,4 +1,4 @@
-#include "imu_class.h"
+#include "gps.h"
 
 Gps::gps() {
   init();
