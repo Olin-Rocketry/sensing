@@ -7,7 +7,6 @@ Altimeter::Altimeter(void) {
 }
 
 void Altimeter::init() {
-//  Adafruit_BMP3XX bmp;
     Serial.println("Adafruit BMP388 / BMP390 test");
 
   if (!bmp.begin_I2C()) {   // hardware I2C mode, can pass in address & alt Wire
