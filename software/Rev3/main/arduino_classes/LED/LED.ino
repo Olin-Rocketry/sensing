@@ -1,7 +1,7 @@
 #include "led_class.h"
 
 
-Led led1(23);
+Led led1(34);
 
 
 void setup() { 
