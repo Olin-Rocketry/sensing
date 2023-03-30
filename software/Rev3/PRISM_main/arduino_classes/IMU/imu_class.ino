@@ -21,19 +21,19 @@ void Imu::test_connection() {
   delay(1000);
 }
 
-imu::Quaternion Imu::read_quaternions() {
+void Imu::read_quaternions() {
   imu::Quaternion quat = bno.getQuat();
   
-//  // Display the quat data
-//  Serial.print("qW: ");
-//  Serial.print(quat.w(), 4);
-//  Serial.print(" qX: ");
-//  Serial.print(quat.y(), 4);
-//  Serial.print(" qY: ");
-//  Serial.print(quat.x(), 4);
-//  Serial.print(" qZ: ");
-//  Serial.print(quat.z(), 4);
-//  Serial.println("");
+  // Display the quat data
+  Serial.print("qW: ");
+  Serial.print(quat.w(), 4);
+  Serial.print(" qX: ");
+  Serial.print(quat.y(), 4);
+  Serial.print(" qY: ");
+  Serial.print(quat.x(), 4);
+  Serial.print(" qZ: ");
+  Serial.print(quat.z(), 4);
+  Serial.println("");
 }
 
 
@@ -52,15 +52,9 @@ void Imu::read_gyroscope() {
   print_data(gyroscope);
 }
 
-imu::Vector<3> accel Imu::read_accelerometer() {
+void Imu::read_accelerometer() {
   imu::Vector<3> accel = bno.getVector(Adafruit_BNO055::VECTOR_ACCELEROMETER);
-//  print_data(accel);
-//  Serial.print(data.x());
-//    Serial.print(",");
-//
-//  Serial.print(data.y());
-//  Serial.print(",");
-//  Serial.println(data.z());
+  print_data(accel);
 }
 
 void Imu::read_linear_accel() {
@@ -70,17 +64,11 @@ void Imu::read_linear_accel() {
 
 void Imu::print_data(imu::Vector<3> data) {
   /* Display the floating point data */
-//  Serial.print("X: ");
-//  Serial.print(data.x());
-//  Serial.print(" Y: ");
-//  Serial.print(data.y());
-//  Serial.print(" Z: ");
-//  Serial.print(data.z());
-//  Serial.println("");  
-Serial.print(data.x());
-    Serial.print(",");
-
+  Serial.print("X: ");
+  Serial.print(data.x());
+  Serial.print(" Y: ");
   Serial.print(data.y());
-  Serial.print(",");
-  Serial.println(data.z());
+  Serial.print(" Z: ");
+  Serial.print(data.z());
+  Serial.println("");  
 }

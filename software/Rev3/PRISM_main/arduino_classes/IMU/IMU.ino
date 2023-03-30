@@ -4,7 +4,7 @@
 byte IICdata[5] = {0,0,0,0,0}; //buffer for sensor data
 
 // declare instance of Imu as global for scope
-Imu test;
+Imu_oop test;
 
 
 void setup() {
@@ -14,5 +14,5 @@ void setup() {
 
 void loop() {
 //  test.test_connection();
-  test.read_accelerometer(); 
+  test.read_euler(); 
 }
