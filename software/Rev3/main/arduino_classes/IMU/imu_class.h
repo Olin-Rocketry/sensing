@@ -1,6 +1,7 @@
 #pragma once
 #include <Arduino.h>
 #include <Adafruit_BNO055.h>
+#include <cmath.h>
 
 
 class Imu {
@@ -8,20 +9,22 @@ class Imu {
   private:
     byte pin;
     Adafruit_BNO055 bno;
-    float x_accel_global;
-    float y_accel_global;
-    float z_accel_global;
-    
+//    imu::Vector<3> global_accel;
+//    imu::Quaternion unit_quaternion;
+//    
   public:
     Imu();
     void init();
     void test_connection();
     imu::Quaternion read_quaternions();
+    void normalize_quaternion();
+    void rotate();
+    float dot(imu::Vector<3> vect1, imu::Vector<3> vect2);
+    imu::Vector<3> cross(imu::Vector<3> vect1, imu::Vector<3> vect2);
     void read_euler();
     void read_gravity();
     void read_gyroscope();
-    imu::Vector<3> read_accelerometer();
+    void read_accelerometer();
     void read_linear_accel();
-    void rotate();
     void print_data(imu::Vector<3> data);
 };

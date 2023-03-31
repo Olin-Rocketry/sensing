@@ -2,6 +2,8 @@
 
 Imu::Imu() {
   this->bno = Adafruit_BNO055(55, 0x28);
+//  this->global_accel = NULL;
+//  this->unit_quaternion = NULL;
   init();
 }
 
@@ -22,7 +24,7 @@ void Imu::test_connection() {
 }
 
 imu::Quaternion Imu::read_quaternions() {
-  imu::Quaternion quat = bno.getQuat();
+  return bno.getQuat();
   
 //  // Display the quat data
 //  Serial.print("qW: ");
@@ -36,6 +38,32 @@ imu::Quaternion Imu::read_quaternions() {
 //  Serial.println("");
 }
 
+imu::Quaternion normalize_quaternion() {
+  imu::Quaternion quat = read_quaternions();
+  float norm = sqrt(pow(quat.w, 2) + pow(quat.x, 2) + pow(quat.y, 2) + pow(quat.z, 2));
+  return imu::Quaternion quat(quat.w / norm, quat.x / norm, quat.y / norm, quat.z / norm);
+}
+
+
+
+void rotate() {
+  imu::Vector<3> accel = read_acceleration();
+  imu::Quaternion unit_quat = normalize_quaternion();
+  imu::Vector<3> quat_vector{unit_quat.x, unit_quat.y, unit_quate.z};
+  float scalar = quat.w;
+  imu::Vector<3> rotated_accel = 2.0f * dot(quat_vect, accel) * quat_vect
+                            + (scalar * scalar - dot(quat_vect, quat_vect) * accel
+                            + 2.0f * scalar * cross(quat_vect, scalar);
+  print_data(rotated_accel);
+}
+
+float dot(imu::Vector<3> vect1, imu::Vector<3> vect2) {
+    return (vect1.x * vect2.x) + (vect1.t * vect2.y) + (vect3.z * vect3.z);
+}
+
+imu::Vector<3> cross(imu::Vector<3> vect1, imu::Vector<3> vect2) {
+  return imu::Vector<3> vect((vect1.y * vect2.z - vect1.z * vect2.y), -(vect1.x * vect2.z - vect1.z * vect2.x), (vect1.x * vect2.y - vect1.y * vect2.x));
+}
 
 void Imu::read_euler() {
   imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
