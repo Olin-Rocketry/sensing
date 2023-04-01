@@ -1,11 +1,9 @@
-#ifndef CLASSES
-#define CLASSES
+#pragma once
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 
 
 class Led {
-  
   private:
     byte pin;
     Adafruit_NeoPixel strip;
@@ -17,4 +15,3 @@ class Led {
     void green();
     void off();
 };
-#endif
