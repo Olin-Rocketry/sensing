@@ -2,8 +2,6 @@
 
 Imu::Imu() {
   this->bno = Adafruit_BNO055(55, 0x28);
-//  this->global_accel = NULL;
-//  this->unit_quaternion = NULL;
   init();
 }
 
@@ -25,45 +23,28 @@ void Imu::test_connection() {
 
 imu::Quaternion Imu::read_quaternions() {
   return bno.getQuat();
-  
-//  // Display the quat data
-//  Serial.print("qW: ");
-//  Serial.print(quat.w(), 4);
-//  Serial.print(" qX: ");
-//  Serial.print(quat.y(), 4);
-//  Serial.print(" qY: ");
-//  Serial.print(quat.x(), 4);
-//  Serial.print(" qZ: ");
-//  Serial.print(quat.z(), 4);
-//  Serial.println("");
 }
-
-imu::Quaternion Imu::normalize_quaternion() {
-  imu::Quaternion quat = read_quaternions();
-  float norm = sqrt(pow(quat.w, 2) + pow(quat.x, 2) + pow(quat.y, 2) + pow(quat.z, 2));
-  return imu::Quaternion quat(quat.w / norm, quat.x / norm, quat.y / norm, quat.z / norm);
-}
-
-
 
 void Imu::rotate() {
-  imu::Vector<3> accel = read_acceleration();
-  imu::Quaternion unit_quat = normalize_quaternion();
-  imu::Vector<3> quat_vector{unit_quat.x, unit_quat.y, unit_quate.z};
-  float scalar = quat.w;
-  imu::Vector<3> rotated_accel = 2.0f * dot(quat_vect, accel) * quat_vect
-                            + (scalar * scalar - dot(quat_vect, quat_vect) * accel
-                            + 2.0f * scalar * cross(quat_vect, scalar);
-  print_data(rotated_accel);
+  imu::Vector<3> accel = read_linear_accel();
+
+  // rotate to rocket orientation
+  imu::Quaternion rocket_quat = imu::Quaternion(0.7071, 0, 0.7071, 0); // for 90 degree rotations about y axis
+  accel = rocket_quat.rotateVector(accel);
+
+  // rotate to global using chip quaternion
+  imu::Quaternion unit_quat = bno.getQuat();
+  unit_quat.normalize(); // have to normalize first
+
+  // test the product of both rotations
+  imu::Quaternion product_quat = rocket_quat * unit_quat;
+  print_data(product_quat.toEuler());
+
+  // rotate the acceleration
+  imu::Vector<3> rotated_accel = unit_quat.rotateVector(accel);
+//  print_data(rotated_accel);
 }
 
-float Imu::dot(imu::Vector<3> vect1, imu::Vector<3> vect2) {
-    return (vect1.x * vect2.x) + (vect1.t * vect2.y) + (vect3.z * vect3.z);
-}
-
-imu::Vector<3> Imu::cross(imu::Vector<3> vect1, imu::Vector<3> vect2) {
-  return imu::Vector<3> vect((vect1.y * vect2.z - vect1.z * vect2.y), -(vect1.x * vect2.z - vect1.z * vect2.x), (vect1.x * vect2.y - vect1.y * vect2.x));
-}
 
 void Imu::read_euler() {
   imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
@@ -80,34 +61,20 @@ void Imu::read_gyroscope() {
   print_data(gyroscope);
 }
 
-imu::Vector<3> accel Imu::read_accelerometer() {
+imu::Vector<3> Imu::read_accelerometer() {
   imu::Vector<3> accel = bno.getVector(Adafruit_BNO055::VECTOR_ACCELEROMETER);
-//  print_data(accel);
-//  Serial.print(data.x());
-//    Serial.print(",");
-//
-//  Serial.print(data.y());
-//  Serial.print(",");
-//  Serial.println(data.z());
+  return accel;
 }
 
-void Imu::read_linear_accel() {
+imu::Vector<3> Imu::read_linear_accel() {
   imu::Vector<3> linear_accel = bno.getVector(Adafruit_BNO055::VECTOR_LINEARACCEL);
-  print_data(linear_accel);
+  return linear_accel;
 }
 
 void Imu::print_data(imu::Vector<3> data) {
   /* Display the floating point data */
-//  Serial.print("X: ");
-//  Serial.print(data.x());
-//  Serial.print(" Y: ");
-//  Serial.print(data.y());
-//  Serial.print(" Z: ");
-//  Serial.print(data.z());
-//  Serial.println("");  
-Serial.print(data.x());
-    Serial.print(",");
-
+  Serial.print(data.x());
+  Serial.print(",");
   Serial.print(data.y());
   Serial.print(",");
   Serial.println(data.z());
