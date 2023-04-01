@@ -11,7 +11,7 @@ void Data::init()
   Serial.println("Initializing");
   std::fill_n(flightData, dataPointCount, 3.1415926535897932384);
   std::fill_n(encodedFlightData, dataPointCount*4, '0');
-  std::fill_n(encodedBatch, batchSize, '0');
+//  std::fill_n(encodedBatch, batchSize*dataPointCount*4, '0');
   Serial.println("Filename");
 //  for(int i=0; i<1; i++){
 //    strcat(filename,char(rand() % 256));
@@ -32,6 +32,19 @@ void Data::init()
 //    }
 //  }
   Serial.println("Finished Initializing");
+}
+
+void Data::begin(){
+  Serial.print("Initializing SD card...");
+  // see if the card is present and can be initialized:
+  if (!SD.begin(BUILTIN_SDCARD)) {
+    Serial.println("Card failed, or not present");
+    while (1) {
+      // No SD card, so don't do anything more - stay stuck here
+    }
+  }
+  SD.remove("testfile.txt");
+  Serial.println("card initialized.");
 }
 
 union Data::floatunion_t {
@@ -133,17 +146,17 @@ void Data::addToBatch(){
   if (batchCounter>=batchSize){
     writeSDData();
   }
-  encodedBatch[batchCounter]="";
+//  std::fill_n(encodedBatch[batchCounter], dataPointCount*4, '0');
   for (int index=0; index<4*dataPointCount; index++)
   {
-    Serial.print(batchCounter);
-    Serial.print(":");
-    Serial.print(encodedBatch[batchCounter]);
-    Serial.print(":");
-    Serial.println(encodedFlightData[index]);
-    encodedBatch[batchCounter]+=encodedFlightData[index];
+    encodedBatch[batchCounter][index]=encodedFlightData[index];
+//    Serial.print(batchCounter);
+//    Serial.print(":");
+//    Serial.print(encodedBatch[batchCounter][index]);
+//    Serial.print(":");
+//    Serial.println(encodedFlightData[index]);
   }
-  //batchCounter++;
+  batchCounter++;
 }
 
 void Data::writeSDData(){
@@ -159,8 +172,15 @@ void Data::writeSDData(){
 //            {
 //              dataFile.print(encoded[index]);
 //            }
-        dataFile.print(encodedBatch[batch]);
+        for(int index=0; index<dataPointCount*4; index++)
+        {
+          dataFile.print(encodedBatch[batch][index]);
+        }
         dataFile.println();
+//        Serial.print("counter: ");
+//        Serial.println(batchCounter);
+//        Serial.print("batch: ");
+//        Serial.println(encodedBatch[batch]);
       }
   }
   dataFile.close();

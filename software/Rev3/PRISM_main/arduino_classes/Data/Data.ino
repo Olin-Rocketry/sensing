@@ -8,28 +8,25 @@ float timestep=0.0;
 void setup() {
   Serial.begin(9600); 
   Serial.println("Starting");
-  if (!SD.begin(BUILTIN_SDCARD)) {
-    Serial.println("Card failed, or not present");
-    while (1) {
-      // No SD card, so don't do anything more - stay stuck here
-    }
-  }
+  test.begin();
 }
 void loop() {
-  printData(test);
+//  printData(test);
+  Serial.print("timestep: ");
   Serial.println(timestep);
-//  test.accelx(timestep);
-//  test.curtime(timestep);
+  test.accelx(timestep);
+  test.accely(timestep*timestep);
+  test.accelz(timestep/3);
+  test.curtime((float)micros());
   //Serial.println(test.accelx());
   test.encodeAndAdd();
-  writeSDData(test);
-  delay(1000);
+  delay(100);
   timestep+=1;
 }
 
 void printData(Data test)
 {
-  for(int i=0; i<27; i++)
+  for(int i=0; i<5; i++)
   {
     Serial.print(test.flightData[i]);
     Serial.print(":");
@@ -40,28 +37,28 @@ void printData(Data test)
   }
 }
 
-void writeSDData(Data test){
-  SD.remove("testfile.txt");
-  File dataFile = SD.open("testfile.txt", FILE_WRITE); // Not sure about this data type
-  if (dataFile) {
-      for (int batch=0; batch<test.batchCounter+1; batch++) //batchSize is the number of lines in a batch write //test.batchCounter
-      {
-//            char encoded[4*dataPointCount];
-//            //dataPointCount is the number of unique numbers to send (27 at the time of writing this)
-//            //since each is a float, you need four bytes/chars for each value in a batch
-//            bulkencode(flightData[batch],encoded); //flightData is a two-dimensional array that is of size batchSize*dataPointCount
-//            for (int index=0; index<4*dataPointCount; index++)
-//            {
-//              dataFile.print(encoded[index]);
-//            }
-        dataFile.print(test.encodedBatch[batch]);
-        Serial.print("counter: ");
-        Serial.println(test.batchCounter);
-        Serial.print("batch: ");
-        Serial.println(test.encodedBatch[batch]);
-        dataFile.println();
-      }
-  }
-  dataFile.close();
-  test.batchCounter=0;
-}
+//void writeSDData(Data test){
+//  SD.remove("testfile.txt");
+//  File dataFile = SD.open("testfile.txt", FILE_WRITE); // Not sure about this data type
+//  if (dataFile) {
+//      for (int batch=0; batch<test.batchCounter+1; batch++) //batchSize is the number of lines in a batch write //test.batchCounter
+//      {
+////            char encoded[4*dataPointCount];
+////            //dataPointCount is the number of unique numbers to send (27 at the time of writing this)
+////            //since each is a float, you need four bytes/chars for each value in a batch
+////            bulkencode(flightData[batch],encoded); //flightData is a two-dimensional array that is of size batchSize*dataPointCount
+////            for (int index=0; index<4*dataPointCount; index++)
+////            {
+////              dataFile.print(encoded[index]);
+////            }
+//        dataFile.print(test.encodedBatch[batch]);
+//        Serial.print("counter: ");
+//        Serial.println(test.batchCounter);
+//        Serial.print("batch: ");
+//        Serial.println(test.encodedBatch[batch]);
+//        dataFile.println();
+//      }
+//  }
+//  dataFile.close();
+//  test.batchCounter=0;
+//}

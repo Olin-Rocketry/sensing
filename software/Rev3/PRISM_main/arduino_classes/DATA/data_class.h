@@ -17,12 +17,12 @@ class Data {
     void encoder(char* encoded, float input);
     
   public:
-    const static int dataPointCount=27;
+    const static int dataPointCount=28; //27 ------------------------------------------
     const static int batchSize=50;
     int batchCounter=0;
     float flightData[dataPointCount];
     char encodedFlightData[dataPointCount*4];
-    String encodedBatch[batchSize];
+    char encodedBatch[batchSize][dataPointCount*4];
     char filename[10];
   
     Data();
@@ -82,6 +82,7 @@ class Data {
     void kfdrag(float i);
     void curtime(float i);
 
+    void begin();
     void encodeAndAdd();
     void encodeFlightData();
     void addToBatch();
