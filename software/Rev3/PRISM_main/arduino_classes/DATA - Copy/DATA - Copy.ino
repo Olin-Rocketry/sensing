@@ -1,5 +1,4 @@
 #include "data_class.h"
-#include <SD.h>
 
 
 Data test;
@@ -7,26 +6,26 @@ float timestep=0.0;
 
 void setup() {
   Serial.begin(9600); 
+  while(!Serial){};
   Serial.println("Starting");
-  test.SDbegin();
+  test.beginSD();
+
 }
 void loop() {
 //  printData(test);
-  Serial.print("timestep: ");
-  Serial.println(timestep);
-  test.accelx(timestep);
-  test.accely(timestep*timestep);
-  test.accelz(timestep/3);
-  test.curtime((float)micros());
+//  Serial.println(timestep);
+//  test.accelx(timestep);
+//  test.curtime(timestep);
   //Serial.println(test.accelx());
-  test.encodeAndAdd();
-  delay(100);
-  timestep+=1;
+//  test.encodeAndAdd();
+//  test.writeSDData();
+//  delay(1000);
+//  timestep+=1;
 }
 
 void printData(Data test)
 {
-  for(int i=0; i<5; i++)
+  for(int i=0; i<27; i++)
   {
     Serial.print(test.flightData[i]);
     Serial.print(":");

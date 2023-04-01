@@ -11,30 +11,11 @@ void Data::init()
   Serial.println("Initializing");
   std::fill_n(flightData, dataPointCount, 3.1415926535897932384);
   std::fill_n(encodedFlightData, dataPointCount*4, '0');
-//  std::fill_n(encodedBatch, batchSize*dataPointCount*4, '0');
-  Serial.println("Filename");
-//  for(int i=0; i<1; i++){
-//    strcat(filename,char(rand() % 256));
-//  }
-//  strcat(filename,".txt");
-//  Serial.println("SD");
-//  SD.begin(BUILTIN_SDCARD);
-//  bool ok = SD.sdfs.begin(SdioConfig(DMA_SDIO));
-//  bool ok = SD.sdfs.begin(SdSpiConfig(BUILTIN_SDCARD, DEDICATED_SPI, SD_SCK_MHZ(16)));
-//  if (!ok) {
-//    Serial.println("initialization failed!");
-//    return;
-//  }
-//  if (!SD.begin(BUILTIN_SDCARD)) {
-//    Serial.println("Card failed, or not present");
-//    while (1) {
-//      // No SD card, so don't do anything more - stay stuck here
-//    }
-//  }
+  std::fill_n(encodedBatch, batchSize, '0');
   Serial.println("Finished Initializing");
 }
 
-void Data::SDbegin(){
+void Data::beginSD(){
   delay(10);
   Serial.println("Initializing SD card...");
   // see if the card is present and can be initialized:
@@ -47,18 +28,16 @@ void Data::SDbegin(){
   
 Serial.println("card initialized.");
 
-
   for (uint8_t i = 0; i < 100; i++) {
     fileName[9] = i/100 + '0';
     fileName[10] = i/10 + '0';
     fileName[11] = i%10 + '0';
+    Serial.println(fileName);
     if (SD.exists(fileName)){
       continue;
     }
-    Serial.print("Writing to: ");
-    Serial.println(fileName);
     dataFile = SD.open(fileName, FILE_WRITE);
-    dataFile.println("Time, Phase, Alt, AccX");
+    dataFile.println("test");
     dataFile.close();
     break;
   }
@@ -163,23 +142,24 @@ void Data::addToBatch(){
   if (batchCounter>=batchSize){
     writeSDData();
   }
-//  std::fill_n(encodedBatch[batchCounter], dataPointCount*4, '0');
+  encodedBatch[batchCounter]="";
   for (int index=0; index<4*dataPointCount; index++)
   {
-    encodedBatch[batchCounter][index]=encodedFlightData[index];
-//    Serial.print(batchCounter);
-//    Serial.print(":");
-//    Serial.print(encodedBatch[batchCounter][index]);
-//    Serial.print(":");
-//    Serial.println(encodedFlightData[index]);
+    Serial.print(batchCounter);
+    Serial.print(":");
+    Serial.print(encodedBatch[batchCounter]);
+    Serial.print(":");
+    Serial.println(encodedFlightData[index]);
+    encodedBatch[batchCounter]+=encodedFlightData[index];
   }
-  batchCounter++;
+  //batchCounter++;
 }
 
 void Data::writeSDData(){
-  dataFile = SD.open(fileName, FILE_WRITE); // Not sure about this data type
+  SD.remove("testfile.txt");
+  File dataFile = SD.open("testfile.txt", FILE_WRITE); // Not sure about this data type
   if (dataFile) {
-      for (int batch=0; batch<batchCounter; batch++) //batchSize is the number of lines in a batch write
+      for (int batch=0; batch<test.batchCounter+1; batch++) //batchSize is the number of lines in a batch write //test.batchCounter
       {
 //            char encoded[4*dataPointCount];
 //            //dataPointCount is the number of unique numbers to send (27 at the time of writing this)
@@ -189,17 +169,14 @@ void Data::writeSDData(){
 //            {
 //              dataFile.print(encoded[index]);
 //            }
-        for(int index=0; index<dataPointCount*4; index++)
-        {
-          dataFile.print(encodedBatch[batch][index]);
-        }
+        dataFile.print(test.encodedBatch[batch]);
+        Serial.print("counter: ");
+        Serial.println(test.batchCounter);
+        Serial.print("batch: ");
+        Serial.println(test.encodedBatch[batch]);
         dataFile.println();
-//        Serial.print("counter: ");
-//        Serial.println(batchCounter);
-//        Serial.print("batch: ");
-//        Serial.println(encodedBatch[batch]);
       }
   }
   dataFile.close();
-  batchCounter=0;
+  test.batchCounter=0;
 }
