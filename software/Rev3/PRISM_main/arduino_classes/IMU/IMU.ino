@@ -4,7 +4,7 @@
 byte IICdata[5] = {0,0,0,0,0}; //buffer for sensor data
 
 // declare instance of Imu as global for scope
-Imu test;
+Imu test();
 
 
 void setup() {
