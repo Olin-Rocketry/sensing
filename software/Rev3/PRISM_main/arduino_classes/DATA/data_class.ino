@@ -8,11 +8,8 @@ Data::Data(){
 
 void Data::init()
 {
-  while (!Serial) {
-    ; // wait for serial port to connect.
-  }
   Serial.println("Initializing");
-  std::fill_n(flightData, dataPointCount, 0.0);
+  std::fill_n(flightData, dataPointCount, 3.1415926535897932384);
   std::fill_n(encodedFlightData, dataPointCount*4, '0');
   std::fill_n(encodedBatch, batchSize, '0');
   Serial.println("Filename");
@@ -20,12 +17,18 @@ void Data::init()
 //    strcat(filename,char(rand() % 256));
 //  }
 //  strcat(filename,".txt");
-  Serial.println("SD");
-  SD.begin(BUILTIN_SDCARD);
+//  Serial.println("SD");
+//  SD.begin(BUILTIN_SDCARD);
+//  bool ok = SD.sdfs.begin(SdioConfig(DMA_SDIO));
+//  bool ok = SD.sdfs.begin(SdSpiConfig(BUILTIN_SDCARD, DEDICATED_SPI, SD_SCK_MHZ(16)));
+//  if (!ok) {
+//    Serial.println("initialization failed!");
+//    return;
+//  }
 //  if (!SD.begin(BUILTIN_SDCARD)) {
 //    Serial.println("Card failed, or not present");
 //    while (1) {
-//      // No SD card, so dxon't do anything more - stay stuck here
+//      // No SD card, so don't do anything more - stay stuck here
 //    }
 //  }
   Serial.println("Finished Initializing");
@@ -38,14 +41,17 @@ union Data::floatunion_t {
 
 void Data::bulkencode(float* in, char* out) {
   //in and out should be char arrays of the same size
-  for (int i=0; i<sizeof(in)/sizeof(in[0]); i++)
+  for (int i=0; i<dataPointCount; i++)//sizeof(in)/sizeof(in[0])
   {
+    //Serial.print("encoding: ");
+    //Serial.println(sizeof(in)/sizeof(in[0]));
     char encoded[sizeof (float) ];
     encoder(encoded, in[i]);
     encoder(encoded, in[i]);
     for(int j=0; j<sizeof(float); j++)
     {
       out[i*sizeof(float)+j]=encoded[j];
+
     }
   }
 }
@@ -130,9 +136,14 @@ void Data::addToBatch(){
   encodedBatch[batchCounter]="";
   for (int index=0; index<4*dataPointCount; index++)
   {
+    Serial.print(batchCounter);
+    Serial.print(":");
+    Serial.print(encodedBatch[batchCounter]);
+    Serial.print(":");
+    Serial.println(encodedFlightData[index]);
     encodedBatch[batchCounter]+=encodedFlightData[index];
   }
-  batchCounter++;
+  //batchCounter++;
 }
 
 void Data::writeSDData(){

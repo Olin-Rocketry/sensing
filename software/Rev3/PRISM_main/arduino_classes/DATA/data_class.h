@@ -2,10 +2,21 @@
 #pragma once
 #include <Arduino.h>
 #include <SD.h>
+//#include "SdFat.h"
 #include <SPI.h>
 #include <algorithm>
+#ifdef __AVR__
+#define FsFile File32
+#endif
 class Data {
   private:
+    
+    
+    union floatunion_t;
+    void bulkencode(float* in, char* out);
+    void encoder(char* encoded, float input);
+    
+  public:
     const static int dataPointCount=27;
     const static int batchSize=50;
     int batchCounter=0;
@@ -13,15 +24,9 @@ class Data {
     char encodedFlightData[dataPointCount*4];
     String encodedBatch[batchSize];
     char filename[10];
-    
-    union floatunion_t;
-
-    void init();
-    void bulkencode(float* in, char* out);
-    void encoder(char* encoded, float input);
-    
-  public:
+  
     Data();
+    void init();
     float accelx();
     float accely();
     float accelz();
