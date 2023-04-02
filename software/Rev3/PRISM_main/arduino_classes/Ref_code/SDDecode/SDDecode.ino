@@ -45,16 +45,33 @@ void setup() {
   Serial.println("initialization done.");
 
   // re-open the file for reading:
-  myFile = SD.open("testfile.txt");
+  char testName[17]="flightLog000.txt";
+  char fileName[17]="flightLog000.txt";
+  for (uint8_t i = 0; i < 100; i++) {
+    testName[9] = i/100 + '0';
+    testName[10] = i/10 + '0';
+    testName[11] = i%10 + '0';
+    if (!SD.exists(testName)){
+      break;
+    }
+    for(int j=0; j<17; j++)
+    {
+      fileName[j]=testName[j];
+    }
+  }
+  Serial.println(fileName);
+  myFile = SD.open(fileName);
+  int counter=0;
+  int dataPointCount=27;
+  char buf[dataPointCount*4];
+  myFile.readBytesUntil('\n',buf,dataPointCount*4);
   if (myFile) {
     Serial.println("File Open");
 
     // read from the file until there's nothing else in it:
-    int counter=0;
-    int dataPointCount=28;
+    
     while (myFile.available()) {
-      char buf[dataPointCount];
-      myFile.readBytesUntil('\n',buf,dataPointCount*4);
+      myFile.readBytes(buf,dataPointCount*4);
       counter++;
       Serial.print("Line ");
       Serial.print(counter);
@@ -69,7 +86,7 @@ void setup() {
         Serial.print(float_u.f);
         Serial.print(",");
       }
-      myFile.readBytesUntil('\n',buf,dataPointCount*4);
+      myFile.readBytes(buf,2);
       Serial.println();
     }
     // close the file:

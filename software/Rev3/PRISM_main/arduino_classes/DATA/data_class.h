@@ -18,8 +18,8 @@ class Data {
     File dataFile;
     
   public:
-    const static int dataPointCount=28; //27 ------------------------------------------
-    const static int batchSize=50;
+    const static int dataPointCount=27; //27 ------------------------------------------
+    const static int batchSize=500;
     int batchCounter=0;
     float flightData[dataPointCount];
     char encodedFlightData[dataPointCount*4];

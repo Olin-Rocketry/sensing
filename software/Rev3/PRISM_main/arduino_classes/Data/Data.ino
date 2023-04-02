@@ -17,10 +17,10 @@ void loop() {
   test.accelx(timestep);
   test.accely(timestep*timestep);
   test.accelz(timestep/3);
-  test.curtime((float)micros());
+  test.curtime((float)millis());
   //Serial.println(test.accelx());
   test.encodeAndAdd();
-  delay(100);
+  delay(1);
   timestep+=1;
 }
 

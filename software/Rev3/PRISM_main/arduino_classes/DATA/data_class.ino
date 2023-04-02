@@ -45,7 +45,7 @@ void Data::SDbegin(){
     }
   }
   
-Serial.println("card initialized.");
+  Serial.println("card initialized.");
 
 
   for (uint8_t i = 0; i < 100; i++) {
