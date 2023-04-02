@@ -102,9 +102,9 @@ float Data::gyrox() {return flightData[3];}
 float Data::gyroy() {return flightData[4];}
 float Data::gyroz() {return flightData[5];}
 float Data::temp() {return flightData[6];}
-float Data::a() {return flightData[7];}
-float Data::b() {return flightData[8];}
-float Data::c() {return flightData[9];}
+float Data::eulerx() {return flightData[7];}
+float Data::eulery() {return flightData[8];}
+float Data::eulerz() {return flightData[9];}
 float Data::baralt() {return flightData[10];}
 float Data::d() {return flightData[11];}
 float Data::lng() {return flightData[12];}
@@ -129,9 +129,9 @@ void Data::gyrox(float i) {flightData[3]=i;}
 void Data::gyroy(float i) {flightData[4]=i;}
 void Data::gyroz(float i) {flightData[5]=i;}
 void Data::temp(float i) {flightData[6]=i;}
-void Data::a(float i) {flightData[7]=i;}
-void Data::b(float i) {flightData[8]=i;}
-void Data::c(float i) {flightData[9]=i;}
+void Data::eulerx(float i) {flightData[7]=i;}
+void Data::eulery(float i) {flightData[8]=i;}
+void Data::eulerz(float i) {flightData[9]=i;}
 void Data::baralt(float i) {flightData[10]=i;}
 void Data::d(float i) {flightData[11]=i;}
 void Data::lng(float i) {flightData[12]=i;}
