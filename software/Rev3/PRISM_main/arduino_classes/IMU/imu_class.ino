@@ -1,7 +1,8 @@
 #include "imu_class.h"
 
-Imu::Imu() {
+Imu::Imu(Data data) {
   this->bno = Adafruit_BNO055(55, 0x28);
+  this->data = data;
   init();
 }
 
@@ -38,10 +39,20 @@ void Imu::rotate() {
 
   // test the product of both rotations
   imu::Quaternion product_quat = rocket_quat * unit_quat;
-  print_data(product_quat.toEuler());
+  imu::Vector<3> eulers = product_quat.toEuler();
+
+  // store the euler angles into data
+  data.eulerx(eulers.x);
+  data.eulery(eulers.y);
+  data.eulerz(eulers.z);
 
   // rotate the acceleration
   imu::Vector<3> rotated_accel = unit_quat.rotateVector(accel);
+
+  // save values to data
+  data.accelx(rotated_accel.x);
+  data.accely(rotated_accel.y);
+  data.accelz(rotated_accel.z);
 //  print_data(rotated_accel);
 }
 
@@ -58,7 +69,10 @@ void Imu::read_gravity() {
 
 void Imu::read_gyroscope() {
   imu::Vector<3> gyroscope = bno.getVector(Adafruit_BNO055::VECTOR_GYROSCOPE);
-  print_data(gyroscope);
+  data.gyrox(gyroscope.x);
+  data.gyroy(gyroscope.y);
+  data.gyroz(gyroscope.z);
+//  print_data(gyroscope);
 }
 
 imu::Vector<3> Imu::read_accelerometer() {
