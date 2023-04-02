@@ -81,7 +81,7 @@ void Radio::receivedPacket() {
 
 void Radio::sendRadio(char* buffer2) {
   // Send a message to rf95_server
-  rf95.send((uint8_t *)buffer2, 70);
+  rf95.send((uint8_t *)buffer2, dataPointCount*4);
   delay(10);
   rf95.waitPacketSent();
 }

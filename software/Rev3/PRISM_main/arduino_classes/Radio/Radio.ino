@@ -24,7 +24,7 @@ void setup(){
 //Sending
 void loop()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ;
   }
@@ -61,9 +61,9 @@ void loop()
     while (myFile.available()) {
       myFile.readBytes(buf,dataPointCount*4);
       counter++;
-      Serial.print("Line ");
+//      Serial.print("Line ");
       Serial.print(counter);
-      Serial.print(": ");
+//      Serial.print(": ");
       for(int j=0; j<dataPointCount; j++)
       {
         for(int i=0; i<4; i++)
@@ -71,13 +71,13 @@ void loop()
           char letter=buf[4*j+i];
           float_test.a[i]=letter;
         }
-        Serial.print(float_test.f);
-        Serial.print(",");
+//        Serial.print(float_test.f);
+//        Serial.print(",");
       }
       radio.sendRadio(buf);
       myFile.readBytes(buf,2);
       Serial.println();
-      delay(500);
+//      delay(50);
     }
     // close the file:
     myFile.close();
