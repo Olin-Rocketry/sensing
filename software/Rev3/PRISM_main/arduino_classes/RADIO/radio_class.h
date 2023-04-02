@@ -3,11 +3,10 @@
 #include <algorithm>
 #include <RH_RF95.h>
 
-#define RFM95_CS 4
-#define RFM95_RST 2
-#define RFM95_INT 3
+#define RFM95_CS 0
+#define RFM95_RST 20
+#define RFM95_INT 21
 #define RF95_FREQ 915.0
-
 
 class Radio {
   private:
@@ -19,7 +18,7 @@ class Radio {
     float decoder(char* encoded);
 
   public:
-    Radio(); 
+    Radio() : rf95(RFM95_CS,RFM95_INT) { }
     void init();  
     void begin(); 
     void receivedPacket();  

@@ -1,14 +1,9 @@
 #include "radio_class.h"
 #include <algorithm>
 
-#define RFM95_CS 4
-#define RFM95_RST 2
-#define RFM95_INT 3
-#define RF95_FREQ 915.0
-
-Radio::Radio() {
-  init();
-}
+//Radio::Radio() {
+//  init();
+//}
 
 void Radio::init() {
   std::fill_n(flightData, dataPointCount, 0.0);
