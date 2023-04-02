@@ -20,10 +20,13 @@ class Radio {
 
   public:
     Radio(); 
-    void init();   
+    void init();  
+    void begin(); 
     void receivedPacket();  
     void readRadio(); 
     void sendRadio(char* buffer2);
     void decodeData();  
     void printData();
+    void sendingPacket();
+    void readSerial();
 };

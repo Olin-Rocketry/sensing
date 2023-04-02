@@ -1,6 +1,11 @@
 #include "radio_class.h"
 #include <algorithm>
 
+#define RFM95_CS 4
+#define RFM95_RST 2
+#define RFM95_INT 3
+#define RF95_FREQ 915.0
+
 Radio::Radio() {
   init();
 }
@@ -8,7 +13,10 @@ Radio::Radio() {
 void Radio::init() {
   std::fill_n(flightData, dataPointCount, 0.0);
   std::fill_n(packet, dataPointCount * 4, '0');
+}
 
+void Radio::begin()
+{
   pinMode(RFM95_RST, OUTPUT);
   digitalWrite(RFM95_RST, HIGH);
   //      while (!Serial);
@@ -56,6 +64,17 @@ float Radio::decoder(char* encoded) {
     //Serial.println(encoded[i]);
   }
   return float_u.f;
+}
+
+void sendingPacket()
+{
+  sendRadio(readSerial());
+}
+
+char* readSerial()
+{
+  //CHARLIE
+  return;
 }
 
 void Radio::receivedPacket() {
