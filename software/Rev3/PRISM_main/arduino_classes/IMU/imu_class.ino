@@ -7,9 +7,13 @@ Imu::Imu(Data data) {
 }
 
 void Imu::init() {
+  
+//  test_connection();
+}
+
+void Imu::begin_imu() {
   Wire.begin();
   Serial.begin(9600);
-  test_connection();
 }
 
 void Imu::test_connection() {
