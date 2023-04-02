@@ -28,5 +28,5 @@ class Radio {
     void decodeData();  
     void printData();
     void sendingPacket();
-    void readSerial();
+    char* readSerial();
 };

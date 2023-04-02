@@ -21,7 +21,7 @@ void Radio::begin()
   digitalWrite(RFM95_RST, HIGH);
   //      while (!Serial);
   //      Serial.begin(9600);
-  //      Serial.println("Arduino LoRa RX Test!");
+  Serial.println("Arduino LoRa RX Test!");
   // manual reset
   digitalWrite(RFM95_RST, LOW);
   delay(10);
@@ -29,17 +29,17 @@ void Radio::begin()
   delay(10);
 
   while (!rf95.init()) {
-    //        Serial.println("LoRa radio init failed");
+            Serial.println("LoRa radio init failed");
     while (1);
   }
-  //      Serial.println("LoRa radio init OK!");
+        Serial.println("LoRa radio init OK!");
 
   // Defaults after init are 434.0MHz, modulation GFSK_Rb250Fd250, +13dbM
   if (!rf95.setFrequency(RF95_FREQ)) {
-    //        Serial.println("setFrequency failed");
+            Serial.println("setFrequency failed");
     while (1);
   }
-  //      Serial.print("Set Freq to: "); Serial.println(RF95_FREQ);
+        Serial.print("Set Freq to: "); Serial.println(RF95_FREQ);
 
   // Defaults after init are 434.0MHz, 13dBm, Bw = 125 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on
 
@@ -66,15 +66,16 @@ float Radio::decoder(char* encoded) {
   return float_u.f;
 }
 
-void sendingPacket()
+void Radio::sendingPacket()
 {
   sendRadio(readSerial());
 }
 
-char* readSerial()
+char* Radio::readSerial()
 {
   //CHARLIE
-  return;
+  char buf[10];
+  return buf;
 }
 
 void Radio::receivedPacket() {
