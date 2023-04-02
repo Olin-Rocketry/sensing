@@ -1,5 +1,4 @@
 #pragma once
-#include "../DATA/data_class.h"
 #include <Arduino.h>
 #include <Adafruit_BNO055.h>
 
@@ -13,6 +12,7 @@ class Imu {
   public:
     Imu(Data data);
     void init();
+    void begin_imu();
     void test_connection();
     imu::Quaternion read_quaternions();
 
