@@ -3,7 +3,8 @@
 //setup for testing 
 
 // declare instance of Imu as global for scope
-Gps gps;
+Data data;
+Gps gps(data);
 
 
 void setup() {
@@ -14,4 +15,5 @@ void setup() {
 void loop() {
 //  test.test_connection();
   gps.read_position(); 
+  Serial.println(data.lng());
 }

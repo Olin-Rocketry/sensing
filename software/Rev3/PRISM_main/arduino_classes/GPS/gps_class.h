@@ -1,4 +1,5 @@
 #pragma once
+#include "data_class.h"
 #include <Arduino.h>
 #include <SparkFun_I2C_GPS_Arduino_Library.h>
 #include <TinyGPS++.h>
@@ -13,7 +14,7 @@ class Gps {
     TinyGPSPlus gps;
     
   public:
-    Gps();
+    Gps(Data data);
     void init();
     void test_connection();
     void read_position();

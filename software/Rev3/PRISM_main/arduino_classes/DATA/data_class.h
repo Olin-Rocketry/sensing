@@ -42,9 +42,9 @@ class Data {
     float gyroy();
     float gyroz();
     float temp();
-    float a();
-    float b();
-    float c();
+    float eulerx();
+    float eulery();
+    float eulerz();
     float baralt();
     float d();
     float lng();
@@ -69,9 +69,9 @@ class Data {
     void gyroy(float i);
     void gyroz(float i);
     void temp(float i);
-    void a(float i);
-    void b(float i);
-    void c(float i);
+    void eulerx(float i);
+    void eulery(float i);
+    void eulerz(float i);
     void baralt(float i);
     void d(float i);
     void lng(float i);

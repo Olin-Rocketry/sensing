@@ -1,16 +1,17 @@
 #pragma once
+#include "../DATA/data_class.h"
 #include <Arduino.h>
 #include <Adafruit_BNO055.h>
 
 class Imu {
   
   private:
-    byte pin;
+    Data data;
     Adafruit_BNO055 bno;
 
    
   public:
-    Imu();
+    Imu(Data data);
     void init();
     void test_connection();
     imu::Quaternion read_quaternions();
@@ -24,7 +25,7 @@ class Imu {
     */
     void rotate();
     
-    void read_euler();
+    void read_euler(); // from the chip
     void read_gravity();
     void read_gyroscope();
     imu::Vector<3> read_accelerometer();
