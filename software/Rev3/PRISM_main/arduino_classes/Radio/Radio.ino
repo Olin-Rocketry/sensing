@@ -9,7 +9,7 @@ union floatunion_t {
 } float_test;
 
 void setup(){
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("Setup");
   radio.begin(); 
 }
@@ -17,9 +17,10 @@ void setup(){
 //UNCOMMENT ONE OF THE LOOPS BELOW FOR TESTING
 
 //Receiving
-//void loop(){
-//  radio.receivedPacket();
-//}
+void loop(){
+  radio.receivedPacket();
+  delay(10);
+}
 
 //Sending
 void loop()
