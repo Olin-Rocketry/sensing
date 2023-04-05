@@ -1,19 +1,22 @@
 #include "radio_class.h"
 #include <algorithm>
 
-Radio::Radio() {
-  init();
-}
+//Radio::Radio() {
+//  init();
+//}
 
 void Radio::init() {
   std::fill_n(flightData, dataPointCount, 0.0);
   std::fill_n(packet, dataPointCount * 4, '0');
+}
 
+void Radio::begin()
+{
   pinMode(RFM95_RST, OUTPUT);
   digitalWrite(RFM95_RST, HIGH);
   //      while (!Serial);
   //      Serial.begin(9600);
-  //      Serial.println("Arduino LoRa RX Test!");
+  Serial.println("Arduino LoRa RX Test!");
   // manual reset
   digitalWrite(RFM95_RST, LOW);
   delay(10);
@@ -21,17 +24,17 @@ void Radio::init() {
   delay(10);
 
   while (!rf95.init()) {
-    //        Serial.println("LoRa radio init failed");
+            Serial.println("LoRa radio init failed");
     while (1);
   }
-  //      Serial.println("LoRa radio init OK!");
+        Serial.println("LoRa radio init OK!");
 
   // Defaults after init are 434.0MHz, modulation GFSK_Rb250Fd250, +13dbM
   if (!rf95.setFrequency(RF95_FREQ)) {
-    //        Serial.println("setFrequency failed");
+            Serial.println("setFrequency failed");
     while (1);
   }
-  //      Serial.print("Set Freq to: "); Serial.println(RF95_FREQ);
+        Serial.print("Set Freq to: "); Serial.println(RF95_FREQ);
 
   // Defaults after init are 434.0MHz, 13dBm, Bw = 125 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on
 
@@ -58,23 +61,36 @@ float Radio::decoder(char* encoded) {
   return float_u.f;
 }
 
+void Radio::sendingPacket()
+{
+  sendRadio(readSerial());
+}
+
+char* Radio::readSerial()
+{
+  //CHARLIE
+  char buf[10];
+  return buf;
+}
+
 void Radio::receivedPacket() {
-  readRadio();
-  decodeData();
-  printData();
+  if (rf95.available()) {
+    readRadio();
+    decodeData();
+    printData();
+  }
 }
 
 void Radio::sendRadio(char* buffer2) {
   // Send a message to rf95_server
-  rf95.send((uint8_t *)buffer2, 70);
+  rf95.send((uint8_t *)buffer2, dataPointCount*4);
   delay(10);
   rf95.waitPacketSent();
 }
 
 void Radio::readRadio(){
-if (rf95.available()) {
   // Should be a message for us now
-  uint8_t buf[RH_RF95_MAX_MESSAGE_LEN];
+  uint8_t buf[200];//RH_RF95_MAX_MESSAGE_LEN
   uint8_t len = sizeof(buf);
 
   if (rf95.recv(buf, &len))
@@ -89,7 +105,11 @@ if (rf95.available()) {
   {
     Serial.println("Receive failed");
   }
-}
+  for(int i=0; i<dataPointCount*4; i++)
+  {
+//      Serial.println((char)buf[i]);
+    packet[i]=(char)buf[i];
+  }
 }
 
 void Radio::decodeData() {
