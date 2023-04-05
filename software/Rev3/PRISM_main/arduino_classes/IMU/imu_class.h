@@ -7,11 +7,11 @@ class Imu
 {
 
 private:
-  Data data;
+  Data *data;
   Adafruit_BNO055 bno;
 
 public:
-  Imu(Data data);
+  Imu(Data *data);
   void init();
   void begin_imu();
   void test_connection();
