@@ -10,13 +10,13 @@
 class Altimeter {
   
   private:
+    Data data;
     Adafruit_BMP3XX bmp;
     
   public:
-    Altimeter();// not used
+    Altimeter(Data data);// not used
     void init();
-    void readAlt();
-    void readPres();
-    void readTemp();
-
+    void read_altimeter();
+    void read_pressure();
+    void read_temperature();
 };
