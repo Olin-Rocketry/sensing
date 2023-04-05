@@ -54,18 +54,18 @@ void Imu::rotate()
     imu::Vector<3> eulers = product_quat.toEuler();
 
     // store the euler angles into data
-    data.eulerx((float)eulers.x);
-    data.eulery((float)eulers.y);
-    data.eulerz((float)eulers.z);
+    data.eulerx((float)eulers.x());
+    data.eulery((float)eulers.y());
+    data.eulerz((float)eulers.z());
 
     // rotate the acceleration
     imu::Vector<3> rotated_accel = unit_quat.rotateVector(accel);
 
     // save values to data
-    data.accelx((float)rotated_accel.x);
-    data.accely((float)rotated_accel.y);
-    data.accelz((float)rotated_accel.z);
-    //  print_data(rotated_accel);
+    data.accelx((float)rotated_accel.x());
+    data.accely((float)rotated_accel.y());
+    data.accelz((float)rotated_accel.z());
+      print_data(rotated_accel);
 }
 
 void Imu::read_euler()
@@ -83,9 +83,9 @@ void Imu::read_gravity()
 void Imu::read_gyroscope()
 {
     imu::Vector<3> gyroscope = bno.getVector(Adafruit_BNO055::VECTOR_GYROSCOPE);
-    data.gyrox((float)gyroscope.x);
-    data.gyroy((float)gyroscope.y);
-    data.gyroz((float)gyroscope.z);
+    data.gyrox((float)gyroscope.x());
+    data.gyroy((float)gyroscope.y());
+    data.gyroz((float)gyroscope.z());
     //  print_data(gyroscope);
 }
 
