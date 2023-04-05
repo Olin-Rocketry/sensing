@@ -6,10 +6,10 @@ void setup(){
 };
 
 void loop(){
-  a.readAlt();
+  a.read_altitude();
   delay(2000);
-  a.readTemp();
+  a.read_temperature();
   delay(2000);
-  a.readPres();
+  a.read_pressure();
   delay(2000);
 };

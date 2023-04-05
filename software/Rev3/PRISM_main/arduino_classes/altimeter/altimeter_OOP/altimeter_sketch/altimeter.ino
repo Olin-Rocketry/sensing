@@ -2,7 +2,8 @@
 #include <Adafruit_Sensor.h>
 #include "Adafruit_BMP3XX.h"
  
-Altimeter::Altimeter(void) {
+Altimeter::Altimeter(Data data) {
+  this->data = data
   init();
 }
 
@@ -20,50 +21,46 @@ void Altimeter::init() {
   bmp.setOutputDataRate(BMP3_ODR_50_HZ);
 }
 
-void Altimeter::readPres(){
+void Altimeter::read_pressure(){
     if (! bmp.performReading()) {
     Serial.println("Failed to perform reading :(");
     return;
   }
   bmp.performReading();
   
-  Serial.print("Pressure = ");
+  /*Serial.print("Pressure = ");
   Serial.print(bmp.pressure / 100.0);
   Serial.println(" hPa");
-
   
   Serial.println();
-  delay(1000);
+  delay(1000);*/
 }
 
-void Altimeter::readAlt(){
+void Altimeter::read_altimeter(){
     if (! bmp.performReading()) {
     Serial.println("Failed to perform reading :(");
     return;
   }
   bmp.performReading();
 
-  Serial.print("Approx. Altitude = ");
+  /*Serial.print("Approx. Altitude = ");
   Serial.print(bmp.readAltitude(SEALEVELPRESSURE_HPA));
-  Serial.println(" m");
+  Serial.println(" m");*/
 
   
-  Serial.println();
-  delay(1000);
-  
+  data.baralt((float)bmp.readAltitude(SEALEVELPRESSURE_HPA));
 }
 
-void Altimeter::readTemp(){
-
+void Altimeter::read_temperature(){
+    if (! bmp.performReading()) {
+    Serial.println("Failed to perform reading :(");
+    return;
+  }
   bmp.performReading();
 
-  Serial.print("Temperature = ");
+  /*Serial.print("Temperature = ");
   Serial.print(bmp.temperature);
-  Serial.println(" *C");
+  Serial.println(" *C");*/
 
-  
-  Serial.println();
-  delay(1000);
-
-
+data.temp((float)bmp.temperature);
 }
