@@ -100,60 +100,33 @@ void Data::encoder(char *encoded, float input)
     }
 }
 
-float Data::accelx() { return flightData[0]; }
-float Data::accely() { return flightData[1]; }
-float Data::accelz() { return flightData[2]; }
-float Data::gyrox() { return flightData[3]; }
-float Data::gyroy() { return flightData[4]; }
-float Data::gyroz() { return flightData[5]; }
-float Data::temp() { return flightData[6]; }
-float Data::eulerx() { return flightData[7]; }
-float Data::eulery() { return flightData[8]; }
-float Data::eulerz() { return flightData[9]; }
-float Data::baralt() { return flightData[10]; }
-float Data::d() { return flightData[11]; }
-float Data::lng() { return flightData[12]; }
-float Data::lat() { return flightData[13]; }
-float Data::gpsalt() { return flightData[14]; }
-float Data::phs() { return flightData[15]; }
-float Data::cont() { return flightData[16]; }
-float Data::volt() { return flightData[17]; }
-float Data::link() { return flightData[18]; }
-float Data::kfx() { return flightData[19]; }
-float Data::kfy() { return flightData[20]; }
-float Data::kfz() { return flightData[21]; }
-float Data::kfvx() { return flightData[22]; }
-float Data::kfvy() { return flightData[23]; }
-float Data::kfvz() { return flightData[24]; }
-float Data::kfdrag() { return flightData[25]; }
-float Data::curtime() { return flightData[26]; }
-void Data::accelx(float i) { flightData[0] = i; }
-void Data::accely(float i) { flightData[1] = i; }
-void Data::accelz(float i) { flightData[2] = i; }
-void Data::gyrox(float i) { flightData[3] = i; }
-void Data::gyroy(float i) { flightData[4] = i; }
-void Data::gyroz(float i) { flightData[5] = i; }
-void Data::temp(float i) { flightData[6] = i; }
-void Data::eulerx(float i) { flightData[7] = i; }
-void Data::eulery(float i) { flightData[8] = i; }
-void Data::eulerz(float i) { flightData[9] = i; }
-void Data::baralt(float i) { flightData[10] = i; }
-void Data::d(float i) { flightData[11] = i; }
-void Data::lng(float i) { flightData[12] = i; }
-void Data::lat(float i) { flightData[13] = i; }
-void Data::gpsalt(float i) { flightData[14] = i; }
-void Data::phs(float i) { flightData[15] = i; }
-void Data::cont(float i) { flightData[16] = i; }
-void Data::volt(float i) { flightData[17] = i; }
-void Data::link(float i) { flightData[18] = i; }
-void Data::kfx(float i) { flightData[19] = i; }
-void Data::kfy(float i) { flightData[20] = i; }
-void Data::kfz(float i) { flightData[21] = i; }
-void Data::kfvx(float i) { flightData[22] = i; }
-void Data::kfvy(float i) { flightData[23] = i; }
-void Data::kfvz(float i) { flightData[24] = i; }
-void Data::kfdrag(float i) { flightData[25] = i; }
-void Data::curtime(float i) { flightData[26] = i; }
+float Data::curtime() { return flightData[0]; }   void Data::curtime(float i) { flightData[0] = i; }
+float Data::accelx() { return flightData[1]; }    void Data::accelx(float i) { flightData[1] = i; }
+float Data::accely() { return flightData[2]; }    void Data::accely(float i) { flightData[2] = i; }
+float Data::accelz() { return flightData[3]; }    void Data::accelz(float i) { flightData[3] = i; }
+float Data::gyrox() { return flightData[4]; }     void Data::gyrox(float i) { flightData[4] = i; }
+float Data::gyroy() { return flightData[5]; }     void Data::gyroy(float i) { flightData[5] = i; }
+float Data::gyroz() { return flightData[6]; }     void Data::gyroz(float i) { flightData[6] = i; }
+float Data::temp() { return flightData[7]; }      void Data::temp(float i) { flightData[7] = i; }
+float Data::eulerx() { return flightData[8]; }    void Data::eulerx(float i) { flightData[8] = i; }
+float Data::eulery() { return flightData[9]; }    void Data::eulery(float i) { flightData[9] = i; }
+float Data::eulerz() { return flightData[10]; }   void Data::eulerz(float i) { flightData[10] = i; }
+float Data::baralt() { return flightData[11]; }   void Data::baralt(float i) { flightData[11] = i; }
+float Data::lng() { return flightData[12]; }      void Data::lng(float i) { flightData[12] = i; }
+float Data::lat() { return flightData[13]; }      void Data::lat(float i) { flightData[13] = i; }
+float Data::gpsalt() { return flightData[14]; }   void Data::gpsalt(float i) { flightData[14] = i; }
+float Data::phs() { return flightData[15]; }      void Data::phs(float i) { flightData[15] = i; }
+float Data::cont() { return flightData[16]; }     void Data::cont(float i) { flightData[16] = i; }
+float Data::volt() { return flightData[17]; }     void Data::volt(float i) { flightData[17] = i; }
+float Data::link() { return flightData[18]; }     void Data::link(float i) { flightData[18] = i; }
+float Data::kfx() { return flightData[19]; }      void Data::kfx(float i) { flightData[19] = i; }
+float Data::kfy() { return flightData[20]; }      void Data::kfy(float i) { flightData[20] = i; }
+float Data::kfz() { return flightData[21]; }      void Data::kfz(float i) { flightData[21] = i; }
+float Data::kfvx() { return flightData[22]; }     void Data::kfvx(float i) { flightData[22] = i; }
+float Data::kfvy() { return flightData[23]; }     void Data::kfvy(float i) { flightData[23] = i; }
+float Data::kfvz() { return flightData[24]; }     void Data::kfvz(float i) { flightData[24] = i; }
+float Data::kfdrag() { return flightData[25]; }   void Data::kfdrag(float i) { flightData[25] = i; }
+float Data::d() { return flightData[26]; }        void Data::d(float i) { flightData[26] = i; }
 
 void Data::encodeAndAdd()
 {
