@@ -2,9 +2,15 @@
 #include <Adafruit_Sensor.h>
 #include "Adafruit_BMP3XX.h"
  
-Altimeter::Altimeter(Data data) {
-  this->data = data
+Altimeter::Altimeter(Data *data) {
+  this->data = data;
   init();
+}
+
+void Altimeter::begin_altimeter()
+{
+    Wire.begin();
+    Serial.begin(9600);
 }
 
 void Altimeter::init() {
@@ -48,7 +54,7 @@ void Altimeter::read_altimeter(){
   Serial.println(" m");*/
 
   
-  data.baralt((float)bmp.readAltitude(SEALEVELPRESSURE_HPA));
+  data->baralt((float)bmp.readAltitude(SEALEVELPRESSURE_HPA));
 }
 
 void Altimeter::read_temperature(){
@@ -62,5 +68,5 @@ void Altimeter::read_temperature(){
   Serial.print(bmp.temperature);
   Serial.println(" *C");*/
 
-data.temp((float)bmp.temperature);
+data->temp((float)bmp.temperature);
 }

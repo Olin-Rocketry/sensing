@@ -1,15 +1,19 @@
 #include "altimeter.h"
-Altimeter a;
+Data data;
+Altimeter a(&data);
+
+byte IICdata[5] = {0, 0, 0, 0, 0}; // buffer for sensor data
+
 void setup(){
   Serial.begin(115200);
   while (!Serial);
-};
+  data.SDbegin();
+  a.begin_altimeter();
+}
 
 void loop(){
   a.read_altitude();
-  delay(2000);
-  a.read_temperature();
-  delay(2000);
+  //a.read_temperature();
   a.read_pressure();
-  delay(2000);
-};
+  Serial.println(data.baralt());
+}
