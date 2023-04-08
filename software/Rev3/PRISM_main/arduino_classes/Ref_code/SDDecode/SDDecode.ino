@@ -30,19 +30,21 @@ union floatunion_t {
 
 void setup() {
   // Open serial communications and wait for port to open:
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
+  delay(10);
+  Serial.write(64);
 
 
-  Serial.print("Initializing SD card...");
+//  Serial.print("Initializing SD card...");
 
   if (!SD.begin(BUILTIN_SDCARD)) {
     Serial.println("initialization failed!");
     while (1);
   }
-  Serial.println("initialization done.");
+//  Serial.println("initialization done.");
 
   // re-open the file for reading:
   char testName[17]="flightLog000.txt";
@@ -59,23 +61,24 @@ void setup() {
       fileName[j]=testName[j];
     }
   }
-  Serial.println(fileName);
-  myFile = SD.open(fileName);
+//  Serial.println(fileName);
+  myFile = SD.open("flightLog007.txt");
   int counter=0;
   int dataPointCount=27;
   char buf[dataPointCount*4];
   myFile.readBytesUntil('\n',buf,dataPointCount*4);
   if (myFile) {
-    Serial.println("File Open");
+//    Serial.println("File Open");
 
     // read from the file until there's nothing else in it:
     
     while (myFile.available()) {
+      delay(10);
       myFile.readBytes(buf,dataPointCount*4);
       counter++;
-      Serial.print("Line ");
-      Serial.print(counter);
-      Serial.print(": ");
+//      Serial.print("Line ");
+//      Serial.print(counter);
+//      Serial.print(": ");
       for(int j=0; j<dataPointCount; j++)
       {
         for(int i=0; i<4; i++)
@@ -84,10 +87,13 @@ void setup() {
           float_u.a[i]=letter;
         }
         Serial.print(float_u.f);
-        Serial.print(",");
+        if(j!=dataPointCount-1){
+          Serial.print(",");
+        }
       }
       myFile.readBytes(buf,2);
-      Serial.println();
+//      Serial.println();
+      Serial.write(10);
     }
     // close the file:
     myFile.close();
