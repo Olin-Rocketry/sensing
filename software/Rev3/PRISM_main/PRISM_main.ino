@@ -34,6 +34,8 @@ void loop()
       
     //  test.read_accelerometer();
     test.rotate();
+    test.read_gyroscope();
+    data.encodeAndAdd();
     Serial.println(data.accelx());
 }
 //void loop()
