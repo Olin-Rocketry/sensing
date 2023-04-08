@@ -1,15 +1,20 @@
 #include "gps_class.h"
+#include "data_class.h"
+//#include <Arduino.h>
+//#include <SD.h>
 
-//setup for testing 
+
 
 // declare instance of Imu as global for scope
 Data data;
-Gps gps(data);
+Gps gps(&data);
 
 
 void setup() {
 //  Wire.begin();
-//  Serial.begin(9600);
+  Serial.begin(9600);
+  data.SDbegin();
+  gps.begin_gps();
 }
 
 void loop() {
