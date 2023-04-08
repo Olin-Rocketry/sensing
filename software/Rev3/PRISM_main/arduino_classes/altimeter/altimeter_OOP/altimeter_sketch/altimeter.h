@@ -18,7 +18,7 @@ class Altimeter {
     Altimeter(Data *data);// not used
     void init();
     void begin_altimeter();
-    void read_altimeter();
+    void read_altitude();
     void read_pressure();
     void read_temperature();
 };

@@ -48,7 +48,7 @@ void Altimeter::read_pressure()
     delay(1000);*/
 }
 
-void Altimeter::read_altimeter()
+void Altimeter::read_altitude()
 {
     if (!bmp.performReading())
     {
