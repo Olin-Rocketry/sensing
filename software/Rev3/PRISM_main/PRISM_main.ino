@@ -1,6 +1,7 @@
 //#include "led_class.h"
 #include "data_class.h"
 #include "imu_class.h"
+
 #include <Arduino.h>
 
 
@@ -9,13 +10,19 @@ byte IICdata[5] = {0, 0, 0, 0, 0}; // buffer for sensor data
 
 //Led led1(12);
 // declare instance of Imu as global for scope
-Data data;
 
+
+      
+Data data;
 Imu test(&data);
+
+
 void setup()
 {
     //  Wire.begin();
+
       Serial.begin(9600);
+      
       data.SDbegin();
 
       test.begin_imu();
