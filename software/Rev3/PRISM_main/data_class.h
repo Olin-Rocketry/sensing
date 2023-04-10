@@ -14,7 +14,11 @@ private:
   union floatunion_t;
   void bulkencode(float *in, char *out);
   void encoder(char *encoded, float input);
-  
+  struct __attribute__((packed)) STRUCT {
+    float lat;
+    float lng;
+    float gpsalt;
+  } gpsStruct;
   File dataFile;
 
 public:

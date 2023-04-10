@@ -14,10 +14,9 @@ void Data::init()
     //  std::fill_n(encodedBatch, batchSize*dataPointCount*4, '0');
     Serial.println("Filename");
     Serial.println("Finished Initializing");
-    Serial1.begin(115200);
-    myReceive.begin(Serial1);
-    Serial2.begin(115200);
-    mySend.begin(Serial2);
+    Serial5.begin(115200);
+    myReceive.begin(Serial5);
+    mySend.begin(Serial5);
 }
 
 void Data::SDbegin()
@@ -113,12 +112,6 @@ float Data::kfvy() { return flightData[23]; }     void Data::kfvy(float i) { fli
 float Data::kfvz() { return flightData[24]; }     void Data::kfvz(float i) { flightData[24] = i; }
 float Data::kfdrag() { return flightData[25]; }   void Data::kfdrag(float i) { flightData[25] = i; }
 float Data::d() { return flightData[26]; }        void Data::d(float i) { flightData[26] = i; }
-
-struct __attribute__((packed)) STRUCT {
-  float lat;
-  float lng;
-  float gpsalt;
-} gpsStruct;
 
 void Data::readGPS()
 {

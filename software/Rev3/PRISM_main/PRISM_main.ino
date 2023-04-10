@@ -19,22 +19,17 @@ Imu test(&data);
 
 void setup()
 {
-    //  Wire.begin();
-
-      Serial.begin(9600);
-      
-      data.SDbegin();
-
-      test.begin_imu();
-      test.test_connection();
+    Serial.begin(115200);
+    data.SDbegin();
+    test.begin_imu();
+    test.test_connection();
 }
 
 void loop()
 {
-      
-    //  test.read_accelerometer();
     test.rotate();
     test.read_gyroscope();
+    data.readGPS();
     data.encodeAndAdd();
     Serial.println(data.accelx());
 }
