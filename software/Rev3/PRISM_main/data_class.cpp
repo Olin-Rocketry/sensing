@@ -32,6 +32,9 @@ void Data::init()
     //    }
     //  }
     Serial.println("Finished Initializing");
+     Serial5.begin(9600);
+     SerialTransfer Serial_port; //Create serial port object
+ Serial_port.begin(Serial5);
 }
 
 void Data::SDbegin()
@@ -84,7 +87,7 @@ void Data::bulkencode(float *in, char *out)
         char encoded[sizeof(float)];
         encoder(encoded, in[i]);
         encoder(encoded, in[i]);
-        for (int j = 0; j < sizeof(float); j++)
+        for (unsigned int j = 0; j < sizeof(float); j++)
         {
             out[i * sizeof(float) + j] = encoded[j];
         }
@@ -94,7 +97,7 @@ void Data::bulkencode(float *in, char *out)
 void Data::encoder(char *encoded, float input)
 {
     float_u.f = input;
-    for (int i = 0; i < sizeof(float); i++)
+    for (unsigned int i = 0; i < sizeof(float); i++)
     {
         encoded[i] = float_u.a[i];
     }
@@ -138,12 +141,17 @@ void Data::encodeFlightData()
 {
     bulkencode(flightData, encodedFlightData);
 }
+void Data::sendSerialData()
+{
+  Serial_port.sendDatum(encodedBatch);
+}
 
 void Data::addToBatch()
 {
     if (batchCounter >= batchSize)
     {
         writeSDData();
+        sendSerialData();
     }
     //  std::fill_n(encodedBatch[batchCounter], dataPointCount*4, '0');
     for (int index = 0; index < 4 * dataPointCount; index++)
