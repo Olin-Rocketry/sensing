@@ -10,6 +10,8 @@ void Gps::init()
 {
     //  Serial.begin(9600);
     test_connection();
+    Serial2.begin(115200);
+    mySend.begin(Serial2);
 }
 
 void Gps::begin_gps()
@@ -42,13 +44,21 @@ void Gps::read_position()
     }
 }
 
+struct __attribute__((packed)) STRUCT {
+  float lat;
+  float lng;
+  float gpsalt;
+} gpsStruct;
+
 void Gps::read_data()
 {
     // display location
     if (gps.location.isValid())
     {
         data->lng(gps.location.lng());
+        gpsStruct.lng=gps.location.lng();
         data->lat(gps.location.lat());
+        gpsStruct.lat=gps.location.lat();
         Serial.print(gps.location.lng());
         Serial.print(",");
         Serial.println(gps.location.lat());
@@ -56,5 +66,7 @@ void Gps::read_data()
     if (gps.altitude.isValid())
     {
         data->gpsalt(gps.altitude.meters());
+        gpsStruct.gpsalt=gps.altitude.meters();
     }
+    mySend.sendDatum(gpsStruct);
 }
