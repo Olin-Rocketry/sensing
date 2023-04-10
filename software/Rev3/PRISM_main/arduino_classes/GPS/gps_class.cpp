@@ -1,8 +1,7 @@
 #include "gps_class.h"
 
-Gps::Gps(Data *data)
+Gps::Gps()
 {
-    this->data = data;
     init();
 }
 
@@ -55,17 +54,14 @@ void Gps::read_data()
     // display location
     if (gps.location.isValid())
     {
-        data->lng(gps.location.lng());
         gpsStruct.lng=gps.location.lng();
-        data->lat(gps.location.lat());
         gpsStruct.lat=gps.location.lat();
-        Serial.print(gps.location.lng());
-        Serial.print(",");
-        Serial.println(gps.location.lat());
+//        Serial.print(gps.location.lng());
+//        Serial.print(",");
+//        Serial.println(gps.location.lat());
     }
     if (gps.altitude.isValid())
     {
-        data->gpsalt(gps.altitude.meters());
         gpsStruct.gpsalt=gps.altitude.meters();
     }
     mySend.sendDatum(gpsStruct);

@@ -1,5 +1,4 @@
 #pragma once
-#include "data_class.h"
 #include <Arduino.h>
 #include <Wire.h>
 #include <SparkFun_I2C_GPS_Arduino_Library.h>
@@ -11,8 +10,6 @@
 class Gps {
   
   private:
-    Data *data;
-//    byte pin;
     I2CGPS i2c_gps;
     TinyGPSPlus gps;
     SerialTransfer mySend;
