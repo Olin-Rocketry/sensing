@@ -15,6 +15,7 @@ void setup() {
   Serial.begin(9600);
   data.SDbegin();
   gps.begin_gps();
+//  gps.test_connection();
 }
 
 void loop() {

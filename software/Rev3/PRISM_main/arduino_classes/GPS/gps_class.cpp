@@ -44,14 +44,14 @@ void Gps::read_position()
 
 void Gps::read_data()
 {
-    // display time
-
     // display location
     if (gps.location.isValid())
     {
-
         data->lng(gps.location.lng());
         data->lat(gps.location.lat());
+        Serial.print(gps.location.lng());
+        Serial.print(",");
+        Serial.println(gps.location.lat());
     }
     if (gps.altitude.isValid())
     {
