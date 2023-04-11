@@ -16,7 +16,6 @@ void Imu::init()
 void Imu::begin_imu()
 {
     Wire.begin();
-    Serial.begin(9600);
 }
 
 void Imu::test_connection()

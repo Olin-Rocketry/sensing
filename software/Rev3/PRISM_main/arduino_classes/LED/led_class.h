@@ -11,7 +11,7 @@ class Led {
   public:
     Led(byte pin);
     void init();
-    void red();
-    void green();
+    void blue(int pixel);
+    void green(int pixel);
     void off();
 };

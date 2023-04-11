@@ -2,7 +2,7 @@
 #pragma once
 #include "Arduino.h"
  #include <SD.h>
- #include "SerialTransfer.h"
+ #include <SerialTransfer.h>
 
  #include <algorithm>
 #ifdef __AVR__
@@ -14,7 +14,11 @@ private:
   union floatunion_t;
   void bulkencode(float *in, char *out);
   void encoder(char *encoded, float input);
-  
+  struct __attribute__((packed)) STRUCT {
+    float lat;
+    float lng;
+    float gpsalt;
+  } gpsStruct;
   File dataFile;
 
 public:
@@ -25,7 +29,8 @@ public:
   char encodedFlightData[dataPointCount * 4];
   char encodedBatch[batchSize][dataPointCount * 4];
   char fileName[17] = "flightLog000.txt";
-  SerialTransfer Serial_port;
+  SerialTransfer mySend;
+  SerialTransfer myReceive;
   
 
   Data();
@@ -36,6 +41,7 @@ public:
   void addToBatch();
   void writeSDData();
   void sendSerialData();
+  void readGPS();
 
   float accelx();
   float accely();

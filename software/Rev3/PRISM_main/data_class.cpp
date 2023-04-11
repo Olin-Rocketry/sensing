@@ -13,28 +13,10 @@ void Data::init()
     std::fill_n(encodedFlightData, dataPointCount * 4, '0');
     //  std::fill_n(encodedBatch, batchSize*dataPointCount*4, '0');
     Serial.println("Filename");
-    //  for(int i=0; i<1; i++){
-    //    strcat(filename,char(rand() % 256));
-    //  }
-    //  strcat(filename,".txt");
-    //  Serial.println("SD");
-    //  SD.begin(BUILTIN_SDCARD);
-    //  bool ok = SD.sdfs.begin(SdioConfig(DMA_SDIO));
-    //  bool ok = SD.sdfs.begin(SdSpiConfig(BUILTIN_SDCARD, DEDICATED_SPI, SD_SCK_MHZ(16)));
-    //  if (!ok) {
-    //    Serial.println("initialization failed!");
-    //    return;
-    //  }
-    //  if (!SD.begin(BUILTIN_SDCARD)) {
-    //    Serial.println("Card failed, or not present");
-    //    while (1) {
-    //      // No SD card, so don't do anything more - stay stuck here
-    //    }
-    //  }
     Serial.println("Finished Initializing");
-     Serial5.begin(9600);
-     SerialTransfer Serial_port; //Create serial port object
- Serial_port.begin(Serial5);
+    Serial5.begin(115200);
+    myReceive.begin(Serial5);
+    mySend.begin(Serial5);
 }
 
 void Data::SDbegin()
@@ -131,6 +113,17 @@ float Data::kfvz() { return flightData[24]; }     void Data::kfvz(float i) { fli
 float Data::kfdrag() { return flightData[25]; }   void Data::kfdrag(float i) { flightData[25] = i; }
 float Data::d() { return flightData[26]; }        void Data::d(float i) { flightData[26] = i; }
 
+void Data::readGPS()
+{
+  if(myReceive.available())
+  {
+    myReceive.rxObj(gpsStruct);
+    lat(gpsStruct.lat);
+    lng(gpsStruct.lng);
+    gpsalt(gpsStruct.gpsalt);
+  }
+}
+
 void Data::encodeAndAdd()
 {
     encodeFlightData();
@@ -143,7 +136,7 @@ void Data::encodeFlightData()
 }
 void Data::sendSerialData()
 {
-  Serial_port.sendDatum(encodedBatch);
+  mySend.sendDatum(encodedBatch[batchSize-1]);
 }
 
 void Data::addToBatch()
