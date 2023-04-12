@@ -73,13 +73,18 @@ void Radio::sendingPacket()
 char *Radio::readSerial()
 {
     if (myReceive.available())
-    {
+    {   
         myReceive.rxObj(buf);
         Serial.println(buf);
+        
         if (sizeof(buf) != dataPointCount * 4)
         {
             Serial.println("Serial read length mismatch");
         }
+    }
+    else if(!myReceive.available())
+    {
+      Serial.println("not available");
     }
     return buf;
 }
@@ -91,6 +96,7 @@ void Radio::receivedPacket()
         readRadio();
         decodeData();
         printData();
+        
     }
 }
 
