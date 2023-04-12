@@ -10,7 +10,7 @@ void Radio::init()
 void Radio::begin()
 {
     // Serial8.begin(115200);
-    myReceive.begin(Serial8);
+//    myReceive.begin(Serial8);
     pinMode(RFM95_RST, OUTPUT);
     digitalWrite(RFM95_RST, HIGH);
     //      while (!Serial);
@@ -28,7 +28,7 @@ void Radio::begin()
         while (1)
             ;
     }
-    // Serial.println("LoRa radio init OK!");
+     Serial.println("LoRa radio init OK!");
 
     // Defaults after init are 434.0MHz, modulation GFSK_Rb250Fd250, +13dbM
     if (!rf95.setFrequency(RF95_FREQ))
