@@ -12,6 +12,8 @@ void Radio::init() {
 
 void Radio::begin()
 {
+  Serial1.begin(115200);
+  myReceive.begin(Serial1);
   pinMode(RFM95_RST, OUTPUT);
   digitalWrite(RFM95_RST, HIGH);
   //      while (!Serial);
@@ -68,8 +70,15 @@ void Radio::sendingPacket()
 
 char* Radio::readSerial()
 {
-  //CHARLIE
-  char buf[10];
+  if(myReceive.available())
+  {
+    myReceive.rxObj(buf);
+    Serial.println(buf);
+    if(sizeof(buf)!=dataPointCount*4)
+    {
+      Serial.println("Serial read length mismatch");
+    }
+  }
   return buf;
 }
 

@@ -17,10 +17,10 @@ void setup(){
 //UNCOMMENT ONE OF THE LOOPS BELOW FOR TESTING
 
 //Receiving
-void loop(){
-  radio.receivedPacket();
-  delay(10);
-}
+//void loop(){
+//  radio.receivedPacket();
+//  delay(10);
+//}
 
 //Sending
 void loop()
