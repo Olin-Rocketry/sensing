@@ -19,7 +19,7 @@ void Led::green(int pixel) {
 }
 
 void Led::blue(int pixel) {
-  uint32_t c = strip.Color(100, 100, 100);
+  uint32_t c = strip.Color(100, 0, 0);
   strip.setPixelColor(pixel  , c);
   strip.show();
 }
