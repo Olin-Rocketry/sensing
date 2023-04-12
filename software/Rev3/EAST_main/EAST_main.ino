@@ -14,7 +14,8 @@ void setup()
 
 void loop()
 {
-  gps.read_position();
+  //gps.read_position();
   // radio
+  Serial.println("loopp");
   radio.sendingPacket();
 }
