@@ -11,20 +11,23 @@ byte IICdata[5] = {0, 0, 0, 0, 0}; // buffer for sensor data
 //  declare instance of Imu as global for scope
 
 Data data;
-Imu test(&data);
+Imu imu(&data);
+Altimeter altimeter(&data);
 
 void setup()
 {
     Serial.begin(115200);
     data.SDbegin();
-    test.begin_imu();
+    imu.begin_imu();
+    altimeter.begin_altimeter();
     //    test.test_connection();
 }
 
 void loop()
 {
-    //    test.rotate();
-    //    test.read_gyroscope();
+    //    imu.rotate();
+    //    imu.read_gyroscope();
+    // altimeter.read_altitude();
     data.curtime((float)millis());
     data.readGPS();
     data.encodeAndAdd();
