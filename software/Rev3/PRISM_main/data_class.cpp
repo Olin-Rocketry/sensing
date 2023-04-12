@@ -142,10 +142,13 @@ void Data::sendSerialData()
 
 void Data::addToBatch()
 {
+    if (batchCounter % 10 == 0)
+    {
+        sendSerialData();
+    }
     if (batchCounter >= batchSize)
     {
         writeSDData();
-        sendSerialData();
     }
     //  std::fill_n(encodedBatch[batchCounter], dataPointCount*4, '0');
     for (int index = 0; index < 4 * dataPointCount; index++)
