@@ -2,12 +2,13 @@
 #include "data_class.h"
 #include "imu_class.h"
 
+
 #include <Arduino.h>
 
 // setup for testing
 byte IICdata[5] = {0, 0, 0, 0, 0}; // buffer for sensor data
 
-// Led led1(12);
+//Led led(26);
 //  declare instance of Imu as global for scope
 
 Data data;
@@ -21,6 +22,9 @@ void setup()
     imu.begin_imu();
     altimeter.begin_altimeter();
     //    test.test_connection();
+
+//    led.RGB(0, 0, 0, 100);
+//    led.RGB(1, 0, 0, 100);
 }
 
 void loop()
@@ -34,12 +38,3 @@ void loop()
     Serial.println(data.curtime());
     //    Serial.println(data.accelx());
 }
-// void loop()
-//{
-//       led1.red();
-//       delay(1000);
-//       led1.green();
-//       delay(1000);
-//       led1.off();
-//       delay(1000);
-// }
