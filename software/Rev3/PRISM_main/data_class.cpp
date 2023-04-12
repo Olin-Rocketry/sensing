@@ -137,7 +137,9 @@ void Data::encodeFlightData()
 }
 void Data::sendSerialData()
 {
-  mySend.sendDatum(encodedBatch[batchSize-1]);
+//  mySend.sendDatum(encodedBatch[batchSize-1]);
+// 27 chars: 111111111111111111111111111
+  mySend.sendDatum("111111111111111111111111111111111111111111111111111111");
 }
 
 void Data::addToBatch()
