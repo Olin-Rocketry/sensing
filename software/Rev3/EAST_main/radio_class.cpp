@@ -67,6 +67,7 @@ float Radio::decoder(char *encoded)
 
 void Radio::sendingPacket()
 {
+    Serial.println("starting");
     sendRadio(readSerial());
 }
 
@@ -106,6 +107,7 @@ void Radio::sendRadio(char *buffer2)
     rf95.send((uint8_t *)buffer2, dataPointCount * 4);
     delay(10);
     rf95.waitPacketSent();
+    Serial.println("waiting");
 }
 
 void Radio::readRadio()
