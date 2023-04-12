@@ -2,8 +2,6 @@
 #include "data_class.h"
 #include "imu_class.h"
 #include "altimeter_class.h"
-
-
 #include <Arduino.h>
 
 // setup for testing
@@ -38,5 +36,9 @@ void loop()
     data.readGPS();
     data.encodeAndAdd();
 //    Serial.println(data.curtime());
+    Serial.print("Accel x: ");
     Serial.println(data.accelx());
+    Serial.print("Bar alt: ");
+    Serial.println(data.baralt());
+    delay(100);
 }
