@@ -31,12 +31,12 @@ void setup()
 
 void loop()
 {
-    //    imu_test.rotate();
-    //    imu_test.read_gyroscope();
-    // altimeter.read_altitude();
+    imu_test.rotate();
+    imu_test.read_gyroscope();
+    altimeter.read_altitude();
     data.curtime((float)millis());
     data.readGPS();
     data.encodeAndAdd();
-    Serial.println(data.curtime());
-    //    Serial.println(data.accelx());
+//    Serial.println(data.curtime());
+    Serial.println(data.accelx());
 }

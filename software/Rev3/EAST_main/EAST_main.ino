@@ -4,6 +4,10 @@
 Gps gps;
 Radio radio;
 
+// **TO RUN**: Need to go into arduino library for sparkfun i2c gps 
+// and change all instances of `MAX_PACKET_SIZE` 
+// to `MAX_PACKET_SIZE_GPS`
+
 void setup()
 {
   Serial8.begin(115200);
