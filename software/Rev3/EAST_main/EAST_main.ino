@@ -7,6 +7,7 @@ Radio radio;
 void setup()
 {
   Serial8.begin(115200);
+  Serial.begin(115200);
   gps.begin_gps();
   radio.begin();
 }
@@ -14,7 +15,6 @@ void setup()
 void loop()
 {
   gps.read_position();
-
   // radio
   radio.sendingPacket();
 }
