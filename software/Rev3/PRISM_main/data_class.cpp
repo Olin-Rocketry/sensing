@@ -15,7 +15,7 @@ void Data::init()
     Serial.println("Filename");
     Serial.println("Finished Initializing");
     Serial5.begin(115200);
-    myReceive.begin(Serial5);
+    myReceive.begin(Serial8);
     mySend.begin(Serial5);
 }
 

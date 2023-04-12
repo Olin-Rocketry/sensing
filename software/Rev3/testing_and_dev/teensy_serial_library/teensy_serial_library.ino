@@ -1,4 +1,5 @@
-#include "SerialTransfer.h"
+#include <SerialTransfer.h>
+
 
 
 SerialTransfer myTransfer_send;
@@ -17,10 +18,10 @@ struct __attribute__((packed)) STRUCT2 {
 void setup()
 {
   Serial.begin(115200);
-  Serial1.begin(115200);
-  Serial2.begin(115200);
-  myTransfer_send.begin(Serial1);
-  myTransfer_recive.begin(Serial2);
+  Serial5.begin(115200);
+  Serial8.begin(115200);
+  myTransfer_send.begin(Serial5);
+  myTransfer_recive.begin(Serial8);
 
   testStruct_send.z = '$';
   testStruct_send.y = 4.5;
@@ -28,7 +29,7 @@ void setup()
 
 void loop()
 {
-  myTransfer_send.sendDatum('c');
+  myTransfer_send.sendDatum('H');
   delay(50);
   if(myTransfer_recive.available()){
     myTransfer_recive.rxObj(testStruct_recive);

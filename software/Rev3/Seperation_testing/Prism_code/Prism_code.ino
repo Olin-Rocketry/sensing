@@ -19,10 +19,10 @@ if (Serial1.available()>0){
     digitalWrite(Drog, LOW);
     Serial.println("BOOM DROG");
   }
-  if (Serial1.read()=='d'){
-    digitalWrite(Drog, HIGH);
+  if (Serial1.read()=='m'){
+    digitalWrite(Main, HIGH);
     delay(1000);
-    digitalWrite(Drog, LOW);
+    digitalWrite(Main, LOW);
     Serial.println("BOOM DROG");
   }
 }
