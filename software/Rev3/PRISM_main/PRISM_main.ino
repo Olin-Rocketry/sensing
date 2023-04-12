@@ -19,6 +19,7 @@ Altimeter altimeter(&data);
 void setup()
 {
     Serial.begin(115200);
+
     data.SDbegin();
     imu_test.begin_imu();
     altimeter.begin_altimeter();
