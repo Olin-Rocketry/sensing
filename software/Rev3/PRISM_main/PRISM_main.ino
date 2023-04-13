@@ -45,5 +45,5 @@ void loop()
 //    Serial.println(data.baralt());
 
     
-    delay(1000);
+    delay(100);
 }
