@@ -1,6 +1,7 @@
 
 #pragma once
 #include "Arduino.h"
+#include "led_class.h"
  #include <SD.h>
  #include <SerialTransfer.h>
 
@@ -14,6 +15,7 @@ private:
   union floatunion_t;
   void bulkencode(float *in, char *out);
   void encoder(char *encoded, float input);
+  Led *statusLed;
   
   struct __attribute__((packed)) STRUCT {
     float lat;
@@ -23,6 +25,7 @@ private:
   File dataFile;
 
 public:
+
   const static int packetSize = 27; //each packet is made up of N floats 27 ------------------------------------------
   const static int frameSize = 500; //each frame is made up of N packets
   int frameIndex = 0; //current location in the frame
@@ -30,11 +33,11 @@ public:
   char encodedpacket[packetSize * 4]; //current encoded packet
   char encodedFrame[frameSize][packetSize * 4];  //current encoded frame
   char fileName[17] = "flightLog000.txt";  
-  SerialTransfer PRISM_tx;   //serial communication objects
-  SerialTransfer PRISM_rx;
+  SerialTransfer PRISM_serial;   //serial communication objects
+
   
 
-  Data();
+  Data(Led *statusLed);
   void init();
   void SDbegin();
   void encodeAndAdd();

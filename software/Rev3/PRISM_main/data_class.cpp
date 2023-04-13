@@ -1,25 +1,31 @@
 #include "data_class.h"
 
-Data::Data()
+Data::Data(Led *statusLed)
 {
+    this->statusLed = statusLed;
     Serial.println("Initializing 1");
     init();
 }
 
 void Data::init()
 {
+  
     Serial.println("Initializing");
-    std::fill_n(packet, packetSize, 0.0000000);  //fill packet zeros
+    std::fill_n(packet, packetSize, 3.1415);  //fill packet zeros
     std::fill_n(encodedpacket, packetSize * 4, '0'); //fill encoded packet with zeros
     //  std::fill_n(encodedFrame, frameSize*packetSize*4, '0');
     
 
-
     //initalize PRISM serial communication
     Serial5.begin(115200);
-    PRISM_rx.begin(Serial5);
-    PRISM_tx.begin(Serial5);
+    PRISM_serial.begin(Serial5);
+
     Serial.println("Serial-5 Opend");
+
+    
+
+
+
 }
 
 void Data::SDbegin()
@@ -118,9 +124,9 @@ float Data::d() { return packet[26]; }        void Data::d(float i) { packet[26]
 
 void Data::readGPS()
 {
-  if(PRISM_rx.available())
+  if(PRISM_serial.available())
   {
-    PRISM_rx.rxObj(gpsStruct);
+    PRISM_serial.rxObj(gpsStruct);
     lat(gpsStruct.lat);
     lng(gpsStruct.lng);
     gpsalt(gpsStruct.gpsalt);
@@ -139,16 +145,25 @@ void Data::encodepacket()
 }
 void Data::sendSerialData()
 {
-//  PRISM_tx.sendDatum(encodedFrame[frameSize-1]);
-// 27 chars: 111111111111111111111111111
-  PRISM_tx.sendDatum("111111111111111111111111111111111111111111111111111111");
+//  PRISM_serial.sendDatum(encodedFrame[frameSize-1]);
+// 27 chars: 000000000000000000000000001
+statusLed->RGB(1, 0, 0, 255);
+delay(10);
+//  PRISM_serial.sendDatum("000000000000000000000000001000000000000000000000000001000000000000000000000000001000000000000000000000000001");
+//PRISM_serial.sendDatum("test_message");
+  PRISM_serial.sendDatum(packet);
+  Serial.println("Message sent");
+  statusLed->RGB(1, 0, 0, 0);
+  statusLed->RGB(0, 0, 0, 0);
 }
 
 void Data::addToFrame()
 {
-    if (frameIndex % 10 == 0){  //send every 10th packet to EAST
-        sendSerialData();
-    }
+
+  sendSerialData();
+//    if (frameIndex % 10 == 0){  //send every 10th packet to EAST
+//        sendSerialData();
+//    }
     
     if (frameIndex >= frameSize){  //when the frame is full, write the frame to SD and clear the frame
         writeSDData();

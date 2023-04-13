@@ -5,15 +5,15 @@
 SerialTransfer myTransfer_send;
 SerialTransfer myTransfer_recive;
 
-struct __attribute__((packed)) STRUCT1 {
-  char z;
-} testStruct_send;
+//struct __attribute__((packed)) STRUCT1 {
+//  char z[11];
+//} testStruct_send;
+//
+//struct __attribute__((packed)) STRUCT2 {
+//  char z[11];
+//} testStruct_recive;
 
-struct __attribute__((packed)) STRUCT2 {
-  char z;
-} testStruct_recive;
-
-char message[2];
+char packet[108];
 
 void setup()
 {
@@ -23,20 +23,23 @@ void setup()
   myTransfer_send.begin(Serial5);
   myTransfer_recive.begin(Serial8);
 
-  testStruct_send.z = 'hi';
+//  testStruct_send.z = 'testMessage';
+
 
 }
 
 void loop(){
 
   
-  myTransfer_send.sendDatum(testStruct_send);
-  delay(50);
+//  myTransfer_send.sendDatum(testStruct_send);
+  
   if(myTransfer_recive.available()){
-    myTransfer_recive.rxObj(testStruct_recive);
-    Serial.println(testStruct_recive.z);
+    myTransfer_recive.rxObj(packet);
+    Serial.println(packet);
     //Serial.println(testStruct_recive.y);m
 }
+
+delay(2);
 
 
 }

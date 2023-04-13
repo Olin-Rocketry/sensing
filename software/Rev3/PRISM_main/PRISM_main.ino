@@ -2,15 +2,18 @@
 #include "data_class.h"
 #include "imu_class.h"
 #include "altimeter_class.h"
+#include "led_class.h"
 #include <Arduino.h>
 
 // setup for testing
 byte IICdata[5] = {0, 0, 0, 0, 0}; // buffer for sensor data
 
-//Led led(26);
+Led statusLed(34);
+
+
 //  declare instance of Imu as global for scope
 
-Data data;
+Data data(&statusLed);
 Imu imu_test(&data);
 Altimeter altimeter(&data);
 
@@ -36,9 +39,11 @@ void loop()
     data.readGPS();
     data.encodeAndAdd();
 //    Serial.println(data.curtime());
-    Serial.print("Accel x: ");
-    Serial.println(data.accelx());
-    Serial.print("Bar alt: ");
-    Serial.println(data.baralt());
-    delay(100);
+//    Serial.print("Accel x: ");
+//    Serial.println(data.accelx());
+//    Serial.print("Bar alt: ");
+//    Serial.println(data.baralt());
+
+    
+    delay(1000);
 }

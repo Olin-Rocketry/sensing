@@ -1,14 +1,18 @@
 #include "gps_class.h"
 #include "radio_class.h"
 
-Gps gps;
+//Gps gps;
+Led statusLed(26);
+//Radio radio(&statusLed);
 Radio radio;
+
+
 
 void setup()
 {
-  Serial8.begin(115200);
+
   Serial.begin(115200);
-  gps.begin_gps();
+//  gps.begin_gps();
   radio.begin();
 }
 
@@ -16,6 +20,8 @@ void loop()
 {
   //gps.read_position();
   // radio
-  Serial.println("loopp");
+
   radio.sendingPacket();
+  delay(5);
+
 }
