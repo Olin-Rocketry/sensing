@@ -14,6 +14,7 @@ private:
   union floatunion_t;
   void bulkencode(float *in, char *out);
   void encoder(char *encoded, float input);
+  
   struct __attribute__((packed)) STRUCT {
     float lat;
     float lng;
@@ -22,23 +23,23 @@ private:
   File dataFile;
 
 public:
-  const static int dataPointCount = 27; // 27 ------------------------------------------
-  const static int batchSize = 500;
-  int batchCounter = 0;
-  float flightData[dataPointCount];
-  char encodedFlightData[dataPointCount * 4];
-  char encodedBatch[batchSize][dataPointCount * 4];
-  char fileName[17] = "flightLog000.txt";
-  SerialTransfer mySend;
-  SerialTransfer myReceive;
+  const static int packetSize = 27; //each packet is made up of N floats 27 ------------------------------------------
+  const static int frameSize = 500; //each frame is made up of N packets
+  int frameIndex = 0; //current location in the frame
+  float packet[packetSize];  //current un-encoded packet
+  char encodedpacket[packetSize * 4]; //current encoded packet
+  char encodedFrame[frameSize][packetSize * 4];  //current encoded frame
+  char fileName[17] = "flightLog000.txt";  
+  SerialTransfer PRISM_tx;   //serial communication objects
+  SerialTransfer PRISM_rx;
   
 
   Data();
   void init();
   void SDbegin();
   void encodeAndAdd();
-  void encodeFlightData();
-  void addToBatch();
+  void encodepacket();
+  void addToFrame();
   void writeSDData();
   void sendSerialData();
   void readGPS();
