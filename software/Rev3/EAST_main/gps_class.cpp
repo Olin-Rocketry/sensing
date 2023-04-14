@@ -8,15 +8,15 @@ Gps::Gps()
 void Gps::init()
 {
     //  Serial.begin(9600);
-    test_connection();
+    
     // Serial8.begin(115200);
-    mySend.begin(Serial8);
 }
 
 void Gps::begin_gps()
 {
     Wire.begin();
     Serial.begin(9600);
+    test_connection();
 }
 
 void Gps::test_connection()
@@ -25,12 +25,10 @@ void Gps::test_connection()
     if (!i2c_gps.begin(Wire, 400000))
     {
         Serial.print("Ooops, no gps detected ... Check your wiring or I2C ADDR!");
-        while (1)
-            ;
+        while (1);
     }
-    delay(1000);
+    delay(10);
 }
-
 void Gps::read_position()
 {
     while (i2c_gps.available())
@@ -51,9 +49,9 @@ void Gps::read_data()
     {
         gpsStruct.lng = gps.location.lng();
         gpsStruct.lat = gps.location.lat();
-        //        Serial.print(gps.location.lng());
-        //        Serial.print(",");
-        //        Serial.println(gps.location.lat());
+        Serial.print(gps.location.lng());
+        Serial.print(",");
+        Serial.println(gps.location.lat());
     }
     if (gps.altitude.isValid())
     {

@@ -3,14 +3,12 @@
 
 void Radio::init()
 {
-    std::fill_n(flightData, dataPointCount, 0.0);
-    std::fill_n(packet, dataPointCount * 4, '0');
+    std::fill_n(packet, packetSize, 0.0);
+    std::fill_n(encodedPacket, packetSize * 4, '0');
 }
 
-void Radio::begin()
-{
-    // Serial8.begin(115200);
-    myReceive.begin(Serial8);
+void Radio::begin(){
+
     pinMode(RFM95_RST, OUTPUT);
     digitalWrite(RFM95_RST, HIGH);
     //      while (!Serial);
@@ -28,7 +26,7 @@ void Radio::begin()
         while (1)
             ;
     }
-    // Serial.println("LoRa radio init OK!");
+//     Serial.println("LoRa radio init OK!");
 
     // Defaults after init are 434.0MHz, modulation GFSK_Rb250Fd250, +13dbM
     if (!rf95.setFrequency(RF95_FREQ))
@@ -37,8 +35,8 @@ void Radio::begin()
         while (1)
             ;
     }
-    // Serial.print("Set Freq to: ");
-    // Serial.println(RF95_FREQ);
+//     Serial.print("Set Freq to: ");
+//     Serial.println(RF95_FREQ);
 
     // Defaults after init are 434.0MHz, 13dBm, Bw = 125 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on
 
@@ -72,11 +70,11 @@ void Radio::sendingPacket()
 
 char *Radio::readSerial()
 {
-    if (myReceive.available())
+    if (GS_serial.available())
     {
-        myReceive.rxObj(buf);
+        GS_serial.rxObj(buf);
         Serial.println(buf);
-        if (sizeof(buf) != dataPointCount * 4)
+        if (sizeof(buf) != packetSize * 4)
         {
             Serial.println("Serial read length mismatch");
         }
@@ -84,10 +82,11 @@ char *Radio::readSerial()
     return buf;
 }
 
-void Radio::receivedPacket()
-{
+void Radio::receivedPacket(){
+
     if (rf95.available())
     {
+//        Serial.println("Data avalible");
         readRadio();
         decodeData();
         printData();
@@ -97,59 +96,60 @@ void Radio::receivedPacket()
 void Radio::sendRadio(char *buffer2)
 {
     // Send a message to rf95_server
-    rf95.send((uint8_t *)buffer2, dataPointCount * 4);
+    rf95.send((uint8_t *)buffer2, packetSize * 4);
     delay(10);
     rf95.waitPacketSent();
 }
 
-void Radio::readRadio()
-{
+void Radio::readRadio(){
+//  Serial.println("Reading...");
     // Should be a message for us now
     uint8_t buf[200]; // RH_RF95_MAX_MESSAGE_LEN
     uint8_t len = sizeof(buf);
 
-    // if (rf95.recv(buf, &len))
-    // {
-    //     // RH_RF95::printBuffer("Received: ", buf, len);
-    //     // Serial.print("Got: ");
-    //     // Serial.println((char *)buf);
-    //     // Serial.print("RSSI: ");
-    //     // Serial.println(rf95.lastRssi(), DEC);
-    // }
-    // else
-    // {
-    //     Serial.println("Receive failed");
-    // }
-    for (int i = 0; i < dataPointCount * 4; i++)
+     if (rf95.recv(buf, &len))
+     {
+//          RH_RF95::printBuffer("Received: ", buf, len);
+//          Serial.print("Got: ");
+//          Serial.println((char*)buf);
+//          Serial.print("RSSI: ");
+//          Serial.println(rf95.lastRssi(), DEC);
+     }
+     else
+     {
+         Serial.println("Receive failed");
+     }
+    for (int i = 0; i < packetSize * 4; i++)
     {
         //      Serial.println((char)buf[i]);
-        packet[i] = (char)buf[i];
+        encodedPacket[i] = (char)buf[i];
     }
 }
 
 void Radio::decodeData()
 {
-    if (sizeof(packet) / sizeof(packet[0]) == dataPointCount * sizeof(float))
+    if (sizeof(encodedPacket) / sizeof(encodedPacket[0]) == packetSize * sizeof(float))
     {
-        for (int i = 0; i < dataPointCount; i++)
+        for (int i = 0; i < packetSize; i++)
         {
-            char subpacket[sizeof(float)];
+            char subencodedPacket[sizeof(float)];
             for (int j = 0; j < sizeof(float); j++)
             {
-                subpacket[j] = packet[i * sizeof(float) + j];
+                subencodedPacket[j] = encodedPacket[i * sizeof(float) + j];
             }
-            flightData[i] = decoder(subpacket);
+            packet[i] = decoder(subencodedPacket);
         }
     }
 }
 
 void Radio::printData()
 {
-    Serial.write(64);
-    for (int k = 0; k < dataPointCount; k++)
+    
+    for (int k = 0; k < packetSize-1; k++)
     {
-        Serial.print(flightData[k]);
+        Serial.print(packet[k]);
         Serial.print(",");
     }
+    Serial.print(packet[packetSize]);
     Serial.write(10);
 };
