@@ -9,11 +9,9 @@
 //#define RFM69_IRQN    digitalPinToInterrupt(RFM69_IRQ )
 //
 
-#define RFM95_CS 10
-#define RFM95_RST 2
-#define RFM95_INT 3
-
-// Change to 434.0 or other frequency, must match RX's freq!
+#define RFM95_CS 0
+#define RFM95_RST 20
+#define RFM95_INT 21
 #define RF95_FREQ 915.0
 
 // Singleton instance of the radio driver
@@ -25,21 +23,12 @@ int fire_drog=0;
 void setup() 
 {
   pinMode(RFM95_RST, OUTPUT);
-  pinMode(A19, OUTPUT);
-  pinMode(A20, OUTPUT);
-   pinMode(A7, OUTPUT);
-   pinMode(7,OUTPUT);
-   digitalWrite(7, HIGH);
-         analogWrite(A19, LOW);
-        analogWrite(A20, LOW);
-  //pinMode(13, OUTPUT);
-  digitalWrite(RFM95_RST, HIGH);
 
   Serial.begin(9600);
+  Serial8.begin(9600);
   delay(100);
 
   Serial.println("Arduino LoRa TX Test!");
-
   // manual reset
   digitalWrite(RFM95_RST, LOW);
   delay(10);
@@ -68,8 +57,7 @@ void setup()
 }
 
 int16_t packetnum = 0;  // packet counter, we increment per xmission
-void loop()
-{
+void loop(){
   Serial.println("Sending to rf95_server");
   // Send a message to rf95_server
   
@@ -91,17 +79,14 @@ void loop()
   if (rf95.waitAvailableTimeout(1000))
   { 
     // Should be a reply message for us now   
-    if (rf95.recv(buf, &len))
-   {
+    if (rf95.recv(buf, &len)){
       Serial.print("Got reply: ");
       Serial.println((char*)buf);
       Serial.print("RSSI: ");
       Serial.println(rf95.lastRssi(), DEC);
       
       if  (firestring_drogue.equals(String((char *)buf))&& fire_drog==0){
-        digitalWrite(A19, HIGH);
-        delay(1000);
-         digitalWrite(A19, LOW);
+        Serial8.write('d');
         //digitalWrite(13, HIGH);
          Serial.println("Boom Drogue");
          char radiopacket[20] = "BOOM Drogue # ";
@@ -118,10 +103,8 @@ void loop()
           // Now wait for a reply
       }
       else if  (firestring_main.equals(String((char *)buf))&& fire_main==0){
-        
-        digitalWrite(A20, HIGH);
-        delay(1000);
-        digitalWrite(A20, LOW);
+        Serial8.write('m');
+
          Serial.println("Boom Main");
          char radiopacket[20] = "BOOM main # ";
           itoa(packetnum++, radiopacket+13, 10);
@@ -136,13 +119,8 @@ void loop()
           // Now wait for a reply
           fire_main=1;
       }
-      else{
-         digitalWrite(A19, LOW);
-        digitalWrite(A20, LOW);
-      }
     }
-    else
-    {
+    else{
       Serial.println("Receive failed");
     }
   }
