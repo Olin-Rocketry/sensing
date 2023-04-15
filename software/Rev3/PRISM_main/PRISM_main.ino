@@ -8,8 +8,9 @@
 byte IICdata[5] = {0, 0, 0, 0, 0}; // buffer for sensor data
 
 short int phase = 1;
-float minimum_altitude;
-float minimum_main_altitude;
+float minimumAltitude;
+float minimumDrogAltitude
+float minimumMainAltitude;
 
 Led statusLed(34);
 Data data(&statusLed);
@@ -22,7 +23,7 @@ void setup()
 
   data.SDbegin();
   imu_test.begin_imu();
-  //    altimeter.begin_altimeter();
+  altimeter.begin_altimeter();
   //    test.test_connection();
 
   //    led.RGB(0, 0, 0, 100);
@@ -52,21 +53,22 @@ void loop()
   switch (phase)
   {
 
-  // Pre-Launch phase
+  // Prelaunch phase 1: Before keyswitch
   case 1:
     Serial.println("Phase 1:");
     while (phase == 1)
     {
-      PreLaunch();
+      PreARM();
     }
     break;
-  // After Keyswitch before luanch
+ 
+  // Prelaunch phase 2: After keyswitch
   case 2:
     Serial.println("Phase 2:");
     newcalltime = millis();
     while (phase == 2)
     {
-      AfterLaunch();
+      PostARM();
     }
     break;
 
@@ -100,30 +102,74 @@ void loop()
 
 // launch phase functions
 
-void PreLaunch()
+// phase 1
+void PreARM()
 {
-  //    data.readGPS();
-  //    if (data.gpsalt() >= 1000 {
-  //      int avg_altitude = 0;
-  //      int num_readings = 5;
-  //      for (int i=0; i<number_readings; i++){
-  //        avg_altitude = data.gpsalt() + avg_altitude;
-  //        Serial.println(data.gpsalt());
-  //      }
-  //      minimum_altitude = avg_altitude / num_readings + 2;
-  //      minimum_main_altitude = avg_altitude / num_readings + 5;
-  //      phase = 2;
-  //    }
-
   data.readGPS();
   altimeter.read_altitude();
-  if (data.baralt() >= 1000)
+
+  // when keyswitch is turned, enter PostARM phase
+  if (analogRead(A12) >= 1000)
   {
+    int averageAltitude=0;
+    int number_readings=5;
+    for (int i=0; i<number_readings; i++){
+      fetchAltimeterData();
+      sumAltitude=altitude+sumAltitude;
+      Serial.println(altitude);
+    }
+
+    minimumAltitude=sumAltitude/number_readings+2;// m //CHANGE BEFORE LUANCH
     phase = 2;
   }
 }
 
-void AfterLaunch()
+// phase 2
+void PostARM()
 {
-  data.readGPS();
+  if (data.baroalt()> minimumAltitude){
+    // launch
+    phase = 3;
+  }
+  if (analogeRead(A12)<=20{
+    // turned off
+    phase = 1;
+  }
+}
+
+// phase 3
+void BeforeApogee()
+{ 
+   if (data.baroalt()> minimumDrogAltitude){
+    // after apogee
+    phase = 4;
+  }
+  
+}
+
+// phase 4
+void BeforeMain()
+{ 
+   if (data.baroalt() < minimumMainAltitude){
+    // deploy main parachute
+    // TODO: change A20 to actual pin number
+    digitalWrite(A20, HIGH);
+    delay(1000);
+    digitalWrite(A20, LOW);
+
+    phase = 5;
+    }
+    
+}
+
+// phase 5
+ void AfterMain(){
+          
+}
+
+// collect data function
+void DataCollection{
+  // contains all sensor callings
+  altimeter.read_altitude();
+  
 }
