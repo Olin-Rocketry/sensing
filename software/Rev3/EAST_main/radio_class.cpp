@@ -1,20 +1,23 @@
 #include "radio_class.h"
 #include <algorithm>
 
-void Radio::init()
-{
-    std::fill_n(flightData, dataPointCount, 0.0);
-    std::fill_n(packet, dataPointCount * 4, '0');
+//Radio::Radio(Led *statusLed){
+//  
+//  this->statusLed = statusLed;
+//  init();
+//}
+
+void Radio::init(){
+    //init both un-encoded and encoded packet with 0
+    std::fill_n(packet, packetSize, 0.0000);
+    std::fill_n(encodedPacket, packetSize * 4, '0');
 }
 
-void Radio::begin()
-{
-    // Serial8.begin(115200);
-    myReceive.begin(Serial8);
+void Radio::begin(){
+
+    //radio stuff
     pinMode(RFM95_RST, OUTPUT);
     digitalWrite(RFM95_RST, HIGH);
-    //      while (!Serial);
-    //      Serial.begin(9600);
     Serial.println("Arduino LoRa RX Test!");
     // manual reset
     digitalWrite(RFM95_RST, LOW);
@@ -47,6 +50,13 @@ void Radio::begin()
     // If you are using RFM95/96/97/98 modules which uses the PA_BOOST transmitter pin, then
     // you can set transmitter powers from 5 to 23 dBm:
     rf95.setTxPower(23, false);
+
+
+
+     delay(10);
+    //initalize EAST serial communication
+    Serial8.begin(115200);  //east uses 8, prism uses 5
+    EAST_serial.begin(Serial8);
 }
 
 union Radio::floatunion_t
@@ -68,30 +78,37 @@ float Radio::decoder(char *encoded)
 
 void Radio::sendingPacket()
 {
-    Serial.println("starting");
-    sendRadio(readSerial());
+//    readSerial();
+    readSerial();
+
 }
 
-char *Radio::readSerial()
+char Radio::readSerial()
 {
-    if (myReceive.available())
-    {   
-        myReceive.rxObj(buf);
-        Serial.println(buf);
+//  Serial.println("Checking for data");
+    if (EAST_serial.available()){
+//        statusLed->RGB(1, 0, 0, 255);
+        Serial.println("Serial Data:");  
+        EAST_serial.rxObj(serialBuffer);
+        Serial.println(serialBuffer);
         
-        if (sizeof(buf) != dataPointCount * 4)
-        {
-            Serial.println("Serial read length mismatch");
-        }
+        sendRadio(serialBuffer);
+        
+//        if (sizeof(serialBuffer) != packetSize * 4)
+//        {
+//            Serial.println("Serial read length mismatch");
+//        }
     }
-    else if(!myReceive.available())
-    {
-      Serial.println("not available");
-    }
-    return buf;
+//    else if(!EAST_serial.available())
+//    {
+//      Serial.println("not available");
+//    }
+    return serialBuffer;
+//    statusLed->RGB(1, 0, 0, 0);
+//    statusLed->RGB(0, 0, 0, 0);
 }
 
-void Radio::receivedPacket()
+void Radio::reveicePacket()
 {
     if (rf95.available())
     {
@@ -102,26 +119,27 @@ void Radio::receivedPacket()
     }
 }
 
-void Radio::sendRadio(char *buffer2)
-{
+void Radio::sendRadio(char serialBuffer[packetSize*4]){
+  
+    Serial.println(serialBuffer);
     // Send a message to rf95_server
-    rf95.send((uint8_t *)buffer2, dataPointCount * 4);
+    rf95.send((uint8_t *)serialBuffer, packetSize*4);
     delay(10);
     rf95.waitPacketSent();
-    Serial.println("waiting");
+    Serial.println("Packet Sent");
 }
 
 void Radio::readRadio()
 {
     // Should be a message for us now
-    uint8_t buf[200]; // RH_RF95_MAX_MESSAGE_LEN
-    uint8_t len = sizeof(buf);
+    uint8_t serialBuffer[200]; // RH_RF95_MAX_MESSAGE_LEN
+    uint8_t len = sizeof(serialBuffer);
 
-    if (rf95.recv(buf, &len))
+    if (rf95.recv(serialBuffer, &len))
     {
-        // RH_RF95::printBuffer("Received: ", buf, len);
+        // RH_RF95::printserialBufferfer("Received: ", serialBuffer, len);
         Serial.print("Got: ");
-        Serial.println((char *)buf);
+        Serial.println((char *)serialBuffer);
         Serial.print("RSSI: ");
         Serial.println(rf95.lastRssi(), DEC);
     }
@@ -129,34 +147,34 @@ void Radio::readRadio()
     {
         Serial.println("Receive failed");
     }
-    for (int i = 0; i < dataPointCount * 4; i++)
+    for (int i = 0; i < packetSize * 4; i++)
     {
-        //      Serial.println((char)buf[i]);
-        packet[i] = (char)buf[i];
+        //      Serial.println((char)serialBuffer[i]);
+        encodedPacket[i] = (char)serialBuffer[i];
     }
 }
 
 void Radio::decodeData()
 {
-    if (sizeof(packet) / sizeof(packet[0]) == dataPointCount * sizeof(float))
+    if (sizeof(encodedPacket) / sizeof(encodedPacket[0]) == packetSize * sizeof(float))
     {
-        for (int i = 0; i < dataPointCount; i++)
+        for (int i = 0; i < packetSize; i++)
         {
-            char subpacket[sizeof(float)];
+            char subencodedPacket[sizeof(float)];
             for (int j = 0; j < sizeof(float); j++)
             {
-                subpacket[j] = packet[i * sizeof(float) + j];
+                subencodedPacket[j] = encodedPacket[i * sizeof(float) + j];
             }
-            flightData[i] = decoder(subpacket);
+            packet[i] = decoder(subencodedPacket);
         }
     }
 }
 
 void Radio::printData()
 {
-    for (int k = 0; k < dataPointCount; k++)
+    for (int k = 0; k < packetSize; k++)
     {
-        Serial.print(flightData[k]);
+        Serial.print(packet[k]);
         Serial.print(",");
     }
     Serial.println();

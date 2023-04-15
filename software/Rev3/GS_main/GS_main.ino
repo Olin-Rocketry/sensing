@@ -4,11 +4,14 @@ Radio radio;
 
 void setup()
 {
-//  Serial8.begin(115200);
+
   Serial.begin(115200);
   radio.begin();
-  while (!Serial.available())
-    ;
+  while(!Serial){};
+  delay(100);
+  Serial.write(64);
+  
+//  while (!Serial.available());
 }
 
 void loop()

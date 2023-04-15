@@ -9,7 +9,7 @@ Altimeter::Altimeter(Data *data)
 void Altimeter::begin_altimeter()
 {
     Wire.begin();
-    Serial.begin(9600);
+//    Serial.begin(9600);
 }
 
 void Altimeter::init()
