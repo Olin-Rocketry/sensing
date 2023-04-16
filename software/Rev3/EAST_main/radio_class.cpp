@@ -13,6 +13,12 @@ void Radio::init(){
     std::fill_n(encodedPacket, packetSize * 4, '0');
 }
 
+void Radio::led_test(Led *statusLed){
+  this->statusLed = statusLed;
+  statusLed->RGB(0, 100, 0, 0);
+  statusLed->RGB(1, 100, 0, 0);
+}
+
 void Radio::begin(){
 
     //radio stuff
@@ -28,11 +34,13 @@ void Radio::begin(){
     while (!rf95.init())
     {
         Serial.println("LoRa radio init failed");
+//        statusLed->RGB(1, 255, 0, 0);
         while (1)
             ;
     }
     Serial.println("LoRa radio init OK!");
-
+    statusLed->RGB(1, 0, 100, 0);
+Serial.println("LED");
     // Defaults after init are 434.0MHz, modulation GFSK_Rb250Fd250, +13dbM
     if (!rf95.setFrequency(RF95_FREQ))
     {
@@ -87,12 +95,13 @@ char Radio::readSerial()
 {
 //  Serial.println("Checking for data");
     if (EAST_serial.available()){
-//        statusLed->RGB(1, 0, 0, 255);
+        statusLed->RGB(0, 0, 0, 255);
         Serial.println("Serial Data:");  
         EAST_serial.rxObj(serialBuffer);
         Serial.println(serialBuffer);
         
         sendRadio(serialBuffer);
+        statusLed->RGB(0, 0, 0, 0);
         
 //        if (sizeof(serialBuffer) != packetSize * 4)
 //        {
@@ -104,8 +113,8 @@ char Radio::readSerial()
 //      Serial.println("not available");
 //    }
     return serialBuffer;
-//    statusLed->RGB(1, 0, 0, 0);
-//    statusLed->RGB(0, 0, 0, 0);
+    
+
 }
 
 void Radio::reveicePacket()

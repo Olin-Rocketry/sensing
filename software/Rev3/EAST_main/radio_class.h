@@ -36,6 +36,7 @@ class Radio {
     void init();  
     void begin(); 
     void reveicePacket();  
+    void led_test(Led *statusLed);
  
     void sendRadio(char serialBuffer[packetSize*4]);
 //void sendRadio();

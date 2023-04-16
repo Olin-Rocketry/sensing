@@ -148,7 +148,7 @@ void Data::sendSerialData()
 //  PRISM_serial.sendDatum(encodedFrame[frameSize-1]);
 // 27 chars: 000000000000000000000000001
 statusLed->RGB(1, 0, 0, 255);
-delay(10);
+//delay(10);
 //  PRISM_serial.sendDatum("000000000000000000000000001000000000000000000000000001000000000000000000000000001000000000000000000000000001");
 //PRISM_serial.sendDatum("test_message");
   PRISM_serial.sendDatum(packet);
@@ -161,9 +161,9 @@ void Data::addToFrame()
 {
 
   sendSerialData();
-//    if (frameIndex % 10 == 0){  //send every 10th packet to EAST
-//        sendSerialData();
-//    }
+    if (frameIndex % 10 == 0){  //send every 10th packet to EAST
+        sendSerialData();
+    }
     
     if (frameIndex >= frameSize){  //when the frame is full, write the frame to SD and clear the frame
         writeSDData();
