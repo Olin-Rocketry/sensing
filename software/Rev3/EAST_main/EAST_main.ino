@@ -13,6 +13,7 @@ void setup()
 
   Serial.begin(115200);
   radio.led_test(&statusLed);
+  delay(10);
   
 //  gps.begin_gps();
   radio.begin();
@@ -26,6 +27,6 @@ void loop()
   // radio
 
   radio.sendingPacket();
-  delay(1);
+
 
 }

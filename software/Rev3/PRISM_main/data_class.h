@@ -46,6 +46,7 @@ public:
   void writeSDData();
   void sendSerialData();
   void readGPS();
+  void analogTelem();
 
   float accelx();
   float accely();
@@ -74,6 +75,8 @@ public:
   float kfvz();
   float kfdrag();
   float curtime();
+
+  
   void accelx(float i);
   void accely(float i);
   void accelz(float i);

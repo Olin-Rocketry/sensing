@@ -1,6 +1,7 @@
 #include "data_class.h"
 #include "imu_class.h"
 #include "altimeter_class.h"
+#include "kalman_class.h"
 #include "led_class.h"
 #include <Arduino.h>
 
@@ -27,6 +28,7 @@ float minimumMainAltitude;
 Led statusLed(34);
 Data data(&statusLed);
 Imu imu_test(&data);
+Kalman kalman_filter(&data);
 // Altimeter altimeter(&data);
 
 void setup()
@@ -40,11 +42,14 @@ void setup()
   
   data.SDbegin();
   imu_test.begin_imu();
+  
 //  altimeter.begin_altimeter();
   //    test.test_connection();
 
   //    led.RGB(0, 0, 0, 100);
   //    led.RGB(1, 0, 0, 100);
+
+//  kalman_filter.begin();
 }
 
  void loop()
@@ -56,27 +61,8 @@ void setup()
      data.readGPS();
 
 
-     //battery voltage
-  float callibration_slope = 817/4.14; //measure the raw analog and voltage to find slope
-  data.volt(analogRead(A8)/callibration_slope);  //add to data class
 
-  //arming and continuity
-  int armSignal = analogRead(A12);
-  int pyro1Cont = analogRead(A17);
-  int pyro2Cont = analogRead(A16);
-  int pyroCode = 0;
-  
-  if (armSignal > 100){
-    pyroCode += 1;
-  }
-  if (pyro1Cont > 100){
-    pyroCode += 10;
-  }
-  if (pyro2Cont > 100){
-    pyroCode += 100;
-  }
-  data.cont(pyroCode);
-
+//     kalman_filter.update();
      
      data.encodeAndAdd();
  //    Serial.println(data.curtime());
@@ -85,7 +71,7 @@ void setup()
  //    Serial.print("Bar alt: ");
  //    Serial.println(data.baralt());
 
-     delay(100);
+     delay(10);
  }
 
 //void loop()

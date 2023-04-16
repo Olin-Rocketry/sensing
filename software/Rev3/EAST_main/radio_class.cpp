@@ -1,11 +1,6 @@
 #include "radio_class.h"
 #include <algorithm>
 
-//Radio::Radio(Led *statusLed){
-//  
-//  this->statusLed = statusLed;
-//  init();
-//}
 
 void Radio::init(){
     //init both un-encoded and encoded packet with 0
@@ -34,7 +29,7 @@ void Radio::begin(){
     while (!rf95.init())
     {
         Serial.println("LoRa radio init failed");
-//        statusLed->RGB(1, 255, 0, 0);
+        statusLed->RGB(1, 255, 0, 0);
         while (1)
             ;
     }
@@ -63,7 +58,7 @@ Serial.println("LED");
 
      delay(10);
     //initalize EAST serial communication
-    Serial8.begin(115200);  //east uses 8, prism uses 5
+    Serial8.begin(400000);  //east uses 8, prism uses 5
     EAST_serial.begin(Serial8);
 }
 
@@ -95,13 +90,13 @@ char Radio::readSerial()
 {
 //  Serial.println("Checking for data");
     if (EAST_serial.available()){
-        statusLed->RGB(0, 0, 0, 255);
+//        statusLed->RGB(0, 0, 0, 255);
         Serial.println("Serial Data:");  
         EAST_serial.rxObj(serialBuffer);
         Serial.println(serialBuffer);
         
         sendRadio(serialBuffer);
-        statusLed->RGB(0, 0, 0, 0);
+//        statusLed->RGB(0, 0, 0, 0);
         
 //        if (sizeof(serialBuffer) != packetSize * 4)
 //        {
@@ -112,7 +107,7 @@ char Radio::readSerial()
 //    {
 //      Serial.println("not available");
 //    }
-    return serialBuffer;
+//    return serialBuffer;
     
 
 }
@@ -133,9 +128,9 @@ void Radio::sendRadio(char serialBuffer[packetSize*4]){
     Serial.println(serialBuffer);
     // Send a message to rf95_server
     rf95.send((uint8_t *)serialBuffer, packetSize*4);
-    delay(10);
-    rf95.waitPacketSent();
-    Serial.println("Packet Sent");
+//    delay(10);
+//    rf95.waitPacketSent();
+//    Serial.println("Packet Sent");
 }
 
 void Radio::readRadio()
