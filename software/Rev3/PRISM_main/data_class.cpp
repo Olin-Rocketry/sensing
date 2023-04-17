@@ -230,6 +230,7 @@ void Data::readGPS()
 {
   if (PRISM_serial.available())
   {
+    Serial.println("GPS Message!");
     PRISM_serial.rxObj(gpsStruct);
     lat(gpsStruct.lat);
     lng(gpsStruct.lng);
@@ -256,7 +257,7 @@ void Data::sendSerialData()
   //  PRISM_serial.sendDatum("000000000000000000000000001000000000000000000000000001000000000000000000000000001000000000000000000000000001");
   //PRISM_serial.sendDatum("test_message");
   PRISM_serial.sendDatum(packet);
-  Serial.println("Message sent");
+//  Serial.println("Message sent");
   statusLed->RGB(1, 0, 0, 0);
   statusLed->RGB(0, 0, 0, 0);
 }

@@ -59,6 +59,7 @@ void setup()
  //    altimeter.read_altitude();
      data.curtime((float)millis());
      data.readGPS();
+     data.analogTelem();
 
 
 
@@ -71,7 +72,7 @@ void setup()
  //    Serial.print("Bar alt: ");
  //    Serial.println(data.baralt());
 
-     delay(10);
+     delay(90);
  }
 
 //void loop()

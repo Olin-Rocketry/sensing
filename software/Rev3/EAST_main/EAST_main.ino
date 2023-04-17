@@ -1,11 +1,10 @@
 #include "gps_class.h"
 #include "radio_class.h"
 
-//Gps gps;
-Led statusLed(22);
-//Radio radio(&statusLed);
-Radio radio;
 
+Led statusLed(22);
+Radio radio;
+Gps gps(&radio);
 
 
 void setup()
@@ -15,15 +14,16 @@ void setup()
   radio.led_test(&statusLed);
   delay(10);
   
-//  gps.begin_gps();
+  
   radio.begin();
+  gps.begin_gps(&statusLed);
   
   
 }
 
 void loop()
 {
-  //gps.read_position();
+//  gps.read_position();
   // radio
 
   radio.sendingPacket();

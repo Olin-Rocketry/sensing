@@ -146,11 +146,12 @@ void Radio::decodeData()
 void Radio::printData()
 {
     
-    for (int k = 0; k < packetSize-1; k++)
+    for (int k = 0; k < packetSize; k++)
     {
         Serial.print(packet[k]);
         Serial.print(",");
     }
-    Serial.print(packet[packetSize]);
+
+    Serial.print(rf95.lastRssi(), DEC);
     Serial.write(10);
 };

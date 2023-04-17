@@ -35,7 +35,7 @@ void Radio::begin(){
     }
     Serial.println("LoRa radio init OK!");
     statusLed->RGB(1, 0, 100, 0);
-Serial.println("LED");
+
     // Defaults after init are 434.0MHz, modulation GFSK_Rb250Fd250, +13dbM
     if (!rf95.setFrequency(RF95_FREQ))
     {
@@ -81,20 +81,17 @@ float Radio::decoder(char *encoded)
 
 void Radio::sendingPacket()
 {
-//    readSerial();
     readSerial();
 
 }
 
 char Radio::readSerial()
 {
-//  Serial.println("Checking for data");
     if (EAST_serial.available()){
 //        statusLed->RGB(0, 0, 0, 255);
         Serial.println("Serial Data:");  
         EAST_serial.rxObj(serialBuffer);
         Serial.println(serialBuffer);
-        
         sendRadio(serialBuffer);
 //        statusLed->RGB(0, 0, 0, 0);
         

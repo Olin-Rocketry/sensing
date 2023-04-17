@@ -1,21 +1,23 @@
 #include "gps_class.h"
 
-Gps::Gps()
-{
+Gps::Gps(Radio *radio){
+  this->radio = radio;
     init();
 }
 
 void Gps::init()
 {
-    //  Serial.begin(9600);
-    
-    // Serial8.begin(115200);
 }
 
-void Gps::begin_gps()
+void Gps::begin_gps(Led *statusLed)
 {
     Wire.begin();
     Serial.begin(9600);
+    this->statusLed = statusLed;
+    statusLed->RGB(0, 100, 0, 0);
+
+
+    
     test_connection();
 }
 
@@ -38,6 +40,7 @@ void Gps::read_position()
 
     if (gps.time.isUpdated())
     {
+        
         read_data();
     }
 }
@@ -47,6 +50,7 @@ void Gps::read_data()
     // display location
     if (gps.location.isValid())
     {
+        statusLed->RGB(0, 0, 100, 0);
         gpsStruct.lng = gps.location.lng();
         gpsStruct.lat = gps.location.lat();
         Serial.print(gps.location.lng());
@@ -57,5 +61,6 @@ void Gps::read_data()
     {
         gpsStruct.gpsalt = gps.altitude.meters();
     }
-    mySend.sendDatum(gpsStruct);
+
+//    radio->EAST_serial.sendDatum(gpsStruct);
 }
