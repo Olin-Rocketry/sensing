@@ -6,28 +6,19 @@ Led::Led(byte pin) {
 }
 
 void Led::init() {
-  pinMode(pin, OUTPUT);
-  strip = Adafruit_NeoPixel(2, pin, NEO_GRB + NEO_KHZ800);
-  strip.begin();
-//  off();
+  FastLED.addLeds<WS2811, 34, GRB>(leds, num_leds);
+  off();
 }
 
 void Led::RGB(int pixel, int R, int G, int B) {
-  uint32_t c = strip.Color(R, G, B);
-  strip.setPixelColor(pixel  , c);
-  strip.show();
+  leds[pixel] = CRGB(R,G,B);;
+    FastLED.show();
 }
 
-//void Led::blue(int pixel) {
-//  uint32_t c = strip.Color(100, 0, 100);
-//  strip.setPixelColor(pixel  , c);
-//  strip.show();
-//}
 
 void Led::off() {
-  uint32_t c = strip.Color(0, 0, 0);
-  strip.setPixelColor(0  , c);
-  strip.setPixelColor(1  , c);
-  strip.show();
+  leds[0] = CRGB::Black;
+  leds[1] = CRGB::Black;
+  FastLED.show();
 }
   

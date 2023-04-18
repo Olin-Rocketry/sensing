@@ -29,7 +29,7 @@ Led statusLed(34);
 Data data(&statusLed);
 Imu imu_test(&data);
 Kalman kalman_filter(&data);
-// Altimeter altimeter(&data);
+ Altimeter altimeter(&data);
 
 void setup()
 {
@@ -43,7 +43,7 @@ void setup()
   data.SDbegin();
   imu_test.begin_imu();
   
-//  altimeter.begin_altimeter();
+  altimeter.begin_altimeter();
   //    test.test_connection();
 
   //    led.RGB(0, 0, 0, 100);
@@ -56,7 +56,7 @@ void setup()
  {
      imu_test.rotate();
      imu_test.read_gyroscope();
- //    altimeter.read_altitude();
+     altimeter.read_altitude();
      data.curtime((float)millis());
      data.readGPS();
      data.analogTelem();

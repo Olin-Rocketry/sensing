@@ -4,7 +4,7 @@
 
 Led statusLed(22);
 Radio radio;
-Gps gps(&radio);
+//Gps gps(&radio);
 
 
 void setup()
@@ -16,7 +16,7 @@ void setup()
   
   
   radio.begin();
-  gps.begin_gps(&statusLed);
+//  gps.begin_gps(&statusLed);
   
   
 }

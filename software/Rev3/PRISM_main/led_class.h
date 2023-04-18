@@ -1,17 +1,18 @@
 #pragma once
 #include <Arduino.h>
-#include <Adafruit_NeoPixel.h>
+#include <FastLED.h>
 
+#define num_leds 2
 
 class Led {
   private:
     byte pin;
-    Adafruit_NeoPixel strip;
+   
+    CRGB leds[num_leds];
     
   public:
     Led(byte pin);
     void init();
     void RGB(int pixel, int R, int G, int B);
-//    void green(int pixel);
     void off();
 };
