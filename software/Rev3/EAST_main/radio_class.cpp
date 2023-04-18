@@ -88,12 +88,16 @@ void Radio::sendingPacket()
 char Radio::readSerial()
 {
     if (EAST_serial.available()){
-//        statusLed->RGB(0, 0, 0, 255);
+      if(!serial_status){
+        statusLed->RGB(0, 0, 0, 255);
+        serial_status = true;
+      }
+        
         Serial.println("Serial Data:");  
         EAST_serial.rxObj(serialBuffer);
         Serial.println(serialBuffer);
         sendRadio(serialBuffer);
-//        statusLed->RGB(0, 0, 0, 0);
+
         
 //        if (sizeof(serialBuffer) != packetSize * 4)
 //        {

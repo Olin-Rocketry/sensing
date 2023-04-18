@@ -21,6 +21,7 @@ class Radio {
     float decoder(char* encoded);
     char serialBuffer[packetSize*4];
     Led *statusLed;
+    bool serial_status;
 
     
     

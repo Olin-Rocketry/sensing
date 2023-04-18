@@ -6,8 +6,10 @@ Led::Led(byte pin) {
 }
 
 void Led::init() {
+//  tone(33, 600, 1000);
+
   FastLED.addLeds<WS2811, 34, GRB>(leds, num_leds);
-  off();
+//  off();
 }
 
 void Led::RGB(int pixel, int R, int G, int B) {

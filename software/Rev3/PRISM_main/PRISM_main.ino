@@ -10,7 +10,7 @@
 #define Main 24
 #define Drog 25
 
-  
+
 
 
 
@@ -29,7 +29,7 @@ Led statusLed(34);
 Data data(&statusLed);
 Imu imu_test(&data);
 Kalman kalman_filter(&data);
- Altimeter altimeter(&data);
+Altimeter altimeter(&data);
 
 void setup()
 {
@@ -37,6 +37,10 @@ void setup()
   pinMode(Main,OUTPUT);
   digitalWrite(Drog, LOW);  //very important!!
   digitalWrite(Main, LOW);  //very important!!
+  
+  
+
+  
 
   Serial.begin(115200);
   
@@ -44,12 +48,11 @@ void setup()
   imu_test.begin_imu();
   
   altimeter.begin_altimeter();
-  //    test.test_connection();
 
-  //    led.RGB(0, 0, 0, 100);
-  //    led.RGB(1, 0, 0, 100);
+  kalman_filter.begin();
 
-//  kalman_filter.begin();
+
+    
 }
 
  void loop()
@@ -57,22 +60,27 @@ void setup()
      imu_test.rotate();
      imu_test.read_gyroscope();
      altimeter.read_altitude();
+     altimeter.read_temperature();
      data.curtime((float)millis());
      data.readGPS();
      data.analogTelem();
 
+//     Serial.print(data.temp());
+
+      
+     statusLed.RGB(0, 100, 0, 0);
+      statusLed.RGB(1, 100, 0, 0);
 
 
-//     kalman_filter.update();
+
+     kalman_filter.update();
+
+     Serial.println(data.kfvz());
      
      data.encodeAndAdd();
- //    Serial.println(data.curtime());
- //    Serial.print("Accel x: ");
- //    Serial.println(data.accelx());
- //    Serial.print("Bar alt: ");
- //    Serial.println(data.baralt());
 
-     delay(90);
+
+     delay(10);
  }
 
 //void loop()
