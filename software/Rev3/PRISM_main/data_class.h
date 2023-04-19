@@ -27,6 +27,8 @@ private:
   File dataFile;
   int teensyLED = 13;
 
+  String header="Time   \tAccel X   \tAccel Y   \tAccel Z   \tGyro X   \tGyro Y   \tGyro Z   \tTemp   \tEuler X   \tEuler Y   \tEuler Z   \tBarometric Alt   \tLongitude   \tLatitude   \tGPS Alt   \tPhase   \tContinuity   \tVoltage   \tLink Strength   \tKF x   \tKF y   \tKF z   \tKF Vx   \tKF Vy   \tKF Vz   \tKF drag   \tN/A   \t";
+
 public:
 
   const static int packetSize = 27; //each packet is made up of N floats 27 ------------------------------------------
@@ -50,6 +52,7 @@ public:
   void sendSerialData();
   void readGPS();
   void analogTelem();
+  void dprint(String in);
 
   float accelx();
   float accely();

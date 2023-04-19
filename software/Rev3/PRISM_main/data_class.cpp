@@ -9,54 +9,44 @@ Data::Data(Led *statusLed)
 
 void Data::init()
 {
-
-  Serial.println("Initializing");
   std::fill_n(packet, packetSize, 3.1415);  //fill packet zeros
   std::fill_n(encodedpacket, packetSize * 4, '0'); //fill encoded packet with zeros
-  //  std::fill_n(encodedFrame, frameSize*packetSize*4, '0');
-
 
   //initalize PRISM serial communication
   Serial5.begin(800000);
   PRISM_serial.begin(Serial5);
 
-  Serial.println("Serial-5 Opend");
   pinMode(teensyLED, OUTPUT);
 }
 
 void Data::SDbegin(bool debugEnable)
 {
   this->debugEnable=debugEnable;
-  //initialize the SD card for writing
-  delay(10);
-  Serial.println("Initializing SD card...");
   // see if the card is present and can be initialized:
   if (!SD.begin(BUILTIN_SDCARD))
   {
-    Serial.println("Card faild, or not present");
+    Serial.println("SD Card failed, or not present");
     while (1) { }
   }
 
-  Serial.println("card initialized.");
-
+  dprint("Data class started\n");
+  
   //find the next flight log number
   for (uint8_t i = 0; i < 100; i++)
   {
     fileName[9] = i / 100 + '0';
     fileName[10] = i / 10 + '0';
     fileName[11] = i % 10 + '0';
-    if (SD.exists(fileName))
+    if (!SD.exists(fileName))
     {
-      continue;
+      break;
     }
-    //write header to new file
-    Serial.print("Writing to: ");
-    Serial.println(fileName);
-    dataFile = SD.open(fileName, FILE_WRITE);
-    dataFile.println("Time, Phase, Alt, AccX");
-    dataFile.close();
-    break;
   }
+  //write header to new file
+  dataFile = SD.open(fileName, FILE_WRITE);
+  dprint("SD opened: "+String(fileName)+"\n");
+  dataFile.println(header);
+  dataFile.close();
 }
 
 
@@ -68,11 +58,8 @@ union Data::floatunion_t
 
 void Data::bulkencode(float *in, char *out)
 {
-  // in and out should be char arrays of the same size
-  for (int i = 0; i < packetSize; i++) // sizeof(in)/sizeof(in[0])
+  for (int i = 0; i < packetSize; i++)
   {
-    // Serial.print("encoding: ");
-    // Serial.println(sizeof(in)/sizeof(in[0]));
     char encoded[sizeof(float)];
     encoder(encoded, in[i]);
     encoder(encoded, in[i]);
@@ -228,15 +215,14 @@ float Data::d() {
   packet[26] = i;
 }
 void Data::readGPS(){
-//  Serial.println("Checking GPS!");
   if (PRISM_serial.available())
   {
-//    Serial.println("GPS Message!");
     PRISM_serial.rxObj(gpsStruct);
     lat(gpsStruct.lat);
     lng(gpsStruct.lng);
     gpsalt(gpsStruct.gpsalt);
   }
+  dprint("Read GPS\n");
 }
 
 void Data::encodeAndAdd()
@@ -252,23 +238,29 @@ void Data::encodepacket()
 void Data::sendSerialData()
 {
 
-digitalWrite(teensyLED, HIGH);
-//  PRISM_serial.sendDatum("000000000000000000000000001000000000000000000000000001000000000000000000000000001000000000000000000000000001");
+  digitalWrite(teensyLED, HIGH);
   PRISM_serial.sendDatum(packet, packetSize*4);
-//  Serial.println("Message sent");
   digitalWrite(teensyLED, LOW);
 }
 
 void Data::addToFrame()
 {
  
-  if (frameIndex % 5 == 0) { //send every 10th packet to EAST
+  if (frameIndex % 5 == 0) { //send every 5th packet to EAST
     sendSerialData();
+    if(debugEnable==true)
+    {
+      for(int i=0; i<packetSize; i++)
+      {
+        Serial.print(String(packet[i])+"   \t");
+      }
+    }
     Serial5.flush();
   }
 
   if (frameIndex >= frameSize) { //when the frame is full, write the frame to SD and clear the frame
     writeSDData();
+    dprint(header+"\n");
   }
 
 
@@ -308,6 +300,7 @@ void Data::writeSDData()
   }
   dataFile.close();
   frameIndex = 0;  //when done, reset frame location
+  dprint("Wrote to SD\n");
 }
 
 
@@ -331,8 +324,13 @@ void Data::analogTelem() {
   if (pyro2Cont > 100) {
     pyroCode += 100;
   }
-  cont(pyroCode);
+  cont(pyroCode);  
+}
 
-
-  
+void Data::dprint(String in)
+{
+  if(debugEnable==true)
+  {
+    Serial.print(in);
+  }
 }
