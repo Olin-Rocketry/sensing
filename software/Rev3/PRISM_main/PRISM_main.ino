@@ -68,8 +68,8 @@ void setup()
      imu_test.read_gyroscope();
 
      
-//     altimeter.read_altitude();
-//     altimeter.read_temperature();
+     altimeter.read_altitude();
+     altimeter.read_temperature();
      data.curtime((float)millis());
      data.readGPS();
 

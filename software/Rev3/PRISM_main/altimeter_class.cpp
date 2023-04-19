@@ -23,10 +23,10 @@ void Altimeter::init()
             ;
     }
 
-    bmp.setTemperatureOversampling(BMP3_OVERSAMPLING_8X);
-    bmp.setPressureOversampling(BMP3_OVERSAMPLING_4X);
+    bmp.setTemperatureOversampling(BMP3_NO_OVERSAMPLING);
+    bmp.setPressureOversampling(BMP3_OVERSAMPLING_2X);
     bmp.setIIRFilterCoeff(BMP3_IIR_FILTER_COEFF_3);
-    bmp.setOutputDataRate(BMP3_ODR_50_HZ);
+    bmp.setOutputDataRate(BMP3_ODR_200_HZ);
 }
 
 void Altimeter::read_pressure()
