@@ -4,8 +4,10 @@
 
 Led statusLed(22);
 Radio radio;
-//Gps gps(&radio);
+Gps gps(&radio);
 
+unsigned long cycle_time;
+unsigned long old_cycle_time = 0;
 
 void setup()
 {
@@ -16,14 +18,22 @@ void setup()
   
   
   radio.begin();
-//  gps.begin_gps(&statusLed);
+  gps.begin_gps(&statusLed);
   
   
 }
 
 void loop()
 {
-//  gps.read_position();
+  cycle_time = millis() - old_cycle_time;
+  
+  if(cycle_time > 1000){
+    
+     gps.read_position();
+     old_cycle_time = millis();
+     
+  }
+ 
   // radio
 
   radio.sendingPacket();

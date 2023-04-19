@@ -23,6 +23,7 @@ class Radio {
     Led *statusLed;
     bool serial_status;
 
+
     
     
 
@@ -46,4 +47,5 @@ void readRadio();
     void printData();
     void sendingPacket();
     char readSerial();
+
 };

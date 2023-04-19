@@ -23,6 +23,7 @@ private:
     float gpsalt;
   } gpsStruct;
   File dataFile;
+  int teensyLED = 13;
 
 public:
 

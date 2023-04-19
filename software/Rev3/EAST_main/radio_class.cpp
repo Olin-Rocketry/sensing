@@ -11,7 +11,7 @@ void Radio::init(){
 void Radio::led_test(Led *statusLed){
   this->statusLed = statusLed;
   statusLed->RGB(0, 100, 0, 0);
-  statusLed->RGB(1, 100, 0, 0);
+  
 }
 
 void Radio::begin(){
@@ -29,12 +29,12 @@ void Radio::begin(){
     while (!rf95.init())
     {
         Serial.println("LoRa radio init failed");
-        statusLed->RGB(1, 255, 0, 0);
+        statusLed->RGB(0, 255, 0, 0);
         while (1)
             ;
     }
     Serial.println("LoRa radio init OK!");
-    statusLed->RGB(1, 0, 100, 0);
+    statusLed->RGB(0, 0, 0, 255);
 
     // Defaults after init are 434.0MHz, modulation GFSK_Rb250Fd250, +13dbM
     if (!rf95.setFrequency(RF95_FREQ))
@@ -58,7 +58,7 @@ void Radio::begin(){
 
      delay(10);
     //initalize EAST serial communication
-    Serial8.begin(400000);  //east uses 8, prism uses 5
+    Serial8.begin(800000);  //east uses 8, prism uses 5
     EAST_serial.begin(Serial8);
 }
 
@@ -89,13 +89,13 @@ char Radio::readSerial()
 {
     if (EAST_serial.available()){
       if(!serial_status){
-        statusLed->RGB(0, 0, 0, 255);
+        statusLed->RGB(0, 0, 255, 0);
         serial_status = true;
       }
         
         Serial.println("Serial Data:");  
         EAST_serial.rxObj(serialBuffer);
-        Serial.println(serialBuffer);
+//        Serial.println(serialBuffer);
         sendRadio(serialBuffer);
 
         
