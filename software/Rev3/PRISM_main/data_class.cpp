@@ -321,7 +321,7 @@ void Data::analogTelem() {
   int armSignal = analogRead(A12);
   int pyro1Cont = analogRead(A17);
   int pyro2Cont = analogRead(A16);
-  int pyroCode = 0;
+  int pyroCode = 1000;
   if (armSignal > 100) {
     pyroCode += 1;
   }

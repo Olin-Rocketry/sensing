@@ -31,49 +31,60 @@ void Altimeter::init()
 
 void Altimeter::read_pressure()
 {
-    if (!bmp.performReading())
-    {
-        Serial.println("Failed to perform reading :(");
-        return;
-    }
-    bmp.performReading();
+//    if (!bmp.performReading())
+//    {
+//        Serial.println("Failed to perform reading :(");
+//        return;
+//    }
+//    bmp.performReading();
+//
+//    /*Serial.print("Pressure = ");
+//    Serial.print(bmp.pressure / 100.0);
+//    Serial.println(" hPa");
+//
+//    Serial.println();
+//    delay(1000);*/
+}
 
-    /*Serial.print("Pressure = ");
-    Serial.print(bmp.pressure / 100.0);
-    Serial.println(" hPa");
-
-    Serial.println();
-    delay(1000);*/
+void Altimeter::perform_reading()
+{
+  if (!bmp.performReading())
+  {
+      Serial.println("Failed to perform reading :(");
+      return;
+  }
+  read_altitude();
+  read_temperature();
 }
 
 void Altimeter::read_altitude()
 {
-    if (!bmp.performReading())
-    {
-        Serial.println("Failed to perform reading :(");
-        return;
-    }
-    bmp.performReading();
-
-    /*Serial.print("Approx. Altitude = ");
-    Serial.print(bmp.readAltitude(SEALEVELPRESSURE_HPA));
-    Serial.println(" m");*/
+//    if (!bmp.performReading())
+//    {
+//        Serial.println("Failed to perform reading :(");
+//        return;
+//    }
+//    bmp.performReading();
+//
+//    /*Serial.print("Approx. Altitude = ");
+//    Serial.print(bmp.readAltitude(SEALEVELPRESSURE_HPA));
+//    Serial.println(" m");*/
 
     data->baralt((float)bmp.readAltitude(SEALEVELPRESSURE_HPA));
 }
 
 void Altimeter::read_temperature()
 {
-    if (!bmp.performReading())
-    {
-        Serial.println("Failed to perform reading :(");
-        return;
-    }
-    bmp.performReading();
-
-    /*Serial.print("Temperature = ");
-    Serial.print(bmp.temperature);
-    Serial.println(" *C");*/
+//    if (!bmp.performReading())
+//    {
+//        Serial.println("Failed to perform reading :(");
+//        return;
+//    }
+//    bmp.performReading();
+//
+//    /*Serial.print("Temperature = ");
+//    Serial.print(bmp.temperature);
+//    Serial.println(" *C");*/
 
     data->temp((float)bmp.temperature);
 }
