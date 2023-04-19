@@ -37,6 +37,7 @@ void Kalman::update() {
   curr_time = millis();
   dt = (double)((curr_time - old_time) / 1000);
 
+  
 
   A[0][0] = 1; A[0][1] = dt;  A[0][2] = dt * dt / 2;
   A[1][0] = 0; A[1][1] = 1; A[1][2] = dt;

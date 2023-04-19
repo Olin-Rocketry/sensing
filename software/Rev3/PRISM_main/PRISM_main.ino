@@ -42,7 +42,7 @@ void setup()
   imu_test.begin_imu();
   altimeter.begin_altimeter();
 
-  kalman_filter.begin();
+  
     
 }
 
@@ -157,9 +157,10 @@ void PostARM()
   
   if (data.baralt() > minimumAltitude){
     // launch
+    kalman_filter.begin();
     phase = 3;
   }
-  if (analogRead(KEYSWITCH) <= 20){
+  if (analogRead(KEYSWITCH) <= 100){
     // turned off
     phase = 1;
   }
