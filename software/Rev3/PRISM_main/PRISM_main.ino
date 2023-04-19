@@ -15,6 +15,8 @@
 byte IICdata[5] = {0, 0, 0, 0, 0}; // buffer for sensor data
 bool debugEnable=false; //Enable debug printing
 short int phase = 1;
+unsigned long loop_t_start = 0;
+unsigned long loop_t_end = 0;
 float minimumAltitude;
 float minimumDrogAltitude;
 float minimumMainAltitude = 5; // set on launch day
@@ -50,6 +52,8 @@ void setup()
 
 void loop()
 {
+  loop_t_start = micros();
+  
   // Chooses loop to run through depending on what the phase is set to
   switch (phase)
   {
@@ -80,7 +84,12 @@ void loop()
       break;
       
   }
-  delay(10);
+  
+  loop_t_end = micros();
+  // adjust delay based on length of loop
+  if((loop_t_end - loop_t_start) < 10000){
+    delayMicroseconds(10000 - (loop_t_end - loop_t_start));
+  }  
 }
 
 
