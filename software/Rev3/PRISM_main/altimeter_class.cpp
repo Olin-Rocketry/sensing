@@ -64,15 +64,10 @@ void Altimeter::read_temperature()
 {
    data->temp((float)bmp.temperature);
 }
-void Altimeter::EMA()
-{ 
-  if (EMA_prev==-1)
-  {
-    EMA_prev=data->baralt();
-  }
-  else
-  {
-    EMA_value=data->baralt()*(Smoothing/(1+Sample))+EMA_prev*(1-Smoothing/(1+Sample)); //Exponential moving Average
-  }
-  data->kfy(EMA_value);
+void Altimeter::EMA(){ 
+if (EMA_prev==-1){
+  EMA_prev=data->baralt();
+}
+EMA_value=data->baralt()*(Smoothing/(1+Sample))+EMA_prev*(1-Smoothing/(1+Sample)); //Exponential moving Average
+EMA_prev=EMA_value;
 }
