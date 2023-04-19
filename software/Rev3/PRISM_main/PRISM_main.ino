@@ -67,9 +67,9 @@ void setup()
      imu_test.rotate();
      imu_test.read_gyroscope();
 
-     
-//     altimeter.read_altitude();
-//     altimeter.read_temperature();
+     altimeter.perform_reading();
+//     altimeter.read_altitude(); //This code was integrated into the altimeter class
+//     altimeter.read_temperature(); //This code was integrated into the altimeter class
      data.curtime((float)millis());
      data.readGPS();
 
