@@ -148,7 +148,7 @@ void Radio::printData()
     
     for (int k = 0; k < packetSize; k++)
     {
-        Serial.print(packet[k]);
+        Serial.print(packet[k], 7);
         Serial.print(",");
     }
 
