@@ -52,11 +52,11 @@ void Gps::read_data()
 //    unsigned long t_1 = micros();
     if (gps.location.isValid())
     {
-        statusLed->RGB(1, 0, 0, 255);
+        statusLed->RGB(1, 0, 255, 0);
         gpsStruct.lng = gps.location.lng();
         gpsStruct.lat = gps.location.lat();
-//        radio->EAST_serial.sendDatum(gpsStruct);
-//        Serial8.flush();
+        radio->EAST_serial.sendDatum(gpsStruct);
+        Serial8.flush();
 
         
 //        Serial.print(gps.location.lng());

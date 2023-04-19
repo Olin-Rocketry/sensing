@@ -26,7 +26,7 @@ public:
    */
   void rotate();
 
-  void read_euler(); // from the chip
+  imu::Vector<3> read_euler(); // from the chip
   void read_gravity();
   void read_gyroscope();
   imu::Vector<3> read_accelerometer();

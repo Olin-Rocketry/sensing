@@ -21,4 +21,5 @@ public:
   void read_altitude();
   void read_pressure();
   void read_temperature();
+  void perform_reading();
 };
