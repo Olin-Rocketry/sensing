@@ -17,6 +17,9 @@ void Imu::begin_imu(bool debugEnable)
 {
     Wire.begin();
     this->debugEnable=debugEnable;
+    if (debugEnable == true) {
+      Serial.print("Imu started");
+    }    
 }
 
 void Imu::test_connection()
@@ -36,32 +39,23 @@ imu::Quaternion Imu::read_quaternions()
     return bno.getQuat();
 }
 
+void Imu::perform_reading() {
+  rotate();
+  read_gyroscope();
+}
+
 void Imu::rotate()
 {
     imu::Vector<3> accel = read_linear_accel();
-
-//    // rotate to rocket orientation
-//    imu::Quaternion rocket_quat = imu::Quaternion(0.7071, 0, 0.7071, 0); // for 90 degree rotations about y axis
-//    accel = rocket_quat.rotateVector(accel);
 
     // rotate to global using chip quaternion
     imu::Quaternion unit_quat = bno.getQuat();
     unit_quat.normalize(); // have to normalize first
 
-    // test the product of both rotations
-//    imu::Quaternion product_quat = rocket_quat * unit_quat;
-//    imu::Vector<3> eulers = product_quat.toEuler();
-
-//    // store the euler angles into data
-//    data->eulerx((float)eulers.x());
-//    data->eulery((float)eulers.y());
-//    data->eulerz((float)eulers.z());
-
     // rotate the acceleration
     imu::Vector<3> rotated_accel = unit_quat.rotateVector(accel);
-//      print_data(rotated_accel);
 
-    // save values to data
+    // save acceleration to data
     data->accelx((float)rotated_accel.x());
     data->accely((float)rotated_accel.y());
     data->accelz((float)rotated_accel.z());
@@ -87,7 +81,6 @@ imu::Vector<3> Imu::read_euler()
 void Imu::read_gravity()
 {
     imu::Vector<3> gravity = bno.getVector(Adafruit_BNO055::VECTOR_GRAVITY);
-//    print_data(gravity);
 }
 
 void Imu::read_gyroscope()
@@ -96,7 +89,6 @@ void Imu::read_gyroscope()
     data->gyrox((float)gyroscope.x());
     data->gyroy((float)gyroscope.y());
     data->gyroz((float)gyroscope.z());
-    //  print_data(gyroscope);
 }
 
 imu::Vector<3> Imu::read_accelerometer()

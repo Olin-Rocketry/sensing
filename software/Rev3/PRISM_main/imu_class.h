@@ -26,16 +26,14 @@ public:
   double integrated_velocity = 0;
 
   
-
+  void perform_reading(); // call rotate() and read_gyroscope()
   /* Rotate the acceleration into the global refernce frame.
    *
    * Get the linear acceleration. Get the quaternion of the chip.
    * Rotate the acceleration by the defined quaternion for the rocket
-   * orinetation, then rotate by the chip quaternion to transfer into
-   * global refernce frame.
+   * orientation.
    */
   void rotate();
-
   imu::Vector<3> read_euler(); // from the chip
   void read_gravity();
   void read_gyroscope();

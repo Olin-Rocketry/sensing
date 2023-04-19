@@ -180,8 +180,7 @@ void AfterMain(){
 // collect data function
 void collect_data (void){
   // contains all sensor callings
-  imu_test.rotate();
-  imu_test.read_gyroscope();
+  imu_test.perform_reading();
   altimeter.perform_reading();
   data.curtime((float)millis());
   data.readGPS();
