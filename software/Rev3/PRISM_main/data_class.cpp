@@ -3,7 +3,6 @@
 Data::Data(Led *statusLed)
 {
   this->statusLed = statusLed;
-  Serial.println("Initializing 1");
   init();
 }
 
@@ -222,7 +221,6 @@ void Data::readGPS(){
     lng(gpsStruct.lng);
     gpsalt(gpsStruct.gpsalt);
   }
-  dprint("Read GPS\n");
 }
 
 void Data::encodeAndAdd()
@@ -252,8 +250,9 @@ void Data::addToFrame()
     {
       for(int i=0; i<packetSize; i++)
       {
-        Serial.print(String(packet[i])+"   \t");
+        Serial.print(String(packet[i])+"\t\t");
       }
+      Serial.print("\n");
     }
     Serial5.flush();
   }

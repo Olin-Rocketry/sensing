@@ -38,11 +38,26 @@ void setup()
   digitalWrite(DROG, LOW);  //very important!!
   
   Serial.begin(115200);
-  if(Serial.available())
+  Serial.println("To enter debug mode, send any character over Serial; proceeding without debug mode in:");
+  int countdown=5;
+  while(Serial.available()==0)
+  {
+    Serial.println(countdown--);
+    delay(750);
+    if(millis()>5000)
+    {
+      break;
+    }
+  }
+  if(Serial.available()!=0)
   {
     debugEnable=true;
     Serial.println("Entered debug mode");
     debugPhase();
+  }
+  else
+  {
+    Serial.println("Debug mode not enabled; proceeding normally");
   }
   // begin sensors
   data.SDbegin(debugEnable);

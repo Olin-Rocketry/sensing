@@ -27,7 +27,7 @@ private:
   File dataFile;
   int teensyLED = 13;
 
-  String header="Time   \tAccel X   \tAccel Y   \tAccel Z   \tGyro X   \tGyro Y   \tGyro Z   \tTemp   \tEuler X   \tEuler Y   \tEuler Z   \tBarometric Alt   \tLongitude   \tLatitude   \tGPS Alt   \tPhase   \tContinuity   \tVoltage   \tLink Strength   \tKF x   \tKF y   \tKF z   \tKF Vx   \tKF Vy   \tKF Vz   \tKF drag   \tN/A   \t";
+  String header="Time\t\t\tAccel X\t\tAccel Y\t\tAccel Z\t\tGyro X\t\tGyro Y\t\tGyro Z\t\tTemp\t\tEuler X\t\tEuler Y\t\tEuler Z\t\tBaro Alt\tLongitude\tLatitude\tGPS Alt\t\tPhase\t\tContinuity\tVoltage\t\tLink Strength\tKF x\t\tKF y\t\tKF z\t\tKF Vx\t\tKF Vy\t\tKF Vz\t\tKF drag\t\tN/A\t\t";
 
 public:
 

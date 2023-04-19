@@ -18,7 +18,7 @@ void Imu::begin_imu(bool debugEnable)
     Wire.begin();
     this->debugEnable=debugEnable;
     if (debugEnable == true) {
-      Serial.print("Imu started");
+      Serial.println("Imu started");
     }    
 }
 
