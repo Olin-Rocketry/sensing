@@ -226,7 +226,6 @@ float Data::d() {
 }        void Data::d(float i) {
   packet[26] = i;
 }
-
 void Data::readGPS(){
 //  Serial.println("Checking GPS!");
   if (PRISM_serial.available())

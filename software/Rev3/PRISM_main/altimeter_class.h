@@ -13,6 +13,9 @@ class Altimeter
 private:
   Data *data;
   Adafruit_BMP3XX bmp;
+  float EMA_prev=-1;
+  int Smoothing=2;
+  int Sample=20;
 
 public:
   Altimeter(Data *data);
@@ -22,4 +25,6 @@ public:
   void read_pressure();
   void read_temperature();
   void perform_reading();
+  void EMA();
+  float EMA_value;
 };
