@@ -24,8 +24,8 @@ void Altimeter::init()
     }
 
     bmp.setTemperatureOversampling(BMP3_NO_OVERSAMPLING);
-    bmp.setPressureOversampling(BMP3_OVERSAMPLING_2X);
-    bmp.setIIRFilterCoeff(BMP3_IIR_FILTER_COEFF_3);
+    bmp.setPressureOversampling(BMP3_NO_OVERSAMPLING);
+    bmp.setIIRFilterCoeff(BMP3_IIR_FILTER_DISABLE);
     bmp.setOutputDataRate(BMP3_ODR_200_HZ);
 }
 
@@ -70,7 +70,8 @@ void Altimeter::read_altitude()
 //    Serial.print(bmp.readAltitude(SEALEVELPRESSURE_HPA));
 //    Serial.println(" m");*/
 
-    data->baralt((float)bmp.readAltitude(SEALEVELPRESSURE_HPA));
+//    data->baralt((float)bmp.readAltitude(SEALEVELPRESSURE_HPA));
+    data->baralt(44330.0 * (1.0 - pow((bmp.pressure / 100.0F) / SEALEVELPRESSURE_HPA, 0.1903)));
 }
 
 void Altimeter::read_temperature()
