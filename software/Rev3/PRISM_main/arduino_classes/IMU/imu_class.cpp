@@ -40,17 +40,17 @@ void Imu::rotate()
 {
     imu::Vector<3> accel = read_linear_accel();
 
-    // rotate to rocket orientation
-    imu::Quaternion rocket_quat = imu::Quaternion(0.7071, 0, 0.7071, 0); // for 90 degree rotations about y axis
-    accel = rocket_quat.rotateVector(accel);
+//    // rotate to rocket orientation
+//    imu::Quaternion rocket_quat = imu::Quaternion(-0.7071, 0, 0.7071, 0); // for 90 degree rotations about y axis
+//    accel = rocket_quat.rotateVector(accel);
 
     // rotate to global using chip quaternion
     imu::Quaternion unit_quat = bno.getQuat();
     unit_quat.normalize(); // have to normalize first
 
-    // test the product of both rotations
-    imu::Quaternion product_quat = rocket_quat * unit_quat;
-    imu::Vector<3> eulers = product_quat.toEuler();
+//    // test the product of both rotations
+//    imu::Quaternion product_quat = rocket_quat * unit_quat;
+//    imu::Vector<3> eulers = product_quat.toEuler();
 
     // store the euler angles into data
 //    data.eulerx((float)eulers.x());

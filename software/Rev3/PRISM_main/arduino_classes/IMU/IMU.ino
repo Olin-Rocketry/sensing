@@ -28,5 +28,5 @@ void loop()
       
     //  test.read_accelerometer();
     test.rotate();
-    Serial.println(data.accelx());
+//    Serial.println(data.accelx());
 }
