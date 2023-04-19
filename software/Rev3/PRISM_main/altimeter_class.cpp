@@ -6,16 +6,18 @@ Altimeter::Altimeter(Data *data)
     init();
 }
 
-void Altimeter::begin_altimeter()
+void Altimeter::begin_altimeter(bool debugEnable)
 {
     Wire.begin();
-//    Serial.begin(9600);
+    this->debugEnable=debugEnable;
+    if(debugEnable==true)
+    {
+      Serial.println("Altimeter started");
+    }
 }
 
 void Altimeter::init()
 {
-    Serial.println("Adafruit BMP388 / BMP390 test");
-
     if (!bmp.begin_I2C())
     { // hardware I2C mode, can pass in address & alt Wire
         Serial.println("Could not find a valid BMP3 sensor, check wiring!");
@@ -31,26 +33,17 @@ void Altimeter::init()
 
 void Altimeter::read_pressure()
 {
-//    if (!bmp.performReading())
-//    {
-//        Serial.println("Failed to perform reading :(");
-//        return;
-//    }
-//    bmp.performReading();
-//
-//    /*Serial.print("Pressure = ");
-//    Serial.print(bmp.pressure / 100.0);
-//    Serial.println(" hPa");
-//
-//    Serial.println();
-//    delay(1000);*/
+  //This method has been deprecated.
 }
 
 void Altimeter::perform_reading()
 {
   if (!bmp.performReading())
   {
-      Serial.println("Failed to perform reading :(");
+      if(debugEnable==true)
+      {
+        Serial.println("Altimeter reading error");
+      }
       return;
   }
   read_altitude();
@@ -59,21 +52,7 @@ void Altimeter::perform_reading()
 
 void Altimeter::read_altitude()
 {
-//    if (!bmp.performReading())
-//    {
-//        Serial.println("Failed to perform reading :(");
-//        return;
-//    }
-//    bmp.performReading();
-//
-//    /*Serial.print("Approx. Altitude = ");
-//    Serial.print(bmp.readAltitude(SEALEVELPRESSURE_HPA));
-//    Serial.println(" m");*/
-
-//    data->baralt((float)bmp.readAltitude(SEALEVELPRESSURE_HPA));
-    data->baralt(44330.0 * (1.0 - pow((bmp.pressure / 100.0F) / SEALEVELPRESSURE_HPA, 0.1903)));
-
-    
+   data->baralt(44330.0 * (1.0 - pow((bmp.pressure / 100.0F) / SEALEVELPRESSURE_HPA, 0.1903)));
    new_time = micros();
    derived_velocity =(data->baralt() - old_height) / ((new_time-old_time)/1000000);
    old_time = new_time;
@@ -83,27 +62,17 @@ void Altimeter::read_altitude()
 
 void Altimeter::read_temperature()
 {
-//    if (!bmp.performReading())
-//    {
-//        Serial.println("Failed to perform reading :(");
-//        return;
-//    }
-//    bmp.performReading();
-//
-//    /*Serial.print("Temperature = ");
-//    Serial.print(bmp.temperature);
-//    Serial.println(" *C");*/
-
-    data->temp((float)bmp.temperature);
+   data->temp((float)bmp.temperature);
 }
-void Altimeter::EMA(){
-  
-if (EMA_prev==-1){
-  EMA_prev=data->baralt();
-}
-else{
-  EMA_value=data->baralt()*(Smoothing/(1+Sample))+EMA_prev*(1-Smoothing/(1+Sample)); //Exponential moving Average
-}
-data->kfy(EMA_value);
-
+void Altimeter::EMA()
+{ 
+  if (EMA_prev==-1)
+  {
+    EMA_prev=data->baralt();
+  }
+  else
+  {
+    EMA_value=data->baralt()*(Smoothing/(1+Sample))+EMA_prev*(1-Smoothing/(1+Sample)); //Exponential moving Average
+  }
+  data->kfy(EMA_value);
 }

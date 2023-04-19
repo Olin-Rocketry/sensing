@@ -16,6 +16,8 @@ private:
   void bulkencode(float *in, char *out);
   void encoder(char *encoded, float input);
   Led *statusLed;
+
+  bool debugEnable; //Enable debug printing
   
   struct __attribute__((packed)) STRUCT {
     float lat;
@@ -40,7 +42,7 @@ public:
 
   Data(Led *statusLed);
   void init();
-  void SDbegin();
+  void SDbegin(bool debugEnable);
   void encodeAndAdd();
   void encodepacket();
   void addToFrame();

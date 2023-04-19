@@ -13,12 +13,14 @@ private:
   double dt;
   double old_time=0;
   double new_time;
+  
+  bool debugEnable; //Enable debug printing
 
 
 public:
   Imu(Data *data);
   void init();
-  void begin_imu();
+  void begin_imu(bool debugEnable);
   void test_connection();
   imu::Quaternion read_quaternions();
   double integrated_velocity = 0;

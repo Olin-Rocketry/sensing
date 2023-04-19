@@ -10,27 +10,30 @@
 class Altimeter
 {
 
-private:
-  Data *data;
-  Adafruit_BMP3XX bmp;
-  float EMA_prev=-1;
-  int Smoothing=2;
-  int Sample=20;
+  private:
+    Data *data;
+    Adafruit_BMP3XX bmp;
+    float EMA_prev=-1;
+    int Smoothing=2;
+    int Sample=20;
+    
+    double dt;
+    double old_time=0;
+    double new_time;
+    double old_height;
   
-  double dt;
-  double old_time=0;
-  double new_time;
-  double old_height;
-
-public:
-  Altimeter(Data *data);
-  void init();
-  void begin_altimeter();
-  void read_altitude();
-  void read_pressure();
-  void read_temperature();
-  void perform_reading();
-  void EMA();
-  float EMA_value;
-  double derived_velocity = 0;
+    bool debugEnable; //Enable debug printing
+  
+  public:
+    Altimeter(Data *data);
+    void init();
+    void begin_altimeter(bool debugEnable);
+    void read_altitude();
+    void read_pressure();
+    void read_temperature();
+    void perform_reading();
+    void EMA();
+    float EMA_value;
+    double derived_velocity = 0;
+    
 };

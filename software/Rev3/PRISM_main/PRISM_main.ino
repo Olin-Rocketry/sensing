@@ -13,7 +13,7 @@
 
 
 byte IICdata[5] = {0, 0, 0, 0, 0}; // buffer for sensor data
-
+bool debugEnable=false; //Enable debug printing
 short int phase = 1;
 float minimumAltitude;
 float minimumDrogAltitude;
@@ -36,43 +36,17 @@ void setup()
   digitalWrite(DROG, LOW);  //very important!!
   
   Serial.begin(115200);
-
+  if(Serial.available())
+  {
+    debugEnable=true;
+    Serial.println("Entered debug mode");
+    debugPhase();
+  }
   // begin sensors
-  data.SDbegin();
-  imu_test.begin_imu();
-  altimeter.begin_altimeter();
-
-  
-    
+  data.SDbegin(debugEnable);
+  imu_test.begin_imu(debugEnable);
+  altimeter.begin_altimeter(debugEnable);
 }
-
-// void loop()
-// {
-//     imu_test.rotate();
-//     imu_test.read_gyroscope();
-//     altimeter.read_altitude();
-//     altimeter.read_temperature();
-//     data.curtime((float)millis());
-//     data.readGPS();
-//     data.analogTelem();
-//
-////     Serial.print(data.temp());
-//
-//      
-//     statusLed.RGB(0, 100, 0, 0);
-//      statusLed.RGB(1, 100, 0, 0);
-//
-//
-//
-//     kalman_filter.update();
-//
-//     Serial.println(data.kfvz());
-//     
-//     data.encodeAndAdd();
-//
-//
-//     delay(10);
-// }
 
 void loop()
 {
@@ -80,51 +54,33 @@ void loop()
   switch (phase)
   {
 
-  // Prelaunch phase 1: Before keyswitch
-  case 1:
-    Serial.println("Phase 1:");
-    while (phase == 1)
-    {
+    // Prelaunch phase 1: Before keyswitch
+    case 1:
       PreARM();
-    }
-    break;
- 
-  // Prelaunch phase 2: After keyswitch
-  case 2:
-    Serial.println("Phase 2:");
-//    newcalltime = millis();
-    while (phase == 2)
-    {
+      break;
+   
+    // Prelaunch phase 2: After keyswitch
+    case 2:
       PostARM();
-    }
-    break;
-
-  // Lauched but before apogee
-  case 3:
-    Serial.println("Phase 3:");
-    while (phase == 3)
-    {
+      break;
+  
+    // Lauched but before apogee
+    case 3:
       BeforeApogee();
-    }
-    break;
-
-  // After apogee before main deploy
-  case 4:
-    Serial.println("Phase 4:");
-    while (phase == 4)
-    {
+      break;
+  
+    // After apogee before main deploy
+    case 4:
       BeforeMain();
-    }
-    break;
-
-    // After main deploy
-  case 5:
-    Serial.println("Phase 5:");
-    while (phase == 5)
-    {
+      break;
+  
+      // After main deploy
+    case 5:
       AfterMain();
-    }
+      break;
+      
   }
+  delay(10);
 }
 
 
@@ -145,8 +101,8 @@ void PreARM()
 
     minimumAltitude = (average_altitude / number_readings) + 4;// m //CHANGE BEFORE LUANCH
     phase = 2;
+    debugPhase();
   }
-  delay(10);
 }
 
 // phase 2
@@ -161,12 +117,13 @@ void PostARM()
     imu_test.integrated_velocity = 0;
     kalman_filter.begin();
     phase = 3;
+    debugPhase();
   }
   if (analogRead(KEYSWITCH) <= 100){
     // turned off
     phase = 1;
+    debugPhase();
   }
-  delay(10);
 }
 
 // phase 3
@@ -180,9 +137,9 @@ void BeforeApogee()
 //    digitalWrite(DROG, HIGH);
 //    delay(1000);
 //    digitalWrite(DROG, LOW);
-    phase = 4;  
+    phase = 4; 
+    debugPhase(); 
   }
-  delay(10);
 }
 
 // phase 4
@@ -197,8 +154,8 @@ void BeforeMain()
 //    delay(1000);
 //    digitalWrite(MAIN, LOW);
     phase = 5;
+    debugPhase();
   }
-  delay(10);
 }
 
 // phase 5
@@ -206,7 +163,6 @@ void AfterMain(){
   collect_data();
   status_lights();    
   kalman_filter.update();
-  delay(10);    
 }
 
 
@@ -223,11 +179,19 @@ void collect_data (void){
   data.phs(phase);
   data.analogTelem();
   data.encodeAndAdd();
-
 }
 
 // neopixels
 void status_lights (void) {
   statusLed.RGB(0, 100, 0, 0);
   statusLed.RGB(1, 100, 0, 0);
+}
+
+void debugPhase(void)
+{
+  if(debugEnable==true)
+  {
+    Serial.print("Phase ");
+    Serial.println(phase);
+  }
 }

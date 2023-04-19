@@ -13,9 +13,10 @@ void Imu::init()
     test_connection();
 }
 
-void Imu::begin_imu()
+void Imu::begin_imu(bool debugEnable)
 {
     Wire.begin();
+    this->debugEnable=debugEnable;
 }
 
 void Imu::test_connection()

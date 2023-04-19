@@ -24,8 +24,9 @@ void Data::init()
   pinMode(teensyLED, OUTPUT);
 }
 
-void Data::SDbegin()
+void Data::SDbegin(bool debugEnable)
 {
+  this->debugEnable=debugEnable;
   //initialize the SD card for writing
   delay(10);
   Serial.println("Initializing SD card...");
