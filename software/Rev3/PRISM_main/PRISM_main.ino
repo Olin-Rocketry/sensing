@@ -14,6 +14,7 @@
 
 
 
+
 // setup for testing
 byte IICdata[5] = {0, 0, 0, 0, 0}; // buffer for sensor data
 
@@ -31,12 +32,16 @@ Imu imu_test(&data);
 Kalman kalman_filter(&data);
 Altimeter altimeter(&data);
 
+unsigned long loop_t_start = 0;
+unsigned long loop_t_end = 0;
+
 void setup()
 {
   pinMode(Drog,OUTPUT);
   pinMode(Main,OUTPUT);
   digitalWrite(Drog, LOW);  //very important!!
   digitalWrite(Main, LOW);  //very important!!
+  
   
   
 
@@ -52,20 +57,24 @@ void setup()
   kalman_filter.begin();
 
 
+
     
 }
 
  void loop()
  {
+     loop_t_start = micros();
      imu_test.rotate();
      imu_test.read_gyroscope();
-     altimeter.read_altitude();
-     altimeter.read_temperature();
+
+     
+//     altimeter.read_altitude();
+//     altimeter.read_temperature();
      data.curtime((float)millis());
      data.readGPS();
+
      data.analogTelem();
 
-//     Serial.print(data.temp());
 
       
      statusLed.RGB(0, 100, 0, 0);
@@ -75,12 +84,17 @@ void setup()
 
      kalman_filter.update();
 
-     Serial.println(data.kfvz());
-     
+ 
+//     Serial.print(data.volt());
+//     Serial.print("\t");
      data.encodeAndAdd();
 
+      loop_t_end = micros();
 
-     delay(10);
+      if((loop_t_end - loop_t_start) < 10000){
+        delayMicroseconds(10000 - (loop_t_end - loop_t_start));
+      }  
+      Serial.println(millis());
  }
 
 //void loop()

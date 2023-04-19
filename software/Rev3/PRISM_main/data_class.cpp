@@ -17,10 +17,11 @@ void Data::init()
 
 
   //initalize PRISM serial communication
-  Serial5.begin(400000);
+  Serial5.begin(800000);
   PRISM_serial.begin(Serial5);
 
   Serial.println("Serial-5 Opend");
+  pinMode(teensyLED, OUTPUT);
 }
 
 void Data::SDbegin()
@@ -226,11 +227,11 @@ float Data::d() {
   packet[26] = i;
 }
 
-void Data::readGPS()
-{
+void Data::readGPS(){
+//  Serial.println("Checking GPS!");
   if (PRISM_serial.available())
   {
-    Serial.println("GPS Message!");
+//    Serial.println("GPS Message!");
     PRISM_serial.rxObj(gpsStruct);
     lat(gpsStruct.lat);
     lng(gpsStruct.lng);
@@ -250,39 +251,30 @@ void Data::encodepacket()
 }
 void Data::sendSerialData()
 {
-  //  PRISM_serial.sendDatum(encodedFrame[frameSize-1]);
-  // 27 chars: 000000000000000000000000001
-  statusLed->RGB(1, 0, 0, 255);
-  //delay(10);
-  //  PRISM_serial.sendDatum("000000000000000000000000001000000000000000000000000001000000000000000000000000001000000000000000000000000001");
-  //PRISM_serial.sendDatum("test_message");
-  PRISM_serial.sendDatum(packet);
+
+digitalWrite(teensyLED, HIGH);
+//  PRISM_serial.sendDatum("000000000000000000000000001000000000000000000000000001000000000000000000000000001000000000000000000000000001");
+  PRISM_serial.sendDatum(packet, packetSize*4);
 //  Serial.println("Message sent");
-  statusLed->RGB(1, 0, 0, 0);
-  statusLed->RGB(0, 0, 0, 0);
+  digitalWrite(teensyLED, LOW);
 }
 
 void Data::addToFrame()
 {
  
-  sendSerialData();
   if (frameIndex % 10 == 0) { //send every 10th packet to EAST
     sendSerialData();
+    Serial5.flush();
   }
 
   if (frameIndex >= frameSize) { //when the frame is full, write the frame to SD and clear the frame
     writeSDData();
   }
-  //  std::fill_n(encodedFrame[frameIndex], packetSize*4, '0');
+
 
   //add packet to frame
   for (int index = 0; index < 4 * packetSize; index++) {
     encodedFrame[frameIndex][index] = encodedpacket[index];
-    //    Serial.print(frameIndex);
-    //    Serial.print(":");
-    //    Serial.print(encodedFrame[frameIndex][index]);
-    //    Serial.print(":");
-    //    Serial.println(encodedpacket[index]);
   }
   frameIndex++; //increment the location in the frame
 }
