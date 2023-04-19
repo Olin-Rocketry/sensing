@@ -9,6 +9,11 @@ class Imu
 private:
   Data *data;
   Adafruit_BNO055 bno;
+  
+  double dt;
+  double old_time=0;
+  double new_time;
+
 
 public:
   Imu(Data *data);
@@ -16,6 +21,9 @@ public:
   void begin_imu();
   void test_connection();
   imu::Quaternion read_quaternions();
+  double integrated_velocity = 0;
+
+  
 
   /* Rotate the acceleration into the global refernce frame.
    *

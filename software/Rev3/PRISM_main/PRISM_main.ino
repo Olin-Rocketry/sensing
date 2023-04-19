@@ -143,7 +143,7 @@ void PreARM()
       average_altitude += data.baralt();
     }
 
-    minimumAltitude = (average_altitude / number_readings) + 2;// m //CHANGE BEFORE LUANCH
+    minimumAltitude = (average_altitude / number_readings) + 4;// m //CHANGE BEFORE LUANCH
     phase = 2;
   }
   delay(10);
@@ -157,6 +157,8 @@ void PostARM()
   
   if (data.baralt() > minimumAltitude){
     // launch
+    altimeter.derived_velocity = 0;
+    imu_test.integrated_velocity = 0;
     kalman_filter.begin();
     phase = 3;
   }
@@ -173,7 +175,7 @@ void BeforeApogee()
   collect_data();
   status_lights();
   kalman_filter.update();
-  if (data.kfvz() < -0.3) {
+  if (data.kfvz() < -0.5) {
     // deploy drog
 //    digitalWrite(DROG, HIGH);
 //    delay(1000);

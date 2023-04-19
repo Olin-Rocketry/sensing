@@ -72,6 +72,13 @@ void Altimeter::read_altitude()
 
 //    data->baralt((float)bmp.readAltitude(SEALEVELPRESSURE_HPA));
     data->baralt(44330.0 * (1.0 - pow((bmp.pressure / 100.0F) / SEALEVELPRESSURE_HPA, 0.1903)));
+
+    
+   new_time = micros();
+   derived_velocity =(data->baralt() - old_height) / ((new_time-old_time)/1000000);
+   old_time = new_time;
+   old_height = data->baralt();
+   data->kfvx(derived_velocity);
 }
 
 void Altimeter::read_temperature()
@@ -97,5 +104,6 @@ if (EMA_prev==-1){
 else{
   EMA_value=data->baralt()*(Smoothing/(1+Sample))+EMA_prev*(1-Smoothing/(1+Sample)); //Exponential moving Average
 }
+data->kfy(EMA_value);
 
 }

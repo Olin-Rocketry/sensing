@@ -16,6 +16,11 @@ private:
   float EMA_prev=-1;
   int Smoothing=2;
   int Sample=20;
+  
+  double dt;
+  double old_time=0;
+  double new_time;
+  double old_height;
 
 public:
   Altimeter(Data *data);
@@ -27,4 +32,5 @@ public:
   void perform_reading();
   void EMA();
   float EMA_value;
+  double derived_velocity = 0;
 };
