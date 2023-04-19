@@ -5,221 +5,227 @@
 #include "led_class.h"
 #include <Arduino.h>
 
+// pinmodes
+#define KEYSWITCH A12
+#define MAIN 24
+#define DROG 25
 
-//pinmodes
-#define Main 24
-#define Drog 25
-
-
-
-
-
-
-// setup for testing
 byte IICdata[5] = {0, 0, 0, 0, 0}; // buffer for sensor data
 
 short int phase = 1;
 float minimumAltitude;
 float minimumDrogAltitude;
-float minimumMainAltitude;
+float minimumMainAltitude; // set on launch day
 
-
-
-
+// setup sensors
 Led statusLed(34);
 Data data(&statusLed);
 Imu imu_test(&data);
 Kalman kalman_filter(&data);
 Altimeter altimeter(&data);
 
-unsigned long loop_t_start = 0;
-unsigned long loop_t_end = 0;
-
 void setup()
 {
-  pinMode(Drog,OUTPUT);
-  pinMode(Main,OUTPUT);
-  digitalWrite(Drog, LOW);  //very important!!
-  digitalWrite(Main, LOW);  //very important!!
-  
-  
-  
-
-  
+  pinMode(DROG, OUTPUT);
+  pinMode(MAIN, OUTPUT);
+  digitalWrite(DROG, LOW); // very important!!
+  digitalWrite(DROG, LOW); // very important!!
 
   Serial.begin(115200);
-  
+
+  // begin sensors
   data.SDbegin();
   imu_test.begin_imu();
-  
   altimeter.begin_altimeter();
 
   kalman_filter.begin();
-
-
-
-    
 }
 
- void loop()
- {
-     loop_t_start = micros();
-     imu_test.rotate();
-     imu_test.read_gyroscope();
+// void loop()
+// {
+//     imu_test.rotate();
+//     imu_test.read_gyroscope();
+//     altimeter.read_altitude();
+//     altimeter.read_temperature();
+//     data.curtime((float)millis());
+//     data.readGPS();
+//     data.analogTelem();
+//
+////     Serial.print(data.temp());
+//
+//
+//     statusLed.RGB(0, 100, 0, 0);
+//      statusLed.RGB(1, 100, 0, 0);
+//
+//
+//
+//     kalman_filter.update();
+//
+//     Serial.println(data.kfvz());
+//
+//     data.encodeAndAdd();
+//
+//
+//     delay(10);
+// }
 
-     altimeter.perform_reading();
-//     altimeter.read_altitude(); //This code was integrated into the altimeter class
-//     altimeter.read_temperature(); //This code was integrated into the altimeter class
-     data.curtime((float)millis());
-     data.readGPS();
+void loop()
+{
+  // Chooses loop to run through depending on what the phase is set to
+  switch (phase)
+  {
 
-     data.analogTelem();
+  // Prelaunch phase 1: Before keyswitch
+  case 1:
+    Serial.println("Phase 1:");
+    while (phase == 1)
+    {
+      PreARM();
+    }
+    break;
 
+  // Prelaunch phase 2: After keyswitch
+  case 2:
+    Serial.println("Phase 2:");
+    //    newcalltime = millis();
+    while (phase == 2)
+    {
+      PostARM();
+    }
+    break;
 
-      
-     statusLed.RGB(0, 100, 0, 0);
-      statusLed.RGB(1, 100, 0, 0);
+  // Lauched but before apogee
+  case 3:
+    Serial.println("Phase 3:");
+    while (phase == 3)
+    {
+      BeforeApogee();
+    }
+    break;
 
+  // After apogee before main deploy
+  case 4:
+    Serial.println("Phase 4:");
+    while (phase == 4)
+    {
+      BeforeMain();
+    }
+    break;
 
+    // After main deploy
+  case 5:
+    Serial.println("Phase 5:");
+    while (phase == 5)
+    {
+      AfterMain();
+    }
+  }
+}
 
-     kalman_filter.update();
+// launch phase functions
 
- 
-//     Serial.print(data.volt());
-//     Serial.print("\t");
-     data.encodeAndAdd();
+// phase 1
+void PreARM()
+{
+  collect_data();
 
-      loop_t_end = micros();
+  // when keyswitch is turned, enter PostARM phase
+  if (analogRead(KEYSWITCH) >= 1000)
+  {
+    int average_altitude = 0;
+    int number_readings = 5;
+    for (int i = 0; i < number_readings; i++)
+    {
+      average_altitude += data.baralt();
+    }
 
-      if((loop_t_end - loop_t_start) < 10000){
-        delayMicroseconds(10000 - (loop_t_end - loop_t_start));
-      }  
-      Serial.println(millis());
- }
+    minimumAltitude = (average_altitude / number_readings) + 2; // m //CHANGE BEFORE LUANCH
+    phase = 2;
+  }
+  delay(100);
+}
 
-//void loop()
-//{
-//  // Chooses loop to run through depending on what the phase is set to
-//  switch (phase)
-//  {
-//
-//  // Prelaunch phase 1: Before keyswitch
-//  case 1:
-//    Serial.println("Phase 1:");
-//    while (phase == 1)
-//    {
-//      PreARM();
-//    }
-//    break;
-// 
-//  // Prelaunch phase 2: After keyswitch
-//  case 2:
-//    Serial.println("Phase 2:");
-//    newcalltime = millis();
-//    while (phase == 2)
-//    {
-//      PostARM();
-//    }
-//    break;
-//
-//  // Lauched but before apogee
-//  case 3:
-//    Serial.println("Phase 3:");
-//    while (phase == 3)
-//    {
-//      BeforeApogee();
-//    }
-//    break;
-//
-//  // After apogee before main deploy
-//  case 4:
-//    Serial.println("Phase 4:");
-//    while (phase == 4)
-//    {
-//      BeforeMain();
-//    }
-//    break;
-//
-//    // After main deploy
-//  case 5:
-//    Serial.println("Phase 5:");
-//    while (phase == 5)
-//    {
-//      AfterMain();
-//    }
-//  }
-//}
-//
-//// launch phase functions
-//
-//// phase 1
-//void PreARM()
-//{
-//  data.readGPS();
-//  altimeter.read_altitude();
-//
-//  // when keyswitch is turned, enter PostARM phase
-//  if (analogRead(A12) >= 1000)
-//  {
-//    int averageAltitude=0;
-//    int number_readings=5;
-//    for (int i=0; i<number_readings; i++){
-//      fetchAltimeterData();
-//      sumAltitude=altitude+sumAltitude;
-//      Serial.println(altitude);
-//    }
-//
-//    minimumAltitude=sumAltitude/number_readings+2;// m //CHANGE BEFORE LUANCH
-//    phase = 2;
-//  }
-//}
-//
-//// phase 2
-//void PostARM()
-//{
-//  if (data.baroalt()> minimumAltitude){
-//    // launch
-//    phase = 3;
-//  }
-//  if (analogeRead(A12)<=20{
-//    // turned off
-//    phase = 1;
-//  }
-//}
-//
-//// phase 3
-//void BeforeApogee()
-//{ 
-//   if (data.baroalt()> minimumDrogAltitude){
-//    // after apogee
-//    phase = 4;
-//  }
-//  
-//}
-//
-//// phase 4
-//void BeforeMain()
-//{ 
-//   if (data.baroalt() < minimumMainAltitude){
-//    // deploy main parachute
-//    // TODO: change A20 to actual pin number
-//    digitalWrite(A20, HIGH);
-//    delay(1000);
-//    digitalWrite(A20, LOW);
-//
-//    phase = 5;
-//    }
-//    
-//}
-//
-//// phase 5
-// void AfterMain(){
-//          
-//}
-//
-//// collect data function
-//void DataCollection{
-//  // contains all sensor callings
-//  altimeter.read_altitude();
-//  
-//}
+// phase 2
+void PostARM()
+{
+  collect_data();
+  status_lights();
+
+  if (data.baralt() > minimumAltitude)
+  {
+    // launch
+    phase = 3;
+  }
+  if (analogRead(KEYSWITCH) <= 20)
+  {
+    // turned off
+    phase = 1;
+  }
+  delay(10);
+}
+
+// phase 3
+void BeforeApogee()
+{
+  collect_data();
+  status_lights();
+  kalman_filter.update();
+  if (data.kfvz() < -0.3)
+  {
+    // deploy drog
+    digitalWrite(DROG, HIGH);
+    delay(1000);
+    digitalWrite(DROG, LOW);
+    phase = 4;
+  }
+  delay(10);
+}
+
+// phase 4
+void BeforeMain()
+{
+  collect_data();
+  status_lights();
+  kalman_filter.update();
+  if (data.baralt() < minimumMainAltitude)
+  {
+    // deploy main parachute
+    digitalWrite(MAIN, HIGH);
+    delay(1000);
+    digitalWrite(MAIN, LOW);
+    phase = 5;
+  }
+  delay(10);
+}
+
+// phase 5
+void AfterMain()
+{
+  collect_data();
+  status_lights();
+  kalman_filter.update();
+  delay(10);
+}
+
+// helper functions
+
+// collect data function
+void collect_data(void)
+{
+  // contains all sensor callings
+  imu_test.rotate();
+  imu_test.read_gyroscope();
+  altimeter.read_altitude();
+  altimeter.read_temperature();
+  data.curtime((float)millis());
+  data.readGPS();
+  data.analogTelem();
+  data.encodeAndAdd();
+}
+
+// neopixels
+void status_lights(void)
+{
+  statusLed.RGB(0, 100, 0, 0);
+  statusLed.RGB(1, 100, 0, 0);
+}

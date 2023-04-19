@@ -261,7 +261,7 @@ digitalWrite(teensyLED, HIGH);
 void Data::addToFrame()
 {
  
-  if (frameIndex % 10 == 0) { //send every 10th packet to EAST
+  if (frameIndex % 5 == 0) { //send every 10th packet to EAST
     sendSerialData();
     Serial5.flush();
   }
@@ -313,7 +313,7 @@ void Data::writeSDData()
 void Data::analogTelem() {
   
   //=================battery voltage=================
-  float callibration_slope = 817/4.14; //measure the raw analog and voltage to find slope
+  float callibration_slope = 832/3.93; //measure the raw analog and voltage to find slope
   volt((float)analogRead(A8)/callibration_slope); //add to data class
 
   //==============arming and continuity==============
