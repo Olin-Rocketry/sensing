@@ -129,7 +129,6 @@ void loop()
 
 
 // launch phase functions
-
 // phase 1
 void PreARM()
 {
@@ -189,7 +188,7 @@ void BeforeMain()
   collect_data();
   status_lights();
   kalman_filter.update();
-  if (data.baralt() < minimumMainAltitude){
+  if (data.baralt() < (minimumMainAltitude + minimumAltitude)){
     // deploy main parachute
 //    digitalWrite(MAIN, HIGH);
 //    delay(1000);
@@ -215,8 +214,6 @@ void collect_data (void){
   // contains all sensor callings
   imu_test.rotate();
   imu_test.read_gyroscope();
-//  altimeter.read_altitude();
-//  altimeter.read_temperature();
   altimeter.perform_reading();
   data.curtime((float)millis());
   data.readGPS();
