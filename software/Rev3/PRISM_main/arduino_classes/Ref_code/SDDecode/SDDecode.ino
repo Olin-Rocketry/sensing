@@ -34,7 +34,7 @@ void setup() {
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
-  delay(10);
+  delay(100);
   Serial.write(64);
 
 
@@ -62,7 +62,7 @@ void setup() {
     }
   }
 //  Serial.println(fileName);
-  myFile = SD.open("flightLog002.txt");
+  myFile = SD.open("flightLog097.txt");
   int counter=0;
   int dataPointCount=27;
   char buf[dataPointCount*4];
@@ -73,7 +73,7 @@ void setup() {
     // read from the file until there's nothing else in it:
     
     while (myFile.available()) {
-      delay(100);
+      delay(5);
       myFile.readBytes(buf,dataPointCount*4);
       counter++;
 //      Serial.print("Line ");
@@ -93,6 +93,8 @@ void setup() {
       }
       myFile.readBytes(buf,2);
 //      Serial.println();
+Serial.print(",");
+Serial.print("50");
       Serial.write(10);
     }
     // close the file:

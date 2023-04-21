@@ -44,6 +44,9 @@ void Altimeter::perform_reading()
       {
         Serial.println("Altimeter reading error");
       }
+      //need to add some sort of fix to prevent faulty reading from stopping the kalman filter
+//      data->baralt(data->baralt());
+//      data->temp(data->temp());
       return;
   }
   read_altitude();
@@ -53,11 +56,11 @@ void Altimeter::perform_reading()
 void Altimeter::read_altitude()
 {
    data->baralt(44330.0 * (1.0 - pow((bmp.pressure / 100.0F) / SEALEVELPRESSURE_HPA, 0.1903)));
-   new_time = micros();
-   derived_velocity =(data->baralt() - old_height) / ((new_time-old_time)/1000000);
-   old_time = new_time;
-   old_height = data->baralt();
-   data->kfvx(derived_velocity);
+//   new_time = micros();
+//   derived_velocity =(data->baralt() - old_height) / ((new_time-old_time)/1000000);
+//   old_time = new_time;
+//   old_height = data->baralt();
+//   data->kfvx(derived_velocity);
 }
 
 void Altimeter::read_temperature()

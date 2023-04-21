@@ -31,11 +31,13 @@ void Data::SDbegin(bool debugEnable)
   dprint("Data class started\n");
   
   //find the next flight log number
-  for (uint8_t i = 0; i < 100; i++)
+  for (uint8_t i = 0; i < 1000; i++)
   {
-    fileName[9] = i / 100 + '0';
-    fileName[10] = i / 10 + '0';
-    fileName[11] = i % 10 + '0';
+    fileName[9] = i / 1000 + '0';
+    fileName[10] = i / 100 + '0';
+    fileName[11] = i / 10 + '0';
+    fileName[12] = i % 10 + '0';
+    
     if (!SD.exists(fileName))
     {
       break;
@@ -246,6 +248,7 @@ void Data::addToFrame()
  
   if (frameIndex % 5 == 0) { //send every 5th packet to EAST
     sendSerialData();
+    Serial5.flush();
     if(debugEnable==true)
     {
       for(int i=0; i<packetSize; i++)
@@ -254,7 +257,7 @@ void Data::addToFrame()
       }
       Serial.print("\n");
     }
-    Serial5.flush();
+    
   }
 
   if (frameIndex >= frameSize) { //when the frame is full, write the frame to SD and clear the frame
@@ -306,8 +309,11 @@ void Data::writeSDData()
 void Data::analogTelem() {
   
   //=================battery voltage=================
-  float callibration_slope = 832/3.93; //measure the raw analog and voltage to find slope
-  volt((float)analogRead(A8)/callibration_slope); //add to data class
+
+
+  float raw_analog = analogRead(A8);
+  
+  volt(map(raw_analog, 815, 856, 3.65, 4.18)); //add to data class
 
   //==============arming and continuity==============
   int armSignal = analogRead(A12);

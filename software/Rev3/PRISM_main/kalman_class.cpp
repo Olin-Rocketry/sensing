@@ -6,16 +6,42 @@ Kalman::Kalman(Data *data) {
 }
 
 void Kalman::init() {
- 
+
+
+  //works well
   Q[0][0] = 0.8; Q[0][1] = 0; Q[0][2] = 0;
   Q[1][0] = 0; Q[1][1] = 0.4; Q[1][2] = 0;
   Q[2][0] = 0; Q[2][1] = 0; Q[2][2] = 0.2;
 
-  H[0][0] = 1; H[0][1] = 0; H[0][2] = 0;
-  H[1][0] = 0; H[1][1] = 0; H[1][2] = 1;
 
   R[0][0] = 3; R[1][0] = 0;
   R[1][0] = 0;  R[1][1] = 0.1;
+
+
+// Tune for heavy bias towards IMU (low noise but higher error, slow to respond).
+//  Q[0][0] = 0.2; Q[0][1] = 0; Q[0][2] = 0;
+//  Q[1][0] = 0; Q[1][1] = 0.01; Q[1][2] = 0;
+//  Q[2][0] = 0; Q[2][1] = 0; Q[2][2] = 0.001;
+//
+//
+//  R[0][0] = 10; R[1][0] = 0;
+//  R[1][0] = 0;  R[1][1] = 0.01;
+
+// Tune for heavy bias towards Alt 
+//  Q[0][0] = 4; Q[0][1] = 0; Q[0][2] = 0;
+//  Q[1][0] = 0; Q[1][1] = 2; Q[1][2] = 0;
+//  Q[2][0] = 0; Q[2][1] = 0; Q[2][2] = 1;
+//
+//
+//  R[0][0] = 1; R[1][0] = 0;
+//  R[1][0] = 0;  R[1][1] = 0.5;
+
+
+
+ 
+
+  H[0][0] = 1; H[0][1] = 0; H[0][2] = 0;
+  H[1][0] = 0; H[1][1] = 0; H[1][2] = 1;
 
   current_p_cov[0][0] = 3; current_p_cov[0][1] = 0; current_p_cov[0][2] = 0;
   current_p_cov[1][0] = 0; current_p_cov[1][1] = 2; current_p_cov[1][2] = 0;
@@ -26,7 +52,7 @@ void Kalman::begin(){
   old_time = millis();
 
   current_state[0] = data->baralt(); // alt
-  current_state[1] = 2;        // vel    MUST CHANGE BEFORE LUANCH!!!!! : expected launch velocity
+  current_state[1] = 0;        // vel    MUST CHANGE BEFORE LUANCH!!!!! : expected launch velocity
   current_state[2] = data->accelz();  //acceleration
 }
 
@@ -47,8 +73,8 @@ void Kalman::update() {
   A[2][0] = 0; A[2][1] = 0; A[2][2] = 1;
 
 
-  Serial.print("dt: \t");
-  Serial.println(dt, 4);
+//  Serial.print("dt: \t");
+//  Serial.println(dt, 4);
 
 
   measurement[0] = data->baralt();
@@ -77,8 +103,8 @@ void Kalman::update() {
   data->kfvz(current_state[1]);
 
 
-  Serial.print("V: \t");
-  Serial.println(data->kfvz(), 4);
+//  Serial.print("V: \t");
+//  Serial.println(data->kfvz(), 4);
 
 }
 

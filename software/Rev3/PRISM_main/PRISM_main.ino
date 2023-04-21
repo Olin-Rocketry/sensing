@@ -8,8 +8,8 @@
 
 // pinmodes
 #define KEYSWITCH A12
-#define MAIN 24
-#define DROG 25
+#define MAIN 24  //PYRO 1 (top)
+#define DROG 25  //PYRO 2 (bottom)
 
 
 byte IICdata[5] = {0, 0, 0, 0, 0}; // buffer for sensor data
@@ -20,6 +20,8 @@ unsigned long loop_t_end = 0;
 float minimumAltitude;
 float minimumDrogAltitude;
 float minimumMainAltitude = 5; // set on launch day
+float trigger_offset = 5; // m set on launch day
+float drog_velocity_trigger = -1; //m/s set on launch day
 
 
 // setup sensors
@@ -32,10 +34,15 @@ Altimeter altimeter(&data);
 
 void setup()
 {
+  
   pinMode(DROG,OUTPUT);
   pinMode(MAIN,OUTPUT);
   digitalWrite(DROG, LOW);  //very important!!
   digitalWrite(DROG, LOW);  //very important!!
+  while(analogRead(KEYSWITCH) >= 100){
+    tone(33, 800, 100);
+    delay(200);
+  };
   
   Serial.begin(115200);
   Serial.println("To enter debug mode, send any character over Serial; proceeding without debug mode in:");
@@ -63,6 +70,9 @@ void setup()
   data.SDbegin(debugEnable);
   imu_test.begin_imu(debugEnable);
   altimeter.begin_altimeter(debugEnable);
+
+
+  data.kfx(drog_velocity_trigger);
 }
 
 void loop()
@@ -117,13 +127,17 @@ void PreARM()
   // when keyswitch is turned, enter PostARM phase
   if (analogRead(KEYSWITCH) >= 100)
   {
+    tone(33, 600, 1000);
+    kalman_filter.begin();
     int average_altitude = 0;
     int number_readings = 5;
+
+    //take 5 reading and compute the averadge, then use this to set the launch detection altitude
     for (int i = 0; i < number_readings; i++){
       average_altitude += data.baralt();
     }
-
-    minimumAltitude = (average_altitude / number_readings) + 4;// m //CHANGE BEFORE LUANCH
+    minimumAltitude = (average_altitude / number_readings) + trigger_offset;
+    data.kfy(minimumAltitude);
     phase = 2;
     debugPhase();
   }
@@ -133,13 +147,19 @@ void PreARM()
 void PostARM()
 {
   collect_data();
+  kalman_filter.update();
+
+
+  
   status_lights();
+
+
+  
   
   if (data.baralt() > minimumAltitude){
     // launch
-    altimeter.derived_velocity = 0;
-    imu_test.integrated_velocity = 0;
-    kalman_filter.begin();
+
+    
     phase = 3;
     debugPhase();
   }
@@ -156,7 +176,7 @@ void BeforeApogee()
   collect_data();
   status_lights();
   kalman_filter.update();
-  if (data.kfvz() < -0.5) {
+  if (data.kfvz() < drog_velocity_trigger) {
     // deploy drog
 //    digitalWrite(DROG, HIGH);
 //    delay(1000);
