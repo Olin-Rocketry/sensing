@@ -30,14 +30,13 @@ void Data::SDbegin(bool debugEnable)
 
   dprint("Data class started\n");
   
-  //find the next flight log number
+ //find the next flight log number
   for (uint8_t i = 0; i < 1000; i++)
   {
     fileName[9] = i / 1000 + '0';
     fileName[10] = i / 100 + '0';
     fileName[11] = i / 10 + '0';
     fileName[12] = i % 10 + '0';
-    
     if (!SD.exists(fileName))
     {
       break;

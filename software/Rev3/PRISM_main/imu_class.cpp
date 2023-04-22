@@ -60,10 +60,7 @@ void Imu::rotate()
     data->accely((float)rotated_accel.y());
     data->accelz((float)rotated_accel.z());
 
-    new_time = micros();
-    integrated_velocity += data->accelz()*((new_time-old_time)/1000000);
-    old_time = new_time;
-    data->kfvy((integrated_velocity));
+
 
     // save eulers
     imu::Vector<3> eulers = read_euler();

@@ -17,10 +17,7 @@ class Altimeter
     int Smoothing=2;
     int Sample=20;
     
-    double dt;
-    double old_time=0;
-    double new_time;
-    double old_height;
+
   
     bool debugEnable; //Enable debug printing
   

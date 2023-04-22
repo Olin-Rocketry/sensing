@@ -19,9 +19,9 @@ unsigned long loop_t_start = 0;
 unsigned long loop_t_end = 0;
 float minimumAltitude;
 float minimumDrogAltitude;
-float minimumMainAltitude = 5; // set on launch day
-float trigger_offset = 5; // m set on launch day
-float drog_velocity_trigger = -1; //m/s set on launch day
+float minimumMainAltitude = 152; // set on launch day (main deploy)
+float trigger_offset = 30; // m set on launch day  (launch detect)
+float drog_velocity_trigger = -3; //m/s set on launch day (apogee detect)
 
 
 // setup sensors
@@ -129,12 +129,14 @@ void PreARM()
   {
     tone(33, 600, 1000);
     kalman_filter.begin();
-    int average_altitude = 0;
+    float average_altitude = 0;
     int number_readings = 5;
 
     //take 5 reading and compute the averadge, then use this to set the launch detection altitude
     for (int i = 0; i < number_readings; i++){
       average_altitude += data.baralt();
+      altimeter.perform_reading();
+      
     }
     minimumAltitude = (average_altitude / number_readings) + trigger_offset;
     data.kfy(minimumAltitude);
@@ -178,9 +180,9 @@ void BeforeApogee()
   kalman_filter.update();
   if (data.kfvz() < drog_velocity_trigger) {
     // deploy drog
-//    digitalWrite(DROG, HIGH);
-//    delay(1000);
-//    digitalWrite(DROG, LOW);
+    digitalWrite(DROG, HIGH);
+    delay(1000);
+    digitalWrite(DROG, LOW);
     phase = 4; 
     debugPhase(); 
   }
@@ -194,9 +196,9 @@ void BeforeMain()
   kalman_filter.update();
   if (data.baralt() < (minimumMainAltitude + minimumAltitude)){
     // deploy main parachute
-//    digitalWrite(MAIN, HIGH);
-//    delay(1000);
-//    digitalWrite(MAIN, LOW);
+    digitalWrite(MAIN, HIGH);
+    delay(1000);
+    digitalWrite(MAIN, LOW);
     phase = 5;
     debugPhase();
   }

@@ -23,7 +23,7 @@ public:
   void begin_imu(bool debugEnable);
   void test_connection();
   imu::Quaternion read_quaternions();
-  double integrated_velocity = 0;
+
 
   
   void perform_reading(); // call rotate() and read_gyroscope()
