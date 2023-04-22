@@ -8,8 +8,8 @@
 
 // pinmodes
 #define KEYSWITCH A12
-#define MAIN 24  //PYRO 1 (top)
-#define DROG 25  //PYRO 2 (bottom)
+#define MAIN 25  //PYRO 2 (bottom)
+#define DROG 24  //PYRO 1 (top)
 
 
 byte IICdata[5] = {0, 0, 0, 0, 0}; // buffer for sensor data

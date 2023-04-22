@@ -63,11 +63,12 @@ void setup() {
     }
   }
 //  Serial.println(fileName);
-  myFile = SD.open(fileName);
+  myFile = SD.open("flightLog0010.txt");
   int counter=0;
   int dataPointCount=27;
   char buf[dataPointCount*4];
-  myFile.readBytesUntil('\n',buf,dataPointCount*4);
+  char header[273];
+  myFile.readBytesUntil('\n',header,273);
   if (myFile) {
 //    Serial.println("File Open");
 
