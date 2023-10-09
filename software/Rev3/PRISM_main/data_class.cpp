@@ -214,6 +214,15 @@ float Data::d() {
 }        void Data::d(float i) {
   packet[26] = i;
 }
+
+// implementing new functions for 28th byte
+float Data::diagmsg() {
+  return packet[27];
+}
+void Data::diagmsg(float i) {
+  packet[27] = i;
+}
+
 void Data::readGPS(){
   if (PRISM_serial.available())
   {

@@ -82,6 +82,8 @@ public:
   float kfdrag();
   float curtime();
 
+  // defining new diagnostic messaging method
+  float diagmsg();
   
   void accelx(float i);
   void accely(float i);
@@ -110,4 +112,5 @@ public:
   void kfvz(float i);
   void kfdrag(float i);
   void curtime(float i);
+  void diagmsg(float i);
 };

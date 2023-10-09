@@ -21,10 +21,10 @@ void Altimeter::init()
     if (!bmp.begin_I2C())
     { // hardware I2C mode, can pass in address & alt Wire
         Serial.println("Could not find a valid BMP3 sensor, check wiring!");
-        while (1)
-            ;
+        //this->data->diagmsg(data->diagmsg()
+        while (1);
     }
-
+    
     bmp.setTemperatureOversampling(BMP3_NO_OVERSAMPLING);
     bmp.setPressureOversampling(BMP3_NO_OVERSAMPLING);
     bmp.setIIRFilterCoeff(BMP3_IIR_FILTER_DISABLE);
@@ -44,9 +44,14 @@ void Altimeter::perform_reading()
       {
         Serial.println("Altimeter reading error");
       }
-      //need to add some sort of fix to prevent faulty reading from stopping the kalman filter
-//      data->baralt(data->baralt());
-//      data->temp(data->temp());
+      // need to add some sort of fix to prevent faulty reading from stopping the kalman filter
+      // data->baralt(data->baralt());
+      // data->temp(data->temp());
+
+      // calling diagmsg() setter and getter methods to update altimeter error code
+      float currentval = data->diagmsg();
+      data->diagmsg(currentval +  pow(2,1));
+
       return;
   }
   read_altitude();
