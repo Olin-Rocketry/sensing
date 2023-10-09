@@ -22,6 +22,7 @@ private:
   struct __attribute__((packed)) STRUCT {
     float lat;
     float lng;
+    float diagmsg;
     float gpsalt;
   } gpsStruct;
   File dataFile;

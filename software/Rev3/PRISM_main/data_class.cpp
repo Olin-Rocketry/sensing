@@ -230,6 +230,7 @@ void Data::readGPS(){
     lat(gpsStruct.lat);
     lng(gpsStruct.lng);
     gpsalt(gpsStruct.gpsalt);
+    diagmsg(diagmsg() + gpsStruct.diagmsg);
   }
 }
 
