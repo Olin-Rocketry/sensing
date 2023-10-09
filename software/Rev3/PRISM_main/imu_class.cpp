@@ -28,6 +28,8 @@ void Imu::test_connection()
     if (!bno.begin())
     {
         Serial.print("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
+        float currentval = data->diagmsg();
+        data->diagmsg(currentval +  pow(2,0));
         while (1);
     }
     bno.setExtCrystalUse(true);
@@ -42,6 +44,9 @@ imu::Quaternion Imu::read_quaternions()
 void Imu::perform_reading() {
   rotate();
   read_gyroscope();
+
+  
+
 }
 
 void Imu::rotate()
