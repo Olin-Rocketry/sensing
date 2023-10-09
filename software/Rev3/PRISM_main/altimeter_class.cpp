@@ -21,7 +21,10 @@ void Altimeter::init()
     if (!bmp.begin_I2C())
     { // hardware I2C mode, can pass in address & alt Wire
         Serial.println("Could not find a valid BMP3 sensor, check wiring!");
-        //this->data->diagmsg(data->diagmsg()
+
+        //sets 8th bit to 1 altimeter isn't setup
+        data->diagmsg(data->diagmsg() + pow(2,1);
+        
         while (1);
     }
     
@@ -49,8 +52,7 @@ void Altimeter::perform_reading()
       // data->temp(data->temp());
 
       // calling diagmsg() setter and getter methods to update altimeter error code
-      float currentval = data->diagmsg();
-      data->diagmsg(currentval +  pow(2,1));
+      data->diagmsg(data->diagmsg() +  pow(2,1));
 
       return;
   }
