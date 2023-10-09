@@ -55,6 +55,7 @@ void Gps::read_data()
         statusLed->RGB(1, 0, 255, 0);
         gpsStruct.lng = gps.location.lng();
         gpsStruct.lat = gps.location.lat();
+        gpsStruct.diagmsg = 0;
         radio->EAST_serial.sendDatum(gpsStruct);
         Serial8.flush();
 
