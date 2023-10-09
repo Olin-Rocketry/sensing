@@ -12,7 +12,7 @@
 class Radio {
   private:
     RH_RF95 rf95;
-    const static int packetSize = 27;
+    const static int packetSize = 28;
     float packet[packetSize];
     char encodedPacket[packetSize*4];
     union floatunion_t;
