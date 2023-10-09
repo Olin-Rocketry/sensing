@@ -27,11 +27,11 @@ private:
   File dataFile;
   int teensyLED = 13;
 
-  String header="Time\t\t\tAccel X\t\tAccel Y\t\tAccel Z\t\tGyro X\t\tGyro Y\t\tGyro Z\t\tTemp\t\tEuler X\t\tEuler Y\t\tEuler Z\t\tBaro Alt\tLongitude\tLatitude\tGPS Alt\t\tPhase\t\tContinuity\tVoltage\t\tLink Strength\tKF x\t\tKF y\t\tKF z\t\tKF Vx\t\tKF Vy\t\tKF Vz\t\tKF drag\t\tN/A\t\t";
+  String header="Time\t\t\tAccel X\t\tAccel Y\t\tAccel Z\t\tGyro X\t\tGyro Y\t\tGyro Z\t\tTemp\t\tEuler X\t\tEuler Y\t\tEuler Z\t\tBaro Alt\tLongitude\tLatitude\tGPS Alt\t\tPhase\t\tContinuity\tVoltage\t\tLink Strength\tKF x\t\tKF y\t\tKF z\t\tKF Vx\t\tKF Vy\t\tKF Vz\t\tKF drag\t\tN/A\t\tDiagnostic Message";
 
 public:
 
-  const static int packetSize = 27; //each packet is made up of N floats 27 ------------------------------------------
+  const static int packetSize = 28; //each packet is made up of N floats 28 ------------------------------------------
   const static int frameSize = 500; //each frame is made up of N packets
   int frameIndex = 0; //current location in the frame
   float packet[packetSize];  //current un-encoded packet
