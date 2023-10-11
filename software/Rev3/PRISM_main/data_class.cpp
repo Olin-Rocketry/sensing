@@ -16,6 +16,9 @@ void Data::init()
   PRISM_serial.begin(Serial5);
 
   pinMode(teensyLED, OUTPUT);
+
+  float currentval = diagmsg();
+  diagmsg(currentval +  pow(2,8));
 }
 
 void Data::SDbegin(bool debugEnable)

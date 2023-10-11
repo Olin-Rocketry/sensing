@@ -68,8 +68,6 @@ void setup()
   }
   // begin sensors
   data.SDbegin(debugEnable);
-  float currentval = data.diagmsg();
-  data.diagmsg(currentval +  pow(2,8));
   imu_test.begin_imu(debugEnable);
   altimeter.begin_altimeter(debugEnable);
 
