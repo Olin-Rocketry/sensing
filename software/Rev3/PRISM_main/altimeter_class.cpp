@@ -23,7 +23,7 @@ void Altimeter::init()
         Serial.println("Could not find a valid BMP3 sensor, check wiring!");
 
         //sets 8th bit to 1 altimeter isn't setup
-        data->diagmsg(data->diagmsg() + pow(2,1);
+        data->diagmsg(data->diagmsg() + pow(2,1));
         
         while (1);
     }
