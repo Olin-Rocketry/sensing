@@ -21,35 +21,39 @@ void Data::init()
   diagmsg(currentval +  pow(2,8));
 }
 
-void Data::SDbegin(bool debugEnable)
+void Data::SDbegin(bool debugEnable, bool noSD)
 {
   this->debugEnable=debugEnable;
-  // see if the card is present and can be initialized:
-  if (!SD.begin(BUILTIN_SDCARD))
-  {
-    Serial.println("SD Card failed, or not present");
-    while (1) { }
-  }
-
-  dprint("Data class started\n");
-  
- //find the next flight log number
-  for (uint8_t i = 0; i < 1000; i++)
-  {
-    fileName[9] = i / 1000 + '0';
-    fileName[10] = i / 100 + '0';
-    fileName[11] = i / 10 + '0';
-    fileName[12] = i % 10 + '0';
-    if (!SD.exists(fileName))
+  this->noSD = noSD;
+  // SD required
+  if (!noSD) {
+    // see if the card is present and can be initialized:
+    if (!SD.begin(BUILTIN_SDCARD))
     {
-      break;
+      Serial.println("SD Card failed, or not present");
+      while (1) { }
     }
+
+
+   //find the next flight log number
+    for (uint8_t i = 0; i < 1000; i++)
+    {
+      fileName[9] = i / 1000 + '0';
+      fileName[10] = i / 100 + '0';
+      fileName[11] = i / 10 + '0';
+      fileName[12] = i % 10 + '0';
+      if (!SD.exists(fileName))
+      {
+        break;
+      }
+    }
+    //write header to new file
+    dataFile = SD.open(fileName, FILE_WRITE);
+    dprint("SD opened: "+String(fileName)+"\n");
+    dataFile.println(header);
+    dataFile.close();
   }
-  //write header to new file
-  dataFile = SD.open(fileName, FILE_WRITE);
-  dprint("SD opened: "+String(fileName)+"\n");
-  dataFile.println(header);
-  dataFile.close();
+  dprint("Data class started\n");
 }
 
 
@@ -273,8 +277,12 @@ void Data::addToFrame()
   }
 
   if (frameIndex >= frameSize) { //when the frame is full, write the frame to SD and clear the frame
-    writeSDData();
+    if(!noSD)
+    {
+      writeSDData();
+    }
     dprint(header+"\n");
+    frameIndex = 0;  //when done, reset frame location
   }
 
 
@@ -313,7 +321,7 @@ void Data::writeSDData()
     }
   }
   dataFile.close();
-  frameIndex = 0;  //when done, reset frame location
+  
   dprint("Wrote to SD\n");
 }
 

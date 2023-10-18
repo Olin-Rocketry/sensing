@@ -14,6 +14,7 @@
 
 byte IICdata[5] = {0, 0, 0, 0, 0}; // buffer for sensor data
 bool debugEnable=false; //Enable debug printing
+bool noSD = false;  // Enable debug without sd
 short int phase = 1;
 unsigned long loop_t_start = 0;
 unsigned long loop_t_end = 0;
@@ -56,10 +57,15 @@ void setup()
       break;
     }
   }
+  delay(5000);
   if(Serial.available()!=0)
   {
     debugEnable=true;
     Serial.println("Entered debug mode");
+    if (Serial.available() != 0) {
+      noSD = true;
+      Serial.println("Entered no SD mode");  
+    }
     debugPhase();
   }
   else
@@ -67,7 +73,7 @@ void setup()
     Serial.println("Debug mode not enabled; proceeding normally");
   }
   // begin sensors
-  data.SDbegin(debugEnable);
+  data.SDbegin(debugEnable, noSD);
   imu_test.begin_imu(debugEnable);
   altimeter.begin_altimeter(debugEnable);
 
@@ -224,6 +230,7 @@ void collect_data (void){
   data.phs(phase);
   data.analogTelem();
   data.encodeAndAdd();
+  data.diagmsg(0); // clear out previous diagnostic messages
 }
 
 // neopixels

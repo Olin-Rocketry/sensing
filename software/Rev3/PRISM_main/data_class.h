@@ -18,6 +18,7 @@ private:
   Led *statusLed;
 
   bool debugEnable; //Enable debug printing
+  bool noSD; // Enable no SD card
   
   struct __attribute__((packed)) STRUCT {
     float lat;
@@ -45,7 +46,7 @@ public:
 
   Data(Led *statusLed);
   void init();
-  void SDbegin(bool debugEnable);
+  void SDbegin(bool debugEnable, bool noSD);
   void encodeAndAdd();
   void encodepacket();
   void addToFrame();
