@@ -95,7 +95,7 @@ char Radio::readSerial()
         
 //        Serial.println("Serial Data:");  
         EAST_serial.rxObj(serialBuffer);
-//        Serial.println(serialBuffer);
+        Serial.println(sizeof(serialBuffer));
         sendRadio(serialBuffer);
 
         
