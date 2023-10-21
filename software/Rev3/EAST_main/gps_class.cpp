@@ -28,7 +28,7 @@ void Gps::test_connection()
     {
         statusLed->RGB(1, 255, 0, 0);
         Serial.print("Ooops, no gps detected ... Check your wiring or I2C ADDR!");
-        gpsStruct.diagmsg = 2^2;
+        gpsStruct.diagmsg = pow(2, 2);
         while (1);
     }
 
@@ -68,7 +68,7 @@ void Gps::read_data()
     }
     else{
       statusLed->RGB(1, 255, 0, 255);
-      gpsStruct.diagmsg = 2^2;
+      gpsStruct.diagmsg = pow(2, 2);
     }
     
     if (gps.altitude.isValid())
@@ -76,7 +76,7 @@ void Gps::read_data()
         gpsStruct.gpsalt = gps.altitude.meters();
     }
     else{
-        gpsStruct.diagmsg = 2^2;
+        gpsStruct.diagmsg = pow(2, 2);
     }
 
 //    Serial.println(micros() - t_1);
