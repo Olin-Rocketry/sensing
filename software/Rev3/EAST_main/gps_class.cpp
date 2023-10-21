@@ -58,8 +58,7 @@ void Gps::read_data()
         gpsStruct.lng = gps.location.lng();
         gpsStruct.lat = gps.location.lat();
         gpsStruct.diagmsg = 0;
-        radio->EAST_serial.sendDatum(gpsStruct);
-        Serial8.flush();
+        
 
         
 //        Serial.print(gps.location.lng());
@@ -68,6 +67,8 @@ void Gps::read_data()
     }
     else{
       statusLed->RGB(1, 255, 0, 255);
+      gpsStruct.lng = 0;
+      gpsStruct.lat = 0;
       gpsStruct.diagmsg = pow(2, 2);
     }
     
@@ -78,6 +79,8 @@ void Gps::read_data()
     else{
         gpsStruct.diagmsg = pow(2, 2);
     }
+    radio->EAST_serial.sendDatum(gpsStruct);
+    Serial8.flush();
 
 //    Serial.println(micros() - t_1);
 
