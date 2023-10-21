@@ -255,6 +255,11 @@ void Data::sendSerialData()
 {
 
   digitalWrite(teensyLED, HIGH);
+//  for(int i=0; i<28; i++)
+//  {
+//    Serial.print(packet[i]);
+//  }
+//  Serial.println();
   PRISM_serial.sendDatum(packet, packetSize*4);
   digitalWrite(teensyLED, LOW);
 }

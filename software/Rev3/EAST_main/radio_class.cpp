@@ -93,7 +93,7 @@ char Radio::readSerial()
         serial_status = true;
       }
         
-        Serial.println("Serial Data:");  
+//        Serial.println("Serial Data:");  
         EAST_serial.rxObj(serialBuffer);
 //        Serial.println(serialBuffer);
         sendRadio(serialBuffer);
@@ -126,7 +126,7 @@ void Radio::reveicePacket()
 
 void Radio::sendRadio(char serialBuffer[packetSize*4]){
   
-    Serial.println(serialBuffer);
+//    Serial.println(serialBuffer);
     // Send a message to rf95_server
     rf95.send((uint8_t *)serialBuffer, packetSize*4);
 //    delay(10);

@@ -39,7 +39,7 @@ void setup()
   pinMode(DROG,OUTPUT);
   pinMode(MAIN,OUTPUT);
   digitalWrite(DROG, LOW);  //very important!!
-  digitalWrite(DROG, LOW);  //very important!!
+  digitalWrite(MAIN, LOW);  //very important!!
   while(analogRead(KEYSWITCH) >= 100){
     tone(33, 800, 100);
     delay(200);
@@ -47,25 +47,23 @@ void setup()
   
   Serial.begin(115200);
   Serial.println("To enter debug mode, send any character over Serial; proceeding without debug mode in:");
-  int countdown=5;
+  delay(5000);
+  int countdown=25;
   while(Serial.available()==0)
   {
     Serial.println(countdown--);
-    delay(750);
-    if(millis()>5000)
+    delay(200);
+    if(millis()>10000)
     {
       break;
     }
   }
-  delay(5000);
   if(Serial.available()!=0)
   {
     debugEnable=true;
     Serial.println("Entered debug mode");
-    if (Serial.available() != 0) {
-      noSD = true;
-      Serial.println("Entered no SD mode");  
-    }
+    noSD = true;
+    Serial.println("Entered no SD mode");  
     debugPhase();
   }
   else
