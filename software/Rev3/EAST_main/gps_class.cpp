@@ -53,6 +53,9 @@ void Gps::read_position()
         gpsStruct.diagmsg = pow(2,2);
         statusLed->RGB(1, 255, 0, 255);
     }
+    radio->EAST_serial.sendDatum(gpsStruct);
+
+    Serial8.flush();
 }
 
 void Gps::read_data()
@@ -88,9 +91,9 @@ void Gps::read_data()
     else{
         gpsStruct.diagmsg = pow(2, 2);
     }
-    radio->EAST_serial.sendDatum(gpsStruct);
-
-    Serial8.flush();
+//    radio->EAST_serial.sendDatum(gpsStruct);
+//
+//    Serial8.flush();
 
 //    Serial.println(micros() - t_1);
 
