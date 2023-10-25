@@ -10,6 +10,7 @@ void Data::init()
 {
   std::fill_n(packet, packetSize, 3.1415);  //fill packet zeros
   std::fill_n(encodedpacket, packetSize * 4, '0'); //fill encoded packet with zeros
+  diagmsg(0);
 
   //initalize PRISM serial communication
   Serial5.begin(800000);
@@ -255,11 +256,6 @@ void Data::sendSerialData()
 {
 
   digitalWrite(teensyLED, HIGH);
-//  for(int i=0; i<28; i++)
-//  {
-//    Serial.print(packet[i]);
-//  }
-//  Serial.println();
   PRISM_serial.sendDatum(packet, packetSize*4);
   digitalWrite(teensyLED, LOW);
 }
