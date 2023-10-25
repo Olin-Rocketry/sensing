@@ -115,4 +115,6 @@ public:
   void kfdrag(float i);
   void curtime(float i);
   void diagmsg(float i);
+
+  void diagmsg_reset();
 };

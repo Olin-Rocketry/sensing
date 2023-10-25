@@ -231,6 +231,10 @@ void Data::diagmsg(float i) {
   packet[27] = i;
 }
 
+void Data::diagmsg_reset() {
+  packet[27] = gpsStruct.diagmsg;  
+}
+
 void Data::readGPS(){
   if (PRISM_serial.available())
   {

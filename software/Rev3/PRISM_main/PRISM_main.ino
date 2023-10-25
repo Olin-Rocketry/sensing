@@ -228,7 +228,7 @@ void collect_data (void){
   data.phs(phase);
   data.analogTelem();
   data.encodeAndAdd();
-  data.diagmsg(0); // clear out previous diagnostic messages
+  data.diagmsg_reset(); // clear out previous diagnostic messages
 }
 
 // neopixels
