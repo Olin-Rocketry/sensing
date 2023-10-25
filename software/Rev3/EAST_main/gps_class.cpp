@@ -51,14 +51,8 @@ void Gps::read_position()
         gpsStruct.lng = 3.14;
         gpsStruct.lat = 3.14;
         gpsStruct.diagmsg = pow(2,2);
-        Serial.print(",");
-        Serial.print(gpsStruct.lng);
-        Serial.print(",");
-        Serial.print(gpsStruct.lat);
-        Serial.print(",");
-        Serial.println(gpsStruct.diagmsg);
+        statusLed->RGB(1, 255, 0, 255);
     }
-    Serial.println(gps.location.age());
 }
 
 void Gps::read_data()
@@ -74,16 +68,16 @@ void Gps::read_data()
         gpsStruct.diagmsg = 0;
         
 
-        
-        Serial.print(gps.location.lng());
-        Serial.print(",");
-        Serial.print(gps.location.lat());
+//        
+//        Serial.print(gps.location.lng());
+//        Serial.print(",");
+//        Serial.print(gps.location.lat());
         
     }
     else{
       statusLed->RGB(1, 255, 0, 255);
-      gpsStruct.lng = 0;
-      gpsStruct.lat = 0;
+      gpsStruct.lng = 3.14;
+      gpsStruct.lat = 3.14;
       gpsStruct.diagmsg = pow(2, 2);
     }
     
@@ -94,12 +88,6 @@ void Gps::read_data()
     else{
         gpsStruct.diagmsg = pow(2, 2);
     }
-    Serial.print(",");
-    Serial.print(gpsStruct.lng);
-    Serial.print(",");
-    Serial.print(gpsStruct.lat);
-    Serial.print(",");
-    Serial.println(gpsStruct.diagmsg);
     radio->EAST_serial.sendDatum(gpsStruct);
 
     Serial8.flush();
