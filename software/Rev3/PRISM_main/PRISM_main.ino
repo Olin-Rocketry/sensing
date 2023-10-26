@@ -9,7 +9,7 @@
 // pinmodes
 #define KEYSWITCH A12
 #define MAIN 25  //PYRO 2 (bottom)
-#define DROG 24  //PYRO 1 (top)
+#define DROGUE 24  //PYRO 1 (top)
 
 
 byte IICdata[5] = {0, 0, 0, 0, 0}; // buffer for sensor data
@@ -19,10 +19,12 @@ short int phase = 1;
 unsigned long loop_t_start = 0;
 unsigned long loop_t_end = 0;
 float minimumAltitude;
-float minimumDrogAltitude;
-float minimumMainAltitude = 152; // set on launch day (main deploy)
-float trigger_offset = 30; // m set on launch day  (launch detect)
-float drog_velocity_trigger = -3; //m/s set on launch day (apogee detect)
+float minimumDROGUEAltitude;
+float minimumMainAltitude = 152; //[meters] set on launch day (main deploy)
+float trigger_offset = 30; // [meters] set on launch day  (launch detect)
+float drogue_velocity_trigger = -3; //[m/s] set on launch day (apogee detect)
+
+float pyro_t_start = 0; //start time of pyro event
 
 
 // setup sensors
@@ -36,9 +38,9 @@ Altimeter altimeter(&data);
 void setup()
 {
   
-  pinMode(DROG,OUTPUT);
+  pinMode(DROGUE,OUTPUT);
   pinMode(MAIN,OUTPUT);
-  digitalWrite(DROG, LOW);  //very important!!
+  digitalWrite(DROGUE, LOW);  //very important!!
   digitalWrite(MAIN, LOW);  //very important!!
   while(analogRead(KEYSWITCH) >= 100){
     tone(33, 800, 100);
@@ -76,7 +78,7 @@ void setup()
   altimeter.begin_altimeter(debugEnable);
 
 
-  data.kfx(drog_velocity_trigger);
+  data.kfx(DROGUE_velocity_trigger);
 }
 
 void loop()
@@ -182,11 +184,12 @@ void BeforeApogee()
   collect_data();
   status_lights();
   kalman_filter.update();
-  if (data.kfvz() < drog_velocity_trigger) {
-    // deploy drog
-    digitalWrite(DROG, HIGH);
-    delay(1000);
-    digitalWrite(DROG, LOW);
+
+  //if below apogee velocity threshold, power the drogue pyro
+  if (data.kfvz() < drogue_velocity_trigger) {
+    // deploy drogue
+    pyro_t_start = data.curtime();
+    digitalWrite(DROGUE, HIGH);
     phase = 4; 
     debugPhase(); 
   }
@@ -198,11 +201,17 @@ void BeforeMain()
   collect_data();
   status_lights();
   kalman_filter.update();
+
+  //if pyro has been on for 1s, turn it off
+  if (data.curtime() > (pyro_t_start + 1000)){
+    digitalWrite(DROGUE, LOW);
+  }
+
+  //if at main deploy, power the main pyro
   if (data.baralt() < (minimumMainAltitude + minimumAltitude)){
     // deploy main parachute
+    pyro_t_start = data.curtime();
     digitalWrite(MAIN, HIGH);
-    delay(1000);
-    digitalWrite(MAIN, LOW);
     phase = 5;
     debugPhase();
   }
@@ -213,6 +222,11 @@ void AfterMain(){
   collect_data();
   status_lights();    
   kalman_filter.update();
+
+  //if pyro has been on for 1s, turn it off
+  if (data.curtime() > (pyro_t_start + 1000)){
+    digitalWrite(MAIN, LOW);
+  }
 }
 
 
