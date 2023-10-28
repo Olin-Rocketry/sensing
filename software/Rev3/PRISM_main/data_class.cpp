@@ -88,6 +88,7 @@ void Data::encoder(char *encoded, float input)
 }
 
 float Data::curtime() {
+  return packet[0];
 }   void Data::curtime(float i) {
   packet[0] = i;
 }
