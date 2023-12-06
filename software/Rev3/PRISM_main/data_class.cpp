@@ -10,43 +10,51 @@ void Data::init()
 {
   std::fill_n(packet, packetSize, 3.1415);  //fill packet zeros
   std::fill_n(encodedpacket, packetSize * 4, '0'); //fill encoded packet with zeros
+  diagmsg(0);
 
   //initalize PRISM serial communication
   Serial5.begin(800000);
   PRISM_serial.begin(Serial5);
 
   pinMode(teensyLED, OUTPUT);
+
+  float currentval = diagmsg();
+  diagmsg(currentval +  pow(2,8));
 }
 
-void Data::SDbegin(bool debugEnable)
+void Data::SDbegin(bool debugEnable, bool noSD)
 {
   this->debugEnable=debugEnable;
-  // see if the card is present and can be initialized:
-  if (!SD.begin(BUILTIN_SDCARD))
-  {
-    Serial.println("SD Card failed, or not present");
-    while (1) { }
-  }
-
-  dprint("Data class started\n");
-  
- //find the next flight log number
-  for (uint8_t i = 0; i < 1000; i++)
-  {
-    fileName[9] = i / 1000 + '0';
-    fileName[10] = i / 100 + '0';
-    fileName[11] = i / 10 + '0';
-    fileName[12] = i % 10 + '0';
-    if (!SD.exists(fileName))
+  this->noSD = noSD;
+  // SD required
+  if (!noSD) {
+    // see if the card is present and can be initialized:
+    if (!SD.begin(BUILTIN_SDCARD))
     {
-      break;
+      Serial.println("SD Card failed, or not present");
+      while (1) { }
     }
+
+
+   //find the next flight log number
+    for (uint8_t i = 0; i < 1000; i++)
+    {
+      fileName[9] = i / 1000 + '0';
+      fileName[10] = i / 100 + '0';
+      fileName[11] = i / 10 + '0';
+      fileName[12] = i % 10 + '0';
+      if (!SD.exists(fileName))
+      {
+        break;
+      }
+    }
+    //write header to new file
+    dataFile = SD.open(fileName, FILE_WRITE);
+    dprint("SD opened: "+String(fileName)+"\n");
+    dataFile.println(header);
+    dataFile.close();
   }
-  //write header to new file
-  dataFile = SD.open(fileName, FILE_WRITE);
-  dprint("SD opened: "+String(fileName)+"\n");
-  dataFile.println(header);
-  dataFile.close();
+  dprint("Data class started\n");
 }
 
 
@@ -214,6 +222,19 @@ float Data::d() {
 }        void Data::d(float i) {
   packet[26] = i;
 }
+
+// implementing new functions for 28th byte
+float Data::diagmsg() {
+  return packet[27];
+}
+void Data::diagmsg(float i) {
+  packet[27] = i;
+}
+
+void Data::diagmsg_reset() {
+  packet[27] = gpsStruct.diagmsg;  
+}
+
 void Data::readGPS(){
   if (PRISM_serial.available())
   {
@@ -221,6 +242,7 @@ void Data::readGPS(){
     lat(gpsStruct.lat);
     lng(gpsStruct.lng);
     gpsalt(gpsStruct.gpsalt);
+    diagmsg(diagmsg() + gpsStruct.diagmsg);
   }
 }
 
@@ -260,8 +282,12 @@ void Data::addToFrame()
   }
 
   if (frameIndex >= frameSize) { //when the frame is full, write the frame to SD and clear the frame
-    writeSDData();
+    if(!noSD)
+    {
+      writeSDData();
+    }
     dprint(header+"\n");
+    frameIndex = 0;  //when done, reset frame location
   }
 
 
@@ -300,7 +326,7 @@ void Data::writeSDData()
     }
   }
   dataFile.close();
-  frameIndex = 0;  //when done, reset frame location
+  
   dprint("Wrote to SD\n");
 }
 

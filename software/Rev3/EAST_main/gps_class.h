@@ -18,6 +18,7 @@ private:
   {
     float lat;
     float lng;
+    float diagmsg;
     float gpsalt;
   } gpsStruct;
 

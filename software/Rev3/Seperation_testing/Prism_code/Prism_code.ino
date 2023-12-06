@@ -19,12 +19,16 @@ if (Serial5.available()>0){
     delay(1000);
     digitalWrite(Drog, LOW);
     Serial.println("BOOM DROG");
+    tone(33, 600, 100);
+    delay(200);
   }
   if (character=='m'){
     digitalWrite(Main, HIGH);
     delay(1000);
     digitalWrite(Main, LOW);
     Serial.println("BOOM Main");
+    tone(33, 1000, 100);
+    delay(200);
   }
 }
 }
