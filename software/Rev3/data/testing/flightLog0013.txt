@@ -1,0 +1,1 @@
+Time			Accel X		Accel Y		Accel Z		Gyro X		Gyro Y		Gyro Z		Temp		Euler X		Euler Y		Euler Z		Baro Alt	Longitude	Latitude	GPS Alt		Phase		Continuity	Voltage		Link Strength	KF x		KF y		KF z		KF Vx		KF Vy		KF Vz		KF drag		N/A		Diagnostic Message
