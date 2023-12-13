@@ -1,0 +1,48 @@
+(kicad_sch (version 20230121) (generator eeschema)
+
+  (uuid db07439e-b2f9-4de9-a6da-003465a4a615)
+
+  (paper "A4")
+
+  (lib_symbols
+  )
+
+
+  (sheet (at 16.51 81.28) (size 66.04 66.04) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 1dee1fcd-a074-45e7-8c1b-18b04a8e32f6)
+    (property "Sheetname" "LMSDS1" (at 16.51 80.5684 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "9_A_Accelerometer.kicad_sch" (at 16.51 147.9046 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "MiniAvionics"
+        (path "/db07439e-b2f9-4de9-a6da-003465a4a615" (page "3"))
+      )
+    )
+  )
+
+  (sheet (at 16.51 19.05) (size 62.23 50.8) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid c809a2a1-09f7-4dc3-8e0e-630961f558de)
+    (property "Sheetname" "BMP390" (at 16.51 18.3384 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "Barometer.kicad_sch" (at 16.51 70.4346 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "MiniAvionics"
+        (path "/db07439e-b2f9-4de9-a6da-003465a4a615" (page "2"))
+      )
+    )
+  )
+
+  (sheet_instances
+    (path "/" (page "2"))
+  )
+)
