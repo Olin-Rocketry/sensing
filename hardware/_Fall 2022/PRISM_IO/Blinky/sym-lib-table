@@ -1,4 +1,0 @@
-(sym_lib_table
-  (version 7)
-  (lib (name "GTB5")(type "KiCad")(uri "${ROCKETRY}/hardware/_Fall 2022/PRISM_IO/Blinky/GTB5.kicad_sym")(options "")(descr ""))
-)
