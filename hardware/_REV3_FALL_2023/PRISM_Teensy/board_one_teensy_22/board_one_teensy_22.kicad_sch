@@ -1007,13 +1007,13 @@
       )
     )
     (symbol "SFN-1407PA7.6:SFN-1407PA7.6" (in_bom yes) (on_board yes)
-      (property "Reference" "U" (at 0 2.54 0)
+      (property "Reference" "U5" (at 0 4.445 0)
         (effects (font (size 1.27 1.27)))
       )
-      (property "Value" "" (at -1.905 -2.54 90)
+      (property "Value" "SFN-1407PA7.6" (at 0 2.54 0)
         (effects (font (size 1.27 1.27)))
       )
-      (property "Footprint" "" (at -1.905 -2.54 90)
+      (property "Footprint" "rocketry_footprints:SFN-1407PA7.6" (at -3.175 -5.08 0)
         (effects (font (size 1.27 1.27)) hide)
       )
       (property "Datasheet" "" (at -1.905 -2.54 90)
@@ -1076,13 +1076,13 @@
         )
       )
       (symbol "SFN-1407PA7.6_1_1"
-        (pin output line (at 4.445 -2.54 180) (length 2.54)
-          (name "N" (effects (font (size 1.27 1.27))))
-          (number "" (effects (font (size 1.27 1.27))))
-        )
         (pin input line (at -4.445 -2.54 0) (length 2.54)
           (name "P" (effects (font (size 1.27 1.27))))
-          (number "" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin output line (at 4.445 -2.54 180) (length 2.54)
+          (name "N" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
         )
       )
     )
@@ -1848,7 +1848,7 @@
   (symbol (lib_id "Connector:Conn_01x04_Socket") (at 187.96 27.94 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 1adac0b8-874e-4dd3-b49a-accbed0beedb)
-    (property "Reference" "Power" (at 189.23 27.94 0)
+    (property "Reference" "Power1" (at 189.23 27.94 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "Conn_01x04_Socket" (at 189.23 30.48 0)
@@ -1867,7 +1867,7 @@
     (instances
       (project "board_one_teensy_22"
         (path "/7a48c3b0-2761-409e-ae2f-7ebae3820225"
-          (reference "Power") (unit 1)
+          (reference "Power1") (unit 1)
         )
       )
     )
@@ -1916,8 +1916,8 @@
     (property "Datasheet" "" (at 251.46 67.31 90)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "" (uuid 1925f2fe-4c35-4aec-a4e3-17861ca1c9bf))
-    (pin "" (uuid 1925f2fe-4c35-4aec-a4e3-17861ca1c9bf))
+    (pin "2" (uuid 81f9340a-fe10-477a-a671-a8f302ebc6f2))
+    (pin "1" (uuid c9294cec-c53c-4909-abbb-1ccfe765b388))
     (instances
       (project "board_one_teensy_22"
         (path "/7a48c3b0-2761-409e-ae2f-7ebae3820225"
@@ -2138,7 +2138,7 @@
   (symbol (lib_id "Connector:Conn_01x05_Socket") (at 187.96 44.45 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 60d8daa6-a5cd-40ea-a092-d22292546c0e)
-    (property "Reference" "Pyro" (at 189.23 43.18 0)
+    (property "Reference" "Pyro1" (at 189.23 43.18 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "Conn_01x05_Socket" (at 189.23 45.72 0)
@@ -2158,7 +2158,7 @@
     (instances
       (project "board_one_teensy_22"
         (path "/7a48c3b0-2761-409e-ae2f-7ebae3820225"
-          (reference "Pyro") (unit 1)
+          (reference "Pyro1") (unit 1)
         )
       )
     )
@@ -2192,7 +2192,7 @@
   (symbol (lib_id "Connector:Conn_01x05_Socket") (at 187.96 62.23 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 72928ec2-b0f2-4a27-80a9-84ea173d8b35)
-    (property "Reference" "GPS/Stepper" (at 189.23 60.96 0)
+    (property "Reference" "GPS/Stepper1" (at 189.23 60.96 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "Conn_01x02_Socket" (at 189.23 63.5 0)
@@ -2212,7 +2212,7 @@
     (instances
       (project "board_one_teensy_22"
         (path "/7a48c3b0-2761-409e-ae2f-7ebae3820225"
-          (reference "GPS/Stepper") (unit 1)
+          (reference "GPS/Stepper1") (unit 1)
         )
       )
     )
