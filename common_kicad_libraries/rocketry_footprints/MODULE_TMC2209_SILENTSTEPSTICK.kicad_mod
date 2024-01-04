@@ -1,5 +1,5 @@
 
-(footprint MODULE_TMC2209_SILENTSTEPSTICK (layer F.Cu) (tedit 65652AA6)
+(footprint MODULE_TMC2209_SILENTSTEPSTICK (layer F.Cu) (tedit 6595F844)
   (descr "")
   (fp_text reference REF** (at -5.075 -11.155 0) (layer F.SilkS)
     (effects (font (size 1.0 1.0) (thickness 0.15)))
