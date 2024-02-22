@@ -3,6 +3,10 @@
 #include "altimeter_class.h"
 #include "kalman_class.h"
 #include "led_class.h"
+#include "gps_class.h"
+#include "radio_class.h"
+#include "stepper_class.h"
+
 #include <Arduino.h>
 
 
@@ -10,6 +14,7 @@
 #define KEYSWITCH A12
 // PYRO 1 (top) = PIN 24
 // PYRO 2 (bottom) = PIN 25
+// buzz = PIN 
 #define MAIN 24
 #define DROGUE 25
 
@@ -38,9 +43,28 @@ Imu imu_test(&data);
 Kalman kalman_filter(&data);
 Altimeter altimeter(&data);
 
+//EAST
+Led statusLed(22);
+Radio radio;
+Gps gps(&radio);
+
+StepperMotor steppermotor;
+
+unsigned long cycle_time;
+unsigned long old_cycle_time = 0;
 
 void setup()
 {
+    steppermotor.enable_stepper();
+//  steppermotor.home_stepper();
+  
+  Serial.begin(115200);
+  radio.led_test(&statusLed);
+  delay(10);
+  
+  
+  radio.begin();
+  gps.begin_gps(&statusLed);
   
   pinMode(DROGUE,OUTPUT);
   pinMode(MAIN,OUTPUT);
@@ -87,6 +111,35 @@ void setup()
 
 void loop()
 {
+  //EAST
+  cycle_time = millis() - old_cycle_time;
+  
+  if(cycle_time > 1000){
+    
+     gps.read_position();
+     old_cycle_time = millis();
+     
+  }
+ 
+  // radio
+
+  radio.sendingPacket();
+
+  // stepper
+  int t_now = millis();
+
+  int pos = t_now/10000 * 360*20;
+
+  Serial.println(pos);
+  
+  steppermotor.move_stepper(pos);
+
+
+  if (t_now > 1000*30){
+    steppermotor.disable_stepper();
+  }
+  
+
   loop_t_start = micros();
   
   // Chooses loop to run through depending on what the phase is set to
@@ -142,6 +195,10 @@ void PreARM()
     float average_altitude = 0;
     int number_readings = 5;
 
+    for (int frequency = 400; frequency <= 1000; frequency += 100) {
+        tone(buzz, frequency, 100);
+        delay(100);
+
     //take 5 reading and compute the averadge, then use this to set the launch detection altitude
     for (int i = 0; i < number_readings; i++){
       average_altitude += data.baralt();
@@ -153,6 +210,7 @@ void PreARM()
     phase = 2;
     debugPhase();
   }
+    tone(buzz, 200, 3000);
 }
 
 // phase 2
@@ -163,8 +221,8 @@ void PostARM()
 
 
   
-  status_lights();
-
+  statusLed.RGB(0, 255, 255, 0); // Yellow for LED 1
+  statusLed.RGB(1, 255, 255, 0); // Yellow for LED 2
 
   
   
@@ -227,7 +285,9 @@ void BeforeMain()
 // phase 5
 void AfterMain(){
   collect_data();
-  status_lights();    
+  statusLed.RGB(0, 0, 255, 0); // Green for LED 1
+  statusLed.RGB(1, 0, 255, 0); // Green for LED 2
+
   kalman_filter.update();
 
   //if pyro has been on for 1s, turn it off
@@ -241,6 +301,14 @@ void AfterMain(){
     tone(33, 2000, 500);
     beep_t_start=data.curtime();
   }
+  //loop?
+  // First burst
+    tone(buzz, 1500, 1000); // 1.5 kHz tone for 1 second
+    delay(1000); // Wait for 1 second
+
+  // Second burst
+  tone(buzz, 1500, 1000); // 1.5 kHz tone for 1 second
+  delay(7000); // Wait for 7 seconds
 }
 
 
