@@ -58,8 +58,8 @@ void Radio::begin(){
 
      delay(10);
     //initalize EAST serial communication
-    Serial8.begin(800000);  //east uses 8, prism uses 5
-    EAST_serial.begin(Serial8);
+    // Serial8.begin(800000);  //east uses 8, prism uses 5
+    // EAST_serial.begin(Serial8);
 }
 
 union Radio::floatunion_t
@@ -85,33 +85,33 @@ void Radio::sendingPacket()
 
 }
 
-char Radio::readSerial()
-{
-    if (EAST_serial.available()){
-      if(!serial_status){
-        statusLed->RGB(0, 0, 255, 0);
-        serial_status = true;
-      }
+ char Radio::readSerial()
+ {
+//     // if (EAST_serial.available()){
+//     //   if(!serial_status){
+//     //     statusLed->RGB(0, 0, 255, 0);
+//     //     serial_status = true;
+//     //   }
         
-//        Serial.println("Serial Data:");  
-        EAST_serial.rxObj(serialBuffer);
-        Serial.println(sizeof(serialBuffer));
-        sendRadio(serialBuffer);
+// // //        Serial.println("Serial Data:");  
+// //         EAST_serial.rxObj(serialBuffer);
+// //         Serial.println(sizeof(serialBuffer));
+// //         sendRadio(serialBuffer);
 
         
-//        if (sizeof(serialBuffer) != packetSize * 4)
-//        {
-//            Serial.println("Serial read length mismatch");
-//        }
-    }
-//    else if(!EAST_serial.available())
-//    {
-//      Serial.println("not available");
-//    }
-//    return serialBuffer;
+// //        if (sizeof(serialBuffer) != packetSize * 4)
+// //        {
+// //            Serial.println("Serial read length mismatch");
+// //        }
+//     }
+// //    else if(!EAST_serial.available())
+// //    {
+// //      Serial.println("not available");
+// //    }
+// //    return serialBuffer;
     
 
-}
+ }
 
 void Radio::reveicePacket()
 {

@@ -3,7 +3,6 @@
 #include <Arduino.h>
 #include <algorithm>
 #include <RH_RF95.h>
-#include <SerialTransfer.h>
 
 
 #define RFM95_CS 0
@@ -32,7 +31,6 @@ class Radio {
 //    Radio(Led *statusLed);
     Radio() : rf95(RFM95_CS,RFM95_INT) { }  //what is going on here? We need to make this a constructor method 
 
-    SerialTransfer EAST_serial;
 
     
     void init();  

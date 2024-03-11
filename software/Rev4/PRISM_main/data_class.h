@@ -1,14 +1,12 @@
-
 #pragma once
 #include "Arduino.h"
 #include "led_class.h"
- #include <SD.h>
- #include <SerialTransfer.h>
-
- #include <algorithm>
+#include <SD.h>
+#include <algorithm>
 #ifdef __AVR__
 #define FsFile File32
 #endif
+
 class Data
 {
 private:
@@ -40,7 +38,6 @@ public:
   char encodedpacket[packetSize * 4]; //current encoded packet
   char encodedFrame[frameSize][packetSize * 4];  //current encoded frame
   char fileName[18] = "flightLog0000.txt";  
-  SerialTransfer PRISM_serial;   //serial communication objects
 
   
 

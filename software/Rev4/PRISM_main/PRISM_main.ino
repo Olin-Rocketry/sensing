@@ -14,7 +14,7 @@
 #define KEYSWITCH A12
 // PYRO 1 (top) = PIN 24
 // PYRO 2 (bottom) = PIN 25
-// buzz = PIN 
+#define buzz 15
 #define MAIN 24
 #define DROGUE 25
 
@@ -37,14 +37,14 @@ bool beep=false;
 
 
 // setup sensors
-Led statusLed(34);
-Data data(&statusLed);
+Led statusLed1(34);
+Data data(&statusLed1);
 Imu imu_test(&data);
 Kalman kalman_filter(&data);
 Altimeter altimeter(&data);
 
 //EAST
-Led statusLed(22);
+Led statusLed2(22);
 Radio radio;
 Gps gps(&radio);
 
@@ -52,6 +52,14 @@ StepperMotor steppermotor;
 
 unsigned long cycle_time;
 unsigned long old_cycle_time = 0;
+void debugPhase(void)
+{
+  if(debugEnable==true)
+  {
+    Serial.print("Phase ");
+    Serial.println(phase);
+  }
+}
 
 void setup()
 {
@@ -59,12 +67,12 @@ void setup()
 //  steppermotor.home_stepper();
   
   Serial.begin(115200);
-  radio.led_test(&statusLed);
+  radio.led_test(&statusLed1);
   delay(10);
   
   
   radio.begin();
-  gps.begin_gps(&statusLed);
+  gps.begin_gps(&statusLed2);
   
   pinMode(DROGUE,OUTPUT);
   pinMode(MAIN,OUTPUT);
@@ -212,6 +220,7 @@ void PreARM()
   }
     tone(buzz, 200, 3000);
 }
+}
 
 // phase 2
 void PostARM()
@@ -221,8 +230,8 @@ void PostARM()
 
 
   
-  statusLed.RGB(0, 255, 255, 0); // Yellow for LED 1
-  statusLed.RGB(1, 255, 255, 0); // Yellow for LED 2
+  statusLed1.RGB(0, 255, 255, 0); // Yellow for LED 1
+  statusLed2.RGB(1, 255, 255, 0); // Yellow for LED 2
 
   
   
@@ -285,8 +294,8 @@ void BeforeMain()
 // phase 5
 void AfterMain(){
   collect_data();
-  statusLed.RGB(0, 0, 255, 0); // Green for LED 1
-  statusLed.RGB(1, 0, 255, 0); // Green for LED 2
+  statusLed1.RGB(0, 0, 255, 0); // Green for LED 1
+  statusLed2.RGB(1, 0, 255, 0); // Green for LED 2
 
   kalman_filter.update();
 
@@ -329,15 +338,7 @@ void collect_data (void){
 
 // neopixels
 void status_lights (void) {
-  statusLed.RGB(0, 100, 0, 0);
-  statusLed.RGB(1, 100, 0, 0);
+  statusLed1.RGB(0, 100, 0, 0);
+  statusLed2.RGB(1, 100, 0, 0);
 }
 
-void debugPhase(void)
-{
-  if(debugEnable==true)
-  {
-    Serial.print("Phase ");
-    Serial.println(phase);
-  }
-}

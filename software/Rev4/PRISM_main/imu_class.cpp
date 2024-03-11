@@ -11,7 +11,7 @@ void Imu::init()
     test_connection();
 }
 
-void Imu::setupSensor()
+void Imu::setup_sensor()
 {
   // 1.) Set the accelerometer range
   lsm.setupAccel(lsm.LSM9DS1_ACCELRANGE_2G, lsm.LSM9DS1_ACCELDATARATE_10HZ);
@@ -42,16 +42,7 @@ void Imu::test_connection()
     }
     Serial.println("LSM9DS1 detected");
     delay(1000);
-    setupSensor();
-}
-
-imu::Quaternion Imu::read_quaternions()
-{
-    // Read Euler angles
-    imu::Vector<3> eulers = read_euler();
-
-    // Convert Euler angles to quaternions
-    return ToQuaternion(eulers.x(), eulers.y(), eulers.z());
+    setup_sensor();
 }
 
 void Imu::perform_reading() {
@@ -59,12 +50,94 @@ void Imu::perform_reading() {
   lsm.read();
 }
 
-struct Quaternion
-{
-    double w, x, y, z;
-};
 
-Quaternion ToQuaternion(double roll, double pitch, double yaw) // roll (x), pitch (y), yaw (z), angles are in radians
+
+Vector3 Imu::read_euler()
+{
+    sensors_event_t a, m, g, temp;
+    lsm.getEvent(&a, &m, &g, &temp);
+    Vector3 euler;
+    euler.x = a.acceleration.x;
+    euler.y = a.acceleration.y;
+    euler.z = a.acceleration.z;
+    return euler;
+
+}
+
+void Imu::read_gravity()
+{
+    sensors_event_t a, m, g, temp;
+    lsm.getEvent(&a, &m, &g, &temp);
+    Vector3 gravity;
+    gravity.x = m.magnetic.x;
+    gravity.y = m.magnetic.y;
+    gravity.z = m.magnetic.z;
+}
+
+void Imu::read_gyroscope()
+{
+    sensors_event_t a, m, g, temp;
+    lsm.getEvent(&a, &m, &g, &temp);
+    Vector3 gyroscope;
+    data->gyrox((float)g.gyro.x);
+    data->gyroy((float)g.gyro.y);
+    data->gyroz((float)g.gyro.z);
+
+}
+
+Vector3 Imu::read_accelerometer()
+{
+    sensors_event_t a, m, g, temp;
+    lsm.getEvent(&a, &m, &g, &temp);
+    Vector3 accel;
+    accel.x = a.acceleration.x;
+    accel.y = a.acceleration.y;
+    accel.z = a.acceleration.z;
+    return accel;
+}
+
+Vector3 Imu::read_linear_accel() // need to fix this
+{
+    sensors_event_t a, m, g, temp;
+    lsm.getEvent(&a, &m, &g, &temp);
+    Vector3 linear_accel;
+    linear_accel.x = a.acceleration.x;
+    linear_accel.y = a.acceleration.y;
+    linear_accel.z = a.acceleration.z;
+    return linear_accel;
+}
+
+Vector3 Imu::rotateVectorByQuaternion(const Vector3& vec, const Quaternion& quat) {
+    // Quaternion multiplication
+    double qx = quat.x;
+    double qy = quat.y;
+    double qz = quat.z;
+    double qw = quat.w;
+    
+    double vx = vec.x;
+    double vy = vec.y;
+    double vz = vec.z;
+
+    // Calculate the rotated vector using quaternion multiplication
+    double x = (1 - 2 * (qy * qy + qz * qz)) * vx + 2 * (qx * qy - qw * qz) * vy + 2 * (qx * qz + qw * qy) * vz;
+    double y = 2 * (qx * qy + qw * qz) * vx + (1 - 2 * (qx * qx + qz * qz)) * vy + 2 * (qy * qz - qw * qx) * vz;
+    double z = 2 * (qx * qz - qw * qy) * vx + 2 * (qy * qz + qw * qx) * vy + (1 - 2 * (qx * qx + qy * qy)) * vz;
+
+    return {(float)x, (float)y, (float)z};
+}
+
+void Imu::print_data(Vector3 data)
+{
+    /* Display the floating point data */
+    Serial.print(data.x);
+    Serial.print(",");
+    Serial.print(data.y);
+    Serial.print(",");
+    Serial.println(data.z);
+}
+
+
+Quaternion Imu::ToQuaternion(double roll, double pitch, double yaw) // roll (x), pitch (y), yaw (z), angles are in radians
 {
 
     double cr = cos(roll * 0.5);
@@ -83,36 +156,6 @@ Quaternion ToQuaternion(double roll, double pitch, double yaw) // roll (x), pitc
     return q;
 }
 
-void Imu::rotate()
-{
-    imu::Vector<3> accel = read_accelerometer();
-
-    // rotate to global using chip quaternion
-    Quaternion unit_quat = read_quaternions();
-    double norm = sqrt(unit_quat.w * unit_quat.w + unit_quat.x * unit_quat.x + unit_quat.y * unit_quat.y + unit_quat.z * unit_quat.z);
-    unit_quat.w /= norm;
-    unit_quat.x /= norm;
-    unit_quat.y /= norm;
-    unit_quat.z /= norm;
-
-    // rotate the acceleration
-    imu::Vector<3> rotated_accel = unit_quat.rotateVector(accel);
-
-    // save acceleration to data
-    data->accelx((float)rotated_accel.x());
-    data->accely((float)rotated_accel.y());
-    data->accelz((float)rotated_accel.z());
-
-    // Convert quaternion to Euler angles and set them
-    set(unit_quat);
-
-    // save eulers
-    imu::Vector<3> eulers = read_euler();
-    data->eulerx((float)eulers.x());
-    data->eulery((float)eulers.y());
-    data->eulerz((float)eulers.z());
-}
-
 void Imu::set(Quaternion q1) {
     double test = q1.x*q1.y + q1.z*q1.w;
     if (test > 0.499) { // singularity at north pole
@@ -126,7 +169,7 @@ void Imu::set(Quaternion q1) {
         attitude = -PI/2;
         bank = 0;
         return;
-    }
+    }  
     double sqx = q1.x*q1.x;
     double sqy = q1.y*q1.y;
     double sqz = q1.z*q1.z;
@@ -135,69 +178,43 @@ void Imu::set(Quaternion q1) {
     bank = atan2(2*q1.x*q1.w-2*q1.y*q1.z , 1 - 2*sqx - 2*sqz);
 }
 
-imu::Vector<3> Imu::read_euler()
-{
-    sensors_event_t a;
-    lsm.getEvent(NULL, NULL, &a);
-    imu::Vector<3> euler;
-    euler.x = a.acceleration.x;
-    euler.y = a.acceleration.y;
-    euler.z = a.acceleration.z;
-    return euler;
 
+Quaternion Imu::read_quaternions()
+{
+    // Read Euler angles
+    Vector3 eulers = read_euler();
+
+    // Convert Euler angles to quaternions
+    return ToQuaternion(eulers.x, eulers.y, eulers.z);
 }
 
-imu::Vector<3> read_gravity()
-{
-    sensors_event_t m;
-    lsm.getEvent(NULL, &m, NULL);
-    imu::Vector<3> gravity;
-    gravity.x = m.magnetic.x;
-    gravity.y = m.magnetic.y;
-    gravity.z = m.magnetic.z;
-    return gravity;
 
-}
-
-imu::Vector<3> read_gyroscope()
+void Imu::rotate()
 {
-    sensors_event_t g;
-    lsm.getEvent(&g, NULL, NULL);
-    imu::Vector<3> gyroscope;
-    gyroscope.x = g.gyro.x;
-    gyroscope.y = g.gyro.y;
-    gyroscope.z = g.gyro.z;
-    return gyroscope;
-}
+    Vector3 accel = read_accelerometer();
 
-imu::Vector<3> Imu::read_accelerometer()
-{
-    sensors_event_t a;
-    lsm.getEvent(&a, NULL, NULL);
-    imu::Vector<3> accel;
-    accel.x = a.acceleration.x;
-    accel.y = a.acceleration.y;
-    accel.z = a.acceleration.z;
-    return accel;
-}
+    // rotate to global using chip quaternion
+    Quaternion unit_quat = read_quaternions();
+    double norm = sqrt(unit_quat.w * unit_quat.w + unit_quat.x * unit_quat.x + unit_quat.y * unit_quat.y + unit_quat.z * unit_quat.z);
+    unit_quat.w /= norm;
+    unit_quat.x /= norm;
+    unit_quat.y /= norm;
+    unit_quat.z /= norm;
 
-imu::Vector<3> Imu::read_linear_accel()
-{
-    sensors_event_t linear_a;
-    lsm.getEvent(NULL, NULL, &linear_a);
-    imu::Vector<3> linear_accel;
-    linear_accel.x = linear_a.acceleration.x;
-    linear_accel.y = linear_a.acceleration.y;
-    linear_accel.z = linear_a.acceleration.z;
-    return linear_accel;
-}
+    // rotate the acceleration
+    Vector3 rotated_accel = rotateVectorByQuaternion(accel, unit_quat);
 
-void Imu::print_data(imu::Vector<3> data)
-{
-    /* Display the floating point data */
-    Serial.print(data.x());
-    Serial.print(",");
-    Serial.print(data.y());
-    Serial.print(",");
-    Serial.println(data.z());
+    // save acceleration to data
+    data->accelx((float)rotated_accel.x);
+    data->accely((float)rotated_accel.y);
+    data->accelz((float)rotated_accel.z);
+
+    // Convert quaternion to Euler angles and set them
+    set(unit_quat);
+
+    // save eulers
+    Vector3 eulers = read_euler();
+    data->eulerx((float)eulers.x);
+    data->eulery((float)eulers.y);
+    data->eulerz((float)eulers.z);
 }

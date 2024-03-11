@@ -13,8 +13,6 @@ void Data::init()
   diagmsg(0);
 
   //initalize PRISM serial communication
-  Serial5.begin(800000);
-  PRISM_serial.begin(Serial5);
 
   pinMode(teensyLED, OUTPUT);
 
@@ -235,16 +233,16 @@ void Data::diagmsg_reset() {
   packet[27] = gpsStruct.diagmsg;  
 }
 
-void Data::readGPS(){
-  if (PRISM_serial.available())
-  {
-    PRISM_serial.rxObj(gpsStruct);
-    lat(gpsStruct.lat);
-    lng(gpsStruct.lng);
-    gpsalt(gpsStruct.gpsalt);
-    diagmsg(diagmsg() + gpsStruct.diagmsg);
-  }
-}
+ void Data::readGPS(){
+//   if (PRISM_serial.available())
+//   {
+//     PRISM_serial.rxObj(gpsStruct);
+//     lat(gpsStruct.lat);
+//     lng(gpsStruct.lng);
+//     gpsalt(gpsStruct.gpsalt);
+//     diagmsg(diagmsg() + gpsStruct.diagmsg);
+//   }
+ }
 
 void Data::encodeAndAdd()
 {
@@ -256,13 +254,13 @@ void Data::encodepacket()
 {
   bulkencode(packet, encodedpacket); //endcode the packet
 }
-void Data::sendSerialData()
-{
+ void Data::sendSerialData()
+ {
 
-  digitalWrite(teensyLED, HIGH);
-  PRISM_serial.sendDatum(packet, packetSize*4);
-  digitalWrite(teensyLED, LOW);
-}
+//   digitalWrite(teensyLED, HIGH);
+//   PRISM_serial.sendDatum(packet, packetSize*4);
+//   digitalWrite(teensyLED, LOW);
+ }
 
 void Data::addToFrame()
 {
