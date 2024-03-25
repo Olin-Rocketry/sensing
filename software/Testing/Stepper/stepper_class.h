@@ -12,16 +12,16 @@ private:
   const uint8_t dir_pin = 29;
   const uint8_t tx_pin = 32;
   const uint8_t rx_pin = 31;
-  int home_speed = 180; //deg/s
+  int home_speed = 800; //steps/s
   int micro_steps_per_step = 4;
   int full_steps_per_rot = 200;
 
-  const uint8_t run_current_percent = 50;
-  const uint8_t stall_guard_threshold = 300;
-  int max_speed = 3600; //deg/s
-  int max_accel = 2000; //deg/s/s
+  const uint8_t run_current_percent = 20;
+  const uint8_t stall_guard_threshold = 120;
+  int max_speed = 40000; //deg/s
+  int max_accel = 40000; //deg/s/s
 
-  HardwareSerial & serial_stream = Serial2;
+  HardwareSerial & serial_stream = Serial4;
 
 
   //TMC2209 driver object

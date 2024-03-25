@@ -19,7 +19,7 @@ void StepperMotor::enable_stepper(){
 
   //Step-stick Settings
   step_stick.setRunCurrent(run_current_percent);
-  step_stick.setMicrostepsPerStep(8);
+  step_stick.setMicrostepsPerStep(micro_steps_per_step);
   step_stick.moveUsingStepDirInterface();
   step_stick.enableStealthChop();
   step_stick.enableAutomaticCurrentScaling();
@@ -41,36 +41,27 @@ void StepperMotor::home_stepper(){
 
   //move at constant speed
   step_stick.moveAtVelocity(home_speed);
-  delay(100);  //need delay to prevent stall-trigger on startup current
+  delay(1000);  //need delay to prevent stall-trigger on startup current
 
   //hold untill stall
-  while(step_stick.getStallGuardResult() >= stall_guard_threshold){
-    Serial.println(step_stick.getStallGuardResult());
+  double stall = step_stick.getStallGuardResult();
+  while(stall >= stall_guard_threshold){
+    Serial.println(stall);
+    stall = step_stick.getStallGuardResult();
+    delay(5);
   };
   
   step_stick.moveAtVelocity(0);
   digitalWrite(LED_BUILTIN, HIGH);
+}
   
 
-  
-  
-//  delay(200);
-//  digitalWrite(LED_BUILTIN, LOW);
-//  //back off slowly
-//  step_stick.moveAtVelocity(-40000);
-//  delay(1000);
-//  //approach limit slowely
-//  step_stick.moveAtVelocity(40000);
-//  delay(100);
-//  while(step_stick.getStallGuardResult() >= stall_guard_threshold){};
-//  step_stick.moveAtVelocity(0);
-//  digitalWrite(LED_BUILTIN, HIGH);
-//  delay(1000);
-  }
-
+ 
 void StepperMotor::move_stepper(int deg_pos){
      driver.moveTo(deg_pos/360.0 * full_steps_per_rot * micro_steps_per_step);
      driver.run();
+
+
   }
 
 void StepperMotor::disable_stepper(){

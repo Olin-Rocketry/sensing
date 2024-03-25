@@ -11,21 +11,29 @@ StepperMotor steppermotor;
 void setup()
 {
     steppermotor.enable_stepper();
-     steppermotor.home_stepper();
+     
   
   Serial.begin(115200);
+
+  steppermotor.home_stepper();
 
 
 }
 
 void loop()
 {
+
+
+
+
+  
   // stepper
   int t_now = millis();
 
-  int pos = t_now/10000 * 360*20;
+  int pos = t_now/1000 * 360;
 
   Serial.println(pos);
+  
   steppermotor.move_stepper(pos);
 
   if (t_now > 1000*30){
