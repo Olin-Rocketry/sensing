@@ -66,17 +66,17 @@ union Radio::floatunion_t
 {
     float f;
     char a[sizeof(float)];
-} float_u;
+} float_ur;
 
 float Radio::decoder(char *encoded)
 {
     // Serial.println("Debug Decoder");
     for (int i = 0; i < sizeof(float); i++)
     {
-        float_u.a[i] = encoded[i];
+        float_ur.a[i] = encoded[i];
         // Serial.println(encoded[i]);
     }
-    return float_u.f;
+    return float_ur.f;
 }
 
 void Radio::sendingPacket()
