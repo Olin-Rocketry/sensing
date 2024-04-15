@@ -339,9 +339,9 @@ void Data::analogTelem() {
   volt(map(raw_analog, 815, 856, 3.65, 4.18)); //add to data class
 
   //==============arming and continuity==============
-  int armSignal = analogRead(A12);
-  int pyro1Cont = analogRead(A17);
-  int pyro2Cont = analogRead(A16);
+  int armSignal = analogRead(A8);
+  int pyro1Cont = analogRead(A7);
+  int pyro2Cont = analogRead(A0);
   int pyroCode = 1000;
   if (armSignal > 100) {
     pyroCode += 1;

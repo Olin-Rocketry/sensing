@@ -1,7 +1,11 @@
 #include "radio_class.h"
 #include <algorithm>
 
-
+Radio::Radio(Data *data){
+  this->data = data;
+  rf95(RFM95_CS,RFM95_INT);
+  init();
+}
 void Radio::init(){
     //init both un-encoded and encoded packet with 0
     std::fill_n(packet, packetSize, 0.0000);
@@ -124,11 +128,12 @@ void Radio::reveicePacket()
     }
 }
 
-void Radio::sendRadio(char serialBuffer[packetSize*4]){
+void Radio::sendRadio(){
   
 //    Serial.println(serialBuffer);
     // Send a message to rf95_server
-    rf95.send((uint8_t *)serialBuffer, packetSize*4);
+
+    rf95.send((uint8_t *)data->encodedpacket, packetSize*4);
 //    delay(10);
 //    rf95.waitPacketSent();
 //    Serial.println("Packet Sent");

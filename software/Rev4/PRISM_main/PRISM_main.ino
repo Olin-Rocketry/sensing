@@ -11,10 +11,10 @@
 
 
 // pinmodes
-#define KEYSWITCH A12
+#define KEYSWITCH A8
 // PYRO 1 (top) = PIN 24
 // PYRO 2 (bottom) = PIN 25
-#define buzz 15
+#define buzz 6
 #define MAIN 24
 #define DROGUE 25
 
@@ -37,7 +37,7 @@ bool beep=false;
 
 
 // setup sensors
-Led statusLed1(34);
+Led statusLed1(0);
 Data data(&statusLed1);
 Imu imu_test(&data);
 Kalman kalman_filter(&data);
@@ -45,34 +45,28 @@ Altimeter altimeter(&data);
 
 //EAST
 Led statusLed2(22);
-Radio radio;
+Radio radio(&data);
 Gps gps(&radio);
 
 StepperMotor steppermotor;
 
 unsigned long cycle_time;
 unsigned long old_cycle_time = 0;
-void debugPhase(void)
-{
-  if(debugEnable==true)
-  {
-    Serial.print("Phase ");
-    Serial.println(phase);
-  }
-}
 
 void setup()
 {
-    steppermotor.enable_stepper();
+    //steppermotor.enable_stepper();
 //  steppermotor.home_stepper();
   
   Serial.begin(115200);
+  // tone(6,1500,1000);
+  tone(5,1500,1000);
   radio.led_test(&statusLed1);
   delay(10);
   
   
   radio.begin();
-  gps.begin_gps(&statusLed2);
+  gps.begin_gps(&statusLed1);
   
   pinMode(DROGUE,OUTPUT);
   pinMode(MAIN,OUTPUT);
@@ -83,7 +77,6 @@ void setup()
     delay(200);
   };
   
-  Serial.begin(115200);
   Serial.println("To enter debug mode, send any character over Serial; proceeding without debug mode in:");
   delay(5000);
   int countdown=25;
@@ -131,7 +124,7 @@ void loop()
  
   // radio
 
-  radio.sendingPacket();
+  radio.sendRadio();
 
   // stepper
   int t_now = millis();
@@ -231,7 +224,7 @@ void PostARM()
 
   
   statusLed1.RGB(0, 255, 255, 0); // Yellow for LED 1
-  statusLed2.RGB(1, 255, 255, 0); // Yellow for LED 2
+  //statusLed2.RGB(1, 255, 255, 0); // Yellow for LED 2
 
   
   
@@ -295,7 +288,7 @@ void BeforeMain()
 void AfterMain(){
   collect_data();
   statusLed1.RGB(0, 0, 255, 0); // Green for LED 1
-  statusLed2.RGB(1, 0, 255, 0); // Green for LED 2
+  // statusLed2.RGB(1, 0, 255, 0); // Green for LED 2
 
   kalman_filter.update();
 
@@ -339,6 +332,15 @@ void collect_data (void){
 // neopixels
 void status_lights (void) {
   statusLed1.RGB(0, 100, 0, 0);
-  statusLed2.RGB(1, 100, 0, 0);
+  // statusLed2.RGB(1, 100, 0, 0);
+}
+
+void debugPhase()
+{
+  if(debugEnable==true)
+  {
+    Serial.print("Phase ");
+    Serial.println(phase);
+  }
 }
 

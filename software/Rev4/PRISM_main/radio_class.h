@@ -3,11 +3,11 @@
 #include <Arduino.h>
 #include <algorithm>
 #include <RH_RF95.h>
+#include "data_class.h"
 
-
-#define RFM95_CS 0
-#define RFM95_RST 20
-#define RFM95_INT 21
+#define RFM95_CS 9
+#define RFM95_RST 8
+#define RFM95_INT 7
 #define RF95_FREQ 915.0
 
 class Radio {
@@ -21,15 +21,15 @@ class Radio {
     char serialBuffer[packetSize*4];
     Led *statusLed;
     bool serial_status;
-
+    Data *data;
 
     
     
 
   public:
-  
+
 //    Radio(Led *statusLed);
-    Radio() : rf95(RFM95_CS,RFM95_INT) { }  //what is going on here? We need to make this a constructor method 
+    Radio(Data *data);
 
 
     
@@ -38,7 +38,7 @@ class Radio {
     void reveicePacket();  
     void led_test(Led *statusLed);
  
-    void sendRadio(char serialBuffer[packetSize*4]);
+    void sendRadio();
 //void sendRadio();
 void readRadio();
     void decodeData();  

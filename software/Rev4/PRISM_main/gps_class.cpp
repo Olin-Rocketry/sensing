@@ -55,7 +55,7 @@ void Gps::read_position()
     }
     //radio->EAST_serial.sendDatum(gpsStruct);
 
-    Serial8.flush();
+    //Serial8.flush();
 }
 
 void Gps::read_data()
