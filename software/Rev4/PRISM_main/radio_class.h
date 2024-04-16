@@ -29,8 +29,7 @@ class Radio {
   public:
 
 //    Radio(Led *statusLed);
-    Radio(Data *data);
-
+    Radio(Data *data) : rf95(RFM95_CS,RFM95_INT) {this->data = data; init();} ;
 
     
     void init();  

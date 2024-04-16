@@ -2,7 +2,6 @@
 
 Led::Led(byte pin) {
   this->pin = pin;
-  init();
 }
 
 void Led::init() {
@@ -11,8 +10,8 @@ void Led::init() {
 }
 
 void Led::RGB(int pixel, int R, int G, int B) {
-  leds[pixel] = CRGB(R,G,B);;
-    FastLED.show();
+  leds[pixel] = CRGB(R,G,B);
+  FastLED.show();
 }
 
 

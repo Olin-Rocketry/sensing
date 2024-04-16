@@ -266,8 +266,7 @@ void Data::addToFrame()
 {
  
   if (frameIndex % 5 == 0) { //send every 5th packet to EAST
-    sendSerialData();
-    Serial5.flush();
+    validpacket=true;
     if(debugEnable==true)
     {
       for(int i=0; i<packetSize; i++)

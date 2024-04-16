@@ -14,7 +14,7 @@
 #define KEYSWITCH A8
 // PYRO 1 (top) = PIN 24
 // PYRO 2 (bottom) = PIN 25
-#define buzz 6
+#define BUZZER 6
 #define MAIN 24
 #define DROGUE 25
 
@@ -44,7 +44,6 @@ Kalman kalman_filter(&data);
 Altimeter altimeter(&data);
 
 //EAST
-Led statusLed2(22);
 Radio radio(&data);
 Gps gps(&radio);
 
@@ -59,11 +58,9 @@ void setup()
 //  steppermotor.home_stepper();
   
   Serial.begin(115200);
-  // tone(6,1500,1000);
-  tone(5,1500,1000);
+//  tone(BUZZER,1500,1000);
   radio.led_test(&statusLed1);
   delay(10);
-  
   
   radio.begin();
   gps.begin_gps(&statusLed1);
@@ -73,7 +70,7 @@ void setup()
   digitalWrite(DROGUE, LOW);  //very important!!
   digitalWrite(MAIN, LOW);  //very important!!
   while(analogRead(KEYSWITCH) >= 100){
-    tone(33, 700, 100);
+    tone(BUZZER, 700, 100);
     delay(200);
   };
   
@@ -112,6 +109,7 @@ void setup()
 
 void loop()
 {
+  loop_t_start = micros();
   //EAST
   cycle_time = millis() - old_cycle_time;
   
@@ -131,7 +129,7 @@ void loop()
 
   int pos = t_now/10000 * 360*20;
 
-  Serial.println(pos);
+//  Serial.println(pos);
   
   steppermotor.move_stepper(pos);
 
@@ -140,8 +138,6 @@ void loop()
     steppermotor.disable_stepper();
   }
   
-
-  loop_t_start = micros();
   
   // Chooses loop to run through depending on what the phase is set to
   switch (phase)
@@ -191,13 +187,13 @@ void PreARM()
   // when keyswitch is turned, enter PostARM phase
   if (analogRead(KEYSWITCH) >= 100)
   {
-    tone(33, 400, 1000);
+    tone(BUZZER, 400, 1000);
     kalman_filter.begin();
     float average_altitude = 0;
     int number_readings = 5;
 
-    for (int frequency = 400; frequency <= 1000; frequency += 100) {
-        tone(buzz, frequency, 100);
+    for (int freq = 400; freq <= 1000; freq += 100) {
+        tone(BUZZER, freq, 100);
         delay(100);
 
     //take 5 reading and compute the averadge, then use this to set the launch detection altitude
@@ -210,9 +206,9 @@ void PreARM()
     data.kfy(minimumAltitude);
     phase = 2;
     debugPhase();
+    }
+    tone(BUZZER, 200, 3000);
   }
-    tone(buzz, 200, 3000);
-}
 }
 
 // phase 2
@@ -305,12 +301,12 @@ void AfterMain(){
   }
   //loop?
   // First burst
-    tone(buzz, 1500, 1000); // 1.5 kHz tone for 1 second
-    delay(1000); // Wait for 1 second
-
-  // Second burst
-  tone(buzz, 1500, 1000); // 1.5 kHz tone for 1 second
-  delay(7000); // Wait for 7 seconds
+//    tone(BUZZER, 1500, 1000); // 1.5 kHz tone for 1 second
+//    delay(1000); // Wait for 1 second
+//
+//  // Second burst
+//  tone(BUZZER, 1500, 1000); // 1.5 kHz tone for 1 second
+//  delay(7000); // Wait for 7 seconds
 }
 
 
@@ -343,4 +339,3 @@ void debugPhase()
     Serial.println(phase);
   }
 }
-

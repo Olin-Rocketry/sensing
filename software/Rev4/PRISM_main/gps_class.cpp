@@ -12,9 +12,8 @@ void Gps::init()
 void Gps::begin_gps(Led *statusLed)
 {
     Wire.begin();
-    Serial.begin(9600);
     this->statusLed = statusLed;
-    statusLed->RGB(1, 255, 0, 0);
+//    statusLed->RGB(1, 255, 0, 0);
 
 
     
