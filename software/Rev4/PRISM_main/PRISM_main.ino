@@ -58,7 +58,7 @@ void setup()
 //  steppermotor.home_stepper();
   
   Serial.begin(115200);
-//  tone(BUZZER,1500,1000);
+  tone(BUZZER,1500,1000);
   radio.led_test(&statusLed1);
   delay(10);
 
