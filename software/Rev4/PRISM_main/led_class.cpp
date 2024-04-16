@@ -7,7 +7,7 @@ Led::Led(byte pin) {
 
 void Led::init() {
   FastLED.addLeds<WS2811, 0, GRB>(leds, num_leds);
-//  off();
+  off();
 }
 
 void Led::RGB2(int pixel, int R, int G, int B) {

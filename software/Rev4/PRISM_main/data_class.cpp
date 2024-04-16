@@ -264,7 +264,6 @@ void Data::encodepacket()
 
 void Data::addToFrame()
 {
- 
   if (frameIndex % 5 == 0) { //send every 5th packet to EAST
     validpacket=true;
     if(debugEnable==true)

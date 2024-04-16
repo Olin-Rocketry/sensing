@@ -13,7 +13,7 @@ void Gps::begin_gps(Led *statusLed)
 {
     Wire.begin();
     this->statusLed = statusLed;
-//    statusLed->RGB2(1, 255, 0, 0);
+    statusLed->RGB2(1, 255, 0, 0);
 
 
     

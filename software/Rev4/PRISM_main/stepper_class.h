@@ -8,10 +8,10 @@ class StepperMotor
 
 private:
   //pin definitions
-  const uint8_t step_pin = 10;
-  const uint8_t dir_pin = 11;
-  const uint8_t tx_pin = 4;
-  const uint8_t rx_pin = 5;
+  const uint8_t step_pin = 15;
+  const uint8_t dir_pin = 20;
+  const uint8_t tx_pin = 17;
+  const uint8_t rx_pin = 16;
   int home_speed = 180; //deg/s
   int micro_steps_per_step = 4;
   int full_steps_per_rot = 200;
