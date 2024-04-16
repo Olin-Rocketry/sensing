@@ -125,7 +125,7 @@ void loop()
  
   // radio
 
-//  radio.sendRadio();
+  radio.sendRadio();
 
   // stepper
   int t_now = millis();

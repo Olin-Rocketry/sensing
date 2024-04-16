@@ -52,7 +52,7 @@ void Radio::begin(){
     // The default transmitter power is 13dBm, using PA_BOOST.
     // If you are using RFM95/96/97/98 modules which uses the PA_BOOST transmitter pin, then
     // you can set transmitter powers from 5 to 23 dBm:
-    rf95.setTxPower(23, false);
+    rf95.setTxPower(13, false);
 
 
 
@@ -130,7 +130,8 @@ void Radio::sendRadio(){
     // Send a message to rf95_server
   if(data->validpacket)
   {
-    rf95.send((uint8_t *)data->encodedpacket, packetSize*4);
+    rf95.waitPacketSent();
+    rf95.send((uint8_t *)data->encodedpacket, sizeof(data->encodedpacket));
     data->validpacket=false;
   }
 //    delay(10);
