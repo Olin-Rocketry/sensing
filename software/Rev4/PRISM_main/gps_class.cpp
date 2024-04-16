@@ -13,7 +13,7 @@ void Gps::begin_gps(Led *statusLed)
 {
     Wire.begin();
     this->statusLed = statusLed;
-//    statusLed->RGB(1, 255, 0, 0);
+//    statusLed->RGB2(1, 255, 0, 0);
 
 
     
@@ -25,7 +25,7 @@ void Gps::test_connection()
     // throw error if no connection
     if (!i2c_gps.begin(Wire, 400000))
     {
-        statusLed->RGB(1, 255, 0, 0);
+        statusLed->RGB2(1, 255, 0, 0);
         Serial.print("Ooops, no gps detected ... Check your wiring or I2C ADDR!");
         gpsStruct.diagmsg = pow(2, 2);
         while (1);
@@ -50,7 +50,7 @@ void Gps::read_position()
         gpsStruct.lng = 3.14;
         gpsStruct.lat = 3.14;
         gpsStruct.diagmsg = pow(2,2);
-        statusLed->RGB(1, 255, 0, 255);
+        statusLed->RGB2(1, 255, 0, 255);
     }
     //radio->EAST_serial.sendDatum(gpsStruct);
 
@@ -64,7 +64,7 @@ void Gps::read_data()
 
     if (gps.location.isValid())
     {
-        statusLed->RGB(1, 0, 255, 0);
+        statusLed->RGB2(1, 0, 255, 0);
         gpsStruct.lng = gps.location.lng();
         gpsStruct.lat = gps.location.lat();
         gpsStruct.diagmsg = 0;
@@ -77,7 +77,7 @@ void Gps::read_data()
         
     }
     else{
-      statusLed->RGB(1, 255, 0, 255);
+      statusLed->RGB2(1, 255, 0, 255);
       gpsStruct.lng = 3.14;
       gpsStruct.lat = 3.14;
       gpsStruct.diagmsg = pow(2, 2);

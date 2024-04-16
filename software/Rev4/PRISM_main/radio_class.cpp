@@ -9,8 +9,8 @@ void Radio::init(){
 
 void Radio::led_test(Led *statusLed){
   this->statusLed = statusLed;
-  statusLed->RGB(0, 100, 0, 0);
-  statusLed->RGB(1, 100, 100, 0);
+  statusLed->RGB2(0, 100, 0, 0);
+  statusLed->RGB2(1, 100, 100, 0);
   
 }
 
@@ -29,12 +29,12 @@ void Radio::begin(){
     while (!rf95.init())
     {
         Serial.println("LoRa radio init failed");
-        statusLed->RGB(0, 255, 0, 0);
+        statusLed->RGB2(0, 255, 0, 0);
         while (1)
             ;
     }
     Serial.println("LoRa radio init OK!");
-    statusLed->RGB(0, 0, 0, 255);
+    statusLed->RGB2(0, 0, 0, 255);
 
     // Defaults after init are 434.0MHz, modulation GFSK_Rb250Fd250, +13dbM
     if (!rf95.setFrequency(RF95_FREQ))
@@ -89,7 +89,7 @@ void Radio::sendingPacket()
  {
 //     // if (EAST_serial.available()){
 //     //   if(!serial_status){
-//     //     statusLed->RGB(0, 0, 255, 0);
+//     //     statusLed->RGB2(0, 0, 255, 0);
 //     //     serial_status = true;
 //     //   }
         

@@ -219,8 +219,8 @@ void PostARM()
 
 
   
-  statusLed1.RGB(0, 255, 255, 0); // Yellow for LED 1
-  //statusLed2.RGB(1, 255, 255, 0); // Yellow for LED 2
+  statusLed1.RGB2(0, 255, 255, 0); // Yellow for LED 1
+  //statusLed2.RGB2(1, 255, 255, 0); // Yellow for LED 2
 
   
   
@@ -283,8 +283,8 @@ void BeforeMain()
 // phase 5
 void AfterMain(){
   collect_data();
-  statusLed1.RGB(0, 0, 255, 0); // Green for LED 1
-  // statusLed2.RGB(1, 0, 255, 0); // Green for LED 2
+  statusLed1.RGB2(0, 0, 255, 0); // Green for LED 1
+  // statusLed2.RGB2(1, 0, 255, 0); // Green for LED 2
 
   kalman_filter.update();
 
@@ -327,8 +327,8 @@ void collect_data (void){
 
 // neopixels
 void status_lights (void) {
-  statusLed1.RGB(0, 100, 0, 0);
-  // statusLed2.RGB(1, 100, 0, 0);
+  statusLed1.RGB2(0, 100, 0, 0);
+  // statusLed2.RGB2(1, 100, 0, 0);
 }
 
 void debugPhase()
