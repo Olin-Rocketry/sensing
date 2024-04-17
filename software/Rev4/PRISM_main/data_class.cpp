@@ -27,7 +27,7 @@ void Data::SDbegin(bool debugEnable, bool noSD)
   // SD required
   if (!noSD) {
     // see if the card is present and can be initialized:
-    if (!SD.begin(BUILTIN_SDCARD))
+    if (!SD.begin(10))
     {
       Serial.println("SD Card failed, or not present");
       while (1) { }
