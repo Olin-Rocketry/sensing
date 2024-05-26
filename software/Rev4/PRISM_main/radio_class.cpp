@@ -1,7 +1,6 @@
 #include "radio_class.h"
 #include <algorithm>
 
-
 void Radio::init(){
     //init both un-encoded and encoded packet with 0
     std::fill_n(packet, packetSize, 0.0000);
@@ -10,7 +9,8 @@ void Radio::init(){
 
 void Radio::led_test(Led *statusLed){
   this->statusLed = statusLed;
-  statusLed->RGB(0, 100, 0, 0);
+  statusLed->RGB2(0, 100, 0, 0);
+  statusLed->RGB2(1, 100, 100, 0);
   
 }
 
@@ -29,12 +29,12 @@ void Radio::begin(){
     while (!rf95.init())
     {
         Serial.println("LoRa radio init failed");
-        statusLed->RGB(0, 255, 0, 0);
+        statusLed->RGB2(0, 255, 0, 0);
         while (1)
             ;
     }
     Serial.println("LoRa radio init OK!");
-    statusLed->RGB(0, 0, 0, 255);
+    statusLed->RGB2(0, 0, 0, 255);
 
     // Defaults after init are 434.0MHz, modulation GFSK_Rb250Fd250, +13dbM
     if (!rf95.setFrequency(RF95_FREQ))
@@ -52,7 +52,7 @@ void Radio::begin(){
     // The default transmitter power is 13dBm, using PA_BOOST.
     // If you are using RFM95/96/97/98 modules which uses the PA_BOOST transmitter pin, then
     // you can set transmitter powers from 5 to 23 dBm:
-    rf95.setTxPower(23, false);
+    rf95.setTxPower(13, false);
 
 
 
@@ -89,7 +89,7 @@ void Radio::sendingPacket()
  {
 //     // if (EAST_serial.available()){
 //     //   if(!serial_status){
-//     //     statusLed->RGB(0, 0, 255, 0);
+//     //     statusLed->RGB2(0, 0, 255, 0);
 //     //     serial_status = true;
 //     //   }
         
@@ -124,11 +124,16 @@ void Radio::reveicePacket()
     }
 }
 
-void Radio::sendRadio(char serialBuffer[packetSize*4]){
+void Radio::sendRadio(){
   
 //    Serial.println(serialBuffer);
     // Send a message to rf95_server
-    rf95.send((uint8_t *)serialBuffer, packetSize*4);
+  if(data->validpacket)
+  {
+    rf95.waitPacketSent();
+    rf95.send((uint8_t *)data->encodedpacket, sizeof(data->encodedpacket));
+    data->validpacket=false;
+  }
 //    delay(10);
 //    rf95.waitPacketSent();
 //    Serial.println("Packet Sent");

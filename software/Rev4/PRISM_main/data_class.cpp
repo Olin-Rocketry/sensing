@@ -27,7 +27,7 @@ void Data::SDbegin(bool debugEnable, bool noSD)
   // SD required
   if (!noSD) {
     // see if the card is present and can be initialized:
-    if (!SD.begin(BUILTIN_SDCARD))
+    if (!SD.begin(10))
     {
       Serial.println("SD Card failed, or not present");
       while (1) { }
@@ -264,10 +264,8 @@ void Data::encodepacket()
 
 void Data::addToFrame()
 {
- 
   if (frameIndex % 5 == 0) { //send every 5th packet to EAST
-    sendSerialData();
-    Serial5.flush();
+    validpacket=true;
     if(debugEnable==true)
     {
       for(int i=0; i<packetSize; i++)
@@ -339,9 +337,9 @@ void Data::analogTelem() {
   volt(map(raw_analog, 815, 856, 3.65, 4.18)); //add to data class
 
   //==============arming and continuity==============
-  int armSignal = analogRead(A12);
-  int pyro1Cont = analogRead(A17);
-  int pyro2Cont = analogRead(A16);
+  int armSignal = analogRead(A8);
+  int pyro1Cont = analogRead(A7);
+  int pyro2Cont = analogRead(A0);
   int pyroCode = 1000;
   if (armSignal > 100) {
     pyroCode += 1;
