@@ -2,7 +2,7 @@
 #include "Arduino.h"
 #include "led_class.h"
 #include <SD.h>
-#include <algorithm>
+//#include <algorithm>
 #ifdef __AVR__
 #define FsFile File32
 #endif

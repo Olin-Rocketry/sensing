@@ -20,7 +20,7 @@
 
 
 byte IICdata[5] = {0, 0, 0, 0, 0}; // buffer for sensor data
-bool debugEnable=false; //Enable debug printing
+bool debugEnable=true; //Enable debug printing
 bool noSD = false;  // Enable debug without sd
 short int flight_phase = 1;
 unsigned long loop_t_start = 0;
@@ -58,14 +58,16 @@ void setup()
 //  steppermotor.home_stepper();
   
   Serial.begin(115200);
-  tone(BUZZER,1500,1000);
-  radio.led_test(&statusLed1);
+  //tone(BUZZER,1500,1000);
+  //radio.led_test(&statusLed1);
   delay(10);
-
+  Serial.print("SD Card Present ");
+  Serial.println(digitalRead(1));
   Serial.print(CrashReport);
   delay(1000);
-  
-  radio.begin();
+  Serial.println("starting Radio");
+  //radio.begin();
+  Serial.println("Radio Started");
   gps.begin_gps(&statusLed1);
   
   pinMode(DROGUE,OUTPUT);

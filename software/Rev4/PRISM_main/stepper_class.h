@@ -21,7 +21,7 @@ private:
   int max_speed = 3600; //deg/s
   int max_accel = 2000; //deg/s/s
 
-  HardwareSerial & serial_stream = Serial2;
+  HardwareSerial &serial_stream = Serial2;
 
 
   //TMC2209 driver object

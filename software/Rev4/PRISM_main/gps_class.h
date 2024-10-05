@@ -2,7 +2,7 @@
 #include <Arduino.h>
 #include <Wire.h>
 #include <SparkFun_I2C_GPS_Arduino_Library.h>
-#include <TinyGPS++.h>
+#include <TinyGPSPlus.h>
 #include "led_class.h"
 #include "radio_class.h"
 
