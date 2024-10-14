@@ -101,12 +101,11 @@ void setup()
   {
     Serial.println("Debug mode not enabled; proceeding normally");
   }
+
   // begin sensors
   data.SDbegin(debugEnable, noSD);
   imu_test.begin_imu(debugEnable);
   altimeter.begin_altimeter(debugEnable);
-
-
   data.kfx(DROGUE_velocity_trigger);
 }
 
