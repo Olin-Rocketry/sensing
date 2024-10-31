@@ -21,7 +21,7 @@
 
 byte IICdata[5] = {0, 0, 0, 0, 0}; // buffer for sensor data
 bool debugEnable=true; //Enable debug printing
-bool noSD = false;  // Enable debug without sd
+bool noSD = true;  // Enable debug without sd
 short int flight_phase = 1;
 unsigned long loop_t_start = 0;
 unsigned long loop_t_end = 0;
@@ -61,12 +61,12 @@ void setup()
   //tone(BUZZER,1500,1000);
   //radio.led_test(&statusLed1);
   delay(10);
-  Serial.print("SD Card Present ");
-  Serial.println(digitalRead(1));
+  //Serial.print("SD Card Present ");
+  //Serial.println(digitalRead(1));
   Serial.print(CrashReport);
   delay(1000);
   Serial.println("starting Radio");
-  //radio.begin();
+  radio.begin();
   Serial.println("Radio Started");
   gps.begin_gps(&statusLed1);
   
@@ -105,7 +105,7 @@ void setup()
   }
 
   // begin sensors
-  data.SDbegin(debugEnable, noSD);
+  //data.SDbegin(debugEnable, noSD);
   imu_test.begin_imu(debugEnable);
   altimeter.begin_altimeter(debugEnable);
   data.kfx(DROGUE_velocity_trigger);
@@ -125,8 +125,8 @@ void loop()
   }
  
   // radio
-
   radio.sendRadio();
+  CrashReport.breadcrumb(2, 1111111);
 
   // stepper
   int t_now = millis();
@@ -136,7 +136,7 @@ void loop()
 //  Serial.println(pos);
   
   steppermotor.move_stepper(pos);
-
+  CrashReport.breadcrumb(2, 3333333);
 
   if (t_now > 1000*30){
     steppermotor.disable_stepper();

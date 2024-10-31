@@ -1,0 +1,990 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="E">
+  <design>
+    <source>/home/rohan/sensing/hardware/GS Radio Antenna/antenna_board.kicad_sch</source>
+    <date>Wed 10 Jan 2024 08:44:22 PM EST</date>
+    <tool>Eeschema 7.0.10-7.0.10~ubuntu22.04.1</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>antenna_board.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="C1">
+      <value>0.47 uF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder</footprint>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>88772fed-27fd-4b50-9b27-6f048dd4d5b6</tstamps>
+    </comp>
+    <comp ref="C2">
+      <value>33 uF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder</footprint>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>fea7c0bb-aaaf-4a81-8235-0785f0ecd6cc</tstamps>
+    </comp>
+    <comp ref="H1">
+      <value>MountingHole</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopBottom</footprint>
+      <libsource lib="Mechanical" part="MountingHole" description="Mounting Hole without connection"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <property name="ki_description" value="Mounting Hole without connection"/>
+      <property name="ki_keywords" value="mounting hole"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>11d14cf7-7761-44d1-87b7-f5a8c1f5d084</tstamps>
+    </comp>
+    <comp ref="H2">
+      <value>MountingHole</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopBottom</footprint>
+      <libsource lib="Mechanical" part="MountingHole" description="Mounting Hole without connection"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <property name="ki_description" value="Mounting Hole without connection"/>
+      <property name="ki_keywords" value="mounting hole"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>c34416ad-8bf5-4557-a398-11c2f0e6565a</tstamps>
+    </comp>
+    <comp ref="H3">
+      <value>MountingHole</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopBottom</footprint>
+      <libsource lib="Mechanical" part="MountingHole" description="Mounting Hole without connection"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <property name="ki_description" value="Mounting Hole without connection"/>
+      <property name="ki_keywords" value="mounting hole"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>8c18bebc-a755-4a74-9383-326a353b3404</tstamps>
+    </comp>
+    <comp ref="H4">
+      <value>MountingHole</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopBottom</footprint>
+      <libsource lib="Mechanical" part="MountingHole" description="Mounting Hole without connection"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <property name="ki_description" value="Mounting Hole without connection"/>
+      <property name="ki_keywords" value="mounting hole"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>f4108d3b-a07f-4d50-a074-8273ec55671a</tstamps>
+    </comp>
+    <comp ref="H5">
+      <value>MountingHole</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopBottom</footprint>
+      <libsource lib="Mechanical" part="MountingHole" description="Mounting Hole without connection"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <property name="ki_description" value="Mounting Hole without connection"/>
+      <property name="ki_keywords" value="mounting hole"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>d65a3fd2-4a13-40e4-ab9d-33800bfcc8a1</tstamps>
+    </comp>
+    <comp ref="J1">
+      <value>Conn_01x02_Socket</value>
+      <footprint>Connector_PinSocket_2.54mm:PinSocket_1x02_P2.54mm_Vertical</footprint>
+      <libsource lib="Connector" part="Conn_01x02_Socket" description="Generic connector, single row, 01x02, script generated"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x02, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>5439caa8-bf02-4e12-955e-2c4441c2d6e5</tstamps>
+    </comp>
+    <comp ref="R1">
+      <value>1K</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder</footprint>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>dd12d26d-f3da-4046-8fc5-9c1e87141496</tstamps>
+    </comp>
+    <comp ref="R2">
+      <value>1K</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder</footprint>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>c487f34d-9492-4340-8aac-aeda219cef67</tstamps>
+    </comp>
+    <comp ref="R3">
+      <value>1K</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder</footprint>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>df481e4d-2eb7-47f8-9bd9-e13300004cbc</tstamps>
+    </comp>
+    <comp ref="R4">
+      <value>20K</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder</footprint>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>799a5755-a16d-4a1c-9fbc-99bafe261c68</tstamps>
+    </comp>
+    <comp ref="R5">
+      <value>20K</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder</footprint>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>f06b5556-76f8-41eb-b842-ac45eeb332a8</tstamps>
+    </comp>
+    <comp ref="R6">
+      <value>20K</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder</footprint>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>974881df-a0a2-4274-910e-0de5e62e6425</tstamps>
+    </comp>
+    <comp ref="R7">
+      <value>20K</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder</footprint>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>ee0d2901-7cc8-4881-925a-23b44d154698</tstamps>
+    </comp>
+    <comp ref="U1">
+      <value>~</value>
+      <footprint>rocketry_footprints:RFM69HCW_Breakout</footprint>
+      <libsource lib="RFM69HCW" part="RFM69HCW_Breakout" description=""/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>9de09fbe-4231-4dcb-aace-b857b88d31d5</tstamps>
+    </comp>
+    <comp ref="U2">
+      <value>ESP32-DEVKITC</value>
+      <footprint>rocketry_footprints:MODULE_ESP32-DEVKITC</footprint>
+      <fields>
+        <field name="Availability">In Stock</field>
+        <field name="Check_prices">https://www.snapeda.com/parts/ESP32-DEVKITC/Espressif+Systems/view-part/?ref=eda</field>
+        <field name="Description">
+ESP32-WROOM-32UE series Transceiver; 802.11 b/g/n (Wi-Fi, WiFi, WLAN), Bluetooth ® Smart Ready 4.x Dual Mode Evaluation Board
+</field>
+        <field name="MANUFACTURER">ESPRESSIF</field>
+        <field name="MF">Espressif Systems</field>
+        <field name="MP">ESP32-DEVKITC</field>
+        <field name="PARTREV">N/A</field>
+        <field name="Package">None</field>
+        <field name="Price">None</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+        <field name="SnapEDA_Link">https://www.snapeda.com/parts/ESP32-DEVKITC/Espressif+Systems/view-part/?ref=snap</field>
+      </fields>
+      <libsource lib="ESP32" part="ESP32-DEVKITC" description=""/>
+      <property name="MF" value="Espressif Systems"/>
+      <property name="Description" value="&#xA;ESP32-WROOM-32UE series Transceiver; 802.11 b/g/n (Wi-Fi, WiFi, WLAN), Bluetooth ® Smart Ready 4.x Dual Mode Evaluation Board&#xA;"/>
+      <property name="Package" value="None"/>
+      <property name="Price" value="None"/>
+      <property name="Check_prices" value="https://www.snapeda.com/parts/ESP32-DEVKITC/Espressif+Systems/view-part/?ref=eda"/>
+      <property name="STANDARD" value="Manufacturer Recommendations"/>
+      <property name="PARTREV" value="N/A"/>
+      <property name="SnapEDA_Link" value="https://www.snapeda.com/parts/ESP32-DEVKITC/Espressif+Systems/view-part/?ref=snap"/>
+      <property name="MP" value="ESP32-DEVKITC"/>
+      <property name="Availability" value="In Stock"/>
+      <property name="MANUFACTURER" value="ESPRESSIF"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>5421cfd7-e1df-497d-8737-63ec1ce6df9a</tstamps>
+    </comp>
+    <comp ref="U3">
+      <value>LM3940IT-3.3/NOPB</value>
+      <footprint>rocketry_footprints:LM3940IT</footprint>
+      <datasheet>https://www.ti.com/lit/ds/symlink/lm3940.pdf?ts=1702349127947&amp;ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FLM3940%252Fpart-details%252FLM3940IT-3.3%252FNOPB</datasheet>
+      <libsource lib="LM3940" part="LM3940IT-3.3_NOPB" description=""/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <property name="ki_keywords" value="LM3940IT-3.3/NOPB"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>2be4acc1-995b-4a79-9b15-5e17a4888083</tstamps>
+    </comp>
+    <comp ref="U4">
+      <value>TLC5916IN</value>
+      <footprint>rocketry_footprints:TLC5916IN</footprint>
+      <datasheet>https://www.ti.com/lit/ds/symlink/tlc5916.pdf?ts=1702349019331&amp;ref_url=https%253A%252F%252Fwww.google.com%252F</datasheet>
+      <fields>
+        <field name="Check_prices">https://www.snapeda.com/parts/TLC5916IN/Texas+Instruments/view-part/?ref=eda</field>
+        <field name="Description">
+8-bit constant-current LED sink driver
+</field>
+        <field name="DigiKey_Part_Number">296-24383-5-ND</field>
+        <field name="MF">Texas Instruments</field>
+        <field name="MP">TLC5916IN</field>
+        <field name="Package">PDIP-16 Texas Instruments</field>
+        <field name="Purchase-URL">https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=276911&amp;manufacturer=Texas Instruments&amp;part_name=TLC5916IN&amp;search_term=tlc5916in</field>
+        <field name="SnapEDA_Link">https://www.snapeda.com/parts/TLC5916IN/Texas+Instruments/view-part/?ref=snap</field>
+      </fields>
+      <libsource lib="TLC5916IN" part="TLC5916IN" description=""/>
+      <property name="DigiKey_Part_Number" value="296-24383-5-ND"/>
+      <property name="MF" value="Texas Instruments"/>
+      <property name="Purchase-URL" value="https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=276911&amp;manufacturer=Texas Instruments&amp;part_name=TLC5916IN&amp;search_term=tlc5916in"/>
+      <property name="Package" value="PDIP-16 Texas Instruments"/>
+      <property name="SnapEDA_Link" value="https://www.snapeda.com/parts/TLC5916IN/Texas+Instruments/view-part/?ref=snap"/>
+      <property name="MP" value="TLC5916IN"/>
+      <property name="Description" value="&#xA;8-bit constant-current LED sink driver&#xA;"/>
+      <property name="Check_prices" value="https://www.snapeda.com/parts/TLC5916IN/Texas+Instruments/view-part/?ref=eda"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>7e836b80-3658-418d-876d-d1d326fc4963</tstamps>
+    </comp>
+    <comp ref="U5">
+      <value>TLC5916IN</value>
+      <footprint>rocketry_footprints:TLC5916IN</footprint>
+      <datasheet>https://www.ti.com/lit/ds/symlink/tlc5916.pdf?ts=1702349019331&amp;ref_url=https%253A%252F%252Fwww.google.com%252F</datasheet>
+      <fields>
+        <field name="Check_prices">https://www.snapeda.com/parts/TLC5916IN/Texas+Instruments/view-part/?ref=eda</field>
+        <field name="Description">
+8-bit constant-current LED sink driver
+</field>
+        <field name="DigiKey_Part_Number">296-24383-5-ND</field>
+        <field name="MF">Texas Instruments</field>
+        <field name="MP">TLC5916IN</field>
+        <field name="Package">PDIP-16 Texas Instruments</field>
+        <field name="Purchase-URL">https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=276911&amp;manufacturer=Texas Instruments&amp;part_name=TLC5916IN&amp;search_term=tlc5916in</field>
+        <field name="SnapEDA_Link">https://www.snapeda.com/parts/TLC5916IN/Texas+Instruments/view-part/?ref=snap</field>
+      </fields>
+      <libsource lib="TLC5916IN" part="TLC5916IN" description=""/>
+      <property name="DigiKey_Part_Number" value="296-24383-5-ND"/>
+      <property name="MF" value="Texas Instruments"/>
+      <property name="Purchase-URL" value="https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=276911&amp;manufacturer=Texas Instruments&amp;part_name=TLC5916IN&amp;search_term=tlc5916in"/>
+      <property name="Package" value="PDIP-16 Texas Instruments"/>
+      <property name="SnapEDA_Link" value="https://www.snapeda.com/parts/TLC5916IN/Texas+Instruments/view-part/?ref=snap"/>
+      <property name="MP" value="TLC5916IN"/>
+      <property name="Description" value="&#xA;8-bit constant-current LED sink driver&#xA;"/>
+      <property name="Check_prices" value="https://www.snapeda.com/parts/TLC5916IN/Texas+Instruments/view-part/?ref=eda"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>dbefd257-051e-4a2e-b63b-5907568fd6d8</tstamps>
+    </comp>
+    <comp ref="U6">
+      <value>TLC5916IN</value>
+      <footprint>rocketry_footprints:TLC5916IN</footprint>
+      <datasheet>https://www.ti.com/lit/ds/symlink/tlc5916.pdf?ts=1702349019331&amp;ref_url=https%253A%252F%252Fwww.google.com%252F</datasheet>
+      <fields>
+        <field name="Check_prices">https://www.snapeda.com/parts/TLC5916IN/Texas+Instruments/view-part/?ref=eda</field>
+        <field name="Description">
+8-bit constant-current LED sink driver
+</field>
+        <field name="DigiKey_Part_Number">296-24383-5-ND</field>
+        <field name="MF">Texas Instruments</field>
+        <field name="MP">TLC5916IN</field>
+        <field name="Package">PDIP-16 Texas Instruments</field>
+        <field name="Purchase-URL">https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=276911&amp;manufacturer=Texas Instruments&amp;part_name=TLC5916IN&amp;search_term=tlc5916in</field>
+        <field name="SnapEDA_Link">https://www.snapeda.com/parts/TLC5916IN/Texas+Instruments/view-part/?ref=snap</field>
+      </fields>
+      <libsource lib="TLC5916IN" part="TLC5916IN" description=""/>
+      <property name="DigiKey_Part_Number" value="296-24383-5-ND"/>
+      <property name="MF" value="Texas Instruments"/>
+      <property name="Purchase-URL" value="https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=276911&amp;manufacturer=Texas Instruments&amp;part_name=TLC5916IN&amp;search_term=tlc5916in"/>
+      <property name="Package" value="PDIP-16 Texas Instruments"/>
+      <property name="SnapEDA_Link" value="https://www.snapeda.com/parts/TLC5916IN/Texas+Instruments/view-part/?ref=snap"/>
+      <property name="MP" value="TLC5916IN"/>
+      <property name="Description" value="&#xA;8-bit constant-current LED sink driver&#xA;"/>
+      <property name="Check_prices" value="https://www.snapeda.com/parts/TLC5916IN/Texas+Instruments/view-part/?ref=eda"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>f094db1a-692a-4eec-bb93-b648620e8351</tstamps>
+    </comp>
+    <comp ref="U7">
+      <value>~</value>
+      <footprint>rocketry_footprints:Seven_Segment_Display</footprint>
+      <datasheet>http://www.xlitx.com/datasheet/5641BH.pdf</datasheet>
+      <libsource lib="CL5641BH" part="CL5641BH_1" description=""/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>1a8af2da-6dcc-41e2-8e0c-78cdba28883f</tstamps>
+    </comp>
+    <comp ref="U8">
+      <value>~</value>
+      <footprint>rocketry_footprints:Seven_Segment_Display</footprint>
+      <datasheet>http://www.xlitx.com/datasheet/5641BH.pdf</datasheet>
+      <libsource lib="" part="CL5641BH_1_1" description=""/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>38a1b39e-a0a7-4062-a347-691bc9a07872</tstamps>
+    </comp>
+    <comp ref="U9">
+      <value>IRF4905PBF</value>
+      <footprint>rocketry_footprints:PG-TO220-3_INF</footprint>
+      <datasheet>IRF4905PBF</datasheet>
+      <libsource lib="IRF4905" part="IRF4905PBF_1" description=""/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <property name="ki_keywords" value="IRF4905PBF"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>9026787e-42e0-49b6-8586-c133775a7fa2</tstamps>
+    </comp>
+    <comp ref="U10">
+      <value>IRF4905PBF</value>
+      <footprint>rocketry_footprints:PG-TO220-3_INF</footprint>
+      <datasheet>IRF4905PBF</datasheet>
+      <libsource lib="IRF4905" part="IRF4905PBF_1" description=""/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <property name="ki_keywords" value="IRF4905PBF"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>68c01709-c7bb-4a95-9fa8-af8bdab0c597</tstamps>
+    </comp>
+    <comp ref="U11">
+      <value>IRF4905PBF</value>
+      <footprint>rocketry_footprints:PG-TO220-3_INF</footprint>
+      <datasheet>IRF4905PBF</datasheet>
+      <libsource lib="IRF4905" part="IRF4905PBF_1" description=""/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <property name="ki_keywords" value="IRF4905PBF"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>e7126a14-b9ed-42ff-9608-e6d76d0e1343</tstamps>
+    </comp>
+    <comp ref="U12">
+      <value>IRF4905PBF</value>
+      <footprint>rocketry_footprints:PG-TO220-3_INF</footprint>
+      <datasheet>IRF4905PBF</datasheet>
+      <libsource lib="IRF4905" part="IRF4905PBF_1" description=""/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="antenna_board.kicad_sch"/>
+      <property name="ki_keywords" value="IRF4905PBF"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>7960d957-8914-4e92-b1d5-46e2ee931689</tstamps>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="" part="CL5641BH_1_1">
+      <docs>http://www.xlitx.com/datasheet/5641BH.pdf</docs>
+      <fields>
+        <field name="Reference">U8</field>
+        <field name="Value">~</field>
+        <field name="Footprint">rocketry_footprints:Seven_Segment_Display</field>
+        <field name="Datasheet">http://www.xlitx.com/datasheet/5641BH.pdf</field>
+      </fields>
+      <pins>
+        <pin num="1" name="LED1" type="bidirectional"/>
+        <pin num="2" name="LED2" type="bidirectional"/>
+        <pin num="3" name="LED3" type="bidirectional"/>
+        <pin num="4" name="LED4" type="bidirectional"/>
+        <pin num="5" name="LED5" type="bidirectional"/>
+        <pin num="6" name="MOS1" type="bidirectional"/>
+        <pin num="7" name="LED6" type="bidirectional"/>
+        <pin num="8" name="MOS2" type="bidirectional"/>
+        <pin num="9" name="MOS3" type="bidirectional"/>
+        <pin num="10" name="LED7" type="bidirectional"/>
+        <pin num="11" name="LED8" type="bidirectional"/>
+        <pin num="12" name="MOS4" type="bidirectional"/>
+      </pins>
+    </libpart>
+    <libpart lib="CL5641BH" part="CL5641BH_1">
+      <docs>http://www.xlitx.com/datasheet/5641BH.pdf</docs>
+      <fields>
+        <field name="Reference">U8</field>
+        <field name="Value">~</field>
+        <field name="Footprint">rocketry_footprints:Seven_Segment_Display</field>
+        <field name="Datasheet">http://www.xlitx.com/datasheet/5641BH.pdf</field>
+      </fields>
+      <pins>
+        <pin num="1" name="LED1" type="bidirectional"/>
+        <pin num="2" name="LED2" type="bidirectional"/>
+        <pin num="3" name="LED3" type="bidirectional"/>
+        <pin num="4" name="LED4" type="bidirectional"/>
+        <pin num="5" name="LED5" type="bidirectional"/>
+        <pin num="6" name="MOS1" type="bidirectional"/>
+        <pin num="7" name="LED6" type="bidirectional"/>
+        <pin num="8" name="MOS2" type="bidirectional"/>
+        <pin num="9" name="MOS3" type="bidirectional"/>
+        <pin num="10" name="LED7" type="bidirectional"/>
+        <pin num="11" name="LED8" type="bidirectional"/>
+        <pin num="12" name="MOS4" type="bidirectional"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="Conn_01x02_Socket">
+      <description>Generic connector, single row, 01x02, script generated</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x02_Socket</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="C">
+      <description>Unpolarized capacitor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R">
+      <description>Resistor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="ESP32" part="ESP32-DEVKITC">
+      <fields>
+        <field name="Reference">U2</field>
+        <field name="Value">ESP32-DEVKITC</field>
+        <field name="Footprint">rocketry_footprints:MODULE_ESP32-DEVKITC</field>
+        <field name="Description">
+ESP32-WROOM-32UE series Transceiver; 802.11 b/g/n (Wi-Fi, WiFi, WLAN), Bluetooth ® Smart Ready 4.x Dual Mode Evaluation Board
+</field>
+        <field name="MF">Espressif Systems</field>
+        <field name="Package">None</field>
+        <field name="Price">None</field>
+        <field name="Check_prices">https://www.snapeda.com/parts/ESP32-DEVKITC/Espressif+Systems/view-part/?ref=eda</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+        <field name="PARTREV">N/A</field>
+        <field name="SnapEDA_Link">https://www.snapeda.com/parts/ESP32-DEVKITC/Espressif+Systems/view-part/?ref=snap</field>
+        <field name="MP">ESP32-DEVKITC</field>
+        <field name="Availability">In Stock</field>
+        <field name="MANUFACTURER">ESPRESSIF</field>
+      </fields>
+      <pins>
+        <pin num="1" name="3V3" type="power_in"/>
+        <pin num="2" name="EN" type="input"/>
+        <pin num="3" name="SENSOR_VP" type="input"/>
+        <pin num="4" name="SENSOR_VN" type="input"/>
+        <pin num="5" name="IO34" type="bidirectional"/>
+        <pin num="6" name="IO35" type="bidirectional"/>
+        <pin num="7" name="IO32" type="bidirectional"/>
+        <pin num="8" name="IO33" type="bidirectional"/>
+        <pin num="9" name="IO25" type="bidirectional"/>
+        <pin num="10" name="IO26" type="bidirectional"/>
+        <pin num="11" name="IO27" type="bidirectional"/>
+        <pin num="12" name="IO14" type="bidirectional"/>
+        <pin num="13" name="IO12" type="bidirectional"/>
+        <pin num="14" name="GND1" type="power_in"/>
+        <pin num="15" name="IO13" type="bidirectional"/>
+        <pin num="16" name="SD2" type="bidirectional"/>
+        <pin num="17" name="SD3" type="bidirectional"/>
+        <pin num="18" name="CMD" type="bidirectional"/>
+        <pin num="19" name="EXT_5V" type="power_in"/>
+        <pin num="20" name="CLK" type="input"/>
+        <pin num="21" name="SD0" type="bidirectional"/>
+        <pin num="22" name="SD1" type="bidirectional"/>
+        <pin num="23" name="IO15" type="bidirectional"/>
+        <pin num="24" name="IO2" type="bidirectional"/>
+        <pin num="25" name="IO0" type="bidirectional"/>
+        <pin num="26" name="IO4" type="bidirectional"/>
+        <pin num="27" name="IO16" type="bidirectional"/>
+        <pin num="28" name="IO17" type="bidirectional"/>
+        <pin num="29" name="IO5" type="bidirectional"/>
+        <pin num="30" name="IO18" type="bidirectional"/>
+        <pin num="31" name="IO19" type="bidirectional"/>
+        <pin num="32" name="GND2" type="power_in"/>
+        <pin num="33" name="IO21" type="bidirectional"/>
+        <pin num="34" name="RXD0" type="input"/>
+        <pin num="35" name="TXD0" type="output"/>
+        <pin num="36" name="IO22" type="bidirectional"/>
+        <pin num="37" name="IO23" type="bidirectional"/>
+        <pin num="38" name="GND3" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="IRF4905" part="IRF4905PBF_1">
+      <docs>IRF4905PBF</docs>
+      <footprints>
+        <fp>PG-TO220-3_INF</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U9</field>
+        <field name="Value">IRF4905PBF</field>
+        <field name="Footprint">rocketry_footprints:PG-TO220-3_INF</field>
+        <field name="Datasheet">IRF4905PBF</field>
+      </fields>
+      <pins>
+        <pin num="1" name="G" type="unspecified"/>
+        <pin num="2" name="D" type="unspecified"/>
+        <pin num="3" name="S" type="unspecified"/>
+      </pins>
+    </libpart>
+    <libpart lib="LM3940" part="LM3940IT-3.3_NOPB">
+      <docs>https://www.ti.com/lit/ds/symlink/lm3940.pdf?ts=1702349127947&amp;ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FLM3940%252Fpart-details%252FLM3940IT-3.3%252FNOPB</docs>
+      <footprints>
+        <fp>T03B</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U3</field>
+        <field name="Value">LM3940IT-3.3/NOPB</field>
+        <field name="Footprint">rocketry_footprints:LM3940IT</field>
+        <field name="Datasheet">https://www.ti.com/lit/ds/symlink/lm3940.pdf?ts=1702349127947&amp;ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FLM3940%252Fpart-details%252FLM3940IT-3.3%252FNOPB</field>
+      </fields>
+      <pins>
+        <pin num="1" name="IN" type="input"/>
+        <pin num="2" name="GND" type="passive"/>
+        <pin num="3" name="OUT" type="output"/>
+      </pins>
+    </libpart>
+    <libpart lib="Mechanical" part="MountingHole">
+      <description>Mounting Hole without connection</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>MountingHole*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">H</field>
+        <field name="Value">MountingHole</field>
+        <field name="Datasheet">~</field>
+      </fields>
+    </libpart>
+    <libpart lib="RFM69HCW" part="RFM69HCW_Breakout">
+      <fields>
+        <field name="Reference">U1</field>
+        <field name="Value">~</field>
+        <field name="Footprint">rocketry_footprints:RFM69HCW_Breakout</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VIN" type="power_in"/>
+        <pin num="2" name="GND" type="power_out"/>
+        <pin num="3" name="EN" type="bidirectional"/>
+        <pin num="4" name="G0" type="bidirectional"/>
+        <pin num="5" name="SCK" type="bidirectional"/>
+        <pin num="6" name="MISO" type="bidirectional"/>
+        <pin num="7" name="MOSI" type="bidirectional"/>
+        <pin num="8" name="CS" type="bidirectional"/>
+        <pin num="9" name="RST" type="bidirectional"/>
+        <pin num="10" name="G5" type="output"/>
+        <pin num="11" name="G4" type="output"/>
+        <pin num="12" name="G3" type="output"/>
+        <pin num="13" name="G2" type="output"/>
+        <pin num="14" name="G1" type="output"/>
+      </pins>
+    </libpart>
+    <libpart lib="TLC5916IN" part="TLC5916IN">
+      <docs>https://www.ti.com/lit/ds/symlink/tlc5916.pdf?ts=1702349019331&amp;ref_url=https%253A%252F%252Fwww.google.com%252F</docs>
+      <fields>
+        <field name="Reference">U4</field>
+        <field name="Value">TLC5916IN</field>
+        <field name="Footprint">rocketry_footprints:TLC5916IN</field>
+        <field name="Datasheet">https://www.ti.com/lit/ds/symlink/tlc5916.pdf?ts=1702349019331&amp;ref_url=https%253A%252F%252Fwww.google.com%252F</field>
+        <field name="DigiKey_Part_Number">296-24383-5-ND</field>
+        <field name="MF">Texas Instruments</field>
+        <field name="Purchase-URL">https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=276911&amp;manufacturer=Texas Instruments&amp;part_name=TLC5916IN&amp;search_term=tlc5916in</field>
+        <field name="Package">PDIP-16 Texas Instruments</field>
+        <field name="SnapEDA_Link">https://www.snapeda.com/parts/TLC5916IN/Texas+Instruments/view-part/?ref=snap</field>
+        <field name="MP">TLC5916IN</field>
+        <field name="Description">
+8-bit constant-current LED sink driver
+</field>
+        <field name="Check_prices">https://www.snapeda.com/parts/TLC5916IN/Texas+Instruments/view-part/?ref=eda</field>
+      </fields>
+      <pins>
+        <pin num="1" name="GND" type="power_in"/>
+        <pin num="2" name="SDI" type="input"/>
+        <pin num="3" name="CLK" type="input"/>
+        <pin num="4" name="LE(ED1)" type="input"/>
+        <pin num="5" name="~{OUT0}" type="output"/>
+        <pin num="6" name="~{OUT1}" type="output"/>
+        <pin num="7" name="~{OUT2}" type="output"/>
+        <pin num="8" name="~{OUT3}" type="output"/>
+        <pin num="9" name="~{OUT4}" type="output"/>
+        <pin num="10" name="~{OUT5}" type="output"/>
+        <pin num="11" name="~{OUT6}" type="output"/>
+        <pin num="12" name="~{OUT7}" type="output"/>
+        <pin num="13" name="~{OE}(ED2)" type="input"/>
+        <pin num="14" name="SDO" type="output"/>
+        <pin num="15" name="R-EXT" type="bidirectional"/>
+        <pin num="16" name="VDD" type="power_in"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Connector">
+      <uri>/usr/share/kicad/symbols//Connector.kicad_sym</uri>
+    </library>
+    <library logical="Device">
+      <uri>/usr/share/kicad/symbols//Device.kicad_sym</uri>
+    </library>
+    <library logical="Mechanical">
+      <uri>/usr/share/kicad/symbols//Mechanical.kicad_sym</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="/3.3V">
+      <node ref="C2" pin="1" pintype="passive"/>
+      <node ref="R4" pin="1" pintype="passive"/>
+      <node ref="R5" pin="1" pintype="passive"/>
+      <node ref="R6" pin="2" pintype="passive"/>
+      <node ref="R7" pin="2" pintype="passive"/>
+      <node ref="U10" pin="3" pinfunction="S" pintype="unspecified"/>
+      <node ref="U11" pin="3" pinfunction="S" pintype="unspecified"/>
+      <node ref="U12" pin="3" pinfunction="S" pintype="unspecified"/>
+      <node ref="U2" pin="1" pinfunction="3V3" pintype="power_in"/>
+      <node ref="U3" pin="3" pinfunction="OUT" pintype="output"/>
+      <node ref="U4" pin="16" pinfunction="VDD" pintype="power_in"/>
+      <node ref="U5" pin="16" pinfunction="VDD" pintype="power_in"/>
+      <node ref="U6" pin="16" pinfunction="VDD" pintype="power_in"/>
+      <node ref="U9" pin="3" pinfunction="S" pintype="unspecified"/>
+    </net>
+    <net code="2" name="/71_1">
+      <node ref="U5" pin="5" pinfunction="~{OUT0}" pintype="output"/>
+      <node ref="U8" pin="1" pinfunction="LED1" pintype="bidirectional"/>
+    </net>
+    <net code="3" name="/71_2">
+      <node ref="U5" pin="6" pinfunction="~{OUT1}" pintype="output"/>
+      <node ref="U8" pin="2" pinfunction="LED2" pintype="bidirectional"/>
+    </net>
+    <net code="4" name="/71_3">
+      <node ref="U5" pin="7" pinfunction="~{OUT2}" pintype="output"/>
+      <node ref="U8" pin="3" pinfunction="LED3" pintype="bidirectional"/>
+    </net>
+    <net code="5" name="/71_4">
+      <node ref="U5" pin="8" pinfunction="~{OUT3}" pintype="output"/>
+      <node ref="U8" pin="4" pinfunction="LED4" pintype="bidirectional"/>
+    </net>
+    <net code="6" name="/71_5">
+      <node ref="U5" pin="9" pinfunction="~{OUT4}" pintype="output"/>
+      <node ref="U8" pin="5" pinfunction="LED5" pintype="bidirectional"/>
+    </net>
+    <net code="7" name="/71_6">
+      <node ref="U5" pin="10" pinfunction="~{OUT5}" pintype="output"/>
+      <node ref="U8" pin="7" pinfunction="LED6" pintype="bidirectional"/>
+    </net>
+    <net code="8" name="/71_7">
+      <node ref="U5" pin="11" pinfunction="~{OUT6}" pintype="output"/>
+      <node ref="U8" pin="10" pinfunction="LED7" pintype="bidirectional"/>
+    </net>
+    <net code="9" name="/71_8">
+      <node ref="U5" pin="12" pinfunction="~{OUT7}" pintype="output"/>
+      <node ref="U8" pin="11" pinfunction="LED8" pintype="bidirectional"/>
+    </net>
+    <net code="10" name="/72_1">
+      <node ref="U6" pin="5" pinfunction="~{OUT0}" pintype="output"/>
+      <node ref="U7" pin="1" pinfunction="LED1" pintype="bidirectional"/>
+    </net>
+    <net code="11" name="/72_2">
+      <node ref="U6" pin="6" pinfunction="~{OUT1}" pintype="output"/>
+      <node ref="U7" pin="2" pinfunction="LED2" pintype="bidirectional"/>
+    </net>
+    <net code="12" name="/72_3">
+      <node ref="U6" pin="7" pinfunction="~{OUT2}" pintype="output"/>
+      <node ref="U7" pin="3" pinfunction="LED3" pintype="bidirectional"/>
+    </net>
+    <net code="13" name="/72_4">
+      <node ref="U6" pin="8" pinfunction="~{OUT3}" pintype="output"/>
+      <node ref="U7" pin="4" pinfunction="LED4" pintype="bidirectional"/>
+    </net>
+    <net code="14" name="/72_5">
+      <node ref="U6" pin="9" pinfunction="~{OUT4}" pintype="output"/>
+      <node ref="U7" pin="5" pinfunction="LED5" pintype="bidirectional"/>
+    </net>
+    <net code="15" name="/72_6">
+      <node ref="U6" pin="10" pinfunction="~{OUT5}" pintype="output"/>
+      <node ref="U7" pin="7" pinfunction="LED6" pintype="bidirectional"/>
+    </net>
+    <net code="16" name="/72_7">
+      <node ref="U6" pin="11" pinfunction="~{OUT6}" pintype="output"/>
+      <node ref="U7" pin="10" pinfunction="LED7" pintype="bidirectional"/>
+    </net>
+    <net code="17" name="/72_8">
+      <node ref="U6" pin="12" pinfunction="~{OUT7}" pintype="output"/>
+      <node ref="U7" pin="11" pinfunction="LED8" pintype="bidirectional"/>
+    </net>
+    <net code="18" name="/CLK">
+      <node ref="U2" pin="31" pinfunction="IO19" pintype="bidirectional"/>
+      <node ref="U4" pin="3" pinfunction="CLK" pintype="input"/>
+      <node ref="U5" pin="3" pinfunction="CLK" pintype="input"/>
+      <node ref="U6" pin="3" pinfunction="CLK" pintype="input"/>
+    </net>
+    <net code="19" name="/CS">
+      <node ref="U1" pin="8" pinfunction="CS" pintype="bidirectional"/>
+      <node ref="U2" pin="10" pinfunction="IO26" pintype="bidirectional"/>
+    </net>
+    <net code="20" name="/CTL1">
+      <node ref="U7" pin="6" pinfunction="MOS1" pintype="bidirectional"/>
+      <node ref="U8" pin="6" pinfunction="MOS1" pintype="bidirectional"/>
+      <node ref="U9" pin="2" pinfunction="D" pintype="unspecified"/>
+    </net>
+    <net code="21" name="/CTL2">
+      <node ref="U11" pin="2" pinfunction="D" pintype="unspecified"/>
+      <node ref="U7" pin="8" pinfunction="MOS2" pintype="bidirectional"/>
+      <node ref="U8" pin="8" pinfunction="MOS2" pintype="bidirectional"/>
+    </net>
+    <net code="22" name="/CTL3">
+      <node ref="U10" pin="2" pinfunction="D" pintype="unspecified"/>
+      <node ref="U7" pin="9" pinfunction="MOS3" pintype="bidirectional"/>
+      <node ref="U8" pin="9" pinfunction="MOS3" pintype="bidirectional"/>
+    </net>
+    <net code="23" name="/CTL4">
+      <node ref="U12" pin="2" pinfunction="D" pintype="unspecified"/>
+      <node ref="U7" pin="12" pinfunction="MOS4" pintype="bidirectional"/>
+      <node ref="U8" pin="12" pinfunction="MOS4" pintype="bidirectional"/>
+    </net>
+    <net code="24" name="/G0">
+      <node ref="U1" pin="4" pinfunction="G0" pintype="bidirectional"/>
+      <node ref="U2" pin="9" pinfunction="IO25" pintype="bidirectional"/>
+    </net>
+    <net code="25" name="/LE">
+      <node ref="U2" pin="27" pinfunction="IO16" pintype="bidirectional"/>
+      <node ref="U4" pin="4" pinfunction="LE(ED1)" pintype="input"/>
+      <node ref="U5" pin="4" pinfunction="LE(ED1)" pintype="input"/>
+      <node ref="U6" pin="4" pinfunction="LE(ED1)" pintype="input"/>
+    </net>
+    <net code="26" name="/MISO">
+      <node ref="U1" pin="6" pinfunction="MISO" pintype="bidirectional"/>
+      <node ref="U2" pin="13" pinfunction="IO12" pintype="bidirectional"/>
+    </net>
+    <net code="27" name="/MOS1">
+      <node ref="R4" pin="2" pintype="passive"/>
+      <node ref="U4" pin="5" pinfunction="~{OUT0}" pintype="output"/>
+      <node ref="U9" pin="1" pinfunction="G" pintype="unspecified"/>
+    </net>
+    <net code="28" name="/MOS2">
+      <node ref="R5" pin="2" pintype="passive"/>
+      <node ref="U11" pin="1" pinfunction="G" pintype="unspecified"/>
+      <node ref="U4" pin="6" pinfunction="~{OUT1}" pintype="output"/>
+    </net>
+    <net code="29" name="/MOS3">
+      <node ref="R6" pin="1" pintype="passive"/>
+      <node ref="U10" pin="1" pinfunction="G" pintype="unspecified"/>
+      <node ref="U4" pin="7" pinfunction="~{OUT2}" pintype="output"/>
+    </net>
+    <net code="30" name="/MOS4">
+      <node ref="R7" pin="1" pintype="passive"/>
+      <node ref="U12" pin="1" pinfunction="G" pintype="unspecified"/>
+      <node ref="U4" pin="8" pinfunction="~{OUT3}" pintype="output"/>
+    </net>
+    <net code="31" name="/MOSI">
+      <node ref="U1" pin="7" pinfunction="MOSI" pintype="bidirectional"/>
+      <node ref="U2" pin="15" pinfunction="IO13" pintype="bidirectional"/>
+    </net>
+    <net code="32" name="/OE">
+      <node ref="U2" pin="33" pinfunction="IO21" pintype="bidirectional"/>
+      <node ref="U4" pin="13" pinfunction="~{OE}(ED2)" pintype="input"/>
+      <node ref="U5" pin="13" pinfunction="~{OE}(ED2)" pintype="input"/>
+      <node ref="U6" pin="13" pinfunction="~{OE}(ED2)" pintype="input"/>
+    </net>
+    <net code="33" name="/RST">
+      <node ref="U1" pin="9" pinfunction="RST" pintype="bidirectional"/>
+      <node ref="U2" pin="11" pinfunction="IO27" pintype="bidirectional"/>
+    </net>
+    <net code="34" name="/SCK">
+      <node ref="U1" pin="5" pinfunction="SCK" pintype="bidirectional"/>
+      <node ref="U2" pin="12" pinfunction="IO14" pintype="bidirectional"/>
+    </net>
+    <net code="35" name="/SDI">
+      <node ref="U2" pin="30" pinfunction="IO18" pintype="bidirectional"/>
+      <node ref="U4" pin="2" pinfunction="SDI" pintype="input"/>
+    </net>
+    <net code="36" name="GND">
+      <node ref="C1" pin="2" pintype="passive"/>
+      <node ref="C2" pin="2" pintype="passive"/>
+      <node ref="J1" pin="2" pinfunction="Pin_2" pintype="passive"/>
+      <node ref="R1" pin="1" pintype="passive"/>
+      <node ref="R2" pin="1" pintype="passive"/>
+      <node ref="R3" pin="1" pintype="passive"/>
+      <node ref="U1" pin="2" pinfunction="GND" pintype="power_out"/>
+      <node ref="U2" pin="14" pinfunction="GND1" pintype="power_in"/>
+      <node ref="U2" pin="32" pinfunction="GND2" pintype="power_in"/>
+      <node ref="U2" pin="38" pinfunction="GND3" pintype="power_in"/>
+      <node ref="U3" pin="2" pinfunction="GND" pintype="passive"/>
+      <node ref="U4" pin="1" pinfunction="GND" pintype="power_in"/>
+      <node ref="U5" pin="1" pinfunction="GND" pintype="power_in"/>
+      <node ref="U6" pin="1" pinfunction="GND" pintype="power_in"/>
+    </net>
+    <net code="37" name="Net-(U4-R-EXT)">
+      <node ref="R1" pin="2" pintype="passive"/>
+      <node ref="U4" pin="15" pinfunction="R-EXT" pintype="bidirectional"/>
+    </net>
+    <net code="38" name="Net-(U4-SDO)">
+      <node ref="U4" pin="14" pinfunction="SDO" pintype="output"/>
+      <node ref="U5" pin="2" pinfunction="SDI" pintype="input"/>
+    </net>
+    <net code="39" name="Net-(U5-R-EXT)">
+      <node ref="R2" pin="2" pintype="passive"/>
+      <node ref="U5" pin="15" pinfunction="R-EXT" pintype="bidirectional"/>
+    </net>
+    <net code="40" name="Net-(U5-SDO)">
+      <node ref="U5" pin="14" pinfunction="SDO" pintype="output"/>
+      <node ref="U6" pin="2" pinfunction="SDI" pintype="input"/>
+    </net>
+    <net code="41" name="Net-(U6-R-EXT)">
+      <node ref="R3" pin="2" pintype="passive"/>
+      <node ref="U6" pin="15" pinfunction="R-EXT" pintype="bidirectional"/>
+    </net>
+    <net code="42" name="VDD">
+      <node ref="C1" pin="1" pintype="passive"/>
+      <node ref="J1" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="U1" pin="1" pinfunction="VIN" pintype="power_in"/>
+      <node ref="U3" pin="1" pinfunction="IN" pintype="input"/>
+    </net>
+    <net code="43" name="unconnected-(U1-EN-Pad3)">
+      <node ref="U1" pin="3" pinfunction="EN" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="44" name="unconnected-(U1-G1-Pad14)">
+      <node ref="U1" pin="14" pinfunction="G1" pintype="output+no_connect"/>
+    </net>
+    <net code="45" name="unconnected-(U1-G2-Pad13)">
+      <node ref="U1" pin="13" pinfunction="G2" pintype="output+no_connect"/>
+    </net>
+    <net code="46" name="unconnected-(U1-G3-Pad12)">
+      <node ref="U1" pin="12" pinfunction="G3" pintype="output+no_connect"/>
+    </net>
+    <net code="47" name="unconnected-(U1-G4-Pad11)">
+      <node ref="U1" pin="11" pinfunction="G4" pintype="output+no_connect"/>
+    </net>
+    <net code="48" name="unconnected-(U1-G5-Pad10)">
+      <node ref="U1" pin="10" pinfunction="G5" pintype="output+no_connect"/>
+    </net>
+    <net code="49" name="unconnected-(U2-CLK-Pad20)">
+      <node ref="U2" pin="20" pinfunction="CLK" pintype="input+no_connect"/>
+    </net>
+    <net code="50" name="unconnected-(U2-CMD-Pad18)">
+      <node ref="U2" pin="18" pinfunction="CMD" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="51" name="unconnected-(U2-EN-Pad2)">
+      <node ref="U2" pin="2" pinfunction="EN" pintype="input+no_connect"/>
+    </net>
+    <net code="52" name="unconnected-(U2-EXT_5V-Pad19)">
+      <node ref="U2" pin="19" pinfunction="EXT_5V" pintype="power_in+no_connect"/>
+    </net>
+    <net code="53" name="unconnected-(U2-IO0-Pad25)">
+      <node ref="U2" pin="25" pinfunction="IO0" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="54" name="unconnected-(U2-IO2-Pad24)">
+      <node ref="U2" pin="24" pinfunction="IO2" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="55" name="unconnected-(U2-IO4-Pad26)">
+      <node ref="U2" pin="26" pinfunction="IO4" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="56" name="unconnected-(U2-IO5-Pad29)">
+      <node ref="U2" pin="29" pinfunction="IO5" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="57" name="unconnected-(U2-IO15-Pad23)">
+      <node ref="U2" pin="23" pinfunction="IO15" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="58" name="unconnected-(U2-IO17-Pad28)">
+      <node ref="U2" pin="28" pinfunction="IO17" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="59" name="unconnected-(U2-IO22-Pad36)">
+      <node ref="U2" pin="36" pinfunction="IO22" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="60" name="unconnected-(U2-IO23-Pad37)">
+      <node ref="U2" pin="37" pinfunction="IO23" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="61" name="unconnected-(U2-IO32-Pad7)">
+      <node ref="U2" pin="7" pinfunction="IO32" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="62" name="unconnected-(U2-IO33-Pad8)">
+      <node ref="U2" pin="8" pinfunction="IO33" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="63" name="unconnected-(U2-IO34-Pad5)">
+      <node ref="U2" pin="5" pinfunction="IO34" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="64" name="unconnected-(U2-IO35-Pad6)">
+      <node ref="U2" pin="6" pinfunction="IO35" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="65" name="unconnected-(U2-RXD0-Pad34)">
+      <node ref="U2" pin="34" pinfunction="RXD0" pintype="input+no_connect"/>
+    </net>
+    <net code="66" name="unconnected-(U2-SD0-Pad21)">
+      <node ref="U2" pin="21" pinfunction="SD0" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="67" name="unconnected-(U2-SD1-Pad22)">
+      <node ref="U2" pin="22" pinfunction="SD1" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="68" name="unconnected-(U2-SD2-Pad16)">
+      <node ref="U2" pin="16" pinfunction="SD2" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="69" name="unconnected-(U2-SD3-Pad17)">
+      <node ref="U2" pin="17" pinfunction="SD3" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="70" name="unconnected-(U2-SENSOR_VN-Pad4)">
+      <node ref="U2" pin="4" pinfunction="SENSOR_VN" pintype="input+no_connect"/>
+    </net>
+    <net code="71" name="unconnected-(U2-SENSOR_VP-Pad3)">
+      <node ref="U2" pin="3" pinfunction="SENSOR_VP" pintype="input+no_connect"/>
+    </net>
+    <net code="72" name="unconnected-(U2-TXD0-Pad35)">
+      <node ref="U2" pin="35" pinfunction="TXD0" pintype="output+no_connect"/>
+    </net>
+    <net code="73" name="unconnected-(U4-~{OUT4}-Pad9)">
+      <node ref="U4" pin="9" pinfunction="~{OUT4}" pintype="output+no_connect"/>
+    </net>
+    <net code="74" name="unconnected-(U4-~{OUT5}-Pad10)">
+      <node ref="U4" pin="10" pinfunction="~{OUT5}" pintype="output+no_connect"/>
+    </net>
+    <net code="75" name="unconnected-(U4-~{OUT6}-Pad11)">
+      <node ref="U4" pin="11" pinfunction="~{OUT6}" pintype="output+no_connect"/>
+    </net>
+    <net code="76" name="unconnected-(U4-~{OUT7}-Pad12)">
+      <node ref="U4" pin="12" pinfunction="~{OUT7}" pintype="output+no_connect"/>
+    </net>
+    <net code="77" name="unconnected-(U6-SDO-Pad14)">
+      <node ref="U6" pin="14" pinfunction="SDO" pintype="output+no_connect"/>
+    </net>
+  </nets>
+</export>
