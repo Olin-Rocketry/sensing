@@ -59,11 +59,11 @@ void setup()
   
   Serial.begin(115200);
   //tone(BUZZER,1500,1000);
-  //radio.led_test(&statusLed1);
+  radio.begin();
+  radio.led_test(&statusLed1);
   delay(10);
   //Serial.print("SD Card Present ");
   //Serial.println(digitalRead(1));
-  Serial.print(CrashReport);
   delay(1000);
   Serial.println("starting Radio");
   radio.begin();

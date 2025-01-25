@@ -17,13 +17,13 @@ void Radio::led_test(Led *statusLed){
 void Radio::begin(){
 
     //radio stuff
-    pinMode(RFM95_RST, OUTPUT);
-    digitalWrite(RFM95_RST, HIGH);
+    pinMode(8, OUTPUT);
+    digitalWrite(8, HIGH);
     Serial.println("Arduino LoRa RX Test!");
     // manual reset
-    digitalWrite(RFM95_RST, LOW);
+    digitalWrite(8, LOW);
     delay(10);
-    digitalWrite(RFM95_RST, HIGH);
+    digitalWrite(8, HIGH);
     delay(10);
 
     while (!rf95.init())
