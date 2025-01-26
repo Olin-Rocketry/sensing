@@ -37,7 +37,8 @@ public:
   float packet[packetSize];  //current un-encoded packet
   char encodedpacket[packetSize * 4]; //current encoded packet
   char encodedFrame[frameSize][packetSize * 4];  //current encoded frame
-  char fileName[18] = "flightLog0000.txt";  
+  char fileName[18] = "flightLog0000.txt"; 
+  bool validpacket = false; 
 
   
 

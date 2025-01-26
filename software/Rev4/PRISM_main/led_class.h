@@ -13,6 +13,6 @@ class Led {
   public:
     Led(byte pin);
     void init();
-    void RGB(int pixel, int R, int G, int B);
+    void RGB2(int pixel, int R, int G, int B);
     void off();
 };

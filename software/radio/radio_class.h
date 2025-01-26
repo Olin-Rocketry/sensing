@@ -1,13 +1,14 @@
 #pragma once
-#include "led_class.h"
 #include <Arduino.h>
 #include <algorithm>
-#include <RH_RF95.h>
-#include "data_class.h"
 
-#define RFM95_CS 9
-#define RFM95_RST 8
-#define RFM95_INT 7
+//IMPORTANT: If you are using this library with an ESP32, make sure you are on the latest version and that you set it to use HSPI in the radiohead.h file
+#include <RH_RF95.h>
+
+
+#define RFM95_CS 26
+#define RFM95_RST 27
+#define RFM95_INT 25
 #define RF95_FREQ 915.0
 
 class Radio {
@@ -19,25 +20,23 @@ class Radio {
     union floatunion_t;
     float decoder(char* encoded);
     char serialBuffer[packetSize*4];
-    Led *statusLed;
     bool serial_status;
-    Data *data;
+
 
     
     
 
   public:
+  
+    Radio() : rf95(RFM95_CS,RFM95_INT) { }  //what is going on here? We need to make this a constructor method 
 
-//    Radio(Led *statusLed);
-    Radio(Data *data) : rf95(RFM95_CS,RFM95_INT) {this->data = data; init();} ;
 
     
     void init();  
     void begin(); 
-    void reveicePacket();  
-    void led_test(Led *statusLed);
- 
-    void sendRadio();
+    void receivePacket();  
+    float getRSSI();
+    void sendRadio(char serialBuffer[packetSize*4]);
 //void sendRadio();
 void readRadio();
     void decodeData();  
