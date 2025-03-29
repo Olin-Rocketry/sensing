@@ -1,7 +1,0 @@
-Item,Qty,Designator,Value,LibPart,Footprint,LCSC Part #
-,,C1,0.1uf,Device:C,Capacitor_SMD:C_0603_1608Metric,C14663
-,,C2,0.1uf,Device:C,Capacitor_SMD:C_0603_1608Metric,C14663
-,,D1,SS54,SS54:SS54,JLC_footprints:DO-214AC,C22452
-,,D2,SS54,SS54:SS54,JLC_footprints:DO-214AC,C22452
-,,R4,200K,Device:R,Resistor_SMD:R_0603_1608Metric,C25811
-,,R5,300K,Device:R,Resistor_SMD:R_0603_1608Metric,C23024

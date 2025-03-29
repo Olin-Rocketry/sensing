@@ -60,6 +60,7 @@ void setup()
   Serial.begin(115200);
   //tone(BUZZER,1500,1000);
   radio.begin();
+  delay(100);
   radio.led_test(&statusLed1);
   delay(10);
   //Serial.print("SD Card Present ");
