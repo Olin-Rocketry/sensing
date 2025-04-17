@@ -5003,7 +5003,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.xlitx.com/datasheet/3461AS.pdf"
 			(at 204.47 46.99 0)
 			(effects
 				(font
@@ -5908,7 +5908,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.xlitx.com/datasheet/3461AS.pdf"
 			(at 257.81 46.99 0)
 			(effects
 				(font
@@ -6680,7 +6680,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.analog.com/media/en/technical-documentation/data-sheets/max7219-max7221.pdf"
 			(at 224.79 128.27 0)
 			(effects
 				(font
@@ -7109,7 +7109,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://learn.adafruit.com/adafruit-rfm69hcw-and-rfm96-rfm95-rfm98-lora-packet-padio-breakouts/pinouts"
 			(at 134.62 54.61 0)
 			(effects
 				(font
