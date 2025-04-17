@@ -4628,6 +4628,12 @@
 		(uuid "5b6379b0-bc68-4ded-a492-91e7af482674")
 	)
 	(junction
+		(at 174.625 115.57)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "622dbc19-8dd1-4066-b367-f380a549d7bf")
+	)
+	(junction
 		(at 174.625 130.81)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4782,16 +4788,6 @@
 			(type default)
 		)
 		(uuid "0f7c345a-ddef-4299-a61b-a80744aabfe1")
-	)
-	(wire
-		(pts
-			(xy 181.61 115.57) (xy 174.625 115.57)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "11855710-de87-4ce2-9372-81019c94082a")
 	)
 	(wire
 		(pts
@@ -5002,6 +4998,16 @@
 			(type default)
 		)
 		(uuid "80f35265-ab30-4028-8309-fc24e3da6320")
+	)
+	(wire
+		(pts
+			(xy 173.99 115.57) (xy 174.625 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "82a4e1bf-99ac-45e5-a0ba-f96cd8b6b426")
 	)
 	(wire
 		(pts
@@ -5305,6 +5311,16 @@
 	)
 	(wire
 		(pts
+			(xy 174.625 115.57) (xy 181.61 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ee8ccfac-1c3b-448d-bfca-b2f985ba6fd5")
+	)
+	(wire
+		(pts
 			(xy 55.88 33.02) (xy 47.625 33.02)
 		)
 		(stroke
@@ -5423,7 +5439,7 @@
 	)
 	(rectangle
 		(start 151.765 99.695)
-		(end 281.94 160.02)
+		(end 281.94 163.83)
 		(stroke
 			(width 0)
 			(type dash)
@@ -5492,6 +5508,17 @@
 			(justify left bottom)
 		)
 		(uuid "76b02a62-7684-4693-bf8f-cdeab4f6e866")
+	)
+	(text "Lnorm = 1 @ 10mA\nVf = 2V @ 10mA\nR = (3.3V-2V)/10mA = 130 Ohms\n\nR = 100 Ohms\nI = (3.3V-2.1V)/100 = 13mA"
+		(exclude_from_sim no)
+		(at 154.178 155.956 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8b6d76d7-60ba-48b7-81db-7ca13b777f9c")
 	)
 	(global_label "PWM2"
 		(shape input)
@@ -5801,7 +5828,7 @@
 			)
 		)
 	)
-	(global_label "VBAT1"
+	(global_label "VBAT"
 		(shape input)
 		(at 241.935 116.84 180)
 		(fields_autoplaced yes)
@@ -5813,7 +5840,7 @@
 		)
 		(uuid "41a48cdd-6a64-47c6-9439-3655fd606e03")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 233.3255 116.84 0)
+			(at 234.535 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5907,28 +5934,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "VBAT1"
-		(shape input)
-		(at 174.625 115.57 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "4debfbc3-3150-4a0f-bb8c-82caa020096f")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 166.0155 115.57 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 				(hide yes)
 			)
 		)
@@ -6835,6 +6840,28 @@
 			)
 		)
 	)
+	(global_label "3V3"
+		(shape input)
+		(at 173.99 115.57 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "fe891ec1-0114-4e4a-919a-c141a30e0c59")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 167.4972 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "LED2"
 		(shape input)
 		(at 132.715 116.84 180)
@@ -6958,7 +6985,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://ngspice.sourceforge.io/docs/ngspice-manual.pdf"
+		(property "Datasheet" "https://goodarksemi.com/docs/datasheets/mosfets/GSFC0500.pdf"
 			(at 256.54 149.86 0)
 			(effects
 				(font
@@ -7057,7 +7084,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "XGUGX5D"
+		(property "Datasheet" "https://www.sunledusa.com/products/spec/XGUGX5D.pdf"
 			(at 181.61 115.57 0)
 			(effects
 				(font
@@ -7285,7 +7312,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.sameskydevices.com/product/resource/cpt-1404-85t.pdf"
 			(at 245.11 114.935 90)
 			(effects
 				(font
@@ -7840,7 +7867,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "BNO055"
+		(property "Datasheet" "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bno055-ds000.pdf"
 			(at 55.88 33.02 0)
 			(effects
 				(font
@@ -7851,6 +7878,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 55.88 33.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Alternative" "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/6531/BNO080_085_Datasheet-3196201.pdf"
 			(at 55.88 33.02 0)
 			(effects
 				(font
@@ -8981,7 +9017,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "BMP388"
+		(property "Datasheet" "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp388-ds001.pdf"
 			(at 224.79 25.4 0)
 			(effects
 				(font
@@ -8992,6 +9028,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 204.47 28.575 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Alternative" "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf"
 			(at 204.47 28.575 0)
 			(effects
 				(font
@@ -9211,7 +9256,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "1040310811"
+		(property "Datasheet" "https://www.molex.com/en-us/products/part-detail/1040310811?display=pdf"
 			(at 195.58 71.12 0)
 			(effects
 				(font

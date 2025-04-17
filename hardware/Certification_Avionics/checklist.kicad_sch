@@ -1,0 +1,19 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "095a0473-b86c-4f05-95ec-3513b80b76bb")
+	(paper "A4")
+	(lib_symbols)
+	(text "2x 1A CC pyro channels\nContinuity sensing\n2S LiPo\nBMS for LiPo\nESP32-S3 with USB programming\n9 axis IMU + Barometer sensors\nSD Card\nSafety switch for pyros\nPower switch\nBuzzer\nMounting Holes\nPower indicator LED\nTestbench switch or buzzer switch\n"
+		(exclude_from_sim no)
+		(at 27.432 67.818 0)
+		(effects
+			(font
+				(size 4 4)
+			)
+			(justify left)
+		)
+		(uuid "0e38657b-3e3a-4dac-89f4-384062de7edf")
+	)
+)
