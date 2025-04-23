@@ -13,8 +13,8 @@ void StepperMotor::init()
 }
 
 void StepperMotor::enable_stepper(){
-  Serial2.setTX(4);
-  Serial2.setRX(5);
+  Serial2.setTX(17);
+  Serial2.setRX(16);
   step_stick.setup(serial_stream);
 
   //Step-stick Settings

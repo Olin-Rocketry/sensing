@@ -54,9 +54,8 @@ unsigned long old_cycle_time = 0;
 
 void setup()
 {
-    //steppermotor.enable_stepper();
-//  steppermotor.home_stepper();
-  
+  steppermotor.enable_stepper();
+  steppermotor.home_stepper();
   Serial.begin(115200);
   tone(BUZZER,1500,1000);
   radio.led_test(&statusLed1);
@@ -126,20 +125,9 @@ void loop()
 
   radio.sendRadio();
 
-  // stepper
-  int t_now = millis();
-
-  int pos = t_now/10000 * 360*20;
-
-//  Serial.println(pos);
+  steppermotor.move_stepper(1);
   
-  steppermotor.move_stepper(pos);
 
-
-  if (t_now > 1000*30){
-    steppermotor.disable_stepper();
-  }
-  
   
   // Chooses loop to run through depending on what the flight_phase is set to
   switch (flight_phase)
