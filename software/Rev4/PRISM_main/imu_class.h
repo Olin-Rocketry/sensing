@@ -4,6 +4,7 @@
 #include <Wire.h>
 #include <Adafruit_LSM9DS1.h>
 #include <Adafruit_Sensor.h>
+#include "Adafruit_AHRS_Madgwick.h"
 
 struct Quaternion // Define Quaternion struct here
     {
@@ -22,7 +23,7 @@ class Imu
 private:
     Data *data;
     Adafruit_LSM9DS1 lsm;
-
+    Adafruit_Madgwick madgwick9dof; // Initialize Madgwick Orientation Filter object
     double dt;
     double old_time = 0;
     double new_time;
@@ -41,6 +42,7 @@ public:
     void test_connection();
     Quaternion read_quaternions();
     void perform_reading();
+    void read_and_fuse();
     /* Rotate the acceleration into the global refernce frame.
    *
    * Get the linear acceleration. Get the quaternion of the chip.

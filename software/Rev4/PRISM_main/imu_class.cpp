@@ -9,12 +9,13 @@ Imu::Imu(Data *data)
 void Imu::init()
 {
     test_connection();
+    madgwick9dof.begin(100);
 }
 
 void Imu::setup_sensor()
 {
   // 1.) Set the accelerometer range
-  lsm.setupAccel(lsm.LSM9DS1_ACCELRANGE_2G, lsm.LSM9DS1_ACCELDATARATE_10HZ);
+  lsm.setupAccel(lsm.LSM9DS1_ACCELRANGE_4G, lsm.LSM9DS1_ACCELDATARATE_119HZ);
   
   // 2.) Set the magnetometer sensitivity
   lsm.setupMag(lsm.LSM9DS1_MAGGAIN_4GAUSS);
@@ -45,6 +46,7 @@ void Imu::test_connection()
     setup_sensor();
 }
 
+// this could be redundant after some testing
 void Imu::perform_reading() {
   //lsm.read();
   read_accelerometer();
@@ -52,18 +54,18 @@ void Imu::perform_reading() {
   read_magnetometer();
 }
 
-
-
-Vector3 Imu::read_euler() // this is incorrect, need to re-implement
+void Imu::read_and_fuse()
 {
-    sensors_event_t a, m, g, temp;
-    lsm.getEvent(&a, &m, &g, &temp);
-    Vector3 euler;
-    euler.x = a.acceleration.x;
-    euler.y = a.acceleration.y;
-    euler.z = a.acceleration.z;
-    return euler;
-
+  // read and assign IMU values to corresponding vector structs
+  Vector3 A = read_accelerometer();
+  Vector3 G = read_gyroscope();
+  Vector3 M = read_magnetometer();
+  // update orientation via Madgwick Filter
+  madgwick9dof.update(G.x*DEG_TO_RAD, G.y*DEG_TO_RAD, G.z*DEG_TO_RAD, A.x, A.y, A.z, M.x, M.y, M.z);
+  // set corresponding data entries to Euler angles
+  data->eulerx((float)madgwick9dof.getPitch());
+  data->eulery((float)madgwick9dof.getRoll());
+  data->eulerz((float)madgwick9dof.getYaw());
 }
 
 Vector3 Imu::read_magnetometer()
@@ -109,12 +111,6 @@ Vector3 Imu::read_accelerometer()
 // Plan to re-implement with proper sensor fusion utilizing accel, gyro, and mag data
 // Possible use a Madgwick Filter while on the ground for initial orientation then switch to gyro-only
 // in flight as accel readings would alter the ground-reference frame
-
-
-
-
-
-
 
 
 Vector3 Imu::rotateVectorByQuaternion(const Vector3& vec, const Quaternion& quat) {
