@@ -84,7 +84,11 @@ void Radio::begin(){
 
       // Defaults after init are 434.0MHz, 13dBm, Bw = 125 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on
       // attempt to speed up radio with Bw = 500 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on. Fast+short range
+<<<<<<< HEAD
+      //rf95.setModemConfig(1);
+=======
       // rf95.setModemConfig(1);
+>>>>>>> d56a083b0061a65da87d0008b5ce8a207ff2fed9
       // The default transmitter power is 13dBm, using PA_BOOST.
       // If you are using RFM95/96/97/98 modules which uses the PA_BOOST transmitter pin, then
       // you can set transmitter powers from 5 to 23 dBm:
@@ -176,8 +180,20 @@ void Radio::sendRadio(){
   #ifdef RFM69
     if(data->validpacket)
     {
+<<<<<<< HEAD
+      //rf69.send((uint8_t *)data->encodedpacket, sizeof(data->encodedpacket));
+      rf69.send("Helooooo Daniel", 52);
+
+      Serial.println(sizeof(data ->encodedpacket));
+      //rf69.send("Hello Daniel",strlen("Hello Daniel"));
+      rf69.waitPacketSent();
+      //Serial.write((uint8_t *)data->encodedpacket, sizeof(data->encodedpacket));
+      //Serial.flush();
+      Serial.println("Packet Sent");
+=======
       rf69.waitPacketSent();
       rf69.send((uint8_t *)data->encodedpacket, sizeof(data->encodedpacket));
+>>>>>>> d56a083b0061a65da87d0008b5ce8a207ff2fed9
       data->validpacket=false;
     }
   #else
@@ -185,6 +201,11 @@ void Radio::sendRadio(){
     {
       rf95.waitPacketSent();
       rf95.send((uint8_t *)data->encodedpacket, sizeof(data->encodedpacket));
+<<<<<<< HEAD
+      //rf95.send("test",20);
+      //Serial.println("Packet Sent");
+=======
+>>>>>>> d56a083b0061a65da87d0008b5ce8a207ff2fed9
       data->validpacket=false;
     }
   //    delay(10);

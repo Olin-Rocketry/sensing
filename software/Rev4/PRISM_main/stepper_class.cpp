@@ -31,10 +31,9 @@ void StepperMotor::enable_stepper(){
   //Step Driver Settings
   pinMode(step_pin, OUTPUT);
   pinMode(dir_pin, OUTPUT);
+ // driver.setSpeed(85000);
 
-  driver.setMaxSpeed(max_speed/360*full_steps_per_rot*micro_steps_per_step);
-  driver.setAcceleration(max_accel/360*full_steps_per_rot*micro_steps_per_step);
-  
+
   }
 
 void StepperMotor::home_stepper(){
@@ -47,7 +46,7 @@ void StepperMotor::home_stepper(){
   while(step_stick.getStallGuardResult() >= stall_guard_threshold){};
   step_stick.moveAtVelocity(0);
   digitalWrite(LED_BUILTIN, HIGH);
-
+  driver.setCurrentPosition(0);
   
   
 //  delay(200);
@@ -66,7 +65,11 @@ void StepperMotor::home_stepper(){
 
 void StepperMotor::move_stepper(int deg_pos){
      driver.moveTo(deg_pos/360.0 * full_steps_per_rot * micro_steps_per_step);
-     driver.run();
+     Serial.print("Target Position:");
+     Serial.println(driver.targetPosition());
+     Serial.print("Current Position");
+     Serial.println(driver.currentPosition());
+     driver.runSpeed();
   }
 
 void StepperMotor::disable_stepper(){
