@@ -39,7 +39,7 @@ bool beep=false;
 // setup sensors
 Led statusLed1(0);
 Data data(&statusLed1);
-Imu imu_test(&data);
+Imu imu(&data);
 Kalman kalman_filter(&data);
 Altimeter altimeter(&data);
 
@@ -103,7 +103,7 @@ void setup()
 
   // begin sensors
   data.SDbegin(debugEnable, noSD);
-  imu_test.begin_imu(debugEnable);
+  imu.begin_imu(debugEnable);
   altimeter.begin_altimeter(debugEnable);
   data.kfx(DROGUE_velocity_trigger);
 }
@@ -305,7 +305,7 @@ void AfterMain(){
 // collect data function
 void collect_data (void){
   // contains all sensor callings
-  imu_test.perform_reading();
+  imu.perform_reading();
   altimeter.perform_reading();
   data.curtime((float)millis());
   data.readGPS();

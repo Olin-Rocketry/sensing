@@ -3,7 +3,7 @@
 #include <Arduino.h>
 #include <Wire.h>
 #include <Adafruit_LSM9DS1.h>
-#include <Adafruit_Sensor.h> 
+#include <Adafruit_Sensor.h>
 
 struct Quaternion // Define Quaternion struct here
     {
@@ -40,7 +40,7 @@ public:
     void begin_imu(bool debugEnable);
     void test_connection();
     Quaternion read_quaternions();
-    void perform_reading(); 
+    void perform_reading();
     /* Rotate the acceleration into the global refernce frame.
    *
    * Get the linear acceleration. Get the quaternion of the chip.
@@ -49,8 +49,8 @@ public:
    */
     void rotate(); // call rotate() and read_gyroscope()
     Vector3 read_euler();        // from the chip
-    void read_gravity();
-    void read_gyroscope();
+    Vector3 read_magnetometer();
+    Vector3 read_gyroscope();
     Vector3 read_accelerometer();
     Vector3 read_linear_accel();
     void print_data(Vector3 data);

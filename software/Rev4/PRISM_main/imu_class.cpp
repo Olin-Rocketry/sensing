@@ -29,7 +29,7 @@ void Imu::begin_imu(bool debugEnable)
     this->debugEnable=debugEnable;
     if (debugEnable == true) {
       Serial.println("Imu started");
-    }    
+    }
 }
 
 void Imu::test_connection()
@@ -46,13 +46,15 @@ void Imu::test_connection()
 }
 
 void Imu::perform_reading() {
-  rotate();
-  lsm.read();
+  //lsm.read();
+  read_accelerometer();
+  read_gyroscope();
+  read_magnetometer();
 }
 
 
 
-Vector3 Imu::read_euler()
+Vector3 Imu::read_euler() // this is incorrect, need to re-implement
 {
     sensors_event_t a, m, g, temp;
     lsm.getEvent(&a, &m, &g, &temp);
@@ -64,25 +66,29 @@ Vector3 Imu::read_euler()
 
 }
 
-void Imu::read_gravity()
+Vector3 Imu::read_magnetometer()
 {
     sensors_event_t a, m, g, temp;
     lsm.getEvent(&a, &m, &g, &temp);
-    Vector3 gravity;
-    gravity.x = m.magnetic.x;
-    gravity.y = m.magnetic.y;
-    gravity.z = m.magnetic.z;
+    Vector3 mag;
+    mag.x = m.magnetic.x;
+    mag.y = m.magnetic.y;
+    mag.z = m.magnetic.z;
+    return mag;
 }
 
-void Imu::read_gyroscope()
+Vector3 Imu::read_gyroscope()
 {
     sensors_event_t a, m, g, temp;
     lsm.getEvent(&a, &m, &g, &temp);
-    Vector3 gyroscope;
-    data->gyrox((float)g.gyro.x);
-    data->gyroy((float)g.gyro.y);
-    data->gyroz((float)g.gyro.z);
-
+    Vector3 gyro;
+    gyro.x = g.gyro.x;
+    gyro.y = g.gyro.y;
+    gyro.z = g.gyro.z;
+    data->gyrox((float)gyro.x);
+    data->gyroy((float)gyro.y);
+    data->gyroz((float)gyro.z);
+    return gyro;
 }
 
 Vector3 Imu::read_accelerometer()
@@ -93,19 +99,23 @@ Vector3 Imu::read_accelerometer()
     accel.x = a.acceleration.x;
     accel.y = a.acceleration.y;
     accel.z = a.acceleration.z;
+    data->accelx((float)accel.x);
+    data->accely((float)accel.y);
+    data->accelz((float)accel.z);
     return accel;
 }
 
-Vector3 Imu::read_linear_accel() // need to fix this
-{
-    sensors_event_t a, m, g, temp;
-    lsm.getEvent(&a, &m, &g, &temp);
-    Vector3 linear_accel;
-    linear_accel.x = a.acceleration.x;
-    linear_accel.y = a.acceleration.y;
-    linear_accel.z = a.acceleration.z;
-    return linear_accel;
-}
+// All of the functions below are incorrect regarding orientation estimation
+// Plan to re-implement with proper sensor fusion utilizing accel, gyro, and mag data
+// Possible use a Madgwick Filter while on the ground for initial orientation then switch to gyro-only
+// in flight as accel readings would alter the ground-reference frame
+
+
+
+
+
+
+
 
 Vector3 Imu::rotateVectorByQuaternion(const Vector3& vec, const Quaternion& quat) {
     // Quaternion multiplication
@@ -192,6 +202,7 @@ Quaternion Imu::read_quaternions()
 void Imu::rotate()
 {
     Vector3 accel = read_accelerometer();
+    Vector3 gyro = read_gyroscope();
 
     // rotate to global using chip quaternion
     Quaternion unit_quat = read_quaternions();
@@ -209,6 +220,11 @@ void Imu::rotate()
     data->accely((float)rotated_accel.y);
     data->accelz((float)rotated_accel.z);
 
+    // set gyro data to corresponding packet elements in the data class
+    data->gyrox((float)gyro.x);
+    data->gyroy((float)gyro.y);
+    data->gyroz((float)gyro.z);
+
     // Convert quaternion to Euler angles and set them
     set(unit_quat);
 
@@ -217,4 +233,6 @@ void Imu::rotate()
     data->eulerx((float)eulers.x);
     data->eulery((float)eulers.y);
     data->eulerz((float)eulers.z);
+
+
 }
