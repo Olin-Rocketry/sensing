@@ -6,7 +6,7 @@
 #include <RH_RF69.h>
 #include "data_class.h"
 
-#define RFM69 // Comment for RF95 Module
+//#define RFM69 // Comment for RF95 Module
 
 #ifdef RFM69
   #define RFM69_CS 9

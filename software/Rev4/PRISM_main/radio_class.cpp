@@ -1,7 +1,7 @@
 #include "radio_class.h"
 #include <algorithm>
 
-#define RFM69 // Comment for RF95 Module
+//#define RFM69 // Comment for RF95 Module
 
 void Radio::init(){
     //init both un-encoded and encoded packet with 0
@@ -84,7 +84,7 @@ void Radio::begin(){
 
       // Defaults after init are 434.0MHz, 13dBm, Bw = 125 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on
       // attempt to speed up radio with Bw = 500 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on. Fast+short range
-      rf95.setModemConfig(1);
+      // rf95.setModemConfig(1);
       // The default transmitter power is 13dBm, using PA_BOOST.
       // If you are using RFM95/96/97/98 modules which uses the PA_BOOST transmitter pin, then
       // you can set transmitter powers from 5 to 23 dBm:
