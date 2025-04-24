@@ -54,117 +54,109 @@ unsigned long old_cycle_time = 0;
 
 void setup()
 {
-  steppermotor.enable_stepper();
-  steppermotor.home_stepper();
-  Serial.begin(115200);
-  tone(BUZZER,1500,1000);
-  radio.led_test(&statusLed1);
-  delay(10);
+    steppermotor.enable_stepper();
+    steppermotor.home_stepper();
+    Serial.begin(115200);
+    tone(BUZZER,1500,1000);
+    radio.led_test(&statusLed1);
+    delay(10);
 
-  Serial.print(CrashReport);
-  delay(1000);
+    Serial.print(CrashReport);
+    delay(1000);
+    
+    radio.begin();
+    gps.begin_gps(&statusLed1);
+    
+    pinMode(DROGUE,OUTPUT);
+    pinMode(MAIN,OUTPUT);
+    digitalWrite(DROGUE, LOW);  //very important!!
+    digitalWrite(MAIN, LOW);  //very important!!
+    while(analogRead(KEYSWITCH) >= 100) {
+        tone(BUZZER, 700, 100);
+        delay(200);
+    };
   
-  radio.begin();
-  gps.begin_gps(&statusLed1);
-  
-  pinMode(DROGUE,OUTPUT);
-  pinMode(MAIN,OUTPUT);
-  digitalWrite(DROGUE, LOW);  //very important!!
-  digitalWrite(MAIN, LOW);  //very important!!
-  while(analogRead(KEYSWITCH) >= 100){
-    tone(BUZZER, 700, 100);
-    delay(200);
-  };
-  
-  Serial.println("To enter debug mode, send any character over Serial; proceeding without debug mode in:");
-  delay(5000);
-  int countdown=10;
-  while(Serial.available()==0)
-  {
-    Serial.println(countdown--);
-    delay(200);
-    if(millis()>10000)
-    {
-      break;
+    Serial.println("To enter debug mode, send any character over Serial; proceeding without debug mode in:");
+    delay(5000);
+    int countdown=10;
+    while(Serial.available()==0) {
+        Serial.println(countdown--);
+        delay(200);
+        if(millis()>10000) {
+            break;
+        }
     }
-  }
-  if(Serial.available()!=0)
-  {
-    debugEnable=true;
-    Serial.println("Entered debug mode");
-    noSD = true;
-    Serial.println("Entered no SD mode");  
-    debugflight_phase();
-  }
-  else
-  {
-    Serial.println("Debug mode not enabled; proceeding normally");
-  }
+    if(Serial.available()!=0) {
+        debugEnable=true;
+        Serial.println("Entered debug mode");
+        noSD = true;
+        Serial.println("Entered no SD mode");  
+        debugflight_phase();
+    }
+    else
+    {
+        Serial.println("Debug mode not enabled; proceeding normally");
+    }
 
-  // begin sensors
-  data.SDbegin(debugEnable, noSD);
-  imu.begin_imu(debugEnable);
-  altimeter.begin_altimeter(debugEnable);
-  data.kfx(DROGUE_velocity_trigger);
+    // begin sensors
+    data.SDbegin(debugEnable, noSD);
+    imu.begin_imu(debugEnable);
+    altimeter.begin_altimeter(debugEnable);
+    data.kfx(DROGUE_velocity_trigger);
 }
 
 void loop()
 {
-  loop_t_start = micros();
-  //EAST
-  cycle_time = millis() - old_cycle_time;
-  
-  if(cycle_time > 1000){
+    loop_t_start = micros();
+    //EAST
+    cycle_time = millis() - old_cycle_time;
     
-     gps.read_position();
-     old_cycle_time = millis();
-     
-  }
- 
-  // radio
+    if(cycle_time > 1000){
+        gps.read_position();
+        old_cycle_time = millis();
+    }
+  
+    // radio
+    radio.sendRadio();
 
-  radio.sendRadio();
+    steppermotor.move_stepper(1);
 
-  steppermotor.move_stepper(1);
-  
+    // Chooses loop to run through depending on what the flight_phase is set to
+    switch (flight_phase)
+    {
 
-  
-  // Chooses loop to run through depending on what the flight_phase is set to
-  switch (flight_phase)
-  {
-
-    // Prelaunch flight_phase 1: Before keyswitch
-    case 1:
-      PreARM();
-      break;
-   
-    // Prelaunch flight_phase 2: After keyswitch
-    case 2:
-      PostARM();
-      break;
-  
-    // Lauched but before apogee
-    case 3:
-      BeforeApogee();
-      break;
-  
-    // After apogee before main deploy
-    case 4:
-      BeforeMain();
-      break;
-  
-      // After main deploy
-    case 5:
-      AfterMain();
-      break;
+        // Prelaunch flight_phase 1: Before keyswitch
+        case 1:
+            PreARM();
+            break;
       
-  }
-  
-  loop_t_end = micros();
-  // adjust delay based on length of loop
-  if((loop_t_end - loop_t_start) < 10000){
-    delayMicroseconds(10000 - (loop_t_end - loop_t_start));
-  }  
+        // Prelaunch flight_phase 2: After keyswitch
+        case 2:
+            PostARM();
+            break;
+      
+        // Lauched but before apogee
+        case 3:
+            BeforeApogee();
+            break;
+      
+        // After apogee before main deploy
+        case 4:
+            BeforeMain();
+            break;
+        
+          // After main deploy
+        case 5:
+            AfterMain();
+            break;
+        
+    }
+    
+    loop_t_end = micros();
+    // adjust delay based on length of loop
+    if((loop_t_end - loop_t_start) < 10000){
+        delayMicroseconds(10000 - (loop_t_end - loop_t_start));
+    }  
 }
 
 
@@ -172,123 +164,114 @@ void loop()
 // flight_phase 1
 void PreARM()
 {
-  collect_data();
+    collect_data();
 
-  // when keyswitch is turned, enter PostARM flight_phase
-  if (analogRead(KEYSWITCH) >= 100)
-  {
-    tone(BUZZER, 400, 1000);
-    kalman_filter.begin();
-    float average_altitude = 0;
-    int number_readings = 5;
+    // when keyswitch is turned, enter PostARM flight_phase
+    if (analogRead(KEYSWITCH) >= 100) {
+        tone(BUZZER, 400, 1000);
+        kalman_filter.begin();
+        float average_altitude = 0;
+        int number_readings = 5;
 
-    for (int freq = 400; freq <= 1000; freq += 100) {
-        tone(BUZZER, freq, 100);
-        delay(100);
+        for (int freq = 400; freq <= 1000; freq += 100) {
+            tone(BUZZER, freq, 100);
+            delay(100);
 
-    //take 5 reading and compute the averadge, then use this to set the launch detection altitude
-    for (int i = 0; i < number_readings; i++){
-      average_altitude += data.baralt();
-      altimeter.perform_reading();
-      
+            //take 5 reading and compute the averadge, then use this to set the launch detection altitude
+            for (int i = 0; i < number_readings; i++){
+                average_altitude += data.baralt();
+                altimeter.perform_reading();
+            }
+
+            minimumAltitude = (average_altitude / number_readings) + trigger_offset;
+            data.kfy(minimumAltitude);
+            flight_phase = 2;
+            debugflight_phase();
+        }
+        tone(BUZZER, 200, 3000);
     }
-    minimumAltitude = (average_altitude / number_readings) + trigger_offset;
-    data.kfy(minimumAltitude);
-    flight_phase = 2;
-    debugflight_phase();
-    }
-    tone(BUZZER, 200, 3000);
-  }
 }
 
 // flight_phase 2
 void PostARM()
 {
-  collect_data();
-  kalman_filter.update();
+    collect_data();
+    kalman_filter.update();
+    statusLed1.RGB2(0, 255, 255, 0); // Yellow for LED 1
+    //statusLed2.RGB2(1, 255, 255, 0); // Yellow for LED 2
 
-
-  
-  statusLed1.RGB2(0, 255, 255, 0); // Yellow for LED 1
-  //statusLed2.RGB2(1, 255, 255, 0); // Yellow for LED 2
-
-  
-  
-  if (data.baralt() > minimumAltitude){
-    // launch
-
-    
-    flight_phase = 3;
-    debugflight_phase();
-  }
-  if (analogRead(KEYSWITCH) <= 100){
-    // turned off
-    flight_phase = 1;
-    debugflight_phase();
-  }
+    if (data.baralt() > minimumAltitude) {
+        // launch
+        flight_phase = 3;
+        debugflight_phase();
+    }
+    if (analogRead(KEYSWITCH) <= 100) {
+        // turned off
+        flight_phase = 1;
+        debugflight_phase();
+    }
 }
 
 // flight_phase 3
 void BeforeApogee()
 { 
-  collect_data();
-  status_lights();
-  kalman_filter.update();
+    collect_data();
+    status_lights();
+    kalman_filter.update();
 
-  //if below apogee velocity threshold, power the drogue pyro
-  if (data.kfvz() < DROGUE_velocity_trigger) {
-    // deploy drogue
-    pyro_t_start = data.curtime();
-    digitalWrite(DROGUE, HIGH);
-//    tone(33, 1000);
-    flight_phase = 4; 
-    debugflight_phase(); 
-  }
+    //if below apogee velocity threshold, power the drogue pyro
+    if (data.kfvz() < DROGUE_velocity_trigger) {
+        // deploy drogue
+        pyro_t_start = data.curtime();
+        digitalWrite(DROGUE, HIGH);
+        // tone(33, 1000);
+        flight_phase = 4; 
+        debugflight_phase();
+    }
 }
 
 // flight_phase 4
 void BeforeMain()
 { 
-  collect_data();
-  status_lights();
-  kalman_filter.update();
+    collect_data();
+    status_lights();
+    kalman_filter.update();
 
-  //if pyro has been on for 1s, turn it off
-  if (data.curtime() > (pyro_t_start + 1000)){
-    digitalWrite(DROGUE, LOW);
-    noTone(33);
-  }
+    //if pyro has been on for 1s, turn it off
+    if (data.curtime() > (pyro_t_start + 1000)){
+        digitalWrite(DROGUE, LOW);
+        noTone(33);
+    }
 
-  //if at main deploy, power the main pyro
-  if ((data.curtime() > (pyro_t_start + 5000)) & (data.baralt() < (minimumMainAltitude + minimumAltitude))){
-    // deploy main parachute
-    pyro_t_start = data.curtime();
-    digitalWrite(MAIN, HIGH);
-//    tone(33, 500);
-    flight_phase = 5;
-    debugflight_phase();
-  }
+    //if at main deploy, power the main pyro
+    if ((data.curtime() > (pyro_t_start + 5000)) & (data.baralt() < (minimumMainAltitude + minimumAltitude))) {
+        // deploy main parachute
+        pyro_t_start = data.curtime();
+        digitalWrite(MAIN, HIGH);
+        // tone(33, 500);
+        flight_phase = 5;
+        debugflight_phase();
+    }
 }
 
 // flight_phase 5
 void AfterMain(){
-  collect_data();
-  statusLed1.RGB2(0, 0, 255, 0); // Green for LED 1
-  // statusLed2.RGB2(1, 0, 255, 0); // Green for LED 2
+    collect_data();
+    statusLed1.RGB2(0, 0, 255, 0); // Green for LED 1
+    // statusLed2.RGB2(1, 0, 255, 0); // Green for LED 2
 
-  kalman_filter.update();
+    kalman_filter.update();
 
-  //if pyro has been on for 1s, turn it off
-  if (!beep & (data.curtime() > (pyro_t_start + 1000))){
-    digitalWrite(MAIN, LOW);
-    noTone(33);
-    beep=true;
-  }
-  if (beep & (data.curtime() > (beep_t_start + 4000)))
-  {
-    tone(33, 2000, 500);
-    beep_t_start=data.curtime();
-  }
+    //if pyro has been on for 1s, turn it off
+    if (!beep & (data.curtime() > (pyro_t_start + 1000))) {
+        digitalWrite(MAIN, LOW);
+        noTone(33);
+        beep=true;
+    }
+    if (beep & (data.curtime() > (beep_t_start + 4000))) {
+        tone(33, 2000, 500);
+        beep_t_start=data.curtime();
+    }
   //loop?
   // First burst
 //    tone(BUZZER, 1500, 1000); // 1.5 kHz tone for 1 second
@@ -304,27 +287,26 @@ void AfterMain(){
 
 // collect data function
 void collect_data (void){
-  // contains all sensor callings
-  imu.perform_reading();
-  altimeter.perform_reading();
-  data.curtime((float)millis());
-  data.readGPS();
-  data.phs(flight_phase);
-  data.analogTelem();
-  data.encodeAndAdd();
-  data.diagmsg_reset(); // clear out previous diagnostic messages
+    // contains all sensor callings
+    imu.read_and_fuse();
+    altimeter.perform_reading();
+    data.curtime((float)millis());
+    data.readGPS();
+    data.phs(flight_phase);
+    data.analogTelem();
+    data.encodeAndAdd();
+    data.diagmsg_reset(); // clear out previous diagnostic messages
 }
 
 // neopixels
 void status_lights (void) {
-  statusLed1.RGB2(0, 100, 0, 0);
+    statusLed1.RGB2(0, 100, 0, 0);
 }
 
 void debugflight_phase()
 {
-  if(debugEnable==true)
-  {
-    Serial.print("flight_phase ");
-    Serial.println(flight_phase);
-  }
+    if(debugEnable==true) {
+        Serial.print("flight_phase ");
+        Serial.println(flight_phase);
+    }
 }
