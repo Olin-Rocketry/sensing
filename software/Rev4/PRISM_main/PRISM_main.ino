@@ -55,7 +55,7 @@ unsigned long old_cycle_time = 0;
 void setup()
 {
   steppermotor.enable_stepper();
-  steppermotor.home_stepper();
+//  steppermotor.home_stepper();
   Serial.begin(115200);
   tone(BUZZER,1500,1000);
   radio.led_test(&statusLed1);
@@ -125,7 +125,7 @@ void loop()
 
   radio.sendRadio();
 
-  steppermotor.move_stepper(1);
+  //steppermotor.move_stepper(1);
   
 
   
@@ -239,10 +239,11 @@ void BeforeApogee()
   if (data.kfvz() < DROGUE_velocity_trigger) {
     // deploy drogue
     pyro_t_start = data.curtime();
-    digitalWrite(DROGUE, HIGH);
+ //   digitalWrite(DROGUE, HIGH);
 //    tone(33, 1000);
     flight_phase = 4; 
     debugflight_phase(); 
+    Serial.println("Drouge Deploy");
   }
 }
 
@@ -263,10 +264,11 @@ void BeforeMain()
   if ((data.curtime() > (pyro_t_start + 5000)) & (data.baralt() < (minimumMainAltitude + minimumAltitude))){
     // deploy main parachute
     pyro_t_start = data.curtime();
-    digitalWrite(MAIN, HIGH);
+    //digitalWrite(MAIN, HIGH);
 //    tone(33, 500);
     flight_phase = 5;
     debugflight_phase();
+    Serial.println("Main Deploy");
   }
 }
 
@@ -322,7 +324,7 @@ void status_lights (void) {
 
 void debugflight_phase()
 {
-  if(debugEnable==true)
+  if(debugEnable==false)
   {
     Serial.print("flight_phase ");
     Serial.println(flight_phase);

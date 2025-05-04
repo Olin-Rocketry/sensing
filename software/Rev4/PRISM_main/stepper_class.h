@@ -1,8 +1,9 @@
-#pragma once
 #include <Arduino.h>
-#include <TMC2209.h>
-#include <AccelStepper.h>
-
+#include <SpeedyStepper.h>
+#include <TMCStepper.h>
+#define DRIVER_ADDRESS 0b00 // TMC2209 Driver address according to MS1 and MS2
+#define SERIAL_PORT Serial4
+#define R_SENSE 0.11f // Match to your driver
 class StepperMotor
 {
 
@@ -12,6 +13,9 @@ private:
   const uint8_t dir_pin = 20;
   const uint8_t tx_pin = 17;
   const uint8_t rx_pin = 16;
+
+  TMC2209Stepper driver;
+  SpeedyStepper stepper;
   int home_speed = 180; //deg/s
   int micro_steps_per_step = 4;
   int full_steps_per_rot = 200;
@@ -21,13 +25,10 @@ private:
   int max_speed = 85000; //deg/s
   int max_accel = 2000; //deg/s/s
 
-  HardwareSerial & serial_stream = Serial4;
 
 
   //TMC2209 driver object
-  TMC2209 step_stick;
   //Step Contoller object
-  AccelStepper driver = AccelStepper(driver.DRIVER, step_pin, dir_pin);
   
 
 public:
