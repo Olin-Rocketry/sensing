@@ -9,7 +9,9 @@ Imu::Imu(Data *data)
 void Imu::init()
 {
     test_connection();
-    madgwick9dof.begin(100);
+    madgwick9dof.begin(60);
+    madgwick9dof.setKp(0.7);
+    madgwick9dof.setKi(0.1);
 }
 
 void Imu::setup_sensor()
@@ -55,21 +57,25 @@ void Imu::perform_reading() {
 void Imu::read_and_fuse()
 {
     // read and assign IMU values to corresponding vector structs
+    read_values();
     Vector3 A = read_accelerometer();
     Vector3 G = read_gyroscope();
     Vector3 M = read_magnetometer();
     // update orientation via Madgwick Filter
-    madgwick9dof.update(G.x*DEG_TO_RAD, G.y*DEG_TO_RAD, G.z*DEG_TO_RAD, A.x, A.y, A.z, M.x, M.y, M.z);
+    madgwick9dof.update(G.x * SENSORS_RADS_TO_DPS, G.y * SENSORS_RADS_TO_DPS, G.z * SENSORS_RADS_TO_DPS, A.x, A.y, A.z, M.x, M.y, M.z);
     // set corresponding data entries to Euler angles
     data->eulerx((float)madgwick9dof.getPitch());
     data->eulery((float)madgwick9dof.getRoll());
     data->eulerz((float)madgwick9dof.getYaw());
 }
 
+void Imu::read_values()
+{
+  lsm.getEvent(&a, &m, &g, &temp);
+}
+
 Vector3 Imu::read_magnetometer()
 {
-    sensors_event_t a, m, g, temp;
-    lsm.getEvent(&a, &m, &g, &temp);
     Vector3 mag;
     mag.x = m.magnetic.x;
     mag.y = m.magnetic.y;
@@ -79,8 +85,6 @@ Vector3 Imu::read_magnetometer()
 
 Vector3 Imu::read_gyroscope()
 {
-    sensors_event_t a, m, g, temp;
-    lsm.getEvent(&a, &m, &g, &temp);
     Vector3 gyro;
     gyro.x = g.gyro.x;
     gyro.y = g.gyro.y;
@@ -93,8 +97,6 @@ Vector3 Imu::read_gyroscope()
 
 Vector3 Imu::read_accelerometer()
 {
-    sensors_event_t a, m, g, temp;
-    lsm.getEvent(&a, &m, &g, &temp);
     Vector3 accel;
     accel.x = a.acceleration.x;
     accel.y = a.acceleration.y;

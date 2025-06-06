@@ -30,7 +30,7 @@ void Data::SDbegin(bool debugEnable, bool noSD)
     if (!SD.begin(10))
     {
       Serial.println("SD Card failed, or not present");
-      while (1) { }
+      while (1) {delay(1000);}
     }
 
 
@@ -332,9 +332,9 @@ void Data::analogTelem() {
   //=================battery voltage=================
 
 
-  float raw_analog = analogRead(A8);
+  float raw_analog = analogRead(A9);
   
-  volt(map(raw_analog, 815, 856, 3.65, 4.18)); //add to data class
+  volt(map(raw_analog, 629, 826, 3.2, 4.2)); //add to data class
 
   //==============arming and continuity==============
   int armSignal = analogRead(A8);

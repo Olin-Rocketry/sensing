@@ -53,7 +53,7 @@ void Kalman::begin(){
 
   current_state[0] = data->baralt(); // alt
   current_state[1] = 0;        // vel    MUST CHANGE BEFORE LUANCH!!!!! : expected launch velocity
-  current_state[2] = data->accelz();  //acceleration
+  current_state[2] = data->accely();  //acceleration
 }
 
 void Kalman::update() {
@@ -78,7 +78,7 @@ void Kalman::update() {
 
 
   measurement[0] = data->baralt();
-  measurement[1] = data->accelz();
+  measurement[1] = data->accely()-9.81*cos(data->eulerx()*3.14/180)*cos((data->eulery()-90)*3.14/180);
   
 
 
@@ -99,8 +99,8 @@ void Kalman::update() {
 
   
 
-  data->kfz(current_state[0]);
-  data->kfvz(current_state[1]);
+  data->kfy(current_state[0]);
+  data->kfvy(current_state[1]);
 
 
 //  Serial.print("V: \t");

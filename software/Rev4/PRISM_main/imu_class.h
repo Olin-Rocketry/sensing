@@ -4,7 +4,7 @@
 #include <Wire.h>
 #include <Adafruit_LSM9DS1.h>
 #include <Adafruit_Sensor.h>
-#include "Adafruit_AHRS_Madgwick.h"
+#include <Adafruit_AHRS.h>
 
 struct Quaternion // Define Quaternion struct here
 {
@@ -20,7 +20,7 @@ class Imu
     private:
         Data *data;
         Adafruit_LSM9DS1 lsm;
-        Adafruit_Madgwick madgwick9dof; // Initialize Madgwick Orientation Filter object
+        Adafruit_Mahony madgwick9dof; // Initialize Madgwick Orientation Filter object
         double dt;
         double old_time = 0;
         double new_time;
@@ -30,6 +30,8 @@ class Imu
 
 
         bool debugEnable; // Enable debug printing
+
+        sensors_event_t a, m, g, temp;
 
     public:
         Imu(Data *data);
@@ -47,6 +49,7 @@ class Imu
       * orientation.
       */
         void rotate(); // call rotate() and read_gyroscope()
+        void read_values();
         Vector3 read_euler();        // from the chip
         Vector3 read_magnetometer();
         Vector3 read_gyroscope();

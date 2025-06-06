@@ -49,8 +49,10 @@ Gps gps(&radio);
 
 StepperMotor steppermotor;
 
-unsigned long cycle_time;
-unsigned long old_cycle_time = 0;
+uint32_t last_gps_read_time = 0;
+uint16_t gps_read_delay = 1000;
+uint32_t last_radio_transmission_time = 0;
+uint16_t radio_transmission_delay = 50;
 
 void setup()
 {
@@ -80,10 +82,12 @@ void setup()
     pinMode(MAIN,OUTPUT);
     digitalWrite(DROGUE, LOW);  //very important!!
     digitalWrite(MAIN, LOW);  //very important!!
-    while(analogRead(KEYSWITCH) >= 100) {
-        tone(BUZZER, 700, 100);
-        delay(200);
-    };
+
+    // UNCOMMENT OR ELSE
+    // while(analogRead(KEYSWITCH) >= 100) {
+    //     tone(BUZZER, 700, 100);
+    //     delay(200);
+    // };
   
     Serial.println("To enter debug mode, send any character over Serial; proceeding without debug mode in:");
     delay(5000);
@@ -118,15 +122,18 @@ void loop()
 {
     loop_t_start = micros();
     //EAST
-    cycle_time = millis() - old_cycle_time;
-    
-    if(cycle_time > 1000){
-        gps.read_position();
-        old_cycle_time = millis();
-    }
+    if(it_is_time(millis(),last_gps_read_time,gps_read_delay))
+    {
+      gps.read_position();
+      last_gps_read_time = millis();
+    }    
   
     // radio
-    radio.sendRadio();
+    if(it_is_time(millis(),last_radio_transmission_time,radio_transmission_delay))
+    {
+      radio.sendRadio();
+      last_radio_transmission_time = millis();
+    }  
 
     steppermotor.move_stepper(1);
 
@@ -170,7 +177,7 @@ void loop()
     // adjust delay based on length of loop
     if((loop_t_end - loop_t_start) < 10000){
         delayMicroseconds(10000 - (loop_t_end - loop_t_start));
-    }  
+    }
 }
 
 
@@ -190,18 +197,18 @@ void PreARM()
         for (int freq = 400; freq <= 1000; freq += 100) {
             tone(BUZZER, freq, 100);
             delay(100);
-
-            //take 5 reading and compute the averadge, then use this to set the launch detection altitude
-            for (int i = 0; i < number_readings; i++){
-                average_altitude += data.baralt();
-                altimeter.perform_reading();
-            }
-
-            minimumAltitude = (average_altitude / number_readings) + trigger_offset;
-            data.kfy(minimumAltitude);
-            flight_phase = 2;
-            debugflight_phase();
         }
+
+        //take 5 reading and compute the averadge, then use this to set the launch detection altitude
+        for (int i = 0; i < number_readings; i++){
+            average_altitude += data.baralt();
+            altimeter.perform_reading();
+        }
+
+        minimumAltitude = (average_altitude / number_readings) + trigger_offset;
+        data.kfy(minimumAltitude);
+        flight_phase = 2;
+        debugflight_phase();
         tone(BUZZER, 200, 3000);
     }
 }
@@ -331,7 +338,7 @@ void collect_data (void){
     imu.read_and_fuse();
     altimeter.perform_reading();
     data.curtime((float)millis());
-    data.readGPS();
+    // data.readGPS();
     data.phs(flight_phase);
     data.analogTelem();
     data.encodeAndAdd();
@@ -357,4 +364,13 @@ void debugflight_phase()
         Serial.println(flight_phase);
     }
 >>>>>>> d2b5f4d48bb77750b1b70c9f78fa249325ea778c
+}
+
+/*
+** Returns a boolean value that indicates whether the current time, t, is later than some prior 
+** time, t0, plus a given interval, dt.  The condition accounts for timer overflow / wraparound.
+*/
+bool it_is_time(uint32_t t, uint32_t t0, uint16_t dt) {
+  return ((t >= t0) && (t - t0 >= dt)) ||         // The first disjunct handles the normal case
+            ((t < t0) && (t + (~t0) + 1 >= dt));  //   while the second handles the overflow case
 }
